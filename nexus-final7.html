@@ -609,13 +609,13 @@ body{
 .msnav-btn.active{color:var(--green);border-color:rgba(62,207,90,.46);background:rgba(62,207,90,.055);}
 .music-sub{display:none;}.music-sub.msactive{display:block;}
 /* Event sub-pages */
-.ms-next{padding:4rem 3.5rem 7rem;position:relative;min-height:75vh;background:#030508;}
+.ms-next{padding:4rem 3.5rem 7rem;position:relative;min-height:75vh;background:#030508;text-align:center;display:flex;flex-direction:column;align-items:center;}
 .ms-eb{font-size:.4rem;letter-spacing:.44em;text-transform:uppercase;color:rgba(62,207,90,.55);margin-bottom:.7rem;font-family:'Space Mono',monospace;}
 .ms-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(3rem,8vw,6.5rem);line-height:.9;letter-spacing:-.01em;color:#f0ede6;margin-bottom:1rem;}
 .ms-h em{font-style:normal;font-weight:600;color:var(--green);}
 .ms-p{font-size:.66rem;line-height:2;opacity:.38;max-width:480px;margin-bottom:2.2rem;}
 .ms-rule{width:100%;max-width:520px;height:1px;background:linear-gradient(90deg,transparent,rgba(62,207,90,.22),transparent);margin:0 0 2.2rem;}
-.event-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;max-width:760px;}
+.event-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;max-width:760px;text-align:left;}
 .event-card{border:1px solid rgba(62,207,90,.11);padding:2.5rem 2.2rem;position:relative;overflow:hidden;background:rgba(62,207,90,.012);transition:border-color .25s,background .25s;}
 .event-card:hover{border-color:rgba(62,207,90,.34);background:rgba(62,207,90,.03);}
 .event-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),rgba(62,207,90,.1),transparent);}
@@ -632,7 +632,7 @@ body{
 .event-card:hover .event-ticket-badge{color:var(--green);border-color:rgba(62,207,90,.4);}
 .event-desc{font-size:.57rem;line-height:1.85;opacity:.26;margin-top:1.2rem;border-top:1px solid rgba(62,207,90,.06);padding-top:.9rem;}
 /* Artist submission form */
-.ms-form{display:flex;flex-direction:column;gap:1rem;max-width:560px;}
+.ms-form{display:flex;flex-direction:column;gap:1rem;max-width:560px;width:100%;text-align:left;}
 .ms-inp{background:rgba(62,207,90,.035);border:1px solid rgba(62,207,90,.15);color:#f0ede6;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.06em;padding:.9em 1.1em;outline:none;transition:border-color .2s,background .2s;cursor:none;width:100%;box-sizing:border-box;}
 .ms-inp:focus{border-color:rgba(62,207,90,.5);background:rgba(62,207,90,.06);}
 .ms-inp::placeholder{color:rgba(240,237,230,.2);}
@@ -741,7 +741,7 @@ body{
 #ms-resistance .event-meta-label{color:rgba(220,80,80,.45);}
 #ms-resistance .event-ticket-badge{color:rgba(220,80,80,.55);border-color:rgba(220,80,80,.18);}
 #ms-resistance .event-card:hover .event-ticket-badge{color:#e05050;border-color:rgba(220,80,80,.45);}
-.resist-cause{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.4rem);color:rgba(220,80,80,.55);border-left:2px solid rgba(220,80,80,.25);padding-left:1.2rem;margin:1.5rem 0;line-height:1.6;}
+.resist-cause{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.4rem);color:rgba(220,80,80,.55);border-left:2px solid rgba(220,80,80,.25);padding-left:1.2rem;margin:1.5rem auto;line-height:1.6;max-width:560px;text-align:left;}
 
 /* ── ARTIST WORKSHOPS — electric teal ── */
 #ms-workshops .ms-next{background:linear-gradient(160deg,#030508 0%,#01080e 55%,#030508 100%);}
@@ -1146,25 +1146,25 @@ body{
     <!-- NEXUS FESTIVAL sub-page -->
     <div class="music-sub" id="ms-festival">
       <div class="ms-next">
-        <div class="ms-eb">Nexus Festival &nbsp;·&nbsp; Monthly Series</div>
-        <h1 class="ms-h">Nexus<br><em>Festival</em></h1>
-        <p class="ms-p">A monthly series spotlighting different acts every time. New lineups, new venues, one consistent ethos — every chapter of culture gets a stage in San Diego.</p>
+        <div class="ms-eb">Nexus &nbsp;·&nbsp; Live Music Series</div>
+        <h1 class="ms-h">Nex Up &amp;<br><em>Nexus Festival</em></h1>
+        <p class="ms-p">Two formats, one mission. Nex Up is the free monthly series highlighting different acts every time. Nexus Festival is the big annual event — one year, one room, everyone.</p>
         <div class="ms-rule"></div>
         <div class="event-cards">
           <div class="event-card">
-            <div class="event-tag">Monthly Series &nbsp;·&nbsp; Ongoing 2026</div>
-            <div class="event-title">Nexus<br><em>Festival Series</em></div>
+            <div class="event-tag">Free Monthly Series &nbsp;·&nbsp; Ongoing 2026</div>
+            <div class="event-title">Nex<br><em>Up</em></div>
             <div class="event-meta">
               <div class="event-meta-row"><span class="event-meta-label">Frequency</span><span class="event-meta-val">Monthly &nbsp;·&nbsp; Rotating Acts</span></div>
+              <div class="event-meta-row"><span class="event-meta-label">Admission</span><span class="event-meta-val">Free</span></div>
               <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; Rotating</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Tickets</span><span class="event-meta-val">Per Event &nbsp;·&nbsp; Coming Soon</span></div>
             </div>
-            <div class="event-ticket-badge">Follow for Monthly Drops</div>
-            <div class="event-desc">Every month, a new act. A new room. A new night. Nexus Festival is an ongoing series built to keep culture moving — different artists, different disciplines, always the same commitment to community. Lineups and venues drop on @n3xus.now.</div>
+            <div class="event-ticket-badge">Free &nbsp;·&nbsp; Follow for Monthly Drops</div>
+            <div class="event-desc">Every month, a different act. A different room. A free night built to keep the culture moving and keep new talent in front of the community. Lineups and venues drop on @n3xus.now.</div>
           </div>
           <div class="event-card">
-            <div class="event-tag">Nexus Festival &nbsp;·&nbsp; One Year Anniversary</div>
-            <div class="event-title">The Nexus<br><em>Festival 2026</em></div>
+            <div class="event-tag">Annual Festival &nbsp;·&nbsp; One Year Anniversary</div>
+            <div class="event-title">Nexus<br><em>Festival 2026</em></div>
             <div class="event-meta">
               <div class="event-meta-row"><span class="event-meta-label">Date</span><span class="event-meta-val">October 25, 2026</span></div>
               <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; TBD</span></div>
