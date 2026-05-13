@@ -51,7 +51,7 @@ body.light{
   color:#1A1715;
 }
 body.light .page{background:var(--space);}
-body.light #home,body.light #pg-welcome,body.light #pg-landing{background:var(--space);}
+body.light #home,body.light #pg-landing{background:var(--space);}
 body.light #pg-music,body.light #music-body{background:#F2F0EA!important;color:#1A1715!important;}
 body.light #pg-dance,body.light #dance-body{background:#F2F0EA!important;color:#1A1715!important;}
 body.light #pg-film,body.light #film-theater{background:#F2F0EA!important;color:#1A1715!important;}
@@ -156,61 +156,6 @@ body.light :focus-visible{outline:2px solid var(--gdark);}
 }
 #wipe.in {clip-path:circle(150% at 50% 50%);}
 #wipe.out{clip-path:circle(0%   at 50% 50%);}
-
-/* ═══════════════════════════════════════════════════════
-   WELCOME SPLASH PAGE
-═══════════════════════════════════════════════════════ */
-#pg-welcome{
-  background:var(--space);
-  display:flex;flex-direction:column;
-  align-items:flex-start;justify-content:center;
-  padding:6rem clamp(2rem,8vw,9rem);
-  position:relative;overflow:hidden;
-}
-/* subtle animated dot grid background */
-#pg-welcome::before{
-  content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(62,207,90,.06) 1px,transparent 1px);
-  background-size:48px 48px;
-  animation:dotShift 40s linear infinite;
-  pointer-events:none;
-}
-@keyframes dotShift{from{background-position:0 0}to{background-position:48px 48px}}
-.welc-pre{
-  font-size:.56rem;letter-spacing:.46em;text-transform:uppercase;
-  color:rgba(62,207,90,.55);margin-bottom:2rem;
-  opacity:0;animation:landIn .7s ease .2s forwards;
-}
-.welc-title{
-  font-family:'Unbounded',sans-serif;font-weight:900;
-  font-size:clamp(2.4rem,7vw,6rem);line-height:1.06;letter-spacing:-.02em;
-  color:var(--fg,#F0EDE6);margin-bottom:1.6rem;
-  opacity:0;animation:landIn .8s ease .5s forwards;
-}
-.welc-title em{color:var(--green);font-style:normal;}
-.welc-weare{
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
-  font-size:clamp(1.1rem,3vw,1.9rem);line-height:1.5;letter-spacing:.01em;
-  color:var(--dim,rgba(240,237,230,.55));
-  max-width:640px;margin-bottom:3.5rem;
-  opacity:0;animation:landIn .8s ease .85s forwards;
-}
-.welc-weare strong{font-weight:600;font-style:normal;color:var(--fg,#F0EDE6);}
-.welc-start{
-  font-family:'Space Mono',monospace;font-size:.68rem;
-  letter-spacing:.32em;text-transform:uppercase;
-  color:var(--space,#07090F);background:var(--green);
-  border:none;padding:1em 2.6em;cursor:none;
-  transition:box-shadow .25s,transform .18s;
-  opacity:0;animation:landIn .7s ease 1.2s forwards;
-}
-.welc-start:hover{box-shadow:0 0 32px rgba(62,207,90,.5);transform:scale(1.03);}
-.welc-corner{
-  position:absolute;bottom:2.5rem;right:clamp(2rem,8vw,9rem);
-  font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;
-  color:rgba(255,255,255,.2);
-  opacity:0;animation:landIn .7s ease 1.7s forwards;
-}
 
 /* ═══════════════════════════════════════════════════════
    LANDING PAGE
@@ -649,20 +594,9 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 </button>
 
 <!-- ═══════════════════════════════════════════
-     WELCOME SPLASH
-═══════════════════════════════════════════ -->
-<div class="page on" id="pg-welcome" role="main" aria-label="Welcome to Nexus">
-  <div class="welc-pre">San Diego, California</div>
-  <h1 class="welc-title">Welcome to<br><em>Nexus</em></h1>
-  <p class="welc-weare">We are the intersection of <strong>music, dance, film, fashion, and sport</strong> — a community-rooted cultural organization bringing San Diego's most compelling artists together.</p>
-  <button class="welc-start" id="welc-start-btn" aria-label="Start exploring Nexus">Start</button>
-  <div class="welc-corner" aria-hidden="true">Est. 2025</div>
-</div>
-
-<!-- ═══════════════════════════════════════════
      LANDING
 ═══════════════════════════════════════════ -->
-<div class="page" id="pg-landing">
+<div class="page on" id="pg-landing">
   <div class="land-eyebrow">San Diego, California</div>
   <div class="land-logo">NEXUS</div>
   <p class="land-tag">The intersection of music, dance, film,<br>fashion, and sport in San Diego.</p>
@@ -4088,7 +4022,7 @@ document.querySelectorAll('a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model
 
 /* ── Page nav ── */
 const wipe = document.getElementById('wipe');
-let curP = 'pg-welcome';
+let curP = 'pg-landing';
 
 // Hide all pages except the initial one so fixed-position children don't bleed through
 (function initPages() {
@@ -4823,13 +4757,6 @@ document.getElementById('p-dance').addEventListener('click',e=>{
   e.preventDefault(); e.stopImmediatePropagation();
   go('pg-dance');
 },true);
-
-/* ════════════════════════════════════════════
-   WELCOME page — start button
-════════════════════════════════════════════ */
-document.getElementById('welc-start-btn').addEventListener('click',()=>{
-  go('pg-landing');
-});
 
 /* ════════════════════════════════════════════
    LANDING PAGE — enter button
