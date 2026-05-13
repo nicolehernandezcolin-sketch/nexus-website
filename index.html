@@ -16,7 +16,7 @@
 html{width:100%;height:100%;overflow:hidden;font-size:18px}body{width:100%;height:100%;overflow:hidden}
 
 /* ─────────────────────────────────────────
-   TOKENS
+   TOKENS — dark mode (default)
 ───────────────────────────────────────── */
 :root{
   --space:    #07090F;
@@ -29,7 +29,52 @@ html{width:100%;height:100%;overflow:hidden;font-size:18px}body{width:100%;heigh
   --black:    #0A0A0A;
   --white:    #F0EDE6;
   --grey:     rgba(255,255,255,.18);
+  --fg:       #F0EDE6;
+  --bg:       #07090F;
+  --bg2:      #0D1018;
+  --dim:      rgba(240,237,230,.5);
+  --dimmer:   rgba(240,237,230,.35);
 }
+
+/* ─────────────────────────────────────────
+   LIGHT MODE overrides
+───────────────────────────────────────── */
+body.light{
+  --space:  #F2F0EA;
+  --space2: #E8E6DF;
+  --fg:     #1A1715;
+  --bg:     #F2F0EA;
+  --bg2:    #E8E6DF;
+  --dim:    rgba(26,23,21,.55);
+  --dimmer: rgba(26,23,21,.38);
+  --grey:   rgba(0,0,0,.12);
+  color:#1A1715;
+}
+body.light .page{background:var(--space);}
+body.light #home,body.light #pg-welcome,body.light #pg-landing{background:var(--space);}
+body.light #pg-music,body.light #music-body{background:#F2F0EA!important;color:#1A1715!important;}
+body.light #pg-dance,body.light #dance-body{background:#F2F0EA!important;color:#1A1715!important;}
+body.light #pg-film,body.light #film-theater{background:#F2F0EA!important;color:#1A1715!important;}
+body.light #pg-fashion{background:#F2F0EA!important;color:#1A1715!important;}
+body.light #pg-golf{background:#c8d8ca!important;color:#0a1a0c!important;}
+body.light #pg-festival,body.light #festival-body{background:#F2F0EA!important;color:#1A1715!important;}
+body.light #pg-global,body.light #global-body{background:#F2F0EA!important;color:#1A1715!important;}
+body.light .snav,body.light .mnav,body.light .dnav,body.light .fest-nav,body.light .glob-nav{background:rgba(242,240,234,.95)!important;}
+body.light .m-back,body.light .sbk,body.light .page-back-btn,body.light .fest-back,body.light .glob-back{color:rgba(26,23,21,.6)!important;}
+body.light .m-back:hover,body.light .sbk:hover,body.light .fest-back:hover,body.light .glob-back:hover{color:var(--green)!important;}
+body.light .artist-card,body.light .artist-grid{background:#F2F0EA!important;}
+body.light .artist-card{background:#F2F0EA!important;border-color:rgba(26,23,21,.08)!important;}
+body.light .ac-bio,body.light .music-intro,body.light .ms-p,body.light .gs-p,body.light .glob-sec-p,body.light .fest-sec-p,body.light .fest-intro,body.light .glob-intro{color:#1A1715!important;opacity:.7!important;}
+body.light .ac-name,body.light .ac-type{color:#1A1715!important;}
+body.light .music-star-canvas{display:none;}
+body.light #stars{display:none;}
+body.light .nebula{display:none;}
+body.light #wipe{background:#F2F0EA;}
+body.light .ms-next{background:#F2F0EA!important;color:#1A1715!important;}
+body.light .event-card{background:#E8E6DF!important;border-color:rgba(26,23,21,.1)!important;}
+body.light .golf-sub .gs-inner{background:#E8E6DF!important;}
+body.light .fest-card,body.light .glob-role-card,body.light .glob-team-grid,body.light .glob-member{background:#E8E6DF!important;}
+body.light .fest-card,body.light .glob-role-card{border-color:rgba(26,23,21,.1)!important;}
 
 body{
   background:var(--space);
@@ -38,6 +83,32 @@ body{
   user-select:none;
   overflow:hidden;
 }
+
+/* ─────────────────────────────────────────
+   LIGHT/DARK TOGGLE BUTTON
+───────────────────────────────────────── */
+#theme-toggle{
+  position:fixed;top:1.2rem;right:1.6rem;
+  z-index:9000;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(62,207,90,.1);
+  border:1px solid rgba(62,207,90,.3);
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:background .2s,border-color .2s,box-shadow .2s;
+  font-size:1rem;line-height:1;
+  color:var(--green);
+}
+#theme-toggle:hover{background:rgba(62,207,90,.2);border-color:rgba(62,207,90,.6);box-shadow:0 0 16px rgba(62,207,90,.18);}
+body.light #theme-toggle{background:rgba(62,207,90,.12);border-color:rgba(62,207,90,.4);color:var(--green);}
+
+/* ─────────────────────────────────────────
+   ACCESSIBILITY — skip link & focus styles
+───────────────────────────────────────── */
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;}
+body.light :focus-visible{outline:2px solid var(--gdark);}
+
+/* Screen-reader only */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
 /* ─────────────────────────────────────────
    CURSOR
@@ -79,6 +150,61 @@ body{
 }
 #wipe.in {clip-path:circle(150% at 50% 50%);}
 #wipe.out{clip-path:circle(0%   at 50% 50%);}
+
+/* ═══════════════════════════════════════════════════════
+   WELCOME SPLASH PAGE
+═══════════════════════════════════════════════════════ */
+#pg-welcome{
+  background:var(--space);
+  display:flex;flex-direction:column;
+  align-items:flex-start;justify-content:center;
+  padding:6rem clamp(2rem,8vw,9rem);
+  position:relative;overflow:hidden;
+}
+/* subtle animated dot grid background */
+#pg-welcome::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(62,207,90,.06) 1px,transparent 1px);
+  background-size:48px 48px;
+  animation:dotShift 40s linear infinite;
+  pointer-events:none;
+}
+@keyframes dotShift{from{background-position:0 0}to{background-position:48px 48px}}
+.welc-pre{
+  font-size:.56rem;letter-spacing:.46em;text-transform:uppercase;
+  color:rgba(62,207,90,.55);margin-bottom:2rem;
+  opacity:0;animation:landIn .7s ease .2s forwards;
+}
+.welc-title{
+  font-family:'Unbounded',sans-serif;font-weight:900;
+  font-size:clamp(2.4rem,7vw,6rem);line-height:1.06;letter-spacing:-.02em;
+  color:var(--fg,#F0EDE6);margin-bottom:1.6rem;
+  opacity:0;animation:landIn .8s ease .5s forwards;
+}
+.welc-title em{color:var(--green);font-style:normal;}
+.welc-weare{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(1.1rem,3vw,1.9rem);line-height:1.5;letter-spacing:.01em;
+  color:var(--dim,rgba(240,237,230,.55));
+  max-width:640px;margin-bottom:3.5rem;
+  opacity:0;animation:landIn .8s ease .85s forwards;
+}
+.welc-weare strong{font-weight:600;font-style:normal;color:var(--fg,#F0EDE6);}
+.welc-start{
+  font-family:'Space Mono',monospace;font-size:.68rem;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--space,#07090F);background:var(--green);
+  border:none;padding:1em 2.6em;cursor:none;
+  transition:box-shadow .25s,transform .18s;
+  opacity:0;animation:landIn .7s ease 1.2s forwards;
+}
+.welc-start:hover{box-shadow:0 0 32px rgba(62,207,90,.5);transform:scale(1.03);}
+.welc-corner{
+  position:absolute;bottom:2.5rem;right:clamp(2rem,8vw,9rem);
+  font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.2);
+  opacity:0;animation:landIn .7s ease 1.7s forwards;
+}
 
 /* ═══════════════════════════════════════════════════════
    LANDING PAGE
@@ -208,19 +334,19 @@ body{
     drop-shadow(0 0 40px rgba(62,207,90,.18));
 }
 
-/* NEXUS — static, centred, never moves */
+/* NEXUS — clickable, centred */
 #nxs{
   position:fixed;
   top:50%;left:50%;
   transform:translate(-50%,-50%);
   font-family:'Unbounded',sans-serif;
   font-weight:900;
-  font-size:clamp(.5rem,1.5vmin,.9rem);
+  font-size:clamp(.6rem,1.8vmin,1.1rem);
   letter-spacing:.32em;
   color:var(--green);
   text-shadow:0 0 20px rgba(62,207,90,.6);
   opacity:0;
-  transition:opacity .9s ease;
+  transition:opacity .9s ease,text-shadow .2s;
   pointer-events:all;
   cursor:none;
   z-index:20;
@@ -228,6 +354,29 @@ body{
 }
 #nxs.show{opacity:1;}
 #nxs:hover{text-shadow:0 0 30px rgba(62,207,90,.9);}
+
+/* Hint: "Click globe for About" — appears below NEXUS */
+#globe-hint{
+  position:fixed;
+  top:calc(50% + min(112px,14vmin) + 10px);
+  left:50%;transform:translateX(-50%);
+  font-size:.42rem;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(62,207,90,.38);
+  z-index:20;pointer-events:none;white-space:nowrap;
+  opacity:0;transition:opacity .5s ease;
+}
+#globe:hover~#globe-hint,
+#nxs:hover~#globe-hint{opacity:1;}
+
+/* Nav hint below planets */
+#nav-hint{
+  position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%);
+  font-size:.44rem;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(255,255,255,.22);
+  z-index:50;pointer-events:none;white-space:nowrap;
+  opacity:0;transition:opacity 1s ease;
+}
+#nav-hint.show{opacity:1;}
 
 /* ─── PLANET NODES ───
    Each planet = glowing orb + label
@@ -297,9 +446,9 @@ body{
   font-family:'Cormorant Garamond',serif;
   font-weight:400;
   font-style:italic;
-  font-size:clamp(.72rem,1.9vmin,1rem);
+  font-size:clamp(.85rem,2.2vmin,1.15rem);
   letter-spacing:.08em;
-  color:rgba(255,255,255,.75);
+  color:rgba(255,255,255,.85);
   text-align:center;
   line-height:1.3;
   transition:color .25s,text-shadow .25s;
@@ -308,32 +457,37 @@ body{
   color:var(--green);
   text-shadow:0 0 14px rgba(62,207,90,.5);
 }
+body.light .plbl{color:rgba(26,23,21,.8);}
+body.light .planet:hover .plbl{color:var(--gdark);}
 
 /* ─── BOTTOM BAR ─── */
 #bar{
   position:fixed;bottom:2rem;left:0;right:0;
   display:flex;justify-content:space-between;
   padding:0 2.5rem;
-  font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(255,255,255,.3);
+  font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.42);
   z-index:50;
   opacity:0;transition:opacity 1s ease;
 }
 #bar a{
-  color:rgba(255,255,255,.3);text-decoration:none;
+  color:rgba(255,255,255,.42);text-decoration:none;
   transition:color .2s;
 }
 #bar a:hover{color:var(--green);}
+body.light #bar{color:rgba(26,23,21,.5);}
+body.light #bar a{color:rgba(26,23,21,.5);}
 
 /* date line top centre */
 #topdate{
   position:fixed;top:2rem;left:50%;transform:translateX(-50%);
-  font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;
-  color:rgba(255,255,255,.2);
+  font-size:.54rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.32);
   z-index:50;
   opacity:0;transition:opacity 1s ease;
   white-space:nowrap;
 }
+body.light #topdate{color:rgba(26,23,21,.4);}
 
 /* ═══════════════════════════════════════════════════════
    SHARED SUB-PAGE STYLES
@@ -345,13 +499,14 @@ body{
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
 }
 .sbk{
-  font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;
+  font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
   cursor:none;background:none;border:none;
   font-family:'Space Mono',monospace;
   display:flex;align-items:center;gap:.5rem;
-  transition:opacity .2s;
+  transition:opacity .2s,color .2s;
+  opacity:.65;
 }
-.sbk::before{content:'←';font-size:.8rem;}
+.sbk::before{content:'←';font-size:.85rem;}
 .sbk:hover{opacity:.38;}
 .slog{
   font-family:'Unbounded',sans-serif;font-weight:900;
@@ -482,10 +637,26 @@ body{
 <div id="cur"></div>
 <div id="wipe"></div>
 
+<!-- Light/dark toggle — always visible -->
+<button id="theme-toggle" aria-label="Toggle light / dark mode" title="Toggle light / dark mode">
+  <span id="theme-icon" aria-hidden="true">☀</span>
+</button>
+
+<!-- ═══════════════════════════════════════════
+     WELCOME SPLASH
+═══════════════════════════════════════════ -->
+<div class="page on" id="pg-welcome" role="main" aria-label="Welcome to Nexus">
+  <div class="welc-pre">San Diego, California</div>
+  <h1 class="welc-title">Welcome to<br><em>Nexus</em></h1>
+  <p class="welc-weare">We are the intersection of <strong>music, dance, film, fashion, and sport</strong> — a community-rooted cultural organization bringing San Diego's most compelling artists together.</p>
+  <button class="welc-start" id="welc-start-btn" aria-label="Start exploring Nexus">Start</button>
+  <div class="welc-corner" aria-hidden="true">Est. 2025</div>
+</div>
+
 <!-- ═══════════════════════════════════════════
      LANDING
 ═══════════════════════════════════════════ -->
-<div class="page on" id="pg-landing">
+<div class="page" id="pg-landing">
   <div class="land-eyebrow">San Diego, California</div>
   <div class="land-logo">NEXUS</div>
   <p class="land-tag">The intersection of music, dance, film,<br>fashion, and sport in San Diego.</p>
@@ -545,7 +716,8 @@ body{
   </div>
 
   <!-- NEXUS — clickable → Global page -->
-  <div id="nxs">NEXUS</div>
+  <div id="nxs" role="button" tabindex="0" aria-label="About Nexus">NEXUS</div>
+  <div id="globe-hint" aria-hidden="true">About Nexus</div>
 
   <!-- PLANETS -->
   <a class="planet" id="p-music"   data-go="pg-music"   href="#" style="--fd:7.2s;--fo:0s;">
@@ -572,6 +744,9 @@ body{
     <div class="orb"><div class="orb-dot"></div></div>
     <span class="plbl">Festival</span>
   </a>
+
+  <!-- Navigation hint -->
+  <div id="nav-hint" aria-hidden="true">Select a planet to explore</div>
 
   <!-- Top date -->
   <div id="topdate">Music · Dance · Film · Fashion · Sport · San Diego</div>
@@ -3907,7 +4082,7 @@ document.querySelectorAll('a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model
 
 /* ── Page nav ── */
 const wipe = document.getElementById('wipe');
-let curP = 'pg-landing';
+let curP = 'pg-welcome';
 function go(id) {
   if (id === curP) return;
   wipe.className = 'in';
@@ -4173,6 +4348,10 @@ setTimeout(() => {
   const b = document.getElementById('bar');
   if(b){ b.style.transition='opacity 1.2s ease'; b.style.opacity='1'; }
 }, 3500);
+setTimeout(() => {
+  const nh = document.getElementById('nav-hint');
+  if(nh) nh.classList.add('show');
+}, 4000);
 window.addEventListener('resize', () => { sizeRings(); placePlanets(); });
 
 /* ════════════════════════════════════════════
@@ -4626,11 +4805,36 @@ document.getElementById('p-dance').addEventListener('click',e=>{
 },true);
 
 /* ════════════════════════════════════════════
+   WELCOME page — start button
+════════════════════════════════════════════ */
+document.getElementById('welc-start-btn').addEventListener('click',()=>{
+  go('pg-landing');
+});
+
+/* ════════════════════════════════════════════
    LANDING PAGE — enter button
 ════════════════════════════════════════════ */
 document.getElementById('land-enter-btn').addEventListener('click',()=>{
   go('home');
 });
+
+/* ════════════════════════════════════════════
+   LIGHT / DARK MODE TOGGLE
+════════════════════════════════════════════ */
+(function(){
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  let light = localStorage.getItem('nxs-theme') === 'light';
+
+  function applyTheme(){
+    document.body.classList.toggle('light', light);
+    icon.textContent = light ? '🌙' : '☀';
+    btn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+    localStorage.setItem('nxs-theme', light ? 'light' : 'dark');
+  }
+  applyTheme();
+  btn.addEventListener('click', ()=>{ light = !light; applyTheme(); });
+})();
 
 /* ════════════════════════════════════════════
    FESTIVAL PAGE — back + planet
