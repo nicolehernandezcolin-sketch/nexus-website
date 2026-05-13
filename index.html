@@ -13,7 +13,7 @@
    RESET
 ───────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;overflow:hidden}
+html{width:100%;height:100%;overflow:hidden;font-size:18px}body{width:100%;height:100%;overflow:hidden}
 
 /* ─────────────────────────────────────────
    TOKENS
@@ -81,6 +81,61 @@ body{
 #wipe.out{clip-path:circle(0%   at 50% 50%);}
 
 /* ═══════════════════════════════════════════════════════
+   LANDING PAGE
+═══════════════════════════════════════════════════════ */
+#pg-landing{
+  background:var(--space);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:4rem 3rem;
+}
+.land-eyebrow{
+  font-size:.58rem;letter-spacing:.48em;text-transform:uppercase;
+  color:rgba(62,207,90,.5);margin-bottom:2.2rem;
+  opacity:0;animation:landIn .8s ease 1.1s forwards;
+}
+.land-logo{
+  font-family:'Unbounded',sans-serif;font-weight:900;
+  font-size:clamp(4rem,14vw,11rem);letter-spacing:-.02em;
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--green);
+  text-shadow:0 0 80px rgba(62,207,90,.12);
+  line-height:1;margin-bottom:2.5rem;
+  opacity:0;animation:landIn .9s ease .3s forwards;
+}
+.land-tag{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(1.1rem,3.2vw,2rem);
+  color:rgba(240,237,230,.5);letter-spacing:.02em;
+  max-width:600px;line-height:1.5;margin-bottom:4rem;
+  opacity:0;animation:landIn .8s ease .75s forwards;
+}
+.land-enter{
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  letter-spacing:.38em;text-transform:uppercase;
+  color:var(--green);background:none;
+  border:1px solid rgba(62,207,90,.38);
+  padding:1.1em 2.8em;cursor:none;
+  transition:background .25s,border-color .25s,box-shadow .25s;
+  opacity:0;animation:landIn .8s ease 1.5s forwards;
+}
+.land-enter:hover{
+  background:rgba(62,207,90,.07);
+  border-color:rgba(62,207,90,.7);
+  box-shadow:0 0 28px rgba(62,207,90,.14);
+}
+.land-hint{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.18);white-space:nowrap;
+  opacity:0;animation:landIn .8s ease 2.1s forwards;
+}
+@keyframes landIn{
+  from{opacity:0;transform:translateY(14px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════════════════════════════════════════
    HOME — SOLAR SYSTEM
 ═══════════════════════════════════════════════════════ */
 #home{ background:var(--space); }
@@ -139,6 +194,7 @@ body{
   height:min(200px,26vmin);
   z-index:10;
   opacity:0;
+  cursor:none;
 }
 @keyframes spinCW{
   from{transform:translate(-50%,-50%) rotate(0deg)}
@@ -165,11 +221,13 @@ body{
   text-shadow:0 0 20px rgba(62,207,90,.6);
   opacity:0;
   transition:opacity .9s ease;
-  pointer-events:none;
+  pointer-events:all;
+  cursor:none;
   z-index:20;
   white-space:nowrap;
 }
 #nxs.show{opacity:1;}
+#nxs:hover{text-shadow:0 0 30px rgba(62,207,90,.9);}
 
 /* ─── PLANET NODES ───
    Each planet = glowing orb + label
@@ -425,9 +483,20 @@ body{
 <div id="wipe"></div>
 
 <!-- ═══════════════════════════════════════════
+     LANDING
+═══════════════════════════════════════════ -->
+<div class="page on" id="pg-landing">
+  <div class="land-eyebrow">San Diego, California</div>
+  <div class="land-logo">NEXUS</div>
+  <p class="land-tag">The intersection of music, dance, film,<br>fashion, and sport in San Diego.</p>
+  <button class="land-enter" id="land-enter-btn">Enter</button>
+  <div class="land-hint">@n3xus.now</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
      HOME
 ═══════════════════════════════════════════ -->
-<div class="page on" id="home">
+<div class="page" id="home">
 
   <!-- Star field canvas -->
   <canvas id="stars"></canvas>
@@ -475,7 +544,7 @@ body{
     </svg>
   </div>
 
-  <!-- NEXUS — never spins -->
+  <!-- NEXUS — clickable → Global page -->
   <div id="nxs">NEXUS</div>
 
   <!-- PLANETS -->
@@ -489,19 +558,23 @@ body{
   </a>
   <a class="planet" id="p-golf"    data-go="pg-golf"    href="#" style="--fd:7.8s;--fo:0.4s;">
     <div class="orb"><div class="orb-dot"></div></div>
-    <span class="plbl">Golf<br>Tournament</span>
+    <span class="plbl">Sport</span>
   </a>
   <a class="planet" id="p-fashion" data-go="pg-fashion" href="#" style="--fd:6.4s;--fo:1.9s;">
     <div class="orb"><div class="orb-dot"></div></div>
     <span class="plbl">Fashion</span>
   </a>
-  <a class="planet" id="p-film"    data-go="pg-film"    href="#" style="--fd:7.5s;--fo:0.7s;">
+  <a class="planet" id="p-film"     data-go="pg-film"     href="#" style="--fd:7.5s;--fo:0.7s;">
     <div class="orb"><div class="orb-dot"></div></div>
     <span class="plbl">Film</span>
   </a>
+  <a class="planet" id="p-festival" data-go="pg-festival" href="#" style="--fd:7.1s;--fo:1.4s;">
+    <div class="orb"><div class="orb-dot"></div></div>
+    <span class="plbl">Festival</span>
+  </a>
 
   <!-- Top date -->
-  <div id="topdate">The Intersection of Music · Dance · Film · San Diego</div>
+  <div id="topdate">Music · Dance · Film · Fashion · Sport · San Diego</div>
 
   <!-- Bottom bar -->
   <div id="bar">
@@ -773,7 +846,6 @@ body{
     <!-- Music sub-nav -->
     <div class="music-subnav">
       <button class="msnav-btn active" data-msub="ms-artists">The Artists</button>
-      <button class="msnav-btn" data-msub="ms-festival">Nexus Festival</button>
       <button class="msnav-btn" data-msub="ms-latin-jazz">Latin Jazz Night</button>
       <button class="msnav-btn" data-msub="ms-mels-room">Mel's Room</button>
       <button class="msnav-btn" data-msub="ms-resistance">Resistance Through Music</button>
@@ -2624,7 +2696,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 </div><!-- /pg-film -->
 
 <!-- ═══════════════════════════════════════════
-     GOLF TOURNAMENT — Putting Green Experience
+     SPORT — Putting Green Experience
 ═══════════════════════════════════════════ -->
 <style>
 /* ── GOLF PAGE ── */
@@ -3160,7 +3232,7 @@ textarea.finput{resize:vertical;min-height:110px;}
     <div class="nav-globe-orb">
       <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(62,207,90,.7)" stroke-width="1"/><ellipse cx="12" cy="12" rx="4" ry="10" stroke="rgba(62,207,90,.5)" stroke-width=".8"/><ellipse cx="12" cy="12" rx="10" ry="3.5" stroke="rgba(62,207,90,.5)" stroke-width=".8"/></svg>
     </div>
-    <span class="golf-logo">NEXUS · GOLF</span>
+    <span class="golf-logo">NEXUS · SPORT</span>
   </nav>
 
   <!-- Canvas for putting green -->
@@ -3168,7 +3240,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 
   <!-- Title -->
   <div class="golf-title-block" id="golf-title">
-    <div class="golf-eyebrow">Nexus &nbsp;·&nbsp; Golf Tournament &nbsp;·&nbsp; 2026</div>
+    <div class="golf-eyebrow">Nexus &nbsp;·&nbsp; Sport &nbsp;·&nbsp; 2026</div>
     <div class="golf-h1">Where <em>Legends</em> Play</div>
   </div>
 
@@ -3199,9 +3271,9 @@ textarea.finput{resize:vertical;min-height:110px;}
   <div class="golf-sub" id="gsub-info">
     <div class="gs-inner" style="background:linear-gradient(160deg,#060f08 0%,#08140a 100%);">
       <button class="gs-back" data-gback style="color:rgba(240,237,230,.38);">Back to Course</button>
-      <div class="gs-eb" style="color:#c8b44a;">The Nexus Golf Tournament &nbsp;·&nbsp; 2026</div>
+      <div class="gs-eb" style="color:#c8b44a;">Nexus Sport &nbsp;·&nbsp; 2026</div>
       <h1 class="gs-h" style="color:#f0ede6;">Where<br>Culture<br><em>Meets</em> the Course</h1>
-      <p class="gs-p">The Nexus Golf Tournament is not a golf tournament. It is a convergence — a single day where the world's most compelling figures from music, film, sports, and fashion step onto the green and compete. Think The Masters in its discipline. Think the Met Gala in its spectacle. Think nothing you have ever seen before.</p>
+      <p class="gs-p">The Nexus Sport event is not just a golf tournament. It is a convergence — a single day where the world's most compelling figures from music, film, sports, and fashion step onto the green and compete. Think The Masters in its discipline. Think the Met Gala in its spectacle. Think nothing you have ever seen before.</p>
       <div class="g-rule"></div>
 
       <div class="info-stats">
@@ -3258,7 +3330,7 @@ textarea.finput{resize:vertical;min-height:110px;}
       <button class="gs-back" data-gback style="color:rgba(240,237,230,.35);">Back to Course</button>
       <div class="gs-eb" style="color:#c8b44a;">Partnerships &amp; Sponsorships</div>
       <h1 class="gs-h" style="color:#f0ede6;">Partner With<br>the <em>Nexus</em></h1>
-      <p class="gs-p">The Nexus Golf Tournament offers a singular opportunity: direct, authentic alignment with a cultural moment that sits at the intersection of sport, music, film, and fashion. For brands that define luxury, this is the room you want to be in.</p>
+      <p class="gs-p">Nexus Sport offers a singular opportunity: direct, authentic alignment with a cultural moment that sits at the intersection of sport, music, film, and fashion. For brands that define luxury, this is the room you want to be in.</p>
       <div class="g-rule"></div>
 
       <div class="sponsor-why">
@@ -3341,7 +3413,7 @@ textarea.finput{resize:vertical;min-height:110px;}
       <button class="gs-back" data-gback style="color:rgba(240,237,230,.38);">Back to Course</button>
       <div class="gs-eb" style="color:#c8b44a;">Get Involved &nbsp;·&nbsp; 2026</div>
       <h1 class="gs-h" style="color:#f0ede6;">Take Your<br><em>Position</em></h1>
-      <p class="gs-p">The Nexus Golf Tournament is built by people who believe in what it represents. Whether you want to play, volunteer, perform, or partner — there's a role for you.</p>
+      <p class="gs-p">Nexus Sport is built by people who believe in what it represents. Whether you want to play, volunteer, perform, or partner — there's a role for you.</p>
       <div class="g-rule"></div>
 
       <div class="involve-grid">
@@ -3387,9 +3459,9 @@ textarea.finput{resize:vertical;min-height:110px;}
   <div class="golf-sub" id="gsub-intern">
     <div class="gs-inner" style="background:linear-gradient(160deg,#050e07 0%,#07110a 100%);">
       <button class="gs-back" data-gback style="color:rgba(240,237,230,.38);">Back to Course</button>
-      <div class="gs-eb" style="color:#c8b44a;">Golf Tournament &nbsp;·&nbsp; Internships</div>
+      <div class="gs-eb" style="color:#c8b44a;">Nexus Sport &nbsp;·&nbsp; Internships</div>
       <h1 class="gs-h" style="color:#f0ede6;">Learn by<br><em>Building</em></h1>
-      <p class="gs-p">We are building the Nexus Golf Tournament from the ground up — which means we need hungry, talented people who want to do real work on a real event. These are not coffee-fetching internships.</p>
+      <p class="gs-p">We are building Nexus Sport from the ground up — which means we need hungry, talented people who want to do real work on a real event. These are not coffee-fetching internships.</p>
       <div class="g-rule"></div>
 
       <div class="gin-grid">
@@ -3434,6 +3506,388 @@ textarea.finput{resize:vertical;min-height:110px;}
 </div><!-- /pg-golf -->
 
 
+<!-- ═══════════════════════════════════════════
+     FESTIVAL PAGE
+═══════════════════════════════════════════ -->
+<style>
+#pg-festival{background:#030205;color:#f0ede6;overflow:hidden;position:fixed;inset:0;}
+#festival-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;z-index:1;}
+.fest-nav{
+  position:sticky;top:0;z-index:100;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:1.4rem 2.6rem;
+  background:rgba(3,2,5,.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(62,207,90,.08);
+}
+.fest-back{
+  font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;
+  cursor:none;background:none;border:none;
+  font-family:'Space Mono',monospace;color:rgba(240,237,230,.4);
+  display:flex;align-items:center;gap:.48rem;transition:color .2s;
+}
+.fest-back::before{content:'←';font-size:.8rem;}
+.fest-back:hover{color:var(--green);}
+.fest-logo{
+  font-family:'Unbounded',sans-serif;font-weight:900;
+  font-size:.74rem;letter-spacing:.24em;color:var(--green);
+  justify-self:end;
+}
+.fest-hero{
+  min-height:68vh;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:4rem 3.5rem 3rem;
+  position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 80% 60% at 20% 80%,rgba(62,207,90,.07) 0%,transparent 65%),
+             radial-gradient(ellipse 50% 70% at 80% 20%,rgba(62,207,90,.04) 0%,transparent 55%);
+}
+.fest-eyebrow{font-size:.52rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(62,207,90,.65);margin-bottom:1rem;}
+.fest-h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(3.2rem,11vw,9rem);line-height:.88;letter-spacing:-.02em;
+  margin-bottom:2rem;
+}
+.fest-h1 em{font-style:italic;font-weight:600;color:var(--green);}
+.fest-intro{font-size:.76rem;line-height:2;opacity:.42;max-width:520px;margin-bottom:3rem;}
+.fest-section{padding:5rem 3.5rem;border-top:1px solid rgba(62,207,90,.07);}
+.fest-sec-label{font-size:.5rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(62,207,90,.4);margin-bottom:2rem;}
+.fest-sec-h{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(2rem,6vw,5rem);line-height:.9;letter-spacing:-.02em;
+  margin-bottom:1.8rem;
+}
+.fest-sec-h em{font-weight:600;color:var(--green);}
+.fest-sec-p{font-size:.72rem;line-height:2;opacity:.45;max-width:580px;margin-bottom:2.5rem;}
+.fest-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem;}
+.fest-card{
+  border:1px solid rgba(62,207,90,.1);padding:2rem;
+  background:rgba(62,207,90,.025);
+  position:relative;overflow:hidden;
+}
+.fest-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--green),transparent);
+  opacity:.4;
+}
+.fest-card-tag{font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(62,207,90,.5);margin-bottom:.8rem;}
+.fest-card-title{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(1.6rem,4vw,2.8rem);line-height:1;margin-bottom:1.2rem;
+}
+.fest-card-title em{font-weight:600;color:var(--green);}
+.fest-meta{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.2rem;border-top:1px solid rgba(62,207,90,.06);padding-top:1rem;}
+.fest-meta-row{display:flex;justify-content:space-between;gap:1rem;font-size:.52rem;line-height:1.8;}
+.fest-meta-label{opacity:.35;letter-spacing:.12em;text-transform:uppercase;}
+.fest-meta-val{opacity:.65;text-align:right;}
+.fest-badge{
+  font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--green);border:1px solid rgba(62,207,90,.25);
+  padding:.5em 1.2em;display:inline-block;margin-bottom:1rem;
+}
+.fest-desc{font-size:.62rem;line-height:1.9;opacity:.35;margin-top:1rem;border-top:1px solid rgba(62,207,90,.06);padding-top:1rem;}
+.fest-footer{
+  padding:3.5rem 3.5rem 4rem;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.fest-footer-wm{
+  font-family:'Unbounded',sans-serif;font-weight:900;
+  font-size:clamp(1.6rem,4.5vw,4rem);letter-spacing:-.04em;
+  color:transparent;-webkit-text-stroke:1.2px currentColor;
+  opacity:.07;cursor:none;background:none;border:none;transition:opacity .25s;
+}
+.fest-footer-wm:hover{opacity:.3;}
+.fest-footer-info{font-size:.5rem;letter-spacing:.14em;opacity:.22;text-align:right;line-height:2;}
+</style>
+
+<div class="page" id="pg-festival">
+  <div id="festival-body">
+
+    <nav class="fest-nav">
+      <button class="fest-back" id="festival-back-btn">Home</button>
+      <div class="nav-globe-orb">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(62,207,90,.7)" stroke-width="1"/><ellipse cx="12" cy="12" rx="4" ry="10" stroke="rgba(62,207,90,.5)" stroke-width=".8"/><ellipse cx="12" cy="12" rx="10" ry="3.5" stroke="rgba(62,207,90,.5)" stroke-width=".8"/></svg>
+      </div>
+      <span class="fest-logo">NEXUS · FESTIVAL</span>
+    </nav>
+
+    <div class="fest-hero">
+      <div class="fest-eyebrow">Nexus · Live &amp; In Person · San Diego</div>
+      <h1 class="fest-h1">Nex Up &amp;<br><em>Nexus Festival</em></h1>
+      <p class="fest-intro">Two formats, one mission. Nex Up is the free monthly series that keeps the culture moving. The Nexus Festival is the annual event — one year, one room, everyone who has been part of this.</p>
+    </div>
+
+    <section class="fest-section">
+      <div class="fest-sec-label">Monthly Series · Free · Ongoing 2026</div>
+      <h2 class="fest-sec-h">Nex<br><em>Up</em></h2>
+      <p class="fest-sec-p">Every month, a different act. A different room. A free night built to keep the culture moving and keep new talent in front of the community. Lineups and venues drop on @n3xus.now.</p>
+      <div class="fest-cards">
+        <div class="fest-card">
+          <div class="fest-card-tag">Free Monthly Series &nbsp;·&nbsp; Ongoing 2026</div>
+          <div class="fest-card-title">Nex<br><em>Up</em></div>
+          <div class="fest-meta">
+            <div class="fest-meta-row"><span class="fest-meta-label">Frequency</span><span class="fest-meta-val">Monthly &nbsp;·&nbsp; Rotating Acts</span></div>
+            <div class="fest-meta-row"><span class="fest-meta-label">Admission</span><span class="fest-meta-val">Free</span></div>
+            <div class="fest-meta-row"><span class="fest-meta-label">Venue</span><span class="fest-meta-val">San Diego, CA &nbsp;·&nbsp; Rotating</span></div>
+          </div>
+          <div class="fest-badge">Free &nbsp;·&nbsp; Follow for Monthly Drops</div>
+          <div class="fest-desc">No tickets, no barriers. Each Nex Up night puts a new voice on stage and a different room in the spotlight. From intimate venues to unexpected spaces — the location is announced close to the date. Follow @n3xus.now to catch the next one.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fest-section">
+      <div class="fest-sec-label">Annual Festival · October 25, 2026</div>
+      <h2 class="fest-sec-h">Nexus<br><em>Festival 2026</em></h2>
+      <p class="fest-sec-p">October 25, 2026 — one year of Nexus. Every artist, every discipline, every person who has been part of this community gathered in one room. The biggest night of the year.</p>
+      <div class="fest-cards">
+        <div class="fest-card">
+          <div class="fest-card-tag">Annual Festival &nbsp;·&nbsp; One Year Anniversary</div>
+          <div class="fest-card-title">Nexus<br><em>Festival 2026</em></div>
+          <div class="fest-meta">
+            <div class="fest-meta-row"><span class="fest-meta-label">Date</span><span class="fest-meta-val">October 25, 2026</span></div>
+            <div class="fest-meta-row"><span class="fest-meta-label">Venue</span><span class="fest-meta-val">San Diego, CA &nbsp;·&nbsp; To Be Announced</span></div>
+            <div class="fest-meta-row"><span class="fest-meta-label">Tickets</span><span class="fest-meta-val">Coming Soon</span></div>
+            <div class="fest-meta-row"><span class="fest-meta-label">Format</span><span class="fest-meta-val">Multi-Stage &nbsp;·&nbsp; All Disciplines</span></div>
+          </div>
+          <div class="fest-badge">Tickets Coming Soon &nbsp;·&nbsp; Follow @n3xus.now</div>
+          <div class="fest-desc">Music. Dance. Film. Fashion. Sport. All of it, together, in one place. The venue will be announced when the time is right. Be on @n3xus.now when it drops.</div>
+        </div>
+        <div class="fest-card">
+          <div class="fest-card-tag">Get Involved &nbsp;·&nbsp; Open Now</div>
+          <div class="fest-card-title">Perform &amp;<br><em>Participate</em></div>
+          <div class="fest-meta">
+            <div class="fest-meta-row"><span class="fest-meta-label">Artists</span><span class="fest-meta-val">Applications Open Soon</span></div>
+            <div class="fest-meta-row"><span class="fest-meta-label">Vendors</span><span class="fest-meta-val">Limited Spots</span></div>
+            <div class="fest-meta-row"><span class="fest-meta-label">Volunteers</span><span class="fest-meta-val">Sign-Up Available</span></div>
+          </div>
+          <div class="fest-badge">Contact &nbsp;·&nbsp; festival@n3xus.now</div>
+          <div class="fest-desc">Whether you're an artist, vendor, or someone who wants to be part of the team that makes this happen — reach out. The Nexus Festival is built by the community it celebrates.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="fest-footer">
+      <button class="fest-footer-wm" onclick="go('home')">NEXUS</button>
+      <div class="fest-footer-info">
+        <div>Nexus Festival &nbsp;·&nbsp; October 25, 2026</div>
+        <div>San Diego, California</div>
+        <div>@n3xus.now</div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /pg-festival -->
+
+
+<!-- ═══════════════════════════════════════════
+     GLOBAL PAGE — About, Team, Join
+═══════════════════════════════════════════ -->
+<style>
+#pg-global{background:#07090f;color:#f0ede6;overflow:hidden;position:fixed;inset:0;}
+#global-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;z-index:1;}
+.glob-nav{
+  position:sticky;top:0;z-index:100;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:1.4rem 2.6rem;
+  background:rgba(7,9,15,.94);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(62,207,90,.08);
+}
+.glob-back{
+  font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;
+  cursor:none;background:none;border:none;
+  font-family:'Space Mono',monospace;color:rgba(240,237,230,.4);
+  display:flex;align-items:center;gap:.48rem;transition:color .2s;
+}
+.glob-back::before{content:'←';font-size:.8rem;}
+.glob-back:hover{color:var(--green);}
+.glob-logo{
+  font-family:'Unbounded',sans-serif;font-weight:900;
+  font-size:.74rem;letter-spacing:.24em;color:var(--green);
+  justify-self:end;
+}
+.glob-hero{
+  min-height:72vh;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:4rem 3.5rem 3.5rem;
+  position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 60% 70% at 10% 90%,rgba(62,207,90,.06) 0%,transparent 65%),
+             radial-gradient(ellipse 40% 50% at 90% 10%,rgba(62,207,90,.04) 0%,transparent 55%);
+}
+.glob-eyebrow{font-size:.52rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(62,207,90,.6);margin-bottom:1rem;}
+.glob-h1{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(3.2rem,11vw,9rem);line-height:.88;letter-spacing:-.02em;
+  margin-bottom:2rem;
+}
+.glob-h1 em{font-style:italic;font-weight:600;color:var(--green);}
+.glob-intro{font-size:.76rem;line-height:2.1;opacity:.42;max-width:580px;margin-bottom:3rem;}
+.glob-section{padding:5rem 3.5rem;border-top:1px solid rgba(62,207,90,.07);}
+.glob-sec-label{font-size:.5rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(62,207,90,.4);margin-bottom:2rem;}
+.glob-sec-h{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(2rem,6vw,5rem);line-height:.9;letter-spacing:-.02em;
+  margin-bottom:1.8rem;
+}
+.glob-sec-h em{font-weight:600;color:var(--green);}
+.glob-sec-p{font-size:.72rem;line-height:2.1;opacity:.45;max-width:600px;margin-bottom:2rem;}
+.glob-team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:rgba(62,207,90,.06);margin-top:2rem;}
+.glob-member{
+  background:#07090f;padding:2rem;
+  display:flex;flex-direction:column;gap:.5rem;
+  transition:background .2s;
+}
+.glob-member:hover{background:rgba(62,207,90,.04);}
+.glob-member-role{font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(62,207,90,.45);}
+.glob-member-name{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:1.3rem;letter-spacing:.02em;
+}
+.glob-member-note{font-size:.54rem;opacity:.3;line-height:1.7;margin-top:.3rem;}
+.glob-roles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:2rem;}
+.glob-role-card{
+  border:1px solid rgba(62,207,90,.1);padding:2rem;
+  background:rgba(62,207,90,.025);position:relative;
+}
+.glob-role-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--green),transparent);opacity:.35;
+}
+.glob-role-dept{font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(62,207,90,.45);margin-bottom:.6rem;}
+.glob-role-title{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:1.2rem;margin-bottom:.8rem;
+}
+.glob-role-desc{font-size:.58rem;line-height:1.8;opacity:.32;}
+.glob-apply-btn{
+  display:inline-block;margin-top:1.2rem;
+  font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--green);border:1px solid rgba(62,207,90,.25);
+  padding:.5em 1.3em;cursor:none;background:none;
+  transition:border-color .2s,background .2s;
+}
+.glob-apply-btn:hover{border-color:rgba(62,207,90,.6);background:rgba(62,207,90,.06);}
+.glob-footer{
+  padding:3.5rem 3.5rem 4rem;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.glob-footer-wm{
+  font-family:'Unbounded',sans-serif;font-weight:900;
+  font-size:clamp(1.6rem,4.5vw,4rem);letter-spacing:-.04em;
+  color:transparent;-webkit-text-stroke:1.2px currentColor;
+  opacity:.07;cursor:none;background:none;border:none;transition:opacity .25s;
+}
+.glob-footer-wm:hover{opacity:.3;}
+.glob-footer-info{font-size:.5rem;letter-spacing:.14em;opacity:.22;text-align:right;line-height:2;}
+</style>
+
+<div class="page" id="pg-global">
+  <div id="global-body">
+
+    <nav class="glob-nav">
+      <button class="glob-back" id="global-back-btn">Home</button>
+      <div class="nav-globe-orb">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(62,207,90,.7)" stroke-width="1"/><ellipse cx="12" cy="12" rx="4" ry="10" stroke="rgba(62,207,90,.5)" stroke-width=".8"/><ellipse cx="12" cy="12" rx="10" ry="3.5" stroke="rgba(62,207,90,.5)" stroke-width=".8"/></svg>
+      </div>
+      <span class="glob-logo">NEXUS · GLOBAL</span>
+    </nav>
+
+    <div class="glob-hero">
+      <div class="glob-eyebrow">San Diego, California &nbsp;·&nbsp; Est. 2025</div>
+      <h1 class="glob-h1">About<br><em>Nexus</em></h1>
+      <p class="glob-intro">Nexus is a San Diego–based cultural organization at the intersection of music, dance, film, fashion, and sport. We create events, build community, and give artists the stage they deserve — without boundaries between disciplines.</p>
+    </div>
+
+    <section class="glob-section">
+      <div class="glob-sec-label">What We Do</div>
+      <h2 class="glob-sec-h">The<br><em>Mission</em></h2>
+      <p class="glob-sec-p">San Diego has one of the most vibrant creative communities in the country — and one of the most underrepresented on the national stage. Nexus exists to change that. We bring artists together across every discipline, create moments that matter, and build the infrastructure for a thriving cultural ecosystem in this city.</p>
+      <p class="glob-sec-p" style="margin-top:0;">Every event we produce. Every artist we feature. Every series we build. It all points toward the same thing: a San Diego that the world pays attention to.</p>
+    </section>
+
+    <section class="glob-section">
+      <div class="glob-sec-label">Leadership</div>
+      <h2 class="glob-sec-h">The<br><em>Team</em></h2>
+      <p class="glob-sec-p">Nexus is led by a small, intentional team of creators, organizers, and cultural advocates who believe in what San Diego's creative scene can become.</p>
+      <div class="glob-team-grid">
+        <div class="glob-member">
+          <div class="glob-member-role">Founder &amp; Director</div>
+          <div class="glob-member-name">Nicole Hernandez</div>
+          <div class="glob-member-note">Building the intersection from the ground up. @n3xus.now</div>
+        </div>
+        <div class="glob-member">
+          <div class="glob-member-role">Creative &amp; Operations</div>
+          <div class="glob-member-name">Core Team</div>
+          <div class="glob-member-note">The people who make each event, series, and collaboration possible.</div>
+        </div>
+        <div class="glob-member">
+          <div class="glob-member-role">Community &amp; Partnerships</div>
+          <div class="glob-member-name">Our Network</div>
+          <div class="glob-member-note">Artists, venues, brands, and collaborators across San Diego and beyond.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="glob-section">
+      <div class="glob-sec-label">Join the Team &amp; Internships</div>
+      <h2 class="glob-sec-h">Work With<br><em>Nexus</em></h2>
+      <p class="glob-sec-p">We are building something real, and we need people who want to do real work. Whether you're looking for an internship, a volunteer role, or a creative partnership — there's a place for you here.</p>
+      <div class="glob-roles-grid">
+        <div class="glob-role-card">
+          <div class="glob-role-dept">Production</div>
+          <div class="glob-role-title">Production &amp; Events</div>
+          <div class="glob-role-desc">Stage management, logistics, vendor coordination, and on-the-ground event execution across all Nexus productions.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:join@n3xus.now'">Apply →</button>
+        </div>
+        <div class="glob-role-card">
+          <div class="glob-role-dept">Creative</div>
+          <div class="glob-role-title">Content &amp; Media</div>
+          <div class="glob-role-desc">Photography, video, social content, and editorial — capturing the culture and telling the story of what Nexus is building.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:join@n3xus.now'">Apply →</button>
+        </div>
+        <div class="glob-role-card">
+          <div class="glob-role-dept">Curation</div>
+          <div class="glob-role-title">Artist &amp; Programming</div>
+          <div class="glob-role-desc">Identifying talent, building lineups, and shaping the programming that defines what Nexus puts on stage.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:join@n3xus.now'">Apply →</button>
+        </div>
+        <div class="glob-role-card">
+          <div class="glob-role-dept">Community</div>
+          <div class="glob-role-title">Outreach &amp; Partnerships</div>
+          <div class="glob-role-desc">Building relationships with artists, venues, sponsors, and community organizations across San Diego.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:join@n3xus.now'">Apply →</button>
+        </div>
+        <div class="glob-role-card">
+          <div class="glob-role-dept">Film &amp; Post</div>
+          <div class="glob-role-title">Film Internship</div>
+          <div class="glob-role-desc">Production support, curation of film programming, post-production, and creative strategy for the Nexus film series and screenings.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:film@n3xus.now'">Apply →</button>
+        </div>
+        <div class="glob-role-card">
+          <div class="glob-role-dept">General</div>
+          <div class="glob-role-title">Volunteer &amp; Support</div>
+          <div class="glob-role-desc">Help us run events, welcome guests, manage spaces, and be the human face of Nexus in the room.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:join@n3xus.now'">Apply →</button>
+        </div>
+      </div>
+      <div style="margin-top:3rem;font-size:.62rem;line-height:2;opacity:.3;max-width:480px;">
+        To apply, send a brief introduction and your area of interest to <span style="color:var(--green);opacity:.9;">join@n3xus.now</span>. Tell us who you are and what you want to build.
+      </div>
+    </section>
+
+    <div class="glob-footer">
+      <button class="glob-footer-wm" onclick="go('home')">NEXUS</button>
+      <div class="glob-footer-info">
+        <div>San Diego, California</div>
+        <div>Est. 2025</div>
+        <div>@n3xus.now</div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /pg-global -->
+
+
 
 <script>
 /* ── Cursor ── */
@@ -3446,14 +3900,14 @@ document.addEventListener('mousemove', e => {
   cur.style.left = mouseX + 'px';
   cur.style.top  = mouseY + 'px';
 });
-document.querySelectorAll('a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model,.artist-card,.orig-card,.dancer-profile,.move-card,.inv-card,.tcard').forEach(el => {
+document.querySelectorAll('a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model,.artist-card,.orig-card,.dancer-profile,.move-card,.inv-card,.tcard,#globe,#nxs,.fest-card,.glob-member,.glob-role-card').forEach(el => {
   el.addEventListener('mouseenter', () => cur.classList.add('h'));
   el.addEventListener('mouseleave', () => cur.classList.remove('h'));
 });
 
 /* ── Page nav ── */
 const wipe = document.getElementById('wipe');
-let curP = 'home';
+let curP = 'pg-landing';
 function go(id) {
   if (id === curP) return;
   wipe.className = 'in';
@@ -3462,6 +3916,9 @@ function go(id) {
     document.getElementById(id).classList.add('on');
     const pg = document.getElementById(id);
     if (pg.scrollTop !== undefined) pg.scrollTop = 0;
+    // Also reset inner scroll containers
+    const inner = pg.querySelector('#music-body,#dance-body,#film-theater,#festival-body,#global-body');
+    if (inner) inner.scrollTop = 0;
     curP = id;
     wipe.className = 'out';
     setTimeout(() => { wipe.className = ''; }, 540);
@@ -3578,11 +4035,12 @@ function sizeRings() {
    PLANET POSITIONS
 ════════════════════════════════════════════ */
 const planetDefs = [
-  { id:'p-music',   deg: -90, rOff:   0 },
-  { id:'p-dance',   deg: -38, rOff:  30 },
-  { id:'p-golf',    deg:  10, rOff: -25 },
-  { id:'p-fashion', deg:  52, rOff:  20 },
-  { id:'p-film',    deg: 180, rOff: -35 },
+  { id:'p-music',    deg: -90, rOff:   0 },
+  { id:'p-dance',    deg: -35, rOff:  30 },
+  { id:'p-golf',     deg:  15, rOff: -20 },
+  { id:'p-fashion',  deg:  60, rOff:  20 },
+  { id:'p-festival', deg: 125, rOff:  15 },
+  { id:'p-film',     deg: 180, rOff: -35 },
 ];
 
 function placePlanets() {
@@ -4166,6 +4624,30 @@ document.getElementById('p-dance').addEventListener('click',e=>{
   e.preventDefault(); e.stopImmediatePropagation();
   go('pg-dance');
 },true);
+
+/* ════════════════════════════════════════════
+   LANDING PAGE — enter button
+════════════════════════════════════════════ */
+document.getElementById('land-enter-btn').addEventListener('click',()=>{
+  go('home');
+});
+
+/* ════════════════════════════════════════════
+   FESTIVAL PAGE — back + planet
+════════════════════════════════════════════ */
+document.getElementById('p-festival').addEventListener('click',e=>{
+  e.preventDefault(); e.stopImmediatePropagation();
+  go('pg-festival');
+},true);
+document.getElementById('festival-back-btn').addEventListener('click',()=>go('home'));
+
+/* ════════════════════════════════════════════
+   GLOBAL PAGE — globe click + back
+════════════════════════════════════════════ */
+document.getElementById('nxs').addEventListener('click',()=>go('pg-global'));
+document.getElementById('globe').addEventListener('click',()=>go('pg-global'));
+document.getElementById('global-back-btn').addEventListener('click',()=>go('home'));
+
 </script>
 </body>
 </html>
