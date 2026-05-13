@@ -4089,20 +4089,34 @@ document.querySelectorAll('a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model
 /* ── Page nav ── */
 const wipe = document.getElementById('wipe');
 let curP = 'pg-welcome';
+
+// Hide all pages except the initial one so fixed-position children don't bleed through
+(function initPages() {
+  document.querySelectorAll('.page').forEach(p => {
+    if (!p.classList.contains('on')) p.style.display = 'none';
+  });
+})();
+
 function go(id) {
   if (id === curP) return;
+  // Unhide destination before animation
+  const dest = document.getElementById(id);
+  dest.style.display = '';
   wipe.className = 'in';
+  const leaving = curP;
   setTimeout(() => {
-    document.getElementById(curP).classList.remove('on');
-    document.getElementById(id).classList.add('on');
-    const pg = document.getElementById(id);
-    if (pg.scrollTop !== undefined) pg.scrollTop = 0;
-    // Also reset inner scroll containers
-    const inner = pg.querySelector('#music-body,#dance-body,#film-theater,#festival-body,#global-body');
+    document.getElementById(leaving).classList.remove('on');
+    dest.classList.add('on');
+    if (dest.scrollTop !== undefined) dest.scrollTop = 0;
+    const inner = dest.querySelector('#music-body,#dance-body,#film-theater,#festival-body,#global-body');
     if (inner) inner.scrollTop = 0;
     curP = id;
     wipe.className = 'out';
-    setTimeout(() => { wipe.className = ''; }, 540);
+    setTimeout(() => {
+      wipe.className = '';
+      // Hide the page that just left so its fixed children don't bleed
+      document.getElementById(leaving).style.display = 'none';
+    }, 540);
   }, 480);
 }
 document.querySelectorAll('[data-go]').forEach(el =>
