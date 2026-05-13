@@ -133,11 +133,16 @@ body.light :focus-visible{outline:2px solid var(--gdark);}
 .page{
   position:fixed;inset:0;
   opacity:0;pointer-events:none;
-  transition:opacity .6s cubic-bezier(.4,0,.2,1);
+  visibility:hidden;
+  transition:opacity .6s cubic-bezier(.4,0,.2,1), visibility 0s .6s;
   overflow:hidden;
   z-index:1;
 }
-.page.on{opacity:1;pointer-events:all;z-index:100;}
+.page.on{
+  opacity:1;pointer-events:all;
+  visibility:visible;z-index:100;
+  transition:opacity .6s cubic-bezier(.4,0,.2,1), visibility 0s 0s;
+}
 .page.sc{overflow-y:auto;overflow-x:hidden;}
 
 /* ─────────────────────────────────────────
