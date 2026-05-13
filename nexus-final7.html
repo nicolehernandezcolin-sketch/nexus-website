@@ -679,13 +679,13 @@ body{
 
 /* ── MEL'S ROOM — fairy / whimsical ── */
 #ms-mels-room .ms-next{
-  background:linear-gradient(150deg,#07021a 0%,#0e0528 45%,#060218 100%);
+  background:linear-gradient(150deg,#120200 0%,#1e0600 45%,#0e0100 100%);
   overflow:hidden;
 }
 #ms-mels-room .ms-next::before{
   content:'✦';
   position:absolute;top:0;left:0;right:0;bottom:0;
-  font-size:1rem;color:rgba(216,180,254,.06);
+  font-size:1rem;color:rgba(255,120,40,.07);
   letter-spacing:4rem;line-height:5.5rem;word-break:break-all;
   pointer-events:none;z-index:0;
   animation:fairyDrift 18s ease-in-out infinite alternate;
@@ -697,14 +697,14 @@ body{
 .mels-glow{
   position:absolute;top:20%;left:55%;
   width:clamp(260px,40vw,480px);height:clamp(260px,40vw,480px);
-  background:radial-gradient(circle,rgba(192,100,210,.12) 0%,rgba(140,60,200,.05) 45%,transparent 72%);
+  background:radial-gradient(circle,rgba(255,90,30,.13) 0%,rgba(200,50,10,.06) 45%,transparent 72%);
   border-radius:50%;pointer-events:none;z-index:0;
   animation:fairyPulse 6s ease-in-out infinite alternate;
 }
 @keyframes fairyPulse{from{opacity:.6;transform:scale(1);}to{opacity:1;transform:scale(1.12);}}
 .mels-sparkle{
   position:absolute;pointer-events:none;z-index:0;
-  font-size:.7rem;color:rgba(240,180,255,.55);
+  font-size:.7rem;color:rgba(255,150,60,.65);
   animation:sparklePop 3s ease-in-out infinite;
 }
 @keyframes sparklePop{
@@ -712,21 +712,21 @@ body{
   50%{opacity:1;transform:scale(1) translateY(-10px);}
 }
 #ms-mels-room .ms-next>*{position:relative;z-index:1;}
-#ms-mels-room .ms-eb{color:rgba(216,180,254,.6);letter-spacing:.6em;}
-#ms-mels-room .ms-h{font-style:italic;color:#f0e8ff;}
-#ms-mels-room .ms-h em{color:#d4a8f0;font-style:normal;}
-#ms-mels-room .ms-p{color:rgba(230,210,255,.38);}
-#ms-mels-room .ms-rule{background:linear-gradient(90deg,transparent,rgba(180,120,240,.3),transparent);}
-#ms-mels-room .event-card{border-color:rgba(180,120,240,.15);background:rgba(120,60,200,.04);}
-#ms-mels-room .event-card:hover{border-color:rgba(200,150,255,.4);background:rgba(150,80,220,.06);box-shadow:0 0 30px rgba(180,100,255,.08);}
-#ms-mels-room .event-card::before{background:linear-gradient(90deg,#b878f0,rgba(180,120,240,.1),transparent);}
-#ms-mels-room .event-tag{color:rgba(200,150,255,.55);}
+#ms-mels-room .ms-eb{color:rgba(255,140,60,.65);letter-spacing:.6em;}
+#ms-mels-room .ms-h{font-style:italic;color:#fff0e8;}
+#ms-mels-room .ms-h em{color:#ff7832;font-style:normal;}
+#ms-mels-room .ms-p{color:rgba(255,220,190,.38);}
+#ms-mels-room .ms-rule{background:linear-gradient(90deg,transparent,rgba(255,100,30,.32),transparent);}
+#ms-mels-room .event-card{border-color:rgba(255,100,40,.15);background:rgba(180,50,10,.04);}
+#ms-mels-room .event-card:hover{border-color:rgba(255,120,50,.4);background:rgba(200,60,10,.06);box-shadow:0 0 30px rgba(255,80,20,.1);}
+#ms-mels-room .event-card::before{background:linear-gradient(90deg,#ff6020,rgba(255,100,30,.1),transparent);}
+#ms-mels-room .event-tag{color:rgba(255,140,60,.6);}
 #ms-mels-room .event-title{font-style:italic;}
-#ms-mels-room .event-title em{color:#c896f0;font-style:normal;}
-#ms-mels-room .event-meta-label{color:rgba(200,150,255,.45);}
-#ms-mels-room .event-ticket-badge{color:rgba(200,150,255,.55);border-color:rgba(180,120,240,.18);}
-#ms-mels-room .event-card:hover .event-ticket-badge{color:#c896f0;border-color:rgba(200,150,255,.45);}
-#ms-mels-room .event-desc{color:rgba(230,210,255,.26);}
+#ms-mels-room .event-title em{color:#ff7832;font-style:normal;}
+#ms-mels-room .event-meta-label{color:rgba(255,120,50,.5);}
+#ms-mels-room .event-ticket-badge{color:rgba(255,140,60,.6);border-color:rgba(255,100,40,.2);}
+#ms-mels-room .event-card:hover .event-ticket-badge{color:#ff7832;border-color:rgba(255,120,50,.48);}
+#ms-mels-room .event-desc{color:rgba(255,210,180,.26);}
 
 /* ── RESISTANCE THROUGH MUSIC — bold crimson ── */
 #ms-resistance .ms-next{background:linear-gradient(160deg,#030508 0%,#0d0203 55%,#030508 100%);}
@@ -1214,20 +1214,20 @@ body{
         <span class="mels-sparkle" style="top:85%;left:35%;animation-delay:3.1s;">✧</span>
         <div class="ms-eb">Nexus &nbsp;·&nbsp; Mel's Room &nbsp;✦</div>
         <h1 class="ms-h"><em>Mel's</em><br>Room</h1>
-        <p class="ms-p">An intimate listening experience where the music finds you. Small room, close range, no separation between artist and audience. This is where music the way it was meant to be heard.</p>
+        <p class="ms-p">DJ sets in places you wouldn't expect. A rooftop, a bookstore, a parking garage, a garden at midnight — wherever the music feels like it shouldn't be, that's exactly where Mel's Room shows up.</p>
         <div class="ms-rule"></div>
         <div class="event-cards">
           <div class="event-card">
-            <div class="event-tag">Intimate Series &nbsp;·&nbsp; Monthly &nbsp;✧</div>
+            <div class="event-tag">DJ Series &nbsp;·&nbsp; Monthly &nbsp;✧&nbsp; Unexpected Venues</div>
             <div class="event-title"><em>Mel's</em><br>Room</div>
             <div class="event-meta">
               <div class="event-meta-row"><span class="event-meta-label">Frequency</span><span class="event-meta-val">Monthly</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Capacity</span><span class="event-meta-val">Intentionally Small &nbsp;·&nbsp; Limited Seats</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; TBA</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Vibe</span><span class="event-meta-val">Candles, close listening, magic</span></div>
+              <div class="event-meta-row"><span class="event-meta-label">Format</span><span class="event-meta-val">DJ Set &nbsp;·&nbsp; Peculiar Locations</span></div>
+              <div class="event-meta-row"><span class="event-meta-label">Capacity</span><span class="event-meta-val">Intentionally Small &nbsp;·&nbsp; Limited Spots</span></div>
+              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; Secret Until Drop</span></div>
             </div>
-            <div class="event-ticket-badge">Limited Tickets &nbsp;✦&nbsp; Follow for Drops</div>
-            <div class="event-desc">No stage. No barrier. No separation. Just an artist and the people who showed up to truly listen. Each night — one or two artists, one small room, one shared moment that doesn't exist anywhere else. The kind of night you don't post about until it's over. Follow @n3xus.now for the next drop.</div>
+            <div class="event-ticket-badge">Limited Spots &nbsp;✦&nbsp; Location Revealed at Drop</div>
+            <div class="event-desc">Every month, a DJ. Every month, a different place you didn't see coming. A stairwell that echoes. A courtyard behind a restaurant. A warehouse corner. A clearing. The venue is part of the art — the music sounds different when the room surprises you. Location revealed to ticket holders only. Follow @n3xus.now for the next drop.</div>
           </div>
         </div>
       </div>
