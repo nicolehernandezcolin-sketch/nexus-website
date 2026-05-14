@@ -4737,7 +4737,7 @@ document.getElementById('global-back-btn').addEventListener('click',()=>go('home
         const thanks = document.createElement('div');
         thanks.style.cssText = 'padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;';
         if (r.ok) {
-          thanks.textContent = 'Thank you — we'll be in touch.';
+          thanks.textContent = "Thank you — we’ll be in touch.";
           form.replaceWith(thanks);
         } else {
           thanks.textContent = 'Something went wrong. Email us at info@n3xus.now';
