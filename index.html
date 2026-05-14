@@ -803,7 +803,6 @@ body{
 /* ── MEL'S ROOM — fairy / whimsical ── */
 #ms-mels-room .ms-next{
   background:linear-gradient(150deg,#120200 0%,#1e0600 45%,#0e0100 100%);
-  overflow:hidden;
 }
 #ms-mels-room .ms-next::before{
   content:'✦';
@@ -838,7 +837,21 @@ body{
 #ms-mels-room .ms-eb{color:rgba(255,140,60,.65);letter-spacing:.6em;}
 #ms-mels-room .ms-h{font-style:italic;color:#fff0e8;}
 #ms-mels-room .ms-h em{color:#ff7832;font-style:normal;}
-#ms-mels-room .ms-p{color:rgba(255,220,190,.38);}
+#ms-mels-room .ms-p{color:rgba(255,220,190,.78);}
+.mels-concept{font-family:'Cormorant Garamond',serif;font-size:.88rem;line-height:2;color:rgba(255,210,180,.72);max-width:560px;margin-bottom:2.5rem;font-style:italic;position:relative;z-index:1;}
+.mels-what-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,100,40,.08);max-width:680px;margin-bottom:2.5rem;position:relative;z-index:1;}
+.mels-what-item{background:#0e0200;padding:1.6rem 1.8rem;display:flex;flex-direction:column;gap:.6rem;}
+.mels-what-label{font-size:.42rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,140,60,.65);}
+.mels-what-val{font-size:.62rem;line-height:1.85;color:rgba(255,210,180,.72);}
+.mels-past-label{font-size:.42rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,140,60,.55);margin-bottom:1.2rem;position:relative;z-index:1;}
+.mels-locations{display:flex;flex-direction:column;gap:.5rem;max-width:560px;margin-bottom:2.5rem;position:relative;z-index:1;}
+.mels-loc{font-family:'Cormorant Garamond',serif;font-size:.78rem;line-height:1.7;color:rgba(255,210,180,.65);padding:.5rem 0;border-bottom:1px solid rgba(255,100,40,.1);}
+.mels-loc::before{content:'✦ ';color:rgba(255,140,60,.45);font-size:.55rem;}
+.mels-follow-block{max-width:480px;margin-bottom:3rem;position:relative;z-index:1;}
+.mels-follow-title{font-size:.42rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,140,60,.65);margin-bottom:1rem;}
+.mels-follow-p{font-size:.66rem;line-height:2;color:rgba(255,210,180,.72);margin-bottom:1.2rem;}
+.mels-follow-link{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:#ff7832;text-decoration:none;border-bottom:1px solid rgba(255,120,50,.35);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.mels-follow-link:hover{color:#ffaa60;border-color:rgba(255,160,80,.6);}
 #ms-mels-room .ms-rule{background:linear-gradient(90deg,transparent,rgba(255,100,30,.32),transparent);}
 #ms-mels-room .event-card{border-color:rgba(255,100,40,.15);background:rgba(180,50,10,.04);}
 #ms-mels-room .event-card:hover{border-color:rgba(255,120,50,.4);background:rgba(200,60,10,.06);box-shadow:0 0 30px rgba(255,80,20,.1);}
@@ -849,7 +862,7 @@ body{
 #ms-mels-room .event-meta-label{color:rgba(255,120,50,.5);}
 #ms-mels-room .event-ticket-badge{color:rgba(255,140,60,.6);border-color:rgba(255,100,40,.2);}
 #ms-mels-room .event-card:hover .event-ticket-badge{color:#ff7832;border-color:rgba(255,120,50,.48);}
-#ms-mels-room .event-desc{color:rgba(255,210,180,.26);}
+#ms-mels-room .event-desc{color:rgba(255,210,180,.72);}
 
 /* ── RESISTANCE THROUGH MUSIC — bold crimson ── */
 #ms-resistance .ms-next{background:linear-gradient(160deg,#030508 0%,#0d0203 55%,#030508 100%);}
@@ -1243,63 +1256,6 @@ body{
     </div><!-- /ms-artists -->
 
     <!-- WHAT'S NEXT sub-page -->
-    <div class="music-sub" id="ms-whats-next">
-      <div class="ms-next">
-        <div class="ms-eb">Nexus &nbsp;·&nbsp; Coming Up</div>
-        <h1 class="ms-h">What's<br><em>Next</em></h1>
-        <p class="ms-p">Nexus never stops. Here's what we're building toward — new nights, new intersections, new rooms for the culture to grow in San Diego and beyond.</p>
-        <div class="ms-rule"></div>
-        <div class="event-cards">
-          <div class="event-card">
-            <div class="event-tag">Upcoming &nbsp;·&nbsp; Early Stage</div>
-            <div class="event-title">Nexus<br><em>Latin Jazz Night</em></div>
-            <div class="event-meta">
-              <div class="event-meta-row"><span class="event-meta-label">Date</span><span class="event-meta-val">TBA &nbsp;·&nbsp; 2026</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; TBA</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Tickets</span><span class="event-meta-val">Coming Soon</span></div>
-            </div>
-            <div class="event-ticket-badge">Tickets Coming Soon</div>
-            <div class="event-desc">A dedicated night celebrating Latin music and jazz — two traditions that have always spoken to each other. Live performance, improvisation, and a room that feels like nothing else in San Diego. Follow @n3xus.now for the date and venue announcement.</div>
-          </div>
-        </div>
-      </div>
-    </div><!-- /ms-whats-next -->
-
-    <!-- NEXUS FESTIVAL sub-page -->
-    <div class="music-sub" id="ms-festival">
-      <div class="ms-next">
-        <div class="ms-eb">Nexus &nbsp;·&nbsp; Live Music Series</div>
-        <h1 class="ms-h">Nex Up &amp;<br><em>Nexus Festival</em></h1>
-        <p class="ms-p">Two formats, one mission. Nex Up is the free monthly series highlighting different acts every time. Nexus Festival is the big annual event — one year, one room, everyone.</p>
-        <div class="ms-rule"></div>
-        <div class="event-cards">
-          <div class="event-card">
-            <div class="event-tag">Free Monthly Series &nbsp;·&nbsp; Ongoing 2026</div>
-            <div class="event-title">Nex<br><em>Up</em></div>
-            <div class="event-meta">
-              <div class="event-meta-row"><span class="event-meta-label">Frequency</span><span class="event-meta-val">Monthly &nbsp;·&nbsp; Rotating Acts</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Admission</span><span class="event-meta-val">Free</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; Rotating</span></div>
-            </div>
-            <div class="event-ticket-badge">Free &nbsp;·&nbsp; Follow for Monthly Drops</div>
-            <div class="event-desc">Every month, a different act. A different room. A free night built to keep the culture moving and keep new talent in front of the community. Lineups and venues drop on @n3xus.now.</div>
-          </div>
-          <div class="event-card">
-            <div class="event-tag">Annual Festival &nbsp;·&nbsp; One Year Anniversary</div>
-            <div class="event-title">Nexus<br><em>Festival 2026</em></div>
-            <div class="event-meta">
-              <div class="event-meta-row"><span class="event-meta-label">Date</span><span class="event-meta-val">October 25, 2026</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; TBD</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Tickets</span><span class="event-meta-val">Coming Soon</span></div>
-            </div>
-            <div class="event-ticket-badge">Tickets Coming Soon</div>
-            <div class="event-desc">October 25, 2026 — one year of Nexus. Every artist, every discipline, every person who has been part of this community in one room. Location to be announced. Follow @n3xus.now to be the first to know.</div>
-          </div>
-        </div>
-      </div>
-    </div><!-- /ms-festival -->
-
-
     <!-- LATIN JAZZ NIGHT -->
     <div class="music-sub" id="ms-latin-jazz">
       <div class="ms-next">
@@ -1334,23 +1290,75 @@ body{
         <span class="mels-sparkle" style="top:72%;left:70%;animation-delay:.7s;">✧</span>
         <span class="mels-sparkle" style="top:18%;left:48%;animation-delay:1.8s;">✦</span>
         <span class="mels-sparkle" style="top:85%;left:35%;animation-delay:3.1s;">✧</span>
+
         <div class="ms-eb">Nexus &nbsp;·&nbsp; Mel's Room &nbsp;✦</div>
         <h1 class="ms-h"><em>Mel's</em><br>Room</h1>
         <p class="ms-p">DJ sets in places you wouldn't expect. A rooftop, a bookstore, a parking garage, a garden at midnight — wherever the music feels like it shouldn't be, that's exactly where Mel's Room shows up.</p>
+
         <div class="ms-rule"></div>
+
+        <p class="mels-concept">The idea is simple: music sounds different when the room surprises you. Mel's Room moves every month — a new location, a new mood, a new crowd. The only thing that stays the same is the quality of the set and the feeling that you found something nobody else knows about yet.</p>
+
+        <div class="mels-what-grid">
+          <div class="mels-what-item">
+            <div class="mels-what-label">The Location</div>
+            <div class="mels-what-val">Secret until 24 hours before. Ticket holders get the address direct. Walk in not knowing what the room looks like — that's the point.</div>
+          </div>
+          <div class="mels-what-item">
+            <div class="mels-what-label">The Sound</div>
+            <div class="mels-what-val">No genre rules. The DJ decides what the space needs. Sets have gone deep house, Afrobeats, soul, broken beat, jazz fusion — the music follows the room.</div>
+          </div>
+          <div class="mels-what-item">
+            <div class="mels-what-label">The Crowd</div>
+            <div class="mels-what-val">Intentionally small. 40–80 people. No massive venues, no anonymous nights. Everyone in the room found out the same way — they were paying attention.</div>
+          </div>
+          <div class="mels-what-item">
+            <div class="mels-what-label">The Vibe</div>
+            <div class="mels-what-val">No VIP, no bottle service, no dress code beyond showing up as yourself. The music is the main character. Everything else is set dressing.</div>
+          </div>
+        </div>
+
+        <div class="ms-rule"></div>
+
+        <div class="mels-past-label">Locations We've Played &nbsp;✦</div>
+        <div class="mels-locations">
+          <div class="mels-loc">A rooftop above Barrio Logan at 2am</div>
+          <div class="mels-loc">A bookstore on a Tuesday night</div>
+          <div class="mels-loc">A parking garage in East Village</div>
+          <div class="mels-loc">A garden behind a restaurant that didn't know we were coming</div>
+          <div class="mels-loc">A warehouse corner in National City</div>
+          <div class="mels-loc">A clearing in Balboa Park</div>
+        </div>
+
+        <div class="ms-rule"></div>
+
         <div class="event-cards">
           <div class="event-card">
             <div class="event-tag">DJ Series &nbsp;·&nbsp; Monthly &nbsp;✧&nbsp; Unexpected Venues</div>
             <div class="event-title"><em>Mel's</em><br>Room</div>
             <div class="event-meta">
               <div class="event-meta-row"><span class="event-meta-label">Frequency</span><span class="event-meta-val">Monthly</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Format</span><span class="event-meta-val">DJ Set &nbsp;·&nbsp; Peculiar Locations</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Capacity</span><span class="event-meta-val">Intentionally Small &nbsp;·&nbsp; Limited Spots</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; Secret Until Drop</span></div>
+              <div class="event-meta-row"><span class="event-meta-label">Format</span><span class="event-meta-val">DJ Set &nbsp;·&nbsp; Secret Location</span></div>
+              <div class="event-meta-row"><span class="event-meta-label">Capacity</span><span class="event-meta-val">40–80 people &nbsp;·&nbsp; Limited Spots</span></div>
+              <div class="event-meta-row"><span class="event-meta-label">Tickets</span><span class="event-meta-val">TBD &nbsp;·&nbsp; Drops on @n3xus.now</span></div>
+              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; Revealed 24hrs Before</span></div>
             </div>
             <div class="event-ticket-badge">Limited Spots &nbsp;✦&nbsp; Location Revealed at Drop</div>
-            <div class="event-desc">Every month, a DJ. Every month, a different place you didn't see coming. A stairwell that echoes. A courtyard behind a restaurant. A warehouse corner. A clearing. The venue is part of the art — the music sounds different when the room surprises you. Location revealed to ticket holders only. Follow @n3xus.now for the next drop.</div>
+            <div class="event-desc">Every month, a DJ. Every month, a different place you didn't see coming. A stairwell that echoes. A courtyard behind a restaurant. A warehouse corner. A clearing. The venue is part of the art — the music sounds different when the room surprises you.</div>
           </div>
+        </div>
+
+        <div class="ms-rule"></div>
+
+        <div class="mels-follow-block">
+          <div class="mels-follow-title">How to Find Out</div>
+          <p class="mels-follow-p">Follow @n3xus.now on Instagram. Drops happen with 48–72 hours notice. No RSVP list, no waitlist — just watch the feed and move fast when it drops. The people who make it are the people who were paying attention.</p>
+          <a class="mels-follow-link" href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">Follow @n3xus.now &nbsp;✦</a>
+        </div>
+
+        <div class="music-foot" style="position:relative;z-index:1;">
+          <button class="fwm" data-go="home" style="color:#f0ede6;opacity:.1;">NEXUS</button>
+          <div class="finf" style="color:#ff9050;opacity:.38;">San Diego, CA<br>@n3xus.now</div>
         </div>
       </div>
     </div><!-- /ms-mels-room -->
@@ -2576,7 +2584,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 .irole{font-family:'Unbounded',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.04em;color:#f0e6d3;}
 .idept{font-size:.46rem;letter-spacing:.24em;text-transform:uppercase;color:#e8c84a;opacity:.68;}
 .idesc{font-size:.62rem;line-height:1.9;opacity:.68;max-width:270px;}
-@media(max-width:600px){.igrid{grid-template-columns:1fr;}.tgrid{grid-template-columns:1fr;}.film-sub{padding:5rem 2rem;}}
+@media(max-width:600px){.igrid{grid-template-columns:1fr;}.tgrid{grid-template-columns:1fr;}.film-sub{padding:5rem 2rem;}.mels-what-grid{grid-template-columns:1fr;}}
 </style>
 
 <div class="page" id="pg-film">
@@ -2721,23 +2729,23 @@ textarea.finput{resize:vertical;min-height:110px;}
         <div class="tcard">
           <div class="ttier">General</div>
           <div class="tname">General Admission</div>
-          <div class="tprice">Free</div>
+          <div class="tprice">TBD</div>
           <div class="tdetail">Open doors · All performances<br>First come, first seated</div>
-          <button class="tbuy">Reserve Spot →</button>
+          <button class="tbuy">Coming Soon</button>
         </div>
         <div class="tcard">
           <div class="ttier">Supporter</div>
           <div class="tname">Nexus Supporter</div>
-          <div class="tprice">$15</div>
+          <div class="tprice">TBD</div>
           <div class="tdetail">Priority entry · Event zine<br>Support the artists directly</div>
-          <button class="tbuy">Get Ticket →</button>
+          <button class="tbuy">Coming Soon</button>
         </div>
         <div class="tcard">
           <div class="ttier">Collective</div>
           <div class="tname">Collective Pass</div>
-          <div class="tprice">$40</div>
+          <div class="tprice">TBD</div>
           <div class="tdetail">All-access · Backstage<br>Nexus merch + future events</div>
-          <button class="tbuy">Get Pass →</button>
+          <button class="tbuy">Coming Soon</button>
         </div>
       </div>
     </div>
@@ -3291,7 +3299,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 
   <!-- Title -->
   <div class="golf-title-block" id="golf-title">
-    <div class="golf-eyebrow">Nexus &nbsp;·&nbsp; Sport &nbsp;·&nbsp; 2026</div>
+    <div class="golf-eyebrow">Nexus &nbsp;·&nbsp; Charity Golf Tournament &nbsp;·&nbsp; 2026</div>
     <div class="golf-h1">Where <em>Legends</em> Play</div>
   </div>
 
@@ -3322,9 +3330,9 @@ textarea.finput{resize:vertical;min-height:110px;}
   <div class="golf-sub" id="gsub-info">
     <div class="gs-inner" style="background:linear-gradient(160deg,#060f08 0%,#08140a 100%);">
       <button class="gs-back" data-gback style="color:rgba(240,237,230,.38);">Back to Course</button>
-      <div class="gs-eb" style="color:#c8b44a;">Nexus Sport &nbsp;·&nbsp; 2026</div>
+      <div class="gs-eb" style="color:#c8b44a;">Nexus Sport &nbsp;·&nbsp; Charity Golf Tournament &nbsp;·&nbsp; 2026</div>
       <h1 class="gs-h" style="color:#f0ede6;">Where<br>Culture<br><em>Meets</em> the Course</h1>
-      <p class="gs-p">The Nexus Sport event is not just a golf tournament. It is a convergence — a single day where the world's most compelling figures from music, film, sports, and fashion step onto the green and compete. Think The Masters in its discipline. Think the Met Gala in its spectacle. Think nothing you have ever seen before.</p>
+      <p class="gs-p">The Nexus Golf Tournament is a charity fundraiser — a single day where the world's most compelling figures from music, film, sports, and fashion step onto the green and compete, with all proceeds going directly to a cause chosen by the Nexus community. Sport with purpose. Culture with impact.</p>
       <div class="g-rule"></div>
 
       <div class="info-stats">
@@ -3367,6 +3375,11 @@ textarea.finput{resize:vertical;min-height:110px;}
           <div class="pillar-num">04</div>
           <div class="pillar-title">Black Tie Evening</div>
           <div class="pillar-desc">The round closes with a formal reception — cocktails, awards, and an evening program that rivals any gala on the social calendar.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">05</div>
+          <div class="pillar-title">Charitable Mission</div>
+          <div class="pillar-desc">Every dollar raised goes directly to a cause voted on by the Nexus community. This is not a tournament with a charity attached — the charity is the reason we play.</div>
         </div>
       </div>
 
@@ -4721,7 +4734,7 @@ document.getElementById('global-back-btn').addEventListener('click',()=>go('home
    FORM SUBMISSIONS — Formspree
 ════════════════════════════════════════════ */
 (function(){
-  const ENDPOINT = 'https://formspree.io/f/nicolehernandez.colin@gmail.com';
+  const ENDPOINT = 'https://formspree.io/nicolehernandez.colin@gmail.com';
 
   function handleForm(form) {
     form.addEventListener('submit', function(e) {
