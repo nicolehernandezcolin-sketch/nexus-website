@@ -36,46 +36,6 @@ html{width:100%;height:100%;overflow:hidden;font-size:18px}body{width:100%;heigh
   --dimmer:   rgba(240,237,230,.35);
 }
 
-/* ─────────────────────────────────────────
-   LIGHT MODE overrides
-───────────────────────────────────────── */
-body.light{
-  --space:  #F2F0EA;
-  --space2: #E8E6DF;
-  --fg:     #1A1715;
-  --bg:     #F2F0EA;
-  --bg2:    #E8E6DF;
-  --dim:    rgba(26,23,21,.55);
-  --dimmer: rgba(26,23,21,.38);
-  --grey:   rgba(0,0,0,.12);
-  color:#1A1715;
-}
-body.light .page{background:var(--space);}
-body.light #home,body.light #pg-landing{background:var(--space);}
-body.light #pg-music,body.light #music-body{background:#F2F0EA!important;color:#1A1715!important;}
-body.light #pg-dance,body.light #dance-body{background:#F2F0EA!important;color:#1A1715!important;}
-body.light #pg-film,body.light #film-theater{background:#F2F0EA!important;color:#1A1715!important;}
-body.light #pg-fashion{background:#F2F0EA!important;color:#1A1715!important;}
-body.light #pg-golf{background:#c8d8ca!important;color:#0a1a0c!important;}
-body.light #pg-festival,body.light #festival-body{background:#F2F0EA!important;color:#1A1715!important;}
-body.light #pg-global,body.light #global-body{background:#F2F0EA!important;color:#1A1715!important;}
-body.light .snav,body.light .mnav,body.light .dnav,body.light .fest-nav,body.light .glob-nav{background:rgba(242,240,234,.95)!important;}
-body.light .m-back,body.light .sbk,body.light .page-back-btn,body.light .fest-back,body.light .glob-back{color:rgba(26,23,21,.6)!important;}
-body.light .m-back:hover,body.light .sbk:hover,body.light .fest-back:hover,body.light .glob-back:hover{color:var(--green)!important;}
-body.light .artist-card,body.light .artist-grid{background:#F2F0EA!important;}
-body.light .artist-card{background:#F2F0EA!important;border-color:rgba(26,23,21,.08)!important;}
-body.light .ac-bio,body.light .music-intro,body.light .ms-p,body.light .gs-p,body.light .glob-sec-p,body.light .fest-sec-p,body.light .fest-intro,body.light .glob-intro{color:#1A1715!important;opacity:.7!important;}
-body.light .ac-name,body.light .ac-type{color:#1A1715!important;}
-body.light .music-star-canvas{display:none;}
-body.light #stars{display:none;}
-body.light .nebula{display:none;}
-body.light #wipe{background:#F2F0EA;}
-body.light .ms-next{background:#F2F0EA!important;color:#1A1715!important;}
-body.light .event-card{background:#E8E6DF!important;border-color:rgba(26,23,21,.1)!important;}
-body.light .golf-sub .gs-inner{background:#E8E6DF!important;}
-body.light .fest-card,body.light .glob-role-card,body.light .glob-team-grid,body.light .glob-member{background:#E8E6DF!important;}
-body.light .fest-card,body.light .glob-role-card{border-color:rgba(26,23,21,.1)!important;}
-
 body{
   background:var(--space);
   font-family:'Space Mono',monospace;
@@ -85,27 +45,9 @@ body{
 }
 
 /* ─────────────────────────────────────────
-   LIGHT/DARK TOGGLE BUTTON
-───────────────────────────────────────── */
-#theme-toggle{
-  position:fixed;top:1.2rem;right:1.6rem;
-  z-index:9000;
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(62,207,90,.1);
-  border:1px solid rgba(62,207,90,.3);
-  display:flex;align-items:center;justify-content:center;
-  cursor:none;transition:background .2s,border-color .2s,box-shadow .2s;
-  font-size:1rem;line-height:1;
-  color:var(--green);
-}
-#theme-toggle:hover{background:rgba(62,207,90,.2);border-color:rgba(62,207,90,.6);box-shadow:0 0 16px rgba(62,207,90,.18);}
-body.light #theme-toggle{background:rgba(62,207,90,.12);border-color:rgba(62,207,90,.4);color:var(--green);}
-
-/* ─────────────────────────────────────────
    ACCESSIBILITY — skip link & focus styles
 ───────────────────────────────────────── */
 :focus-visible{outline:2px solid var(--green);outline-offset:3px;}
-body.light :focus-visible{outline:2px solid var(--gdark);}
 
 /* Screen-reader only */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
@@ -408,9 +350,6 @@ body.light :focus-visible{outline:2px solid var(--gdark);}
   color:var(--green);
   text-shadow:0 0 14px rgba(62,207,90,.5);
 }
-body.light .plbl{color:rgba(26,23,21,.8);}
-body.light .planet:hover .plbl{color:var(--gdark);}
-
 /* ─── BOTTOM BAR ─── */
 #bar{
   position:fixed;bottom:2rem;left:0;right:0;
@@ -426,8 +365,6 @@ body.light .planet:hover .plbl{color:var(--gdark);}
   transition:color .2s;
 }
 #bar a:hover{color:var(--green);}
-body.light #bar{color:rgba(26,23,21,.5);}
-body.light #bar a{color:rgba(26,23,21,.5);}
 
 /* date line top centre */
 #topdate{
@@ -438,7 +375,6 @@ body.light #bar a{color:rgba(26,23,21,.5);}
   opacity:0;transition:opacity 1s ease;
   white-space:nowrap;
 }
-body.light #topdate{color:rgba(26,23,21,.4);}
 
 /* ═══════════════════════════════════════════════════════
    SHARED SUB-PAGE STYLES
@@ -588,11 +524,6 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 <div id="cur"></div>
 <div id="wipe"></div>
 
-<!-- Light/dark toggle — always visible -->
-<button id="theme-toggle" aria-label="Toggle light / dark mode" title="Toggle light / dark mode">
-  <span id="theme-icon" aria-hidden="true">☀</span>
-</button>
-
 <!-- ═══════════════════════════════════════════
      LANDING
 ═══════════════════════════════════════════ -->
@@ -724,7 +655,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .m-logo{font-family:'Unbounded',sans-serif;font-weight:900;font-size:.74rem;letter-spacing:.24em;color:var(--green);}
 
 /* Scrollable body */
-#music-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;z-index:1;}
+#music-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;scroll-behavior:smooth;z-index:1;}
 
 /* Hero section */
 .music-hero-sec{
@@ -746,7 +677,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
   margin-bottom:2rem;color:#f0ede6;
 }
 .music-h1 em{font-style:italic;font-weight:600;color:var(--green);}
-.music-intro{font-size:.72rem;line-height:2.1;opacity:.45;max-width:520px;margin-bottom:3rem;}
+.music-intro{font-size:.72rem;line-height:2.1;opacity:.78;max-width:520px;margin-bottom:3rem;}
 
 /* Scrolling marquee of artist names */
 .artist-marquee-wrap{overflow:hidden;border-top:1px solid rgba(62,207,90,.1);border-bottom:1px solid rgba(62,207,90,.1);padding:.8rem 0;margin-bottom:.1rem;}
@@ -777,7 +708,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .ac-num{font-family:'Unbounded',sans-serif;font-weight:900;font-size:.52rem;color:rgba(62,207,90,.12);line-height:1;}
 .ac-name{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(.58rem,1.1vw,.76rem);letter-spacing:.02em;color:#f0ede6;line-height:1.2;}
 .ac-type{font-size:.34rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(62,207,90,.5);}
-.ac-bio{font-family:'Cormorant Garamond',serif;font-size:.7rem;line-height:1.78;color:rgba(240,237,230,.48);flex:1;margin-top:.3rem;}
+.ac-bio{font-family:'Cormorant Garamond',serif;font-size:.7rem;line-height:1.78;color:rgba(240,237,230,.78);flex:1;margin-top:.3rem;}
 .ac-bio em{color:rgba(62,207,90,.75);font-style:italic;}
 .ac-desc{font-size:.56rem;line-height:1.75;opacity:.3;flex:1;margin-top:.2rem;}
 .ac-social{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.75rem;padding-top:.65rem;border-top:1px solid rgba(62,207,90,.07);}
@@ -801,7 +732,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .ms-eb{font-size:.4rem;letter-spacing:.44em;text-transform:uppercase;color:rgba(62,207,90,.55);margin-bottom:.7rem;font-family:'Space Mono',monospace;}
 .ms-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(3rem,8vw,6.5rem);line-height:.9;letter-spacing:-.01em;color:#f0ede6;margin-bottom:1rem;}
 .ms-h em{font-style:normal;font-weight:600;color:var(--green);}
-.ms-p{font-size:.66rem;line-height:2;opacity:.38;max-width:480px;margin-bottom:2.2rem;}
+.ms-p{font-size:.66rem;line-height:2;opacity:.72;max-width:480px;margin-bottom:2.2rem;}
 .ms-rule{width:100%;max-width:520px;height:1px;background:linear-gradient(90deg,transparent,rgba(62,207,90,.22),transparent);margin:0 0 2.2rem;}
 .event-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;max-width:760px;text-align:left;}
 .event-card{border:1px solid rgba(62,207,90,.11);padding:2.5rem 2.2rem;position:relative;overflow:hidden;background:rgba(62,207,90,.012);transition:border-color .25s,background .25s;}
@@ -1509,7 +1440,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
         <h1 class="ms-h">Artist<br><em>Submissions</em></h1>
         <p class="ms-p">Nexus is built on transparency and growth. We are actively expanding our network of artists, DJs, and creatives at every level. If your work belongs in the room, tell us about it.</p>
         <div class="ms-rule"></div>
-        <form class="ms-form" onsubmit="return false;">
+        <form class="ms-form" method="POST">
           <div class="ms-2col">
             <input class="ms-inp" type="text" placeholder="Your Name" />
             <input class="ms-inp" type="text" placeholder="Artist / DJ Name" />
@@ -1563,7 +1494,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .d-back::before{content:'←';font-size:.8rem;}
 .d-back:hover{color:var(--orange);}
 .d-logo{font-family:'Unbounded',sans-serif;font-weight:900;font-size:.74rem;letter-spacing:.24em;color:var(--orange);}
-#dance-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;z-index:1;}
+#dance-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;scroll-behavior:smooth;z-index:1;}
 
 /* Hero */
 .dance-hero-full{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:4rem 5rem 5rem;position:relative;overflow:hidden;}
@@ -1571,7 +1502,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .dance-eyebrow{font-size:.5rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(232,120,40,.7);margin-bottom:1rem;}
 .dance-h1-big{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3.5rem,12vw,10rem);line-height:.88;letter-spacing:-.02em;margin-bottom:2rem;color:#f0ede6;}
 .dance-h1-big em{font-style:italic;font-weight:600;color:var(--orange);}
-.dance-intro{font-size:.72rem;line-height:2.1;opacity:.45;max-width:520px;margin-bottom:3rem;}
+.dance-intro{font-size:.72rem;line-height:2.1;opacity:.78;max-width:520px;margin-bottom:3rem;}
 
 /* Dancer ticker */
 .dancer-ticker-wrap{overflow:hidden;border-top:1px solid rgba(232,120,40,.12);border-bottom:1px solid rgba(232,120,40,.12);padding:.8rem 0;}
@@ -1594,8 +1525,8 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .dp-name-big{font-family:'Unbounded',sans-serif;font-size:clamp(.8rem,2vw,1.1rem);font-weight:700;letter-spacing:.02em;color:#f0ede6;}
 .dp-discipline{font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(232,120,40,.65);}
 .dp-right{display:flex;flex-direction:column;gap:1rem;}
-.dp-bio{font-size:.7rem;line-height:2.05;opacity:.42;max-width:480px;}
-.dp-work-label{font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;opacity:.28;margin-top:.5rem;}
+.dp-bio{font-size:.7rem;line-height:2.05;opacity:.78;max-width:480px;}
+.dp-work-label{font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;opacity:.58;margin-top:.5rem;}
 .dp-works{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.3rem;}
 .dp-work-tag{
   font-size:.5rem;letter-spacing:.1em;padding:.4em .9em;
@@ -1614,7 +1545,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .move-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange),transparent);}
 .move-type{font-size:.44rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(232,120,40,.6);margin-bottom:.6rem;}
 .move-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;letter-spacing:.03em;color:#f0ede6;margin-bottom:.5rem;}
-.move-desc{font-size:.6rem;line-height:1.9;opacity:.32;}
+.move-desc{font-size:.6rem;line-height:1.9;opacity:.68;}
 .move-cta{margin-top:1rem;font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,120,40,.5);background:none;border:none;padding-bottom:1px;border-bottom:1px solid rgba(232,120,40,.22);cursor:none;}
 
 .dance-foot{padding:3rem 5rem;border-top:1px solid rgba(232,120,40,.07);display:flex;justify-content:space-between;align-items:center;}
@@ -1770,7 +1701,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
     <!-- Movement Originals -->
     <div class="move-originals">
       <div class="sec-label" style="color:rgba(232,120,40,.55);">— Original Movement Content &nbsp;·&nbsp; Made at Nexus</div>
-      <p style="font-size:.7rem;line-height:2.05;opacity:.38;max-width:500px;margin-bottom:1rem;">Every dance performance at Nexus is filmed and archived. This is where movement lives after the night ends.</p>
+      <p style="font-size:.7rem;line-height:2.05;opacity:.72;max-width:500px;margin-bottom:1rem;">Every dance performance at Nexus is filmed and archived. This is where movement lives after the night ends.</p>
       <div class="move-grid">
         <div class="move-card">
           <div class="move-type">Live Capture</div>
@@ -1801,7 +1732,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 
     <div class="dance-foot">
       <button class="fwm" data-go="home" style="color:#f0ede6;opacity:.1;">NEXUS</button>
-      <div class="finf" style="color:#f0ede6;opacity:.28;">San Diego, CA<br>@n3xus.now</div>
+      <div class="finf" style="color:#f0ede6;opacity:.58;">San Diego, CA<br>@n3xus.now</div>
     </div>
   </div>
 </div>
@@ -2009,7 +1940,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 /* ── FASHION SUB-PAGES ── */
 .fashion-sub {
   display:none;position:absolute;inset:0;z-index:100;
-  overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
+  overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;
 }
 .fashion-sub.fsshow{display:block;}
 
@@ -2460,7 +2391,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
         <div class="cast-cell"><div class="cast-cell-title">Location &amp; Date</div><div class="cast-cell-desc">Location to be announced. Follow @n3xus.now for venue reveal, casting call dates, and show details.</div></div>
         <div class="cast-cell"><div class="cast-cell-title">Experience</div><div class="cast-cell-desc">Prior experience welcome but not required. We value presence, confidence, and the ability to inhabit a look and a moment.</div></div>
       </div>
-      <form class="f-form" onsubmit="return false;">
+      <form class="f-form" method="POST">
         <input class="f-inp" type="text"  placeholder="Your Name" />
         <input class="f-inp" type="email" placeholder="Email Address" />
         <input class="f-inp" type="text"  placeholder="Instagram Handle" />
@@ -2551,7 +2482,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .curtain-r.open{transform:translateX(100%);}
 
 /* ── THEATER BODY ── */
-#film-theater{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;}
+#film-theater{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;scroll-behavior:smooth;}
 
 .theater-arch{width:100%;height:110px;background:radial-gradient(ellipse 65% 100% at 50% 0%,rgba(120,14,14,.3) 0%,transparent 70%);flex-shrink:0;}
 
@@ -2610,7 +2541,7 @@ body.light #topdate{color:rgba(26,23,21,.4);}
 .fseb{font-size:.48rem;letter-spacing:.36em;text-transform:uppercase;color:#e8c84a;opacity:.8;margin-bottom:.9rem;}
 .fsh{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(3.5rem,11vw,8.5rem);line-height:.88;letter-spacing:-.02em;margin-bottom:2rem;color:#f0e6d3;}
 .fsh em{font-style:normal;font-weight:600;color:#c8282a;}
-.fsp{font-size:.68rem;line-height:2.05;opacity:.42;max-width:460px;margin-bottom:2rem;}
+.fsp{font-size:.68rem;line-height:2.05;opacity:.75;max-width:460px;margin-bottom:2rem;}
 .grule{width:100%;max-width:540px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,162,39,.38),transparent);margin:1rem 0 2rem;}
 
 /* Form */
@@ -2630,7 +2561,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 .ttier{font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:#e8c84a;opacity:.75;}
 .tname{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.4rem;letter-spacing:.05em;color:#f0e6d3;}
 .tprice{font-family:'Unbounded',sans-serif;font-weight:700;font-size:1.7rem;color:#f0e6d3;letter-spacing:-.02em;}
-.tdetail{font-size:.54rem;opacity:.36;line-height:1.85;letter-spacing:.04em;}
+.tdetail{font-size:.54rem;opacity:.68;line-height:1.85;letter-spacing:.04em;}
 .tbuy{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:#e8c84a;padding-bottom:2px;text-decoration:none;cursor:none;transition:color .2s;background:none;border:none;border-bottom:1px solid rgba(232,200,74,.38);align-self:flex-start;}
 .tbuy:hover{color:#fff;}
 
@@ -2640,7 +2571,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 .icell:hover{background:rgba(139,16,16,.14);}
 .irole{font-family:'Unbounded',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.04em;color:#f0e6d3;}
 .idept{font-size:.46rem;letter-spacing:.24em;text-transform:uppercase;color:#e8c84a;opacity:.68;}
-.idesc{font-size:.62rem;line-height:1.9;opacity:.36;max-width:270px;}
+.idesc{font-size:.62rem;line-height:1.9;opacity:.68;max-width:270px;}
 @media(max-width:600px){.igrid{grid-template-columns:1fr;}.tgrid{grid-template-columns:1fr;}.film-sub{padding:5rem 2rem;}}
 </style>
 
@@ -2745,7 +2676,7 @@ textarea.finput{resize:vertical;min-height:110px;}
       <h1 class="fsh">Submit<br>Your <em>Film</em></h1>
       <p class="fsp">We screen short films that live at the intersection — work that plays with sound, movement, and image. Submit yours for consideration at the Nexus Film Festival, September 12, 2026 in San Diego.</p>
       <div class="grule"></div>
-      <form class="fform" onsubmit="return false;">
+      <form class="fform" method="POST">
         <input class="finput" type="text"  placeholder="Your Name" />
         <input class="finput" type="email" placeholder="Email Address" />
         <input class="finput" type="text"  placeholder="Film Title" />
@@ -2770,7 +2701,7 @@ textarea.finput{resize:vertical;min-height:110px;}
         <div class="icell"><div class="idept">Creative</div><div class="irole">Visual Storytelling Intern</div><div class="idesc">Photography, behind-the-scenes content, and social visuals.</div></div>
       </div>
       <div style="margin-top:2.5rem;">
-        <p style="font-size:.66rem;line-height:2;opacity:.32;max-width:420px;margin-bottom:1.4rem;">To apply, send your reel or portfolio to <span style="color:#e8c84a;opacity:.9;">film@n3xus.now</span> with the role in the subject line.</p>
+        <p style="font-size:.66rem;line-height:2;opacity:.70;max-width:420px;margin-bottom:1.4rem;">To apply, send your reel or portfolio to <span style="color:#e8c84a;opacity:.9;">film@n3xus.now</span> with the role in the subject line.</p>
         <button class="fsbtn" onclick="window.location='mailto:film@n3xus.now'">Apply Now →</button>
       </div>
     </div>
@@ -2996,6 +2927,7 @@ textarea.finput{resize:vertical;min-height:110px;}
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 .golf-sub.gsactive { display: block; }
 
@@ -3032,7 +2964,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 }
 .gs-h em { font-style: normal; font-weight: 600; }
 .gs-p {
-  font-size: .72rem; line-height: 2.1; opacity: .5;
+  font-size: .72rem; line-height: 2.1; opacity: .78;
   max-width: 520px; margin-bottom: 2.5rem;
 }
 .g-rule {
@@ -3435,7 +3367,7 @@ textarea.finput{resize:vertical;min-height:110px;}
       </div>
 
       <div class="g-rule" style="margin-top:3rem;"></div>
-      <p style="font-size:.58rem;letter-spacing:.15em;opacity:.25;max-width:480px;line-height:2;">Location to be announced. Invitations by selection only. Follow <span style="color:#c8b44a;opacity:.9;">@n3xus.now</span> for updates.</p>
+      <p style="font-size:.58rem;letter-spacing:.15em;opacity:.60;max-width:480px;line-height:2;">Location to be announced. Invitations by selection only. Follow <span style="color:#c8b44a;opacity:.9;">@n3xus.now</span> for updates.</p>
     </div>
   </div>
 
@@ -3559,8 +3491,8 @@ textarea.finput{resize:vertical;min-height:110px;}
       </div>
 
       <div class="g-rule" style="margin-top:3rem;max-width:500px;"></div>
-      <p style="font-size:.66rem;line-height:2;opacity:.35;max-width:440px;margin-bottom:1.5rem;">Tell us who you are and how you'd like to be involved. We'll be in touch.</p>
-      <form class="inv-form" onsubmit="return false;">
+      <p style="font-size:.66rem;line-height:2;opacity:.70;max-width:440px;margin-bottom:1.5rem;">Tell us who you are and how you'd like to be involved. We'll be in touch.</p>
+      <form class="inv-form" method="POST">
         <input class="ginput" type="text"  placeholder="Your Name" />
         <input class="ginput" type="email" placeholder="Email Address" />
         <input class="ginput" type="text"  placeholder="How do you want to be involved?" />
@@ -3626,7 +3558,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 ═══════════════════════════════════════════ -->
 <style>
 #pg-festival{background:#030205;color:#f0ede6;overflow:hidden;position:fixed;inset:0;}
-#festival-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;z-index:1;}
+#festival-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;scroll-behavior:smooth;z-index:1;}
 .fest-nav{
   position:sticky;top:0;z-index:100;
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
@@ -3662,7 +3594,7 @@ textarea.finput{resize:vertical;min-height:110px;}
   margin-bottom:2rem;
 }
 .fest-h1 em{font-style:italic;font-weight:600;color:var(--green);}
-.fest-intro{font-size:.76rem;line-height:2;opacity:.42;max-width:520px;margin-bottom:3rem;}
+.fest-intro{font-size:.76rem;line-height:2;opacity:.75;max-width:520px;margin-bottom:3rem;}
 .fest-section{padding:5rem 3.5rem;border-top:1px solid rgba(62,207,90,.07);}
 .fest-sec-label{font-size:.5rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(62,207,90,.4);margin-bottom:2rem;}
 .fest-sec-h{
@@ -3671,7 +3603,7 @@ textarea.finput{resize:vertical;min-height:110px;}
   margin-bottom:1.8rem;
 }
 .fest-sec-h em{font-weight:600;color:var(--green);}
-.fest-sec-p{font-size:.72rem;line-height:2;opacity:.45;max-width:580px;margin-bottom:2.5rem;}
+.fest-sec-p{font-size:.72rem;line-height:2;opacity:.78;max-width:580px;margin-bottom:2.5rem;}
 .fest-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem;}
 .fest-card{
   border:1px solid rgba(62,207,90,.1);padding:2rem;
@@ -3691,7 +3623,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 .fest-card-title em{font-weight:600;color:var(--green);}
 .fest-meta{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.2rem;border-top:1px solid rgba(62,207,90,.06);padding-top:1rem;}
 .fest-meta-row{display:flex;justify-content:space-between;gap:1rem;font-size:.52rem;line-height:1.8;}
-.fest-meta-label{opacity:.35;letter-spacing:.12em;text-transform:uppercase;}
+.fest-meta-label{opacity:.65;letter-spacing:.12em;text-transform:uppercase;}
 .fest-meta-val{opacity:.65;text-align:right;}
 .fest-badge{
   font-size:.44rem;letter-spacing:.28em;text-transform:uppercase;
@@ -3799,7 +3731,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 ═══════════════════════════════════════════ -->
 <style>
 #pg-global{background:#07090f;color:#f0ede6;overflow:hidden;position:fixed;inset:0;}
-#global-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;z-index:1;}
+#global-body{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;scroll-behavior:smooth;z-index:1;}
 .glob-nav{
   position:sticky;top:0;z-index:100;
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
@@ -3835,7 +3767,7 @@ textarea.finput{resize:vertical;min-height:110px;}
   margin-bottom:2rem;
 }
 .glob-h1 em{font-style:italic;font-weight:600;color:var(--green);}
-.glob-intro{font-size:.76rem;line-height:2.1;opacity:.42;max-width:580px;margin-bottom:3rem;}
+.glob-intro{font-size:.76rem;line-height:2.1;opacity:.75;max-width:580px;margin-bottom:3rem;}
 .glob-section{padding:5rem 3.5rem;border-top:1px solid rgba(62,207,90,.07);}
 .glob-sec-label{font-size:.5rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(62,207,90,.4);margin-bottom:2rem;}
 .glob-sec-h{
@@ -3844,7 +3776,7 @@ textarea.finput{resize:vertical;min-height:110px;}
   margin-bottom:1.8rem;
 }
 .glob-sec-h em{font-weight:600;color:var(--green);}
-.glob-sec-p{font-size:.72rem;line-height:2.1;opacity:.45;max-width:600px;margin-bottom:2rem;}
+.glob-sec-p{font-size:.72rem;line-height:2.1;opacity:.78;max-width:600px;margin-bottom:2rem;}
 .glob-team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:rgba(62,207,90,.06);margin-top:2rem;}
 .glob-member{
   background:#07090f;padding:2rem;
@@ -3872,7 +3804,7 @@ textarea.finput{resize:vertical;min-height:110px;}
   font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
   font-size:1.2rem;margin-bottom:.8rem;
 }
-.glob-role-desc{font-size:.58rem;line-height:1.8;opacity:.32;}
+.glob-role-desc{font-size:.58rem;line-height:1.8;opacity:.68;}
 .glob-apply-btn{
   display:inline-block;margin-top:1.2rem;
   font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;
@@ -4766,24 +4698,6 @@ document.getElementById('land-enter-btn').addEventListener('click',()=>{
 });
 
 /* ════════════════════════════════════════════
-   LIGHT / DARK MODE TOGGLE
-════════════════════════════════════════════ */
-(function(){
-  const btn = document.getElementById('theme-toggle');
-  const icon = document.getElementById('theme-icon');
-  let light = localStorage.getItem('nxs-theme') === 'light';
-
-  function applyTheme(){
-    document.body.classList.toggle('light', light);
-    icon.textContent = light ? '🌙' : '☀';
-    btn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
-    localStorage.setItem('nxs-theme', light ? 'light' : 'dark');
-  }
-  applyTheme();
-  btn.addEventListener('click', ()=>{ light = !light; applyTheme(); });
-})();
-
-/* ════════════════════════════════════════════
    FESTIVAL PAGE — back + planet
 ════════════════════════════════════════════ */
 document.getElementById('p-festival').addEventListener('click',e=>{
@@ -4798,6 +4712,53 @@ document.getElementById('festival-back-btn').addEventListener('click',()=>go('ho
 document.getElementById('nxs').addEventListener('click',()=>go('pg-global'));
 document.getElementById('globe').addEventListener('click',()=>go('pg-global'));
 document.getElementById('global-back-btn').addEventListener('click',()=>go('home'));
+
+/* ════════════════════════════════════════════
+   FORM SUBMISSIONS — Formspree
+════════════════════════════════════════════ */
+(function(){
+  const ENDPOINT = 'https://formspree.io/f/nicolehernandez.colin@gmail.com';
+
+  function handleForm(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const btn = form.querySelector('button[type="submit"]');
+      const orig = btn ? btn.textContent : '';
+      if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
+
+      fetch(ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(r => {
+        const wrap = form.parentElement;
+        const thanks = document.createElement('div');
+        thanks.style.cssText = 'padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;';
+        if (r.ok) {
+          thanks.textContent = 'Thank you — we'll be in touch.';
+          form.replaceWith(thanks);
+        } else {
+          thanks.textContent = 'Something went wrong. Email us at info@n3xus.now';
+          form.replaceWith(thanks);
+        }
+      })
+      .catch(() => {
+        if (btn) { btn.textContent = orig; btn.disabled = false; }
+        const err = document.createElement('p');
+        err.style.cssText = 'color:rgba(240,80,80,.8);font-size:.6rem;margin-top:.8rem;';
+        err.textContent = 'Could not send — please try again or email info@n3xus.now';
+        if (!form.querySelector('.nxs-err')) {
+          err.className = 'nxs-err';
+          form.appendChild(err);
+        }
+      });
+    });
+  }
+
+  document.querySelectorAll('.ms-form,.f-form,.fform,.inv-form').forEach(handleForm);
+})();
 
 </script>
 </body>
