@@ -265,22 +265,21 @@ body{
 #globe:hover~#globe-hint,
 #nxs:hover~#globe-hint{opacity:1;}
 
-/* Orbiting descriptor text ring */
-#home-orbit-text{
+/* Orbiting descriptor text rings */
+.orbit-text-ring{
   position:fixed;
   top:50%;left:50%;
   transform:translate(-50%,-50%);
-  width:min(440px,58vmin);
-  height:min(440px,58vmin);
   z-index:9;
   pointer-events:none;
   opacity:0;
   transition:opacity 1.5s ease;
+  overflow:visible;
 }
-#home-orbit-text.show{animation:orbitTextPulse 9s ease-in-out infinite;}
+.orbit-text-ring.show{animation:orbitTextPulse 10s ease-in-out infinite;}
 @keyframes orbitTextPulse{
-  0%,100%{opacity:.15;}
-  40%,60%{opacity:1;}
+  0%,100%{opacity:.1;}
+  35%,65%{opacity:1;}
 }
 
 /* Nav hint below planets */
@@ -573,15 +572,24 @@ body{
   <div class="orbit-ring" id="or2"></div>
   <div class="orbit-ring" id="or3"></div>
 
-  <!-- Orbiting descriptor text -->
-  <svg id="home-orbit-text" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <path id="orbit-text-path" d="M220,220 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"/>
-    </defs>
-    <text font-family="'Space Mono',monospace" font-size="11.5" letter-spacing="3" fill="rgba(62,207,90,.55)" text-anchor="start">
-      <textPath href="#orbit-text-path">
-        <animate attributeName="startOffset" from="0%" to="100%" dur="70s" repeatCount="indefinite"/>
-        We are a community highlighting intersectionality · &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We are a community highlighting intersectionality · &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <!-- Orbit text ring — inner -->
+  <svg class="orbit-text-ring" id="otr1" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+    <defs><path id="otp1" d="M220,220 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"/></defs>
+    <text font-family="'Space Mono',monospace" font-size="9.5" letter-spacing="3.5" fill="rgba(62,207,90,.6)" text-anchor="start">
+      <textPath href="#otp1">
+        <animate attributeName="startOffset" from="0%" to="100%" dur="80s" repeatCount="indefinite"/>
+        We are a community from San Diego, California · &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We are a community from San Diego, California · &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </textPath>
+    </text>
+  </svg>
+
+  <!-- Orbit text ring — outer -->
+  <svg class="orbit-text-ring" id="otr3" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+    <defs><path id="otp3" d="M220,220 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"/></defs>
+    <text font-family="'Space Mono',monospace" font-size="10" letter-spacing="3.5" fill="rgba(62,207,90,.5)" text-anchor="start">
+      <textPath href="#otp3">
+        <animate attributeName="startOffset" from="0%" to="100%" dur="55s" repeatCount="indefinite"/>
+        Connecting people through the things we love · celebrating creativity in all its forms · &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </textPath>
     </text>
   </svg>
@@ -4145,6 +4153,18 @@ function sizeRings() {
     ring.style.width  = radii[i] * 2 + 'px';
     ring.style.height = radii[i] * 2 + 'px';
   });
+  // Size orbit text rings to match ring 1 (inner) and ring 3 (outer)
+  [['otr1','otp1', radii[0]], ['otr3','otp3', radii[2]]].forEach(([svgId, pathId, r]) => {
+    const svg = document.getElementById(svgId);
+    const path = document.getElementById(pathId);
+    if (!svg || !path) return;
+    const dim = r * 2 + 20;
+    const c = dim / 2;
+    svg.setAttribute('viewBox', `0 0 ${dim} ${dim}`);
+    svg.style.width  = dim + 'px';
+    svg.style.height = dim + 'px';
+    path.setAttribute('d', `M${c},${c} m-${r},0 a${r},${r} 0 1,1 ${r*2},0 a${r},${r} 0 1,1 -${r*2},0`);
+  });
 }
 
 /* ════════════════════════════════════════════
@@ -4271,7 +4291,7 @@ setTimeout(() => {
     setTimeout(() => r.classList.add('show'), i * 200);
   });
 }, 2800);
-setTimeout(() => document.getElementById('home-orbit-text').classList.add('show'), 3400);
+setTimeout(() => document.querySelectorAll('.orbit-text-ring').forEach(el => el.classList.add('show')), 3400);
 
 sizeRings();
 placePlanets();
