@@ -4828,7 +4828,6 @@ const _supa = window.supabase.createClient(
 
       const { error } = await _supa.from(‘submissions’).insert({
         form_type: formType,
-        name: data.name || null,
         email: data.email || null,
         data: data
       });
