@@ -277,7 +277,11 @@ body{
   opacity:0;
   transition:opacity 1.5s ease;
 }
-#home-orbit-text.show{opacity:1;}
+#home-orbit-text.show{animation:orbitTextPulse 9s ease-in-out infinite;}
+@keyframes orbitTextPulse{
+  0%,100%{opacity:.15;}
+  40%,60%{opacity:1;}
+}
 
 /* Nav hint below planets */
 #nav-hint{
