@@ -276,10 +276,10 @@ body{
   transition:opacity 1.5s ease;
   overflow:visible;
 }
-.orbit-text-ring.show{animation:orbitTextPulse 10s ease-in-out infinite;}
+.orbit-text-ring.show{animation:orbitTextPulse 14s ease-in-out infinite;}
 @keyframes orbitTextPulse{
-  0%,100%{opacity:.1;}
-  35%,65%{opacity:1;}
+  0%,100%{opacity:0;}
+  25%,75%{opacity:.9;}
 }
 
 /* Nav hint below planets */
@@ -577,7 +577,7 @@ body{
     <defs><path id="otp1" d="M180,180 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"/></defs>
     <text font-family="'Space Mono',monospace" font-size="9" letter-spacing="3.5" fill="rgba(62,207,90,.65)" text-anchor="start">
       <textPath href="#otp1">
-        <animate attributeName="startOffset" from="0%" to="100%" dur="80s" repeatCount="indefinite"/>
+        <animate attributeName="startOffset" from="0%" to="100%" dur="120s" repeatCount="indefinite"/>
         We are a community from San Diego, California ·
       </textPath>
     </text>
@@ -588,7 +588,7 @@ body{
     <defs><path id="otp3" d="M220,220 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"/></defs>
     <text font-family="'Space Mono',monospace" font-size="10" letter-spacing="3.5" fill="rgba(62,207,90,.5)" text-anchor="start">
       <textPath href="#otp3">
-        <animate attributeName="startOffset" from="0%" to="100%" dur="55s" repeatCount="indefinite"/>
+        <animate attributeName="startOffset" from="0%" to="100%" dur="90s" repeatCount="indefinite"/>
         Connecting people through the things we love · celebrating creativity in all its forms · &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </textPath>
     </text>
