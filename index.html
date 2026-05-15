@@ -4794,22 +4794,22 @@ document.getElementById('global-back-btn').addEventListener('click',()=>go('home
    SUPABASE CLIENT
 ════════════════════════════════════════════ */
 const _supa = window.supabase.createClient(
-  ‘https://ljmeugrvvuxglwfyhxhj.supabase.co’,
-  ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqbWV1Z3J2dnV4Z2x3ZnloeGhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NzExOTcsImV4cCI6MjA5NDQ0NzE5N30.B8O0qLMOjPKUP_xoOE3lF5R8kJOQJt6QBM3f1kkE-5k’
+  'https://ljmeugrvvuxglwfyhxhj.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqbWV1Z3J2dnV4Z2x3ZnloeGhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NzExOTcsImV4cCI6MjA5NDQ0NzE5N30.B8O0qLMOjPKUP_xoOE3lF5R8kJOQJt6QBM3f1kkE-5k'
 );
 
 /* ════════════════════════════════════════════
    FORM SUBMISSIONS — Supabase
 ════════════════════════════════════════════ */
 (function(){
-  const FORM_TYPES = {‘ms-form’:’artist’,’f-form’:’fashion’,’fform’:’film’,’inv-form’:’involvement’};
+  const FORM_TYPES = {'ms-form':'artist','f-form':'fashion','fform':'film','inv-form':'involvement'};
 
   function handleForm(form) {
-    form.addEventListener(‘submit’, async function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      const btn = form.querySelector(‘button[type="submit"]’);
-      const orig = btn ? btn.textContent : ‘’;
-      if (btn) { btn.textContent = ‘Sending…’; btn.disabled = true; }
+      const btn = form.querySelector('button[type="submit"]');
+      const orig = btn ? btn.textContent : '';
+      if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
 
       const fd = new FormData(form);
       const data = {};
@@ -4821,37 +4821,37 @@ const _supa = window.supabase.createClient(
         }
       });
 
-      let formType = ‘unknown’;
+      let formType = 'unknown';
       for (const [cls, type] of Object.entries(FORM_TYPES)) {
         if (form.classList.contains(cls)) { formType = type; break; }
       }
 
-      const { error } = await _supa.from(‘submissions’).insert({
+      const { error } = await _supa.from('submissions').insert({
         form_type: formType,
         email: data.email || null,
         data: data
       });
 
-      const msg = document.createElement(‘div’);
-      msg.style.cssText = ‘padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;’;
+      const msg = document.createElement('div');
+      msg.style.cssText = 'padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;';
       if (!error) {
-        msg.textContent = "Thank you — we’ll be in touch.";
+        msg.textContent = "Thank you — we'll be in touch.";
         form.replaceWith(msg);
       } else {
         if (btn) { btn.textContent = orig; btn.disabled = false; }
-        let err = form.querySelector(‘.nxs-err’);
+        let err = form.querySelector('.nxs-err');
         if (!err) {
-          err = document.createElement(‘p’);
-          err.className = ‘nxs-err’;
-          err.style.cssText = ‘color:rgba(240,80,80,.8);font-size:.6rem;margin-top:.8rem;’;
+          err = document.createElement('p');
+          err.className = 'nxs-err';
+          err.style.cssText = 'color:rgba(240,80,80,.8);font-size:.6rem;margin-top:.8rem;';
           form.appendChild(err);
         }
-        err.textContent = ‘Could not send — please try again or email thenexx.usss@gmail.com’;
+        err.textContent = 'Could not send — please try again or email thenexx.usss@gmail.com';
       }
     });
   }
 
-  document.querySelectorAll(‘.ms-form,.f-form,.fform,.inv-form’).forEach(handleForm);
+  document.querySelectorAll('.ms-form,.f-form,.fform,.inv-form').forEach(handleForm);
 })();
 
 </script>
