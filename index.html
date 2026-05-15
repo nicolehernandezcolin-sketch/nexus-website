@@ -265,6 +265,20 @@ body{
 #globe:hover~#globe-hint,
 #nxs:hover~#globe-hint{opacity:1;}
 
+/* Orbiting descriptor text ring */
+#home-orbit-text{
+  position:fixed;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:min(440px,58vmin);
+  height:min(440px,58vmin);
+  z-index:9;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 1.5s ease;
+}
+#home-orbit-text.show{opacity:1;}
+
 /* Nav hint below planets */
 #nav-hint{
   position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%);
@@ -554,6 +568,19 @@ body{
   <div class="orbit-ring" id="or1"></div>
   <div class="orbit-ring" id="or2"></div>
   <div class="orbit-ring" id="or3"></div>
+
+  <!-- Orbiting descriptor text -->
+  <svg id="home-orbit-text" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <path id="orbit-text-path" d="M220,220 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"/>
+    </defs>
+    <text font-family="'Space Mono',monospace" font-size="9" letter-spacing="2.2" fill="rgba(62,207,90,.28)" text-anchor="start">
+      <textPath href="#orbit-text-path">
+        <animate attributeName="startOffset" from="0%" to="100%" dur="70s" repeatCount="indefinite"/>
+        The intersection of music · dance · film · fashion · sport · San Diego, California · &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </textPath>
+    </text>
+  </svg>
 
   <!-- Globe (spins CW) -->
   <div id="globe">
@@ -4240,6 +4267,7 @@ setTimeout(() => {
     setTimeout(() => r.classList.add('show'), i * 200);
   });
 }, 2800);
+setTimeout(() => document.getElementById('home-orbit-text').classList.add('show'), 3400);
 
 sizeRings();
 placePlanets();
