@@ -377,12 +377,12 @@ body{
   display:flex;justify-content:space-between;
   padding:0 2.5rem;
   font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(255,255,255,.42);
+  color:rgba(255,255,255,.75);
   z-index:50;
   opacity:0;transition:opacity 1s ease;
 }
 #bar a{
-  color:rgba(255,255,255,.42);text-decoration:none;
+  color:rgba(255,255,255,.75);text-decoration:none;
   transition:color .2s;
 }
 #bar a:hover{color:var(--green);}
@@ -391,7 +391,7 @@ body{
 #topdate{
   position:fixed;top:2rem;left:50%;transform:translateX(-50%);
   font-size:.54rem;letter-spacing:.3em;text-transform:uppercase;
-  color:rgba(255,255,255,.32);
+  color:rgba(255,255,255,.75);
   z-index:50;
   opacity:0;transition:opacity 1s ease;
   white-space:nowrap;
@@ -572,10 +572,10 @@ body{
   <div class="orbit-ring" id="or2"></div>
   <div class="orbit-ring" id="or3"></div>
 
-  <!-- Orbit text ring — inner -->
-  <svg class="orbit-text-ring" id="otr1" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
-    <defs><path id="otp1" d="M220,220 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"/></defs>
-    <text font-family="'Space Mono',monospace" font-size="9.5" letter-spacing="3.5" fill="rgba(62,207,90,.6)" text-anchor="start">
+  <!-- Orbit text ring — inner (close to globe) -->
+  <svg class="orbit-text-ring" id="otr1" viewBox="0 0 360 360" style="width:min(360px,47vmin);height:min(360px,47vmin);" xmlns="http://www.w3.org/2000/svg">
+    <defs><path id="otp1" d="M180,180 m-155,0 a155,155 0 1,1 310,0 a155,155 0 1,1 -310,0"/></defs>
+    <text font-family="'Space Mono',monospace" font-size="9" letter-spacing="3.5" fill="rgba(62,207,90,.65)" text-anchor="start">
       <textPath href="#otp1">
         <animate attributeName="startOffset" from="0%" to="100%" dur="80s" repeatCount="indefinite"/>
         We are a community from San Diego, California ·
@@ -4153,8 +4153,8 @@ function sizeRings() {
     ring.style.width  = radii[i] * 2 + 'px';
     ring.style.height = radii[i] * 2 + 'px';
   });
-  // Size orbit text rings to match ring 1 (inner) and ring 3 (outer)
-  [['otr1','otp1', radii[0]], ['otr3','otp3', radii[2]]].forEach(([svgId, pathId, r]) => {
+  // Size outer orbit text ring to match ring 3
+  [['otr3','otp3', radii[2]]].forEach(([svgId, pathId, r]) => {
     const svg = document.getElementById(svgId);
     const path = document.getElementById(pathId);
     if (!svg || !path) return;
