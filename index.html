@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 /* ─────────────────────────────────────────
@@ -1543,34 +1544,34 @@ body{
         <div class="ms-rule"></div>
         <form class="ms-form" method="POST">
           <div class="ms-2col">
-            <input class="ms-inp" type="text" placeholder="Your Name" />
-            <input class="ms-inp" type="text" placeholder="Artist / DJ Name" />
+            <input class="ms-inp" type="text" name="name" placeholder="Your Name" />
+            <input class="ms-inp" type="text" name="artist_name" placeholder="Artist / DJ Name" />
           </div>
-          <input class="ms-inp" type="email" placeholder="Email Address" />
-          <input class="ms-inp" type="text" placeholder="Instagram or Social Handle" />
+          <input class="ms-inp" type="email" name="email" placeholder="Email Address" />
+          <input class="ms-inp" type="text" name="social_handle" placeholder="Instagram or Social Handle" />
           <div class="ms-2col">
-            <input class="ms-inp" type="text" placeholder="City / Location" />
-            <input class="ms-inp" type="text" placeholder="Years Active" />
+            <input class="ms-inp" type="text" name="city" placeholder="City / Location" />
+            <input class="ms-inp" type="text" name="years_active" placeholder="Years Active" />
           </div>
           <div style="margin:.2rem 0 .1rem;">
             <div class="ms-inp" style="border-bottom:none;padding-bottom:.3em;background:transparent;border-left:none;border-right:none;border-top:none;border-color:rgba(62,207,90,.15);font-size:.38rem;letter-spacing:.18em;color:rgba(240,237,230,.25);">GENRE / STYLE — SELECT ALL THAT APPLY</div>
             <div class="ms-check-group">
-              <label class="ms-check-label"><input type="checkbox"> Hip-Hop</label>
-              <label class="ms-check-label"><input type="checkbox"> R&amp;B / Soul</label>
-              <label class="ms-check-label"><input type="checkbox"> Jazz</label>
-              <label class="ms-check-label"><input type="checkbox"> Electronic / DJ</label>
-              <label class="ms-check-label"><input type="checkbox"> Latin</label>
-              <label class="ms-check-label"><input type="checkbox"> Afrobeats</label>
-              <label class="ms-check-label"><input type="checkbox"> Indie / Alternative</label>
-              <label class="ms-check-label"><input type="checkbox"> Singer-Songwriter</label>
-              <label class="ms-check-label"><input type="checkbox"> Spoken Word</label>
-              <label class="ms-check-label"><input type="checkbox"> Other</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Hip-Hop"> Hip-Hop</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="R&B / Soul"> R&amp;B / Soul</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Jazz"> Jazz</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Electronic / DJ"> Electronic / DJ</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Latin"> Latin</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Afrobeats"> Afrobeats</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Indie / Alternative"> Indie / Alternative</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Singer-Songwriter"> Singer-Songwriter</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Spoken Word"> Spoken Word</label>
+              <label class="ms-check-label"><input type="checkbox" name="genre" value="Other"> Other</label>
             </div>
           </div>
-          <input class="ms-inp" type="url" placeholder="Music Link — Spotify, SoundCloud, YouTube, etc." />
-          <input class="ms-inp" type="url" placeholder="EPK or Press Kit Link (optional)" />
-          <textarea class="ms-inp" style="resize:vertical;min-height:100px;" placeholder="Tell us about your work — your sound, your story, what you bring to a room."></textarea>
-          <textarea class="ms-inp" style="resize:vertical;min-height:70px;" placeholder="What type of Nexus opportunity interests you? (performance, workshop, collaboration, all of the above…)"></textarea>
+          <input class="ms-inp" type="url" name="music_link" placeholder="Music Link — Spotify, SoundCloud, YouTube, etc." />
+          <input class="ms-inp" type="url" name="epk_link" placeholder="EPK or Press Kit Link (optional)" />
+          <textarea class="ms-inp" name="bio" style="resize:vertical;min-height:100px;" placeholder="Tell us about your work — your sound, your story, what you bring to a room."></textarea>
+          <textarea class="ms-inp" name="opportunity" style="resize:vertical;min-height:70px;" placeholder="What type of Nexus opportunity interests you? (performance, workshop, collaboration, all of the above…)"></textarea>
           <button class="ms-submit-btn" type="submit">Submit for Consideration →</button>
           <div class="ms-form-note">All submissions are reviewed. We'll be in touch if there's a fit. Thank you for building with us.</div>
         </form>
@@ -2468,12 +2469,12 @@ body{
         <div class="cast-cell"><div class="cast-cell-title">Experience</div><div class="cast-cell-desc">Prior experience welcome but not required. We value presence, confidence, and the ability to inhabit a look and a moment.</div></div>
       </div>
       <form class="f-form" method="POST">
-        <input class="f-inp" type="text"  placeholder="Your Name" />
-        <input class="f-inp" type="email" placeholder="Email Address" />
-        <input class="f-inp" type="text"  placeholder="Instagram Handle" />
-        <input class="f-inp" type="text"  placeholder="Height" />
-        <input class="f-inp" type="url"   placeholder="Portfolio or Photos Link (optional)" />
-        <textarea class="f-inp" style="resize:vertical;min-height:90px;" placeholder="Tell us about yourself — what you do, what you bring to a room."></textarea>
+        <input class="f-inp" type="text"  name="name" placeholder="Your Name" />
+        <input class="f-inp" type="email" name="email" placeholder="Email Address" />
+        <input class="f-inp" type="text"  name="instagram" placeholder="Instagram Handle" />
+        <input class="f-inp" type="text"  name="height" placeholder="Height" />
+        <input class="f-inp" type="url"   name="portfolio" placeholder="Portfolio or Photos Link (optional)" />
+        <textarea class="f-inp" name="bio" style="resize:vertical;min-height:90px;" placeholder="Tell us about yourself — what you do, what you bring to a room."></textarea>
         <button class="f-submit" type="submit">Submit Application →</button>
       </form>
       <div class="fsh-foot">
@@ -2753,12 +2754,12 @@ textarea.finput{resize:vertical;min-height:110px;}
       <p class="fsp">We screen short films that live at the intersection — work that plays with sound, movement, and image. Submit yours for consideration at the Nexus Film Festival, September 12, 2026 in San Diego.</p>
       <div class="grule"></div>
       <form class="fform" method="POST">
-        <input class="finput" type="text"  placeholder="Your Name" />
-        <input class="finput" type="email" placeholder="Email Address" />
-        <input class="finput" type="text"  placeholder="Film Title" />
-        <input class="finput" type="text"  placeholder="Runtime (e.g. 4 min)" />
-        <input class="finput" type="url"   placeholder="Vimeo or YouTube Link" />
-        <textarea class="finput" placeholder="Tell us about your film — how does it live at the intersection of music, dance, and image?"></textarea>
+        <input class="finput" type="text"  name="name" placeholder="Your Name" />
+        <input class="finput" type="email" name="email" placeholder="Email Address" />
+        <input class="finput" type="text"  name="film_title" placeholder="Film Title" />
+        <input class="finput" type="text"  name="runtime" placeholder="Runtime (e.g. 4 min)" />
+        <input class="finput" type="url"   name="video_link" placeholder="Vimeo or YouTube Link" />
+        <textarea class="finput" name="description" placeholder="Tell us about your film — how does it live at the intersection of music, dance, and image?"></textarea>
         <button class="fsbtn" type="submit">Submit Film →</button>
       </form>
     </div>
@@ -3574,10 +3575,10 @@ textarea.finput{resize:vertical;min-height:110px;}
       <div class="g-rule" style="margin-top:3rem;max-width:500px;"></div>
       <p style="font-size:.66rem;line-height:2;opacity:.70;max-width:440px;margin-bottom:1.5rem;">Tell us who you are and how you'd like to be involved. We'll be in touch.</p>
       <form class="inv-form" method="POST">
-        <input class="ginput" type="text"  placeholder="Your Name" />
-        <input class="ginput" type="email" placeholder="Email Address" />
-        <input class="ginput" type="text"  placeholder="How do you want to be involved?" />
-        <textarea class="ginput" style="resize:vertical;min-height:100px;" placeholder="Tell us about yourself — what you do, what you bring."></textarea>
+        <input class="ginput" type="text"  name="name" placeholder="Your Name" />
+        <input class="ginput" type="email" name="email" placeholder="Email Address" />
+        <input class="ginput" type="text"  name="involvement" placeholder="How do you want to be involved?" />
+        <textarea class="ginput" name="bio" style="resize:vertical;min-height:100px;" placeholder="Tell us about yourself — what you do, what you bring."></textarea>
         <button class="g-sbtn" type="submit">Submit →</button>
       </form>
     </div>
@@ -4790,50 +4791,68 @@ document.getElementById('globe').addEventListener('click',()=>go('pg-global'));
 document.getElementById('global-back-btn').addEventListener('click',()=>go('home'));
 
 /* ════════════════════════════════════════════
-   FORM SUBMISSIONS — Formspree
+   SUPABASE CLIENT
+════════════════════════════════════════════ */
+const _supa = window.supabase.createClient(
+  ‘https://ljmeugrvvuxglwfyhxhj.supabase.co’,
+  ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqbWV1Z3J2dnV4Z2x3ZnloeGhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NzExOTcsImV4cCI6MjA5NDQ0NzE5N30.B8O0qLMOjPKUP_xoOE3lF5R8kJOQJt6QBM3f1kkE-5k’
+);
+
+/* ════════════════════════════════════════════
+   FORM SUBMISSIONS — Supabase
 ════════════════════════════════════════════ */
 (function(){
-  const ENDPOINT = 'https://formspree.io/thenexx.usss@gmail.com';
+  const FORM_TYPES = {‘ms-form’:’artist’,’f-form’:’fashion’,’fform’:’film’,’inv-form’:’involvement’};
 
   function handleForm(form) {
-    form.addEventListener('submit', function(e) {
+    form.addEventListener(‘submit’, async function(e) {
       e.preventDefault();
-      const data = new FormData(form);
-      const btn = form.querySelector('button[type="submit"]');
-      const orig = btn ? btn.textContent : '';
-      if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
+      const btn = form.querySelector(‘button[type="submit"]’);
+      const orig = btn ? btn.textContent : ‘’;
+      if (btn) { btn.textContent = ‘Sending…’; btn.disabled = true; }
 
-      fetch(ENDPOINT, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(r => {
-        const wrap = form.parentElement;
-        const thanks = document.createElement('div');
-        thanks.style.cssText = 'padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;';
-        if (r.ok) {
-          thanks.textContent = "Thank you — we’ll be in touch.";
-          form.replaceWith(thanks);
+      const fd = new FormData(form);
+      const data = {};
+      fd.forEach((v, k) => {
+        if (data[k]) {
+          data[k] = [].concat(data[k], v);
         } else {
-          thanks.textContent = 'Something went wrong. Email us at thenexx.usss@gmail.com';
-          form.replaceWith(thanks);
-        }
-      })
-      .catch(() => {
-        if (btn) { btn.textContent = orig; btn.disabled = false; }
-        const err = document.createElement('p');
-        err.style.cssText = 'color:rgba(240,80,80,.8);font-size:.6rem;margin-top:.8rem;';
-        err.textContent = 'Could not send — please try again or email thenexx.usss@gmail.com';
-        if (!form.querySelector('.nxs-err')) {
-          err.className = 'nxs-err';
-          form.appendChild(err);
+          data[k] = v;
         }
       });
+
+      let formType = ‘unknown’;
+      for (const [cls, type] of Object.entries(FORM_TYPES)) {
+        if (form.classList.contains(cls)) { formType = type; break; }
+      }
+
+      const { error } = await _supa.from(‘submissions’).insert({
+        form_type: formType,
+        name: data.name || null,
+        email: data.email || null,
+        data: data
+      });
+
+      const msg = document.createElement(‘div’);
+      msg.style.cssText = ‘padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;’;
+      if (!error) {
+        msg.textContent = "Thank you — we’ll be in touch.";
+        form.replaceWith(msg);
+      } else {
+        if (btn) { btn.textContent = orig; btn.disabled = false; }
+        let err = form.querySelector(‘.nxs-err’);
+        if (!err) {
+          err = document.createElement(‘p’);
+          err.className = ‘nxs-err’;
+          err.style.cssText = ‘color:rgba(240,80,80,.8);font-size:.6rem;margin-top:.8rem;’;
+          form.appendChild(err);
+        }
+        err.textContent = ‘Could not send — please try again or email thenexx.usss@gmail.com’;
+      }
     });
   }
 
-  document.querySelectorAll('.ms-form,.f-form,.fform,.inv-form').forEach(handleForm);
+  document.querySelectorAll(‘.ms-form,.f-form,.fform,.inv-form’).forEach(handleForm);
 })();
 
 </script>
