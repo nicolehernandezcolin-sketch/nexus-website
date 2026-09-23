@@ -939,20 +939,6 @@ body{
 #ms-mels-room .event-card:hover .event-ticket-badge{color:#ff7832;border-color:rgba(255,120,50,.48);}
 #ms-mels-room .event-desc{color:rgba(255,210,180,.72);}
 
-/* ── RESISTANCE THROUGH MUSIC — bold crimson ── */
-#ms-resistance .ms-next{background:linear-gradient(160deg,#030508 0%,#0d0203 55%,#030508 100%);}
-#ms-resistance .ms-eb{color:rgba(220,80,80,.65);}
-#ms-resistance .ms-h em{color:#e05050;}
-#ms-resistance .ms-rule{background:linear-gradient(90deg,transparent,rgba(220,80,80,.28),transparent);}
-#ms-resistance .event-card{border-color:rgba(220,80,80,.13);background:rgba(220,80,80,.018);}
-#ms-resistance .event-card:hover{border-color:rgba(220,80,80,.38);background:rgba(220,80,80,.04);}
-#ms-resistance .event-card::before{background:linear-gradient(90deg,#e05050,rgba(220,80,80,.1),transparent);}
-#ms-resistance .event-tag{color:rgba(220,80,80,.55);}
-#ms-resistance .event-title em{color:#e05050;}
-#ms-resistance .event-meta-label{color:rgba(220,80,80,.45);}
-#ms-resistance .event-ticket-badge{color:rgba(220,80,80,.55);border-color:rgba(220,80,80,.18);}
-#ms-resistance .event-card:hover .event-ticket-badge{color:#e05050;border-color:rgba(220,80,80,.45);}
-.resist-cause{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.4rem);color:rgba(220,80,80,.55);border-left:2px solid rgba(220,80,80,.25);padding-left:1.2rem;margin:1.5rem auto;line-height:1.6;max-width:560px;text-align:left;}
 
 /* ── ARTIST WORKSHOPS — electric teal ── */
 #ms-workshops .ms-next{background:linear-gradient(160deg,#030508 0%,#01080e 55%,#030508 100%);}
@@ -986,8 +972,7 @@ body{
       <button class="msnav-btn active" data-msub="ms-artists">The Artists</button>
       <button class="msnav-btn" data-msub="ms-latin-jazz">Latin Jazz Night</button>
       <button class="msnav-btn" data-msub="ms-mels-room">Mel's Room</button>
-      <button class="msnav-btn" data-msub="ms-resistance">Resistance Through Music</button>
-      <button class="msnav-btn" data-msub="ms-workshops">Artist Workshops</button>
+      <!-- Artist Workshops hidden for now: <button class="msnav-btn" data-msub="ms-workshops">Artist Workshops</button> -->
       <button class="msnav-btn" data-msub="ms-nex-up">Nex Up</button>
       <button class="msnav-btn" data-msub="ms-submit">Submit</button>
     </div>
@@ -1436,31 +1421,6 @@ body{
       </div>
     </div><!-- /ms-mels-room -->
 
-    <!-- RESISTANCE THROUGH MUSIC -->
-    <div class="music-sub" id="ms-resistance">
-      <div class="ms-next">
-        <div class="ms-eb">Nexus &nbsp;·&nbsp; Resistance Through Music</div>
-        <h1 class="ms-h">Resistance<br><em>Through Music</em></h1>
-        <p class="ms-p">A live music and dialogue series where the performance serves a purpose beyond the room. Every edition raises funds for a humanitarian cause — music as action, not just sound.</p>
-        <div class="resist-cause">"Art is not what you see, but what you make others see." — Every ticket, every note, goes further than the stage.</div>
-        <div class="ms-rule"></div>
-        <div class="event-cards">
-          <div class="event-card">
-            <div class="event-tag">Live Music &amp; Dialogue &nbsp;·&nbsp; Monthly</div>
-            <div class="event-title">Resistance<br><em>Through Music</em></div>
-            <div class="event-meta">
-              <div class="event-meta-row"><span class="event-meta-label">Frequency</span><span class="event-meta-val">Monthly</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Format</span><span class="event-meta-val">Live Performance + Community Dialogue</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Proceeds</span><span class="event-meta-val">100% to a Humanitarian Cause</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; Rotating</span></div>
-            </div>
-            <div class="event-ticket-badge">Ticketed &nbsp;·&nbsp; All Proceeds Go to Cause</div>
-            <div class="event-desc">Each edition spotlights artists whose work responds to the world — live performance followed by open dialogue between artists and community. Every ticket sold goes directly to a humanitarian cause chosen for that month. Music is never neutral. Neither is this series. Dates and causes announced on @n3xus.now.</div>
-          </div>
-        </div>
-      </div>
-    </div><!-- /ms-resistance -->
-
     <!-- ARTIST WORKSHOPS -->
     <div class="music-sub" id="ms-workshops">
       <div class="ms-next">
@@ -1606,7 +1566,7 @@ body{
           <input class="ms-inp" type="url" name="music_link" placeholder="Music Link — Spotify, SoundCloud, YouTube, etc." />
           <input class="ms-inp" type="url" name="epk_link" placeholder="EPK or Press Kit Link (optional)" />
           <textarea class="ms-inp" name="bio" style="resize:vertical;min-height:100px;" placeholder="Tell us about your work — your sound, your story, what you bring to a room."></textarea>
-          <textarea class="ms-inp" name="opportunity" style="resize:vertical;min-height:70px;" placeholder="What type of Nexus opportunity interests you? (performance, workshop, collaboration, all of the above…)"></textarea>
+          <textarea class="ms-inp" name="opportunity" style="resize:vertical;min-height:70px;" placeholder="What type of Nexus opportunity interests you? (performance, collaboration, all of the above…)"></textarea>
           <button class="ms-submit-btn" type="submit">Submit for Consideration →</button>
           <div class="ms-form-note">All submissions are reviewed. We'll be in touch if there's a fit. Thank you for building with us.</div>
         </form>
@@ -2445,7 +2405,7 @@ body{
     <div class="fash-sidefx fash-sidefx--r"></div>
 
     <div class="fash-headline" id="fashion-title">
-      <div class="fash-eyebrow">Nexus &nbsp;·&nbsp; Fashion Show &nbsp;·&nbsp; 2026</div>
+      <div class="fash-eyebrow">Nexus &nbsp;·&nbsp; Fashion Show &nbsp;·&nbsp; 2027</div>
       <div class="fash-title">The <em>Nexus</em><br>Fashion Show</div>
       <div class="fash-tagline">Where culture steps onto the runway.</div>
     </div>
@@ -2496,9 +2456,9 @@ body{
   <div class="fashion-sub" id="fsub-casting">
     <div class="fsh-inner">
       <button class="fsh-back" data-fback>Back to Runway</button>
-      <div class="fsh-eb">Nexus Fashion Show · Casting · 2026</div>
+      <div class="fsh-eb">Nexus Fashion Show · Casting · 2027</div>
       <h1 class="fsh-h">Model<br><em>Casting</em></h1>
-      <p class="fsh-p">Nexus Fashion Show is casting for our 2026 runway. We are looking for people who embody the intersection — artists, athletes, and creatives who carry something in the room that can't be manufactured.</p>
+      <p class="fsh-p">Nexus Fashion Show is casting for our 2027 runway. We are looking for people who embody the intersection — artists, athletes, and creatives who carry something in the room that can't be manufactured.</p>
       <div class="f-rule"></div>
       <div class="cast-2col">
         <div class="cast-cell"><div class="cast-cell-title">Who We're Looking For</div><div class="cast-cell-desc">All genders, body types, and backgrounds. Nexus Fashion is not about one vision of beauty — it's the full spectrum of what makes a person compelling.</div></div>
@@ -2553,12 +2513,12 @@ body{
       <button class="fsh-back" data-fback>Back to Runway</button>
       <div class="fsh-eb">Nexus Fashion Show · Tickets</div>
       <h1 class="fsh-h">Front<br><em>Row</em></h1>
-      <p class="fsh-p">The Nexus Fashion Show — 2026. Location to be announced. Tickets coming soon.</p>
+      <p class="fsh-p">The Nexus Fashion Show has moved to 2027. Date and location to be announced. Tickets coming soon.</p>
       <div class="f-rule"></div>
       <div class="fsh-ticket-soon">
-        <div class="fsh-ticket-tier">Nexus Fashion Show · 2026</div>
+        <div class="fsh-ticket-tier">Nexus Fashion Show · 2027</div>
         <div class="fsh-ticket-title">Tickets Coming Soon</div>
-        <div class="fsh-ticket-detail">Location to be announced &nbsp;·&nbsp; 2026<br>Stay tuned for venue reveal and ticket release.</div>
+        <div class="fsh-ticket-detail">Location to be announced &nbsp;·&nbsp; 2027<br>Stay tuned for venue reveal and ticket release.</div>
         <div class="fsh-ticket-follow">Follow <span>@n3xus.now</span> for updates</div>
       </div>
       <div class="fsh-foot">
@@ -2575,119 +2535,132 @@ body{
      FILM — Red Velvet Theater
 ═══════════════════════════════════════════ -->
 <style>
-#pg-film{background:#080204;color:#f0e6d3;overflow:hidden;display:flex;flex-direction:column;}
-#pg-film .snav{background:rgba(6,1,3,.9);border-bottom:1px solid rgba(160,20,20,.18);}
-#pg-film .sbk{color:rgba(240,230,211,.42);}
-#pg-film .slog{color:#c8282a;letter-spacing:.22em;}
+#pg-film{background:#F3EFE3;color:#173420;overflow:hidden;display:flex;flex-direction:column;}
+#pg-film .snav{background:rgba(243,239,227,.94);border-bottom:1px solid rgba(23,52,32,.16);}
+#pg-film .sbk{color:rgba(23,52,32,.55);}
+#pg-film .slog{color:#173420;letter-spacing:.22em;}
 
 /* ── CURTAIN ── */
 #film-curtain-stage{position:fixed;inset:0;z-index:150;pointer-events:none;}
 .curtain-l,.curtain-r{
   position:absolute;top:0;bottom:0;width:52%;
   background:
-    repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0px,transparent 8px,rgba(0,0,0,.1) 16px,transparent 24px),
-    linear-gradient(180deg,#5a0808 0%,#7a0e0e 15%,#6b0a0a 30%,#8b1010 45%,#6b0a0a 60%,#7a0e0e 75%,#5a0808 100%);
+    repeating-linear-gradient(90deg,rgba(0,0,0,.14) 0px,transparent 8px,rgba(0,0,0,.08) 16px,transparent 24px),
+    linear-gradient(180deg,#0c2415 0%,#173420 15%,#122b1a 30%,#1e4128 45%,#122b1a 60%,#173420 75%,#0c2415 100%);
   transition:transform 2.2s cubic-bezier(.6,0,.1,1);
 }
-.curtain-l{left:0;transform:translateX(0);border-right:6px solid #320404;box-shadow:inset -20px 0 50px rgba(0,0,0,.55),10px 0 40px rgba(0,0,0,.7);}
-.curtain-r{right:0;transform:translateX(0);border-left:6px solid #320404;box-shadow:inset 20px 0 50px rgba(0,0,0,.55),-10px 0 40px rgba(0,0,0,.7);}
+.curtain-l{left:0;transform:translateX(0);border-right:6px solid #081a0f;box-shadow:inset -20px 0 50px rgba(0,0,0,.4),10px 0 40px rgba(0,0,0,.55);}
+.curtain-r{right:0;transform:translateX(0);border-left:6px solid #081a0f;box-shadow:inset 20px 0 50px rgba(0,0,0,.4),-10px 0 40px rgba(0,0,0,.55);}
 .curtain-l::before,.curtain-r::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.03) 0px,rgba(0,0,0,.05) 3px,transparent 6px,rgba(255,255,255,.02) 12px,transparent 18px);}
-.curtain-l::after,.curtain-r::after{content:'';position:absolute;top:0;left:0;right:0;height:20px;background:linear-gradient(90deg,#7a5a10,#c9a227,#f0d060,#c9a227,#7a5a10);box-shadow:0 6px 20px rgba(200,162,39,.45);}
+.curtain-l::after,.curtain-r::after{content:'';position:absolute;top:0;left:0;right:0;height:20px;background:linear-gradient(90deg,#5a6e1a,#a9c93e,#d4e878,#a9c93e,#5a6e1a);box-shadow:0 6px 20px rgba(169,201,62,.4);}
 .curtain-l.open{transform:translateX(-100%);}
 .curtain-r.open{transform:translateX(100%);}
+.curtain-l.closing,.curtain-r.closing{transition:transform 1.2s cubic-bezier(.55,0,.3,1);}
 
 /* ── THEATER BODY ── */
 #film-theater{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;scroll-behavior:smooth;}
 
-.theater-arch{width:100%;height:110px;background:radial-gradient(ellipse 65% 100% at 50% 0%,rgba(120,14,14,.3) 0%,transparent 70%);flex-shrink:0;}
+.theater-arch{width:100%;height:110px;background:radial-gradient(ellipse 65% 100% at 50% 0%,rgba(23,52,32,.22) 0%,transparent 70%);flex-shrink:0;}
 
-/* ── SCREEN ── */
+/* ── SCREEN (image carousel) ── */
 .film-screen-wrap{display:flex;flex-direction:column;align-items:center;padding:1.5rem 2rem 0;}
 .film-screen{
   width:min(840px,90vw);aspect-ratio:16/6.5;
-  background:linear-gradient(160deg,#f8f2e4 0%,#ede5cc 50%,#e8dfc0 100%);
-  border:4px solid #1e1008;
-  box-shadow:0 0 0 10px #150a04,0 0 0 13px #2e1608,0 40px 100px rgba(0,0,0,.85);
+  border:4px solid #173420;
+  box-shadow:0 0 0 10px #0c2415,0 0 0 13px #1e4128,0 40px 100px rgba(0,0,0,.5);
   position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;
 }
-.film-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 38%,rgba(0,0,0,.22) 100%);z-index:2;pointer-events:none;}
-.film-screen::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");z-index:2;pointer-events:none;}
-.screen-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.6rem,4.8vw,3.8rem);letter-spacing:.14em;color:#18090a;text-align:center;line-height:1.05;position:relative;z-index:3;animation:sflicker 10s ease-in-out infinite;}
-.screen-title em{font-style:italic;font-weight:600;color:#8b1010;}
-.screen-sub{font-family:'Space Mono',monospace;font-size:clamp(.34rem,.9vw,.54rem);letter-spacing:.38em;text-transform:uppercase;color:#5a3a2a;opacity:.65;position:relative;z-index:3;}
-@keyframes sflicker{0%,95%,100%{opacity:1;}96%{opacity:.9;}97.5%{opacity:1;}98.5%{opacity:.94;}99%{opacity:1;}}
-.screen-trim{width:min(840px,90vw);height:16px;background:linear-gradient(90deg,#4a2e08,#c9a227,#f0d060,#fce880,#f0d060,#c9a227,#4a2e08);box-shadow:0 6px 24px rgba(200,162,39,.35);}
+.screen-carousel{position:absolute;inset:0;z-index:0;}
+.screen-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:screenCycle 15s infinite;}
+.screen-slide:nth-child(1){animation-delay:0s;}
+.screen-slide:nth-child(2){animation-delay:5s;}
+.screen-slide:nth-child(3){animation-delay:10s;}
+@keyframes screenCycle{0%{opacity:0;}5%{opacity:1;}30%{opacity:1;}35%{opacity:0;}100%{opacity:0;}}
+.film-screen::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,20,13,.15) 0%,rgba(9,20,13,.55) 100%);z-index:1;pointer-events:none;}
+.screen-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.6rem,4.8vw,3.8rem);letter-spacing:.14em;color:#F3EFE3;text-align:center;line-height:1.05;position:relative;z-index:3;text-shadow:0 2px 18px rgba(0,0,0,.5);}
+.screen-title em{font-style:italic;font-weight:600;color:#c8e06a;}
+.screen-sub{font-family:'Space Mono',monospace;font-size:clamp(.34rem,.9vw,.54rem);letter-spacing:.38em;text-transform:uppercase;color:#F3EFE3;opacity:.85;position:relative;z-index:3;}
+.screen-trim{width:min(840px,90vw);height:16px;background:linear-gradient(90deg,#173420,#a9c93e,#d4e878,#a9c93e,#173420);box-shadow:0 6px 24px rgba(169,201,62,.3);}
 
 /* ── SEATS ── */
 .seats-section{padding:2.5rem 2rem 5rem;display:flex;flex-direction:column;align-items:center;gap:3rem;}
-.seats-label{font-size:.48rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(240,230,211,.28);text-align:center;}
+.seats-label{font-size:.48rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(23,52,32,.4);text-align:center;}
 .seat-rows{display:flex;flex-direction:column;align-items:center;gap:2rem;width:100%;max-width:860px;}
 
 .seat-row{display:flex;flex-direction:column;align-items:center;gap:1rem;cursor:none;text-decoration:none;transition:transform .3s ease;padding:1rem 2rem;width:100%;border-radius:4px;transition:background .25s,transform .25s;}
-.seat-row:hover{background:rgba(139,16,16,.12);transform:translateY(-3px);}
+.seat-row:hover{background:rgba(169,201,62,.14);transform:translateY(-3px);}
 .seats{display:flex;gap:.55rem;align-items:flex-end;}
 .seat{display:flex;flex-direction:column;align-items:center;gap:1px;transition:transform .2s;}
 .seat-row:hover .seat{transform:scaleY(.92);}
 .seat-back{
   width:clamp(24px,3.8vw,44px);height:clamp(20px,3.2vw,36px);
   border-radius:3px 3px 0 0;
-  background:linear-gradient(180deg,#7a0e0e 0%,#5a0808 100%);
-  border:1px solid #3a0404;
+  background:linear-gradient(180deg,#1e4128 0%,#122b1a 100%);
+  border:1px solid #0c2415;
   box-shadow:inset 0 2px 5px rgba(255,255,255,.07),inset 0 -2px 5px rgba(0,0,0,.3);
   position:relative;overflow:hidden;
 }
 .seat-back::after{content:'';position:absolute;top:2px;left:2px;right:2px;height:38%;border-radius:2px 2px 0 0;background:rgba(255,255,255,.06);}
-.seat-cushion{width:clamp(28px,4.4vw,50px);height:clamp(8px,1.3vw,14px);border-radius:0 0 5px 5px;background:linear-gradient(180deg,#6b0a0a 0%,#8b1010 50%,#6b0a0a 100%);border:1px solid #3a0404;box-shadow:0 3px 8px rgba(0,0,0,.5);}
+.seat-cushion{width:clamp(28px,4.4vw,50px);height:clamp(8px,1.3vw,14px);border-radius:0 0 5px 5px;background:linear-gradient(180deg,#173420 0%,#1e4128 50%,#173420 100%);border:1px solid #0c2415;box-shadow:0 3px 8px rgba(0,0,0,.35);}
 .seat:first-child .seat-back,.seat:last-child .seat-back{opacity:.55;transform:scaleX(.82);}
 
-.seat-row-label{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1rem,2.8vw,1.6rem);letter-spacing:.1em;color:#f0e6d3;text-align:center;transition:color .25s;}
-.seat-row:hover .seat-row-label{color:#e8c84a;}
-.seat-row-sub{font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,230,211,.32);transition:color .25s;}
-.seat-row:hover .seat-row-sub{color:rgba(232,200,74,.65);}
-.row-div{width:min(860px,88vw);height:1px;background:linear-gradient(90deg,transparent,rgba(200,162,39,.18),rgba(200,162,39,.35),rgba(200,162,39,.18),transparent);}
+.seat-row-label{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1rem,2.8vw,1.6rem);letter-spacing:.1em;color:#173420;text-align:center;transition:color .25s;}
+.seat-row:hover .seat-row-label{color:#6f8f26;}
+.seat-row-sub{font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(23,52,32,.5);transition:color .25s;}
+.seat-row:hover .seat-row-sub{color:rgba(111,143,38,.85);}
+.row-div{width:min(860px,88vw);height:1px;background:linear-gradient(90deg,transparent,rgba(169,201,62,.3),rgba(169,201,62,.5),rgba(169,201,62,.3),transparent);}
 
 /* ── FILM SUB-PAGES ── */
 .film-sub{display:none;min-height:100vh;padding:5rem 4rem;flex-direction:column;padding-bottom:8rem;}
 .film-sub.fsactive{display:flex;}
-.btt{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;cursor:none;background:none;border:none;color:rgba(240,230,211,.4);font-family:'Space Mono',monospace;display:flex;align-items:center;gap:.48rem;margin-bottom:3.5rem;transition:color .2s;}
+.btt{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;cursor:none;background:none;border:none;color:rgba(23,52,32,.5);font-family:'Space Mono',monospace;display:flex;align-items:center;gap:.48rem;margin-bottom:3.5rem;transition:color .2s;}
 .btt::before{content:'←';font-size:.78rem;}
-.btt:hover{color:#e8c84a;}
-.fseb{font-size:.48rem;letter-spacing:.36em;text-transform:uppercase;color:#e8c84a;opacity:.8;margin-bottom:.9rem;}
-.fsh{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(3.5rem,11vw,8.5rem);line-height:.88;letter-spacing:-.02em;margin-bottom:2rem;color:#f0e6d3;}
-.fsh em{font-style:normal;font-weight:600;color:#c8282a;}
-.fsp{font-size:.68rem;line-height:2.05;opacity:.75;max-width:460px;margin-bottom:2rem;}
-.grule{width:100%;max-width:540px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,162,39,.38),transparent);margin:1rem 0 2rem;}
+.btt:hover{color:#6f8f26;}
+.fseb{font-size:.48rem;letter-spacing:.36em;text-transform:uppercase;color:#6f8f26;opacity:.9;margin-bottom:.9rem;}
+.fsh{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(3.5rem,11vw,8.5rem);line-height:.88;letter-spacing:-.02em;margin-bottom:2rem;color:#173420;}
+.fsh em{font-style:normal;font-weight:600;color:#8FAF2E;}
+.fsp{font-size:.68rem;line-height:2.05;opacity:.8;max-width:460px;margin-bottom:2rem;}
+.grule{width:100%;max-width:540px;height:1px;background:linear-gradient(90deg,transparent,rgba(169,201,62,.45),transparent);margin:1rem 0 2rem;}
 
 /* Form */
 .fform{display:flex;flex-direction:column;gap:1.4rem;max-width:540px;}
-.finput{background:rgba(240,230,211,.04);border:1px solid rgba(240,230,211,.14);color:#f0e6d3;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.07em;padding:1rem 1.3rem;border-radius:2px;outline:none;transition:border-color .2s;width:100%;}
-.finput:focus{border-color:rgba(200,162,39,.45);}
-.finput::placeholder{color:rgba(240,230,211,.22);}
+.finput{background:rgba(23,52,32,.05);border:1px solid rgba(23,52,32,.18);color:#173420;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.07em;padding:1rem 1.3rem;border-radius:2px;outline:none;transition:border-color .2s;width:100%;}
+.finput:focus{border-color:rgba(111,143,38,.5);}
+.finput::placeholder{color:rgba(23,52,32,.35);}
 textarea.finput{resize:vertical;min-height:110px;}
-.fsbtn{background:#8b1010;border:none;color:#f0e6d3;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;padding:1rem 2.2rem;cursor:none;align-self:flex-start;transition:background .22s,box-shadow .22s;border-radius:2px;}
-.fsbtn:hover{background:#a81414;box-shadow:0 0 28px rgba(139,16,16,.42);}
+.fsbtn{background:#173420;border:none;color:#F3EFE3;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;padding:1rem 2.2rem;cursor:none;align-self:flex-start;transition:background .22s,box-shadow .22s;border-radius:2px;}
+.fsbtn:hover{background:#2a6b3f;box-shadow:0 0 28px rgba(23,52,32,.3);}
 
 /* Tickets */
-.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem;max-width:760px;margin-top:1rem;}
-.tcard{border:1px solid rgba(200,162,39,.2);padding:2.2rem 1.8rem;display:flex;flex-direction:column;gap:.9rem;background:rgba(240,230,211,.025);position:relative;overflow:hidden;cursor:none;transition:border-color .25s,background .25s;border-radius:2px;}
-.tcard:hover{border-color:rgba(200,162,39,.65);background:rgba(200,162,39,.055);}
-.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#8b1010,#c9a227);}
-.ttier{font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:#e8c84a;opacity:.75;}
-.tname{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.4rem;letter-spacing:.05em;color:#f0e6d3;}
-.tprice{font-family:'Unbounded',sans-serif;font-weight:700;font-size:1.7rem;color:#f0e6d3;letter-spacing:-.02em;}
-.tdetail{font-size:.54rem;opacity:.68;line-height:1.85;letter-spacing:.04em;}
-.tbuy{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:#e8c84a;padding-bottom:2px;text-decoration:none;cursor:none;transition:color .2s;background:none;border:none;border-bottom:1px solid rgba(232,200,74,.38);align-self:flex-start;}
-.tbuy:hover{color:#fff;}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem;max-width:520px;margin-top:1rem;}
+.tcard{border:1px solid rgba(23,52,32,.22);padding:2.6rem 2.2rem;display:flex;flex-direction:column;gap:1.1rem;background:rgba(23,52,32,.035);position:relative;overflow:hidden;cursor:none;transition:border-color .25s,background .25s;border-radius:2px;}
+.tcard:hover{border-color:rgba(111,143,38,.6);background:rgba(169,201,62,.08);}
+.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#173420,#A9C93E);}
+.ttier{font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:#6f8f26;opacity:.85;}
+.tname{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.4rem;letter-spacing:.05em;color:#173420;}
+.tprice{font-family:'Unbounded',sans-serif;font-weight:700;font-size:2.2rem;color:#173420;letter-spacing:-.02em;}
+.tdetail{font-size:.54rem;opacity:.7;line-height:1.85;letter-spacing:.04em;}
+.tbuy{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#F3EFE3;background:#173420;padding:1em 1.8em;border-radius:2px;text-decoration:none;cursor:none;transition:background .2s,box-shadow .2s;align-self:flex-start;border:none;}
+.tbuy:hover{background:#2a6b3f;box-shadow:0 0 24px rgba(111,143,38,.35);}
 
-/* Internship */
-.igrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(240,230,211,.08);max-width:700px;}
-.icell{background:#080204;padding:2.2rem 1.8rem;display:flex;flex-direction:column;gap:.6rem;cursor:none;transition:background .22s;}
-.icell:hover{background:rgba(139,16,16,.14);}
-.irole{font-family:'Unbounded',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.04em;color:#f0e6d3;}
-.idept{font-size:.46rem;letter-spacing:.24em;text-transform:uppercase;color:#e8c84a;opacity:.68;}
-.idesc{font-size:.62rem;line-height:1.9;opacity:.68;max-width:270px;}
+/* Sponsors */
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(23,52,32,.1);max-width:700px;}
+.icell{background:#F3EFE3;padding:2.2rem 1.8rem;display:flex;flex-direction:column;gap:.6rem;cursor:none;transition:background .22s;}
+.icell:hover{background:rgba(169,201,62,.12);}
+.irole{font-family:'Unbounded',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.04em;color:#173420;}
+.idept{font-size:.46rem;letter-spacing:.24em;text-transform:uppercase;color:#6f8f26;opacity:.8;}
+.idesc{font-size:.62rem;line-height:1.9;opacity:.72;max-width:270px;}
 @media(max-width:600px){.igrid{grid-template-columns:1fr;}.tgrid{grid-template-columns:1fr;}.film-sub{padding:5rem 2rem;}.mels-what-grid{grid-template-columns:1fr;}}
+/* Film sub-pages (Tickets, Sponsorships, Donations): centered layout */
+.film-sub{align-items:center;text-align:center;}
+.film-sub .btt{align-self:center;}
+.film-sub p,.film-sub .grule{margin-left:auto;margin-right:auto;}
+.film-sub .tgrid,.film-sub .igrid,#eventbrite-widget-container-film{width:100%;margin-left:auto;margin-right:auto;}
+.film-sub .tgrid{justify-content:center;}
+.film-sub .tcard,.film-sub .icell{align-items:center;}
+.film-sub .tbuy,.film-sub .fsbtn{align-self:center;}
+.film-sub .idesc{margin-left:auto;margin-right:auto;}
 </style>
 
 <div class="page" id="pg-film">
@@ -2711,8 +2684,13 @@ textarea.finput{resize:vertical;min-height:110px;}
     <div id="film-main">
       <div class="film-screen-wrap">
         <div class="film-screen">
+          <div class="screen-carousel">
+            <div class="screen-slide" style="background-image:url('images/film-hero-1.jpg');"></div>
+            <div class="screen-slide" style="background-image:url('images/film-hero-2.jpg');"></div>
+            <div class="screen-slide" style="background-image:url('images/film-hero-3.jpg');"></div>
+          </div>
           <div class="screen-title">NEXUS<br><em>Film Festival</em></div>
-          <div class="screen-sub">Nexus Film Festival &nbsp;·&nbsp; September 12 &nbsp;·&nbsp; San Diego, CA</div>
+          <div class="screen-sub">October 10 &nbsp;·&nbsp; The Giant Dome Theater &nbsp;·&nbsp; Fleet Science Center</div>
         </div>
         <div class="screen-trim"></div>
       </div>
@@ -2720,42 +2698,6 @@ textarea.finput{resize:vertical;min-height:110px;}
       <div class="seats-section">
         <div class="seats-label">— Choose Your Section —</div>
         <div class="seat-rows">
-
-          <!-- Submit Film -->
-          <a class="seat-row" href="#" data-filmsub="film-submit">
-            <div class="seats">
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-            </div>
-            <div class="seat-row-label">Submit Your Film</div>
-            <div class="seat-row-sub">Filmmakers · Short Films · Screenings</div>
-          </a>
-
-          <div class="row-div"></div>
-
-          <!-- Internship -->
-          <a class="seat-row" href="#" data-filmsub="film-intern">
-            <div class="seats">
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
-            </div>
-            <div class="seat-row-label">Internship</div>
-            <div class="seat-row-sub">Join the Nexus Film Team</div>
-          </a>
-
-          <div class="row-div"></div>
 
           <!-- Tickets -->
           <a class="seat-row" href="#" data-filmsub="film-tickets">
@@ -2771,8 +2713,44 @@ textarea.finput{resize:vertical;min-height:110px;}
               <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
               <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
             </div>
-            <div class="seat-row-label">Get Tickets</div>
-            <div class="seat-row-sub">September 12, 2026 &nbsp;·&nbsp; Location TBD</div>
+            <div class="seat-row-label">Tickets</div>
+            <div class="seat-row-sub">October 10, 2026 &nbsp;·&nbsp; The Giant Dome Theater</div>
+          </a>
+
+          <div class="row-div"></div>
+
+          <!-- Sponsors -->
+          <a class="seat-row" href="#" data-filmsub="film-sponsor">
+            <div class="seats">
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+            </div>
+            <div class="seat-row-label">Sponsorships</div>
+            <div class="seat-row-sub">Partner with the Festival</div>
+          </a>
+
+          <div class="row-div"></div>
+
+          <!-- Donate -->
+          <a class="seat-row" href="#" data-filmsub="film-donate">
+            <div class="seats">
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+              <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
+            </div>
+            <div class="seat-row-label">Donations</div>
+            <div class="seat-row-sub">Support San Diego Filmmakers</div>
           </a>
 
         </div>
@@ -2784,72 +2762,92 @@ textarea.finput{resize:vertical;min-height:110px;}
       </div>
     </div><!-- /film-main -->
 
-    <!-- SUBMIT FILM -->
-    <div class="film-sub" id="film-submit">
-      <button class="btt" data-btt>Back to Theater</button>
-      <div class="fseb">Nexus Film · Submissions</div>
-      <h1 class="fsh">Submit<br>Your <em>Film</em></h1>
-      <p class="fsp">We screen short films that live at the intersection — work that plays with sound, movement, and image. Submit yours for consideration at the Nexus Film Festival, September 12, 2026 in San Diego.</p>
-      <div class="grule"></div>
-      <form class="fform" method="POST">
-        <input class="finput" type="text"  name="name" placeholder="Your Name" />
-        <input class="finput" type="email" name="email" placeholder="Email Address" />
-        <input class="finput" type="text"  name="film_title" placeholder="Film Title" />
-        <input class="finput" type="text"  name="runtime" placeholder="Runtime (e.g. 4 min)" />
-        <input class="finput" type="url"   name="video_link" placeholder="Vimeo or YouTube Link" />
-        <textarea class="finput" name="description" placeholder="Tell us about your film — how does it live at the intersection of music, dance, and image?"></textarea>
-        <button class="fsbtn" type="submit">Submit Film →</button>
-      </form>
-    </div>
-
-    <!-- INTERNSHIP -->
-    <div class="film-sub" id="film-intern">
-      <button class="btt" data-btt>Back to Theater</button>
-      <div class="fseb">Nexus Film · Join the Team</div>
-      <h1 class="fsh">Film<br><em>Internship</em></h1>
-      <p class="fsp">We're building something real in San Diego. If you want hands-on experience in production, curation, or creative direction — this is your seat.</p>
-      <div class="grule"></div>
-      <div class="igrid">
-        <div class="icell"><div class="idept">Production</div><div class="irole">Film Production Intern</div><div class="idesc">On-site filming, equipment, and day-of logistics for Nexus events.</div></div>
-        <div class="icell"><div class="idept">Curation</div><div class="irole">Film Curation Intern</div><div class="idesc">Review submissions, help program screenings, shape our film identity.</div></div>
-        <div class="icell"><div class="idept">Post-Production</div><div class="irole">Editing Intern</div><div class="idesc">Cut highlight reels, trailers, and event documentation.</div></div>
-        <div class="icell"><div class="idept">Creative</div><div class="irole">Visual Storytelling Intern</div><div class="idesc">Photography, behind-the-scenes content, and social visuals.</div></div>
-      </div>
-      <div style="margin-top:2.5rem;">
-        <p style="font-size:.66rem;line-height:2;opacity:.70;max-width:420px;margin-bottom:1.4rem;">To apply, send your reel or portfolio to <span style="color:#e8c84a;opacity:.9;">thenexx.usss@gmail.com</span> with the role in the subject line.</p>
-        <button class="fsbtn" onclick="window.location='mailto:thenexx.usss@gmail.com'">Apply Now →</button>
-      </div>
-    </div>
-
     <!-- TICKETS -->
     <div class="film-sub" id="film-tickets">
       <button class="btt" data-btt>Back to Theater</button>
       <div class="fseb">Nexus Film · Tickets</div>
       <h1 class="fsh">Get Your<br><em>Seat</em></h1>
-      <p class="fsp">September 12, 2026 &nbsp;·&nbsp; San Diego, CA &nbsp;·&nbsp; Location TBD</p>
+      <p class="fsp">October 10, 2026 &nbsp;·&nbsp; 7–10PM &nbsp;·&nbsp; The Giant Dome Theater at the Fleet Science Center, Balboa Park</p>
+      <p style="font-size:.68rem;line-height:2;opacity:.6;max-width:560px;margin-bottom:1.4rem;">San Diego's films, projected the way they deserve to be seen — under a full-dome screen with wraparound picture and immersive sound. This is a one-night-only screening inside one of the most striking theaters in the city.</p>
       <div class="grule"></div>
       <div class="tgrid">
         <div class="tcard">
-          <div class="ttier">General</div>
-          <div class="tname">General Admission</div>
-          <div class="tprice">TBD</div>
-          <div class="tdetail">Open doors · All performances<br>First come, first seated</div>
-          <button class="tbuy">Coming Soon</button>
+          <div class="ttier">General Admission</div>
+          <div class="tname">One Ticket, One Price</div>
+          <div class="tprice">$25</div>
+          <div class="tdetail">248 seats · No assigned seating<br>Non-refundable · Final sale</div>
+          <!-- Eventbrite embedded checkout -->
+          <button class="tbuy" onclick="openNexusFilmCheckout()">Buy Tickets — $25</button>
         </div>
-        <div class="tcard">
-          <div class="ttier">Supporter</div>
-          <div class="tname">Nexus Supporter</div>
-          <div class="tprice">TBD</div>
-          <div class="tdetail">Priority entry · Event zine<br>Support the artists directly</div>
-          <button class="tbuy">Coming Soon</button>
-        </div>
-        <div class="tcard">
-          <div class="ttier">Collective</div>
-          <div class="tname">Collective Pass</div>
-          <div class="tprice">TBD</div>
-          <div class="tdetail">All-access · Backstage<br>Nexus merch + future events</div>
-          <button class="tbuy">Coming Soon</button>
-        </div>
+      </div>
+      <div id="eventbrite-widget-container-film"></div>
+      <script>
+        var nexusEbLoading = false;
+        function openNexusFilmCheckout(){
+          var opts = {
+            widgetType: 'checkout',
+            eventId: '2000005758061',
+            iframeContainerId: 'eventbrite-widget-container-film',
+            iframeContainerHeight: 425
+          };
+          function render(){
+            // Clear any earlier widget so repeat clicks don't stack iframes
+            document.getElementById(opts.iframeContainerId).innerHTML = '';
+            window.EBWidgets.createWidget(opts);
+          }
+          if (window.EBWidgets && window.EBWidgets.createWidget) { render(); return; }
+          if (nexusEbLoading) return; // script already on its way
+          nexusEbLoading = true;
+          var s = document.createElement('script');
+          s.src = 'https://www.eventbrite.com/static/widgets/eb_widgets.js';
+          s.onload = function(){ nexusEbLoading = false; render(); };
+          s.onerror = function(){
+            nexusEbLoading = false;
+            s.remove();
+            // Widget blocked (ad blocker, network): link to the Eventbrite page instead.
+            // A popup here would be blocked because it isn't tied to the click.
+            document.getElementById(opts.iframeContainerId).innerHTML =
+              '<a class="tbuy" href="https://www.eventbrite.com/e/' + opts.eventId +
+              '" target="_blank" rel="noopener">Checkout didn\'t load \u2014 buy on Eventbrite</a>';
+          };
+          document.body.appendChild(s);
+        }
+      </script>
+      <p style="font-size:.56rem;line-height:1.9;opacity:.4;margin-top:2rem;max-width:480px;">Kid-friendly · Free parking behind the Fleet Science Center</p>
+    </div>
+
+    <!-- SPONSORS -->
+    <div class="film-sub" id="film-sponsor">
+      <button class="btt" data-btt>Back to Theater</button>
+      <div class="fseb">Nexus Film · Partnerships</div>
+      <h1 class="fsh">Partner With<br><em>The Festival</em></h1>
+      <p class="fsp">On October 10, the first Nexus Film Festival fills the Giant Dome Theater at the Fleet Science Center, where the screen wraps over the whole room and pulls the audience into every frame. It's one night with San Diego's own filmmakers on the most immersive screen in the city. Put your name on the night the local film scene gets its premiere.</p>
+      <div class="grule"></div>
+      <div class="igrid">
+        <div class="icell"><div class="idept">Reach</div><div class="irole">A Full House in Balboa Park</div><div class="idesc">248 seats of creatives, filmmakers, and culture-forward San Diegans, inside one of the city's most iconic landmarks.</div></div>
+        <div class="icell"><div class="idept">Visibility</div><div class="irole">Your Name on the Dome</div><div class="idesc">Your logo across the dome before the lights go down, signage at the venue, and recognition across every festival channel, from marketing to social.</div></div>
+        <div class="icell"><div class="idept">Community</div><div class="irole">Backing Homegrown Talent</div><div class="idesc">Every film on the program is made by a San Diego filmmaker. Sponsors stand behind local artists, not outside productions.</div></div>
+        <div class="icell"><div class="idept">Access</div><div class="irole">Face Time in the Lobby</div><div class="idesc">A booth or table in the lobby and direct conversations with attendees before and after the screening.</div></div>
+      </div>
+      <div style="margin-top:2.5rem;">
+        <p class="irole" style="font-size:.8rem;margin-bottom:.8rem;">There's only one first year.</p>
+        <p style="font-size:.66rem;line-height:2;opacity:.70;max-width:460px;margin-bottom:1.4rem;">Sponsors who join now become part of the festival's origin story. Reach out and let's talk about how your brand fits into the night.</p>
+        <button class="fsbtn" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Nexus Film Festival Sponsorship'">Become a Sponsor →</button>
+      </div>
+    </div>
+
+    <!-- DONATE -->
+    <div class="film-sub" id="film-donate">
+      <button class="btt" data-btt>Back to Theater</button>
+      <div class="fseb">Nexus Film · Give</div>
+      <h1 class="fsh">Support<br><em>The Filmmakers</em></h1>
+      <p class="fsp">Every film on the Nexus program is made by a San Diego filmmaker. Your donation goes to the artists behind the work, helping local storytellers keep creating, keep telling their stories, and keep building careers here at home.</p>
+      <p style="font-size:.66rem;line-height:2;opacity:.7;max-width:460px;margin-bottom:1.4rem;">Every gift, big or small, backs a local voice.</p>
+      <div class="grule"></div>
+      <div style="max-width:480px;">
+        <!-- Square donation payment link -->
+        <button class="fsbtn" onclick="window.open('https://square.link/u/W36EfK96','_blank','noopener')">Donate Now →</button>
+        <p style="font-size:.56rem;line-height:1.9;opacity:.4;margin-top:1.4rem;">Secure payment via Square · Opens in a new tab</p>
       </div>
     </div>
 
@@ -3402,7 +3400,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 
   <!-- Title -->
   <div class="golf-title-block" id="golf-title">
-    <div class="golf-eyebrow">Nexus &nbsp;·&nbsp; Golf Tournament &nbsp;·&nbsp; 2026</div>
+    <div class="golf-eyebrow">Nexus &nbsp;·&nbsp; Golf Tournament &nbsp;·&nbsp; 2027</div>
     <div class="golf-h1">Where <em>Legends</em> Play</div>
   </div>
 
@@ -3433,14 +3431,14 @@ textarea.finput{resize:vertical;min-height:110px;}
   <div class="golf-sub" id="gsub-info">
     <div class="gs-inner" style="background:linear-gradient(160deg,#060f08 0%,#08140a 100%);">
       <button class="gs-back" data-gback style="color:rgba(240,237,230,.38);">Back to Course</button>
-      <div class="gs-eb" style="color:#c8b44a;">Nexus Sport &nbsp;·&nbsp; Golf Tournament &nbsp;·&nbsp; 2026</div>
+      <div class="gs-eb" style="color:#c8b44a;">Nexus Sport &nbsp;·&nbsp; Golf Tournament &nbsp;·&nbsp; 2027</div>
       <h1 class="gs-h" style="color:#f0ede6;">Where<br>Culture<br><em>Meets</em> the Course</h1>
-      <p class="gs-p">One day. One course. The most compelling figures from music, film, fashion, and sport — competing together on the green. The Nexus Golf Tournament is where culture meets the course.</p>
+      <p class="gs-p">One day. One course. The most compelling figures from music, film, fashion, and sport — competing together on the green. The Nexus Golf Tournament is where culture meets the course. Our inaugural tournament has moved to 2027.</p>
       <div class="g-rule"></div>
 
       <div class="info-stats">
         <div class="info-stat">
-          <div class="stat-val">2026</div>
+          <div class="stat-val">2027</div>
           <div class="stat-lbl">Inaugural Season</div>
         </div>
         <div class="info-stat">
@@ -3578,7 +3576,7 @@ textarea.finput{resize:vertical;min-height:110px;}
   <div class="golf-sub" id="gsub-involved">
     <div class="gs-inner" style="background:linear-gradient(160deg,#071008 0%,#09140a 100%);">
       <button class="gs-back" data-gback style="color:rgba(240,237,230,.38);">Back to Course</button>
-      <div class="gs-eb" style="color:#c8b44a;">Get Involved &nbsp;·&nbsp; 2026</div>
+      <div class="gs-eb" style="color:#c8b44a;">Get Involved &nbsp;·&nbsp; 2027</div>
       <h1 class="gs-h" style="color:#f0ede6;">Take Your<br><em>Position</em></h1>
       <p class="gs-p">Nexus Sport is built by people who believe in what it represents. Whether you want to play, volunteer, perform, or partner — there's a role for you.</p>
       <div class="g-rule"></div>
@@ -4368,59 +4366,80 @@ window.addEventListener('resize', () => { sizeRings(); placePlanets(); });
    FILM PAGE
 ════════════════════════════════════════════ */
 let filmOpen = false;
-function openFilmCurtain() {
+let curtainBusy = false;
+let pendingFilmSub = null; // sub-page to open on arrival (direct links)
+function curtains() {
+  return [document.getElementById('curtain-l'), document.getElementById('curtain-r')];
+}
+function openCurtains() {
+  curtains().forEach(c => { c.classList.remove('closing'); c.classList.add('open'); });
+}
+// Snap shut with no animation (used when entering the film page)
+function snapCurtainsClosed() {
+  const cs = curtains();
+  cs.forEach(c => { c.style.transition = 'none'; c.classList.remove('open', 'closing'); });
+  void cs[0].offsetWidth;
+  cs.forEach(c => { c.style.transition = ''; });
+}
+function openFilmCurtain(sub) {
   const ft = document.getElementById('film-theater');
   document.querySelectorAll('.film-sub').forEach(s => s.classList.remove('fsactive'));
-  document.getElementById('film-main').style.display = 'block';
+  document.getElementById('film-main').style.display = sub ? 'none' : 'block';
+  if (sub) document.getElementById(sub).classList.add('fsactive');
   ft.scrollTop = 0;
-  setTimeout(() => {
-    document.getElementById('curtain-l').classList.add('open');
-    document.getElementById('curtain-r').classList.add('open');
-  }, 180);
+  setTimeout(openCurtains, 180);
 }
+// Close fully, hold a beat, then run cb (the page swap happens behind closed curtains)
 function closeFilmCurtain(cb) {
-  document.getElementById('curtain-l').classList.remove('open');
-  document.getElementById('curtain-r').classList.remove('open');
-  setTimeout(cb, 900);
+  if (curtainBusy) return;
+  const [l, r] = curtains();
+  if (!l.classList.contains('open')) { cb(); return; }
+  curtainBusy = true;
+  [l, r].forEach(c => { c.classList.add('closing'); c.classList.remove('open'); });
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    l.removeEventListener('transitionend', onEnd);
+    setTimeout(() => { curtainBusy = false; cb(); }, 250);
+  };
+  const onEnd = e => { if (e.target === l && e.propertyName === 'transform') finish(); };
+  l.addEventListener('transitionend', onEnd);
+  setTimeout(finish, 1600); // fallback if transitionend never fires
+}
+function swapFilmView(show) {
+  if (curtainBusy) return;
+  setRoute('pg-film', show);
+  const ft = document.getElementById('film-theater');
+  closeFilmCurtain(() => {
+    document.querySelectorAll('.film-sub').forEach(s => s.classList.remove('fsactive'));
+    if (show) {
+      document.getElementById('film-main').style.display = 'none';
+      document.getElementById(show).classList.add('fsactive');
+    } else {
+      document.getElementById('film-main').style.display = 'block';
+    }
+    ft.scrollTop = 0;
+    setTimeout(openCurtains, 120);
+  });
 }
 document.querySelectorAll('[data-filmsub]').forEach(el => {
   el.addEventListener('click', e => {
     e.preventDefault();
-    const targetId = el.dataset.filmsub;
-    const ft = document.getElementById('film-theater');
-    closeFilmCurtain(() => {
-      document.getElementById('film-main').style.display = 'none';
-      document.querySelectorAll('.film-sub').forEach(s => s.classList.remove('fsactive'));
-      document.getElementById(targetId).classList.add('fsactive');
-      ft.scrollTop = 0;
-      setTimeout(() => {
-        document.getElementById('curtain-l').classList.add('open');
-        document.getElementById('curtain-r').classList.add('open');
-      }, 120);
-    });
+    swapFilmView(el.dataset.filmsub);
   });
 });
 document.querySelectorAll('[data-btt]').forEach(el => {
-  el.addEventListener('click', () => {
-    const ft = document.getElementById('film-theater');
-    closeFilmCurtain(() => {
-      document.querySelectorAll('.film-sub').forEach(s => s.classList.remove('fsactive'));
-      document.getElementById('film-main').style.display = 'block';
-      ft.scrollTop = 0;
-      setTimeout(() => {
-        document.getElementById('curtain-l').classList.add('open');
-        document.getElementById('curtain-r').classList.add('open');
-      }, 120);
-    });
-  });
+  el.addEventListener('click', () => swapFilmView(null));
 });
 document.getElementById('p-film').addEventListener('click', e => {
   e.preventDefault();
   e.stopImmediatePropagation();
-  document.getElementById('curtain-l').classList.remove('open');
-  document.getElementById('curtain-r').classList.remove('open');
+  snapCurtainsClosed();
   go('pg-film');
-  setTimeout(openFilmCurtain, 300);
+  const sub = pendingFilmSub;
+  pendingFilmSub = null;
+  setTimeout(() => openFilmCurtain(sub), 300);
 }, true);
 document.querySelector('#film-nav .sbk').addEventListener('click', e => {
   e.preventDefault();
@@ -4836,6 +4855,106 @@ document.getElementById('festival-back-btn').addEventListener('click',()=>go('ho
 document.getElementById('nxs').addEventListener('click',()=>go('pg-global'));
 document.getElementById('globe').addEventListener('click',()=>go('pg-global'));
 document.getElementById('global-back-btn').addEventListener('click',()=>go('home'));
+
+/* ════════════════════════════════════════════
+   PAGE LINKS — every page and sub-page has its own URL,
+   e.g. nexusglobal.info/#/film/sponsorships
+════════════════════════════════════════════ */
+const ROUTES = {
+  'home':     { page:'home',        title:'Explore' },
+  'music':    { page:'pg-music',    title:'Music', subs:{
+                'artists':['ms-artists','The Artists'], 'latin-jazz-night':['ms-latin-jazz','Latin Jazz Night'],
+                'mels-room':['ms-mels-room',"Mel's Room"], 'nex-up':['ms-nex-up','Nex Up'], 'submit':['ms-submit','Submit'] } },
+  'dance':    { page:'pg-dance',    title:'Dance' },
+  'fashion':  { page:'pg-fashion',  title:'Fashion Show', subs:{
+                'casting':['fsub-casting','Model Casting'], 'sponsors':['fsub-sponsors','Sponsors'], 'tickets':['fsub-tickets','Tickets'] } },
+  'film':     { page:'pg-film',     title:'Film Festival', subs:{
+                'tickets':['film-tickets','Tickets'], 'sponsorships':['film-sponsor','Sponsorships'], 'donate':['film-donate','Donate'] } },
+  'golf':     { page:'pg-golf',     title:'Golf Tournament', subs:{
+                'information':['gsub-info','Information'], 'sponsors':['gsub-sponsors','Sponsors & Partnerships'],
+                'get-involved':['gsub-involved','Get Involved'], 'internships':['gsub-intern','Internships'] } },
+  'festival': { page:'pg-festival', title:'Festival' },
+  'about':    { page:'pg-global',   title:'About' }
+};
+const PLANET = { 'pg-music':'p-music', 'pg-dance':'p-dance', 'pg-fashion':'p-fashion',
+                 'pg-film':'p-film', 'pg-golf':'p-golf', 'pg-festival':'p-festival' };
+let routeSilent = false; // true while the site is following a link, so the URL isn't rewritten
+
+function routeFor(pageId, subId) {
+  for (const [slug, r] of Object.entries(ROUTES)) {
+    if (r.page !== pageId) continue;
+    if (subId && r.subs) {
+      for (const [s, [id]] of Object.entries(r.subs)) if (id === subId) return slug + '/' + s;
+    }
+    return slug;
+  }
+  return '';
+}
+function titleFor(route) {
+  const [slug, sub] = route.split('/');
+  const r = ROUTES[slug];
+  if (!r) return 'NEXUS';
+  const subTitle = sub && r.subs && r.subs[sub] ? r.subs[sub][1] + ' · ' : '';
+  return subTitle + r.title + ' · NEXUS';
+}
+function setRoute(pageId, subId) {
+  if (routeSilent) return;
+  const route = routeFor(pageId, subId);
+  document.title = titleFor(route);
+  const url = route ? '#/' + route : location.pathname + location.search;
+  if ((location.hash || '') !== (route ? '#/' + route : '')) history.pushState(null, '', url);
+}
+
+// Record page changes and sub-page changes in the URL
+const goWithoutRoute = go;
+go = function(id) {
+  const before = curP;
+  goWithoutRoute(id);
+  if (id !== before) setRoute(id);
+};
+const openGolfSubWithoutRoute = openGolfSub;
+openGolfSub = function(id) { openGolfSubWithoutRoute(id); setRoute('pg-golf', id); };
+document.addEventListener('click', e => {
+  const t = e.target.closest('.msnav-btn,[data-fsub],[data-fback],[data-gback]');
+  if (!t) return;
+  if (t.matches('.msnav-btn'))        setRoute('pg-music', t.dataset.msub);
+  else if (t.matches('[data-fsub]'))  setRoute('pg-fashion', t.dataset.fsub);
+  else if (t.matches('[data-fback]')) setRoute('pg-fashion');
+  else if (t.matches('[data-gback]')) setRoute('pg-golf');
+});
+
+// Open whatever page the URL points to (direct links, back/forward buttons)
+function openRoute() {
+  const [slug, subSlug] = location.hash.replace(/^#\/?/, '').split('/');
+  const r = ROUTES[slug];
+  const pageId = r ? r.page : 'pg-landing';
+  const subId = r && subSlug && r.subs && r.subs[subSlug] ? r.subs[subSlug][0] : null;
+  document.title = titleFor(routeFor(pageId, subId));
+  routeSilent = true;
+  const arriving = curP !== pageId;
+  if (arriving) {
+    if (pageId === 'pg-film') pendingFilmSub = subId;
+    if (PLANET[pageId]) document.getElementById(PLANET[pageId]).click();
+    else go(pageId);
+  }
+  setTimeout(() => {
+    if (pageId === 'pg-music') {
+      const btn = document.querySelector('.msnav-btn[data-msub="' + (subId || 'ms-artists') + '"]');
+      if (btn) btn.click();
+    } else if (pageId === 'pg-fashion') {
+      if (subId) document.querySelector('[data-fsub="' + subId + '"]').click();
+      else if (!arriving) document.querySelector('[data-fback]').click();
+    } else if (pageId === 'pg-golf') {
+      if (subId) openGolfSub(subId);
+      else if (!arriving) closeGolfSub();
+    } else if (pageId === 'pg-film' && !arriving) {
+      swapFilmView(subId);
+    }
+    routeSilent = false;
+  }, arriving ? 700 : 0);
+}
+window.addEventListener('popstate', openRoute);
+if (location.hash.length > 2) openRoute();
 
 /* ════════════════════════════════════════════
    SUPABASE CLIENT
