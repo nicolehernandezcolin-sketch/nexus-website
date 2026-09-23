@@ -2661,6 +2661,19 @@ textarea.finput{resize:vertical;min-height:110px;}
 .film-sub .tcard,.film-sub .icell{align-items:center;}
 .film-sub .tbuy,.film-sub .fsbtn{align-self:center;}
 .film-sub .idesc{margin-left:auto;margin-right:auto;}
+
+/* Eventbrite checkout panel: framed to match the ticket card */
+.eb-panel{width:100%;max-width:520px;margin:1.8rem auto 0;padding:1.6rem 1.6rem 1.8rem;border:1px solid rgba(23,52,32,.22);background:rgba(23,52,32,.035);border-radius:2px;position:relative;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease;}
+.eb-panel.show{opacity:1;transform:none;}
+.eb-panel[hidden]{display:none;}
+.eb-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#173420,#A9C93E);}
+.eb-panel-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.2rem;}
+.eb-close{background:none;border:none;border-bottom:1px solid rgba(23,52,32,.3);padding:0 0 2px;font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:#173420;opacity:.7;cursor:none;transition:opacity .2s,color .2s;}
+.eb-close:hover{opacity:1;color:#6f8f26;}
+.film-sub #eventbrite-widget-container-film{background:#fff;border:1px solid rgba(23,52,32,.14);border-radius:2px;overflow:hidden;box-shadow:0 18px 40px rgba(23,52,32,.08);}
+#eventbrite-widget-container-film iframe{display:block;width:100% !important;border:0;}
+.eb-loading{padding:3.2rem 1rem;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:#6f8f26;opacity:.8;background:#F3EFE3;}
+.eb-panel .tbuy{margin:2rem auto;display:inline-block;}
 </style>
 
 <div class="page" id="pg-film">
@@ -2780,7 +2793,13 @@ textarea.finput{resize:vertical;min-height:110px;}
           <button class="tbuy" onclick="openNexusFilmCheckout()">Buy Tickets — $25</button>
         </div>
       </div>
-      <div id="eventbrite-widget-container-film"></div>
+      <div class="eb-panel" id="eb-panel" hidden>
+        <div class="eb-panel-head">
+          <div class="ttier">Checkout &nbsp;·&nbsp; Secured by Eventbrite</div>
+          <button class="eb-close" type="button" aria-label="Close checkout" onclick="closeNexusFilmCheckout()">Close ✕</button>
+        </div>
+        <div id="eventbrite-widget-container-film"></div>
+      </div>
       <script>
         var nexusEbLoading = false;
         function openNexusFilmCheckout(){
@@ -2788,8 +2807,17 @@ textarea.finput{resize:vertical;min-height:110px;}
             widgetType: 'checkout',
             eventId: '2000005758061',
             iframeContainerId: 'eventbrite-widget-container-film',
-            iframeContainerHeight: 425
+            iframeContainerHeight: 520
           };
+          // Reveal the checkout panel under the ticket card
+          var panel = document.getElementById('eb-panel');
+          var box = document.getElementById(opts.iframeContainerId);
+          if (panel.hidden) {
+            box.innerHTML = '<div class="eb-loading">Loading checkout…</div>';
+            panel.hidden = false;
+            requestAnimationFrame(function(){ panel.classList.add('show'); });
+          }
+          setTimeout(function(){ panel.scrollIntoView({ behavior:'smooth', block:'center' }); }, 60);
           function render(){
             // Clear any earlier widget so repeat clicks don't stack iframes
             document.getElementById(opts.iframeContainerId).innerHTML = '';
@@ -2812,6 +2840,21 @@ textarea.finput{resize:vertical;min-height:110px;}
           };
           document.body.appendChild(s);
         }
+        function closeNexusFilmCheckout(){
+          var panel = document.getElementById('eb-panel');
+          panel.classList.remove('show');
+          setTimeout(function(){
+            panel.hidden = true;
+            document.getElementById('eventbrite-widget-container-film').innerHTML = '';
+          }, 450);
+        }
+        // The site's custom cursor can't follow the mouse inside Eventbrite's frame,
+        // so hide it there instead of leaving it stuck at the edge.
+        (function(){
+          var box = document.getElementById('eventbrite-widget-container-film');
+          box.addEventListener('mouseenter', function(){ var c = document.getElementById('cur'); if (c) c.style.opacity = '0'; });
+          box.addEventListener('mouseleave', function(){ var c = document.getElementById('cur'); if (c) c.style.opacity = ''; });
+        })();
       </script>
       <p style="font-size:.56rem;line-height:1.9;opacity:.4;margin-top:2rem;max-width:480px;">Kid-friendly · Free parking behind the Fleet Science Center</p>
     </div>
