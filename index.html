@@ -4006,6 +4006,129 @@ textarea.finput{resize:vertical;min-height:110px;}
 }
 .fest-footer-wm:hover{opacity:.3;}
 .fest-footer-info{font-size:.5rem;letter-spacing:.14em;opacity:.22;text-align:right;line-height:2;}
+/* ── NEXUS FESTIVAL — night festival: light burst, lasers, lanterns, mirror ball, crowd ── */
+#pg-festival{background:#050204;}
+.nf-hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:calc(clamp(40px,9vh,90px) + clamp(70px,9vw,110px) + 2.5rem) 1.6rem 15rem;isolation:isolate;}
+.nf-sky{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse 70% 55% at 50% 100%,rgba(255,150,40,.75),rgba(230,70,20,.35) 40%,transparent 75%),
+             radial-gradient(ellipse 60% 50% at 15% 10%,rgba(150,40,160,.45),transparent 70%),
+             radial-gradient(ellipse 50% 45% at 90% 20%,rgba(30,150,150,.3),transparent 70%),
+             linear-gradient(180deg,#0a0412 0%,#120510 50%,#1c0806 100%);}
+.nf-burst{position:absolute;left:50%;bottom:-40vmax;width:160vmax;height:160vmax;transform:translateX(-50%);z-index:0;mix-blend-mode:screen;opacity:.55;
+  background:repeating-conic-gradient(from 0deg,rgba(255,210,140,.6) 0deg 1deg,transparent 1deg 6deg);
+  -webkit-mask-image:radial-gradient(circle,#000 0%,rgba(0,0,0,.5) 14%,transparent 32%);mask-image:radial-gradient(circle,#000 0%,rgba(0,0,0,.5) 14%,transparent 32%);
+  animation:nfBurst 40s linear infinite,nfPulse 3.2s ease-in-out infinite alternate;}
+@keyframes nfBurst{to{transform:translateX(-50%) rotate(360deg);}}
+@keyframes nfPulse{from{opacity:.35;}to{opacity:.65;}}
+.nf-lasers{position:absolute;inset:0;z-index:0;mix-blend-mode:screen;pointer-events:none;}
+.nf-lasers span{position:absolute;bottom:18%;width:2px;height:150vh;transform-origin:50% 100%;
+  background:linear-gradient(0deg,rgba(255,40,40,.95),rgba(255,40,40,.35) 50%,transparent);box-shadow:0 0 8px rgba(255,40,40,.9),0 0 18px rgba(255,40,40,.5);}
+.nf-lasers span:nth-child(-n+3){left:8%;}
+.nf-lasers span:nth-child(n+4){right:8%;}
+.nf-lasers span:nth-child(1){animation:nfLaserL 6s ease-in-out infinite alternate;}
+.nf-lasers span:nth-child(2){animation:nfLaserL 6s ease-in-out -2s infinite alternate;}
+.nf-lasers span:nth-child(3){animation:nfLaserL 6s ease-in-out -4s infinite alternate;}
+.nf-lasers span:nth-child(4){animation:nfLaserR 7s ease-in-out infinite alternate;}
+.nf-lasers span:nth-child(5){animation:nfLaserR 7s ease-in-out -2.3s infinite alternate;}
+.nf-lasers span:nth-child(6){animation:nfLaserR 7s ease-in-out -4.6s infinite alternate;}
+@keyframes nfLaserL{from{transform:rotate(8deg);}to{transform:rotate(58deg);}}
+@keyframes nfLaserR{from{transform:rotate(-8deg);}to{transform:rotate(-58deg);}}
+.nf-orbs span{position:absolute;border-radius:50%;z-index:0;filter:blur(1px);animation:nfFloat 9s ease-in-out infinite alternate;}
+.nf-orbs span::after{content:'';position:absolute;inset:-120%;border-radius:50%;background:radial-gradient(circle,var(--o),transparent 60%);opacity:.45;}
+.nf-orbs span{background:radial-gradient(circle at 35% 35%,#fff7e0,var(--o) 60%);box-shadow:0 0 24px var(--o);}
+.nf-orbs span:nth-child(1){--o:#ffb347;width:26px;height:26px;left:10%;top:18%;}
+.nf-orbs span:nth-child(2){--o:#ff5fb0;width:18px;height:18px;left:22%;top:32%;animation-delay:-3s;}
+.nf-orbs span:nth-child(3){--o:#ffd27a;width:34px;height:34px;left:78%;top:14%;animation-delay:-5s;}
+.nf-orbs span:nth-child(4){--o:#63e6e0;width:16px;height:16px;left:88%;top:36%;animation-delay:-1s;}
+.nf-orbs span:nth-child(5){--o:#c77dff;width:22px;height:22px;left:6%;top:48%;animation-delay:-6s;}
+.nf-orbs span:nth-child(6){--o:#ffb347;width:14px;height:14px;left:64%;top:26%;animation-delay:-2s;}
+.nf-orbs span:nth-child(7){--o:#ff5fb0;width:28px;height:28px;left:92%;top:58%;animation-delay:-7s;}
+.nf-orbs span:nth-child(8){--o:#ffe9a8;width:12px;height:12px;left:34%;top:12%;animation-delay:-4s;}
+.nf-orbs span:nth-child(9){--o:#63e6e0;width:20px;height:20px;left:16%;top:66%;animation-delay:-8s;}
+@keyframes nfFloat{from{transform:translate(0,0);}to{transform:translate(12px,-22px);}}
+.nf-ball-wrap{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;}
+.nf-ball-wrap::before{content:'';width:1px;height:clamp(40px,9vh,90px);background:rgba(255,255,255,.35);}
+.nf-ball{width:clamp(70px,9vw,110px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.95) 0 6%,rgba(255,255,255,.2) 16%,transparent 32%),
+             repeating-linear-gradient(0deg,rgba(0,0,0,.35) 0 1px,transparent 1px 8px),
+             repeating-linear-gradient(90deg,rgba(0,0,0,.35) 0 1px,transparent 1px 8px),
+             radial-gradient(circle at 40% 40%,#e9edf5,#9aa2b5 55%,#3b4050 100%);
+  box-shadow:0 0 40px rgba(255,220,180,.35),inset -10px -12px 24px rgba(0,0,0,.45);animation:nfSpin 4s linear infinite;}
+@keyframes nfSpin{from{background-position:0 0,0 0,0 0,0 0;}to{background-position:0 0,0 0,64px 0,0 0;}}
+.nf-sparks span{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;z-index:1;box-shadow:0 0 10px 2px rgba(255,255,255,.8);opacity:0;animation:nfTwinkle 2.8s ease-in-out infinite;}
+.nf-sparks span:nth-child(1){left:20%;top:22%;}.nf-sparks span:nth-child(2){left:30%;top:40%;animation-delay:.4s;}
+.nf-sparks span:nth-child(3){left:44%;top:28%;animation-delay:.9s;}.nf-sparks span:nth-child(4){left:58%;top:38%;animation-delay:1.3s;}
+.nf-sparks span:nth-child(5){left:70%;top:20%;animation-delay:1.8s;}.nf-sparks span:nth-child(6){left:82%;top:46%;animation-delay:2.2s;}
+.nf-sparks span:nth-child(7){left:12%;top:56%;animation-delay:.6s;}.nf-sparks span:nth-child(8){left:52%;top:14%;animation-delay:1.1s;}
+.nf-sparks span:nth-child(9){left:38%;top:58%;animation-delay:1.6s;}.nf-sparks span:nth-child(10){left:66%;top:60%;animation-delay:2.4s;}
+.nf-sparks span:nth-child(11){left:88%;top:26%;animation-delay:.2s;}.nf-sparks span:nth-child(12){left:26%;top:8%;animation-delay:2s;}
+@keyframes nfTwinkle{0%,100%{opacity:0;transform:scale(.3);}50%{opacity:1;transform:scale(1);}}
+.nf-haze{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 90% 40% at 50% 85%,rgba(255,170,90,.25),transparent 70%);filter:blur(10px);animation:nfPulse 5s ease-in-out infinite alternate;}
+.nf-crowd{position:absolute;left:0;bottom:-2px;width:100%;height:clamp(150px,26vh,260px);z-index:2;}
+.nf-inner{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;max-width:720px;}
+.nf-eb{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.46em;text-transform:uppercase;color:rgba(255,236,210,.8);margin-bottom:1.2rem;}
+.nf-title{font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(3.2rem,12vw,9.5rem);line-height:.86;letter-spacing:-.04em;color:#fff4e6;text-transform:uppercase;
+  text-shadow:0 0 40px rgba(255,160,60,.55),0 0 90px rgba(255,80,120,.3);margin-bottom:1.4rem;}
+.nf-title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;text-transform:none;letter-spacing:-.01em;
+  background:linear-gradient(90deg,#ffb347,#ff5fb0,#63e6e0,#ffb347);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nfShift 8s linear infinite;}
+@keyframes nfShift{to{background-position:300% 0;}}
+.nf-date{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.36em;text-transform:uppercase;color:#1a0806;background:#ffb347;padding:.8rem 1.4rem;margin-bottom:1.4rem;box-shadow:0 0 30px rgba(255,179,71,.5);}
+.nf-lede{font-size:.68rem;line-height:2.05;color:rgba(255,244,230,.85);max-width:560px;margin-bottom:2rem;text-shadow:0 2px 14px rgba(0,0,0,.7);}
+.nf-ctas{display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap;justify-content:center;}
+.nf-btn{display:inline-block;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.26em;text-transform:uppercase;color:#1a0806;background:#fff4e6;text-decoration:none;padding:1.05rem 1.8rem;cursor:none;transition:background .25s,box-shadow .25s;}
+.nf-btn:hover{background:#ffb347;box-shadow:0 0 34px rgba(255,179,71,.6);}
+.nf-link{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:#fff4e6;background:none;border:none;border-bottom:1px solid rgba(255,95,176,.7);padding:0 0 3px;cursor:none;}
+.nf-link:hover{color:#ff5fb0;}
+.nf-ticker{overflow:hidden;background:linear-gradient(90deg,#ff6a2b,#ff3d9a,#c77dff,#2fd4c7,#ff6a2b);background-size:200% 100%;animation:nfShift 12s linear infinite;}
+.nf-ticker-track{display:flex;align-items:center;gap:1.4rem;width:max-content;padding:1rem 0;animation:nfScroll 30s linear infinite;
+  font-family:'Unbounded',sans-serif;font-weight:900;font-size:1rem;text-transform:uppercase;color:#120408;}
+.nf-ticker-track i{font-style:normal;font-size:1.1rem;}
+@keyframes nfScroll{to{transform:translateX(-50%);}}
+.nf-sec{max-width:1000px;margin:0 auto;padding:5.5rem 1.6rem 0;text-align:center;}
+#nf-involve{scroll-margin-top:5rem;}
+.nf-sec-eb{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.46em;text-transform:uppercase;color:#ffb347;margin-bottom:.9rem;}
+.nf-sec-h{font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(1.7rem,4.8vw,3.2rem);line-height:1.02;letter-spacing:-.03em;text-transform:uppercase;color:#fff4e6;margin-bottom:1.3rem;}
+.nf-sec-h em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;text-transform:none;letter-spacing:0;color:#ff5fb0;}
+.nf-sec-p{font-size:.64rem;line-height:2.05;color:rgba(255,244,230,.72);max-width:600px;margin:0 auto 2.8rem;}
+.nf-worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;text-align:left;}
+.nf-world{position:relative;overflow:hidden;padding:2rem 1.6rem 1.8rem;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;gap:.5rem;
+  background:#0c0508;border:1px solid rgba(255,255,255,.08);transition:transform .35s,border-color .35s;}
+.nf-world-glow{position:absolute;left:50%;top:-30%;width:170%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(circle,var(--c),transparent 60%);opacity:.55;transition:opacity .35s,transform .35s;}
+.nf-world:hover{transform:translateY(-6px);border-color:var(--c);}
+.nf-world:hover .nf-world-glow{opacity:.75;transform:translateX(-50%) scale(1.1);}
+.nf-world-n{position:relative;font-family:'Space Mono',monospace;font-size:.4rem;letter-spacing:.3em;color:var(--c);}
+.nf-world-t{position:relative;font-family:'Unbounded',sans-serif;font-weight:900;font-size:1.05rem;text-transform:uppercase;color:#fff4e6;}
+.nf-world-d{position:relative;font-size:.54rem;line-height:1.8;color:rgba(255,244,230,.72);}
+.nf-details{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,179,71,.35);background:rgba(255,179,71,.04);}
+.nf-detail{padding:1.8rem 1rem;display:flex;flex-direction:column;gap:.5rem;border-right:1px solid rgba(255,179,71,.2);}
+.nf-detail:last-child{border-right:none;}
+.nf-detail-l{font-family:'Space Mono',monospace;font-size:.38rem;letter-spacing:.34em;text-transform:uppercase;color:#ffb347;}
+.nf-detail-v{font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.3;color:#fff4e6;}
+.nf-involve{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:left;}
+.nf-card{position:relative;padding:1.8rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;background:#0c0508;border:1px solid rgba(255,255,255,.1);transition:border-color .3s,box-shadow .3s;}
+.nf-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ffb347,#ff3d9a,#2fd4c7);}
+.nf-card:hover{border-color:rgba(255,95,176,.55);box-shadow:0 0 40px rgba(255,61,154,.15);}
+.nf-card-l{font-family:'Space Mono',monospace;font-size:.38rem;letter-spacing:.3em;text-transform:uppercase;color:#ffb347;}
+.nf-card-t{font-family:'Unbounded',sans-serif;font-weight:900;font-size:.9rem;text-transform:uppercase;color:#fff4e6;}
+.nf-card-d{font-size:.54rem;line-height:1.85;color:rgba(255,244,230,.7);flex:1;}
+.nf-card-btn{align-self:flex-start;margin-top:.4rem;font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.2em;text-transform:uppercase;color:#fff4e6;background:none;border:none;border-bottom:1px solid rgba(255,95,176,.7);padding:0 0 3px;cursor:none;transition:color .2s;}
+.nf-card-btn:hover{color:#ff5fb0;}
+.nf-close{padding:7rem 1.6rem 5rem;text-align:center;background:radial-gradient(ellipse 60% 70% at 50% 100%,rgba(255,120,40,.3),transparent 70%);}
+.nf-close-t{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.05;color:#fff4e6;margin-bottom:2rem;}
+.nf-close-t em{font-style:italic;color:#ffb347;}
+@media(max-width:900px){
+  .nf-details,.nf-involve{grid-template-columns:1fr 1fr;}
+  .nf-detail:nth-child(2){border-right:none;}
+  .nf-detail:nth-child(-n+2){border-bottom:1px solid rgba(255,179,71,.2);}
+}
+@media(max-width:640px){.nf-worlds{grid-template-columns:1fr;}.nf-world{min-height:170px;}}
+@media(max-width:520px){.nf-involve{grid-template-columns:1fr;}.fest-logo{font-size:.5rem;letter-spacing:.12em;white-space:nowrap;}}
+@media(prefers-reduced-motion:reduce){
+  .nf-burst,.nf-lasers span,.nf-orbs span,.nf-ball,.nf-sparks span,.nf-haze,.nf-title em,.nf-ticker,.nf-ticker-track{animation:none;}
+  .nf-sparks span{opacity:.7;}
+}
+
 </style>
 
 <div class="page" id="pg-festival">
@@ -4019,47 +4142,73 @@ textarea.finput{resize:vertical;min-height:110px;}
       <span class="fest-logo">NEXUS · FESTIVAL</span>
     </nav>
 
-    <div class="fest-hero">
-      <div class="fest-eyebrow">Nexus · Annual Festival · October 25, 2026</div>
-      <h1 class="fest-h1">Nexus<br><em>Festival 2026</em></h1>
-      <p class="fest-intro">One year. Every artist, every discipline, every person who has been part of Nexus — gathered in one room. October 25, 2026. San Diego, California.</p>
-    </div>
-
-    <section class="fest-section">
-      <div class="fest-sec-label">Annual Festival · October 25, 2026</div>
-      <h2 class="fest-sec-h">Nexus<br><em>Festival 2026</em></h2>
-      <p class="fest-sec-p">October 25, 2026 — one year of Nexus. Every artist, every discipline, every person who has been part of this community gathered in one room. The biggest night of the year.</p>
-      <div class="fest-cards">
-        <div class="fest-card">
-          <div class="fest-card-tag">Annual Festival &nbsp;·&nbsp; One Year Anniversary</div>
-          <div class="fest-card-title">Nexus<br><em>Festival 2026</em></div>
-          <div class="fest-meta">
-            <div class="fest-meta-row"><span class="fest-meta-label">Date</span><span class="fest-meta-val">October 25, 2026</span></div>
-            <div class="fest-meta-row"><span class="fest-meta-label">Venue</span><span class="fest-meta-val">San Diego, CA &nbsp;·&nbsp; To Be Announced</span></div>
-            <div class="fest-meta-row"><span class="fest-meta-label">Tickets</span><span class="fest-meta-val">Coming Soon</span></div>
-            <div class="fest-meta-row"><span class="fest-meta-label">Format</span><span class="fest-meta-val">Multi-Stage &nbsp;·&nbsp; All Disciplines</span></div>
-          </div>
-          <div class="fest-badge">Tickets Coming Soon &nbsp;·&nbsp; Follow @n3xus.now</div>
-          <div class="fest-desc">Music. Dance. Film. Fashion. Sport. All of it, together, in one place. The venue will be announced when the time is right. Be on @n3xus.now when it drops.</div>
-        </div>
-        <div class="fest-card">
-          <div class="fest-card-tag">Get Involved &nbsp;·&nbsp; Open Now</div>
-          <div class="fest-card-title">Perform &amp;<br><em>Participate</em></div>
-          <div class="fest-meta">
-            <div class="fest-meta-row"><span class="fest-meta-label">Artists</span><span class="fest-meta-val">Applications Open Soon</span></div>
-            <div class="fest-meta-row"><span class="fest-meta-label">Vendors</span><span class="fest-meta-val">Limited Spots</span></div>
-            <div class="fest-meta-row"><span class="fest-meta-label">Volunteers</span><span class="fest-meta-val">Sign-Up Available</span></div>
-          </div>
-          <div class="fest-badge">Contact &nbsp;·&nbsp; thenexx.usss@gmail.com</div>
-          <div class="fest-desc">Whether you're an artist, vendor, or someone who wants to be part of the team that makes this happen — reach out. The Nexus Festival is built by the community it celebrates.</div>
+    <section class="nf-hero">
+      <div class="nf-sky" aria-hidden="true"></div>
+      <div class="nf-burst" aria-hidden="true"></div>
+      <div class="nf-lasers" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="nf-orbs" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="nf-ball-wrap" aria-hidden="true"><div class="nf-ball"></div></div>
+      <div class="nf-sparks" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="nf-haze" aria-hidden="true"></div>
+      <div class="nf-inner">
+        <div class="nf-eb">Nexus &nbsp;·&nbsp; The Annual Festival</div>
+        <h1 class="nf-title">Nexus<br><em>Festival</em></h1>
+        <div class="nf-date">October 2027 &nbsp;·&nbsp; San Diego</div>
+        <p class="nf-lede">Music, dance, and film under one sky. The artists, the movers, the filmmakers, and everyone who has been part of Nexus, together for the biggest night of the year.</p>
+        <div class="nf-ctas">
+          <a class="nf-btn" href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">Get Notified</a>
+          <button class="nf-link" type="button" onclick="document.getElementById('nf-involve').scrollIntoView({behavior:'smooth',block:'start'})">Get involved →</button>
         </div>
       </div>
+      <svg class="nf-crowd" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="-10" cy="152" r="12" fill="#120708"/><circle cx="17" cy="156" r="11" fill="#120708"/><circle cx="40" cy="156" r="11" fill="#120708"/><circle cx="61" cy="151" r="13" fill="#120708"/><circle cx="81" cy="160" r="13" fill="#120708"/><circle cx="103" cy="158" r="12" fill="#120708"/><circle cx="132" cy="155" r="13" fill="#120708"/><circle cx="162" cy="160" r="11" fill="#120708"/><circle cx="185" cy="151" r="12" fill="#120708"/><circle cx="208" cy="152" r="14" fill="#120708"/><circle cx="234" cy="154" r="14" fill="#120708"/><circle cx="259" cy="151" r="11" fill="#120708"/><circle cx="281" cy="155" r="14" fill="#120708"/><circle cx="304" cy="155" r="13" fill="#120708"/><circle cx="327" cy="158" r="14" fill="#120708"/><circle cx="350" cy="156" r="13" fill="#120708"/><circle cx="379" cy="153" r="14" fill="#120708"/><circle cx="408" cy="155" r="11" fill="#120708"/><circle cx="436" cy="156" r="12" fill="#120708"/><circle cx="456" cy="159" r="14" fill="#120708"/><circle cx="482" cy="154" r="15" fill="#120708"/><circle cx="509" cy="157" r="13" fill="#120708"/><circle cx="534" cy="161" r="14" fill="#120708"/><circle cx="558" cy="151" r="14" fill="#120708"/><circle cx="585" cy="162" r="14" fill="#120708"/><circle cx="614" cy="155" r="12" fill="#120708"/><circle cx="640" cy="156" r="11" fill="#120708"/><circle cx="662" cy="151" r="11" fill="#120708"/><circle cx="690" cy="153" r="12" fill="#120708"/><circle cx="714" cy="151" r="14" fill="#120708"/><circle cx="738" cy="161" r="13" fill="#120708"/><circle cx="766" cy="153" r="14" fill="#120708"/><circle cx="790" cy="161" r="12" fill="#120708"/><circle cx="820" cy="152" r="12" fill="#120708"/><circle cx="842" cy="156" r="12" fill="#120708"/><circle cx="868" cy="150" r="12" fill="#120708"/><circle cx="892" cy="157" r="12" fill="#120708"/><circle cx="922" cy="156" r="14" fill="#120708"/><circle cx="948" cy="151" r="14" fill="#120708"/><circle cx="977" cy="160" r="14" fill="#120708"/><circle cx="1005" cy="155" r="13" fill="#120708"/><circle cx="1026" cy="151" r="14" fill="#120708"/><circle cx="1047" cy="152" r="12" fill="#120708"/><circle cx="1070" cy="150" r="11" fill="#120708"/><circle cx="1092" cy="154" r="11" fill="#120708"/><circle cx="1112" cy="157" r="14" fill="#120708"/><circle cx="1133" cy="154" r="12" fill="#120708"/><circle cx="1157" cy="160" r="11" fill="#120708"/><circle cx="1187" cy="156" r="13" fill="#120708"/><circle cx="1208" cy="154" r="11" fill="#120708"/><rect x="0" y="160" width="1200" height="40" fill="#120708"/><path d="M968 174 Q953 141 930 107" stroke="#050204" stroke-width="8.5" stroke-linecap="round" fill="none"/><ellipse cx="930" cy="101" rx="6.5" ry="9" fill="#050204"/><path d="M632 174 Q627 115 635 56" stroke="#050204" stroke-width="8.5" stroke-linecap="round" fill="none"/><ellipse cx="635" cy="50" rx="6.5" ry="9" fill="#050204"/><path d="M631 186 Q652 139 661 93" stroke="#050204" stroke-width="10.4" stroke-linecap="round" fill="none"/><ellipse cx="661" cy="87" rx="6.5" ry="9" fill="#050204"/><path d="M332 177 Q313 137 306 97" stroke="#050204" stroke-width="10.5" stroke-linecap="round" fill="none"/><ellipse cx="306" cy="91" rx="6.5" ry="9" fill="#050204"/><path d="M637 183 Q637 125 623 67" stroke="#050204" stroke-width="10.0" stroke-linecap="round" fill="none"/><ellipse cx="623" cy="61" rx="6.5" ry="9" fill="#050204"/><path d="M949 186 Q961 143 977 99" stroke="#050204" stroke-width="9.6" stroke-linecap="round" fill="none"/><ellipse cx="977" cy="93" rx="6.5" ry="9" fill="#050204"/><path d="M957 182 Q940 133 935 83" stroke="#050204" stroke-width="8.0" stroke-linecap="round" fill="none"/><ellipse cx="935" cy="77" rx="6.5" ry="9" fill="#050204"/><path d="M438 172 Q427 121 400 70" stroke="#050204" stroke-width="9.9" stroke-linecap="round" fill="none"/><ellipse cx="400" cy="64" rx="6.5" ry="9" fill="#050204"/><path d="M330 182 Q349 131 367 80" stroke="#050204" stroke-width="10.8" stroke-linecap="round" fill="none"/><ellipse cx="367" cy="74" rx="6.5" ry="9" fill="#050204"/><path d="M1089 186 Q1107 130 1126 75" stroke="#050204" stroke-width="10.6" stroke-linecap="round" fill="none"/><ellipse cx="1126" cy="69" rx="6.5" ry="9" fill="#050204"/><path d="M287 175 Q280 121 263 66" stroke="#050204" stroke-width="8.6" stroke-linecap="round" fill="none"/><ellipse cx="263" cy="60" rx="6.5" ry="9" fill="#050204"/><path d="M739 185 Q749 133 766 81" stroke="#050204" stroke-width="8.9" stroke-linecap="round" fill="none"/><ellipse cx="766" cy="75" rx="6.5" ry="9" fill="#050204"/><path d="M771 183 Q751 137 738 91" stroke="#050204" stroke-width="9.8" stroke-linecap="round" fill="none"/><ellipse cx="738" cy="85" rx="6.5" ry="9" fill="#050204"/><path d="M1059 183 Q1065 132 1079 81" stroke="#050204" stroke-width="9.3" stroke-linecap="round" fill="none"/><ellipse cx="1079" cy="75" rx="6.5" ry="9" fill="#050204"/><path d="M240 183 Q227 141 227 99" stroke="#050204" stroke-width="10.7" stroke-linecap="round" fill="none"/><ellipse cx="227" cy="93" rx="6.5" ry="9" fill="#050204"/><path d="M1128 178 Q1122 142 1120 107" stroke="#050204" stroke-width="9.4" stroke-linecap="round" fill="none"/><ellipse cx="1120" cy="101" rx="6.5" ry="9" fill="#050204"/><path d="M977 99 L939 55 A58 58 0 0 1 1007 47 Z" fill="#050204"/><circle cx="-20" cy="183" r="20" fill="#050204"/><ellipse cx="-20" cy="216" rx="37" ry="18" fill="#050204"/><circle cx="16" cy="178" r="22" fill="#050204"/><ellipse cx="16" cy="214" rx="41" ry="19" fill="#050204"/><circle cx="53" cy="172" r="19" fill="#050204"/><ellipse cx="53" cy="205" rx="36" ry="17" fill="#050204"/><circle cx="89" cy="172" r="17" fill="#050204"/><ellipse cx="89" cy="203" rx="32" ry="15" fill="#050204"/><circle cx="131" cy="178" r="17" fill="#050204"/><ellipse cx="131" cy="209" rx="32" ry="15" fill="#050204"/><circle cx="171" cy="176" r="19" fill="#050204"/><ellipse cx="171" cy="209" rx="37" ry="17" fill="#050204"/><circle cx="208" cy="181" r="19" fill="#050204"/><ellipse cx="208" cy="215" rx="37" ry="17" fill="#050204"/><circle cx="240" cy="175" r="19" fill="#050204"/><ellipse cx="240" cy="208" rx="37" ry="17" fill="#050204"/><circle cx="273" cy="178" r="21" fill="#050204"/><ellipse cx="273" cy="213" rx="39" ry="19" fill="#050204"/><circle cx="311" cy="183" r="21" fill="#050204"/><ellipse cx="311" cy="218" rx="39" ry="19" fill="#050204"/><circle cx="348" cy="178" r="20" fill="#050204"/><ellipse cx="348" cy="212" rx="37" ry="18" fill="#050204"/><circle cx="385" cy="177" r="20" fill="#050204"/><ellipse cx="385" cy="212" rx="38" ry="18" fill="#050204"/><circle cx="422" cy="183" r="19" fill="#050204"/><ellipse cx="422" cy="216" rx="36" ry="17" fill="#050204"/><circle cx="462" cy="183" r="21" fill="#050204"/><ellipse cx="462" cy="219" rx="40" ry="19" fill="#050204"/><circle cx="496" cy="183" r="19" fill="#050204"/><ellipse cx="496" cy="217" rx="37" ry="17" fill="#050204"/><circle cx="537" cy="173" r="17" fill="#050204"/><ellipse cx="537" cy="204" rx="32" ry="15" fill="#050204"/><circle cx="574" cy="175" r="16" fill="#050204"/><ellipse cx="574" cy="205" rx="31" ry="15" fill="#050204"/><circle cx="605" cy="181" r="20" fill="#050204"/><ellipse cx="605" cy="215" rx="38" ry="18" fill="#050204"/><circle cx="647" cy="181" r="17" fill="#050204"/><ellipse cx="647" cy="212" rx="32" ry="15" fill="#050204"/><circle cx="686" cy="183" r="17" fill="#050204"/><ellipse cx="686" cy="213" rx="32" ry="15" fill="#050204"/><circle cx="730" cy="183" r="17" fill="#050204"/><ellipse cx="730" cy="215" rx="33" ry="16" fill="#050204"/><circle cx="765" cy="184" r="19" fill="#050204"/><ellipse cx="765" cy="217" rx="36" ry="17" fill="#050204"/><circle cx="807" cy="177" r="17" fill="#050204"/><ellipse cx="807" cy="208" rx="32" ry="15" fill="#050204"/><circle cx="844" cy="174" r="18" fill="#050204"/><ellipse cx="844" cy="206" rx="34" ry="16" fill="#050204"/><circle cx="879" cy="172" r="20" fill="#050204"/><ellipse cx="879" cy="207" rx="39" ry="18" fill="#050204"/><circle cx="917" cy="172" r="19" fill="#050204"/><ellipse cx="917" cy="205" rx="35" ry="17" fill="#050204"/><circle cx="951" cy="178" r="20" fill="#050204"/><ellipse cx="951" cy="212" rx="38" ry="18" fill="#050204"/><circle cx="982" cy="181" r="22" fill="#050204"/><ellipse cx="982" cy="217" rx="42" ry="20" fill="#050204"/><circle cx="1026" cy="175" r="17" fill="#050204"/><ellipse cx="1026" cy="206" rx="32" ry="15" fill="#050204"/><circle cx="1056" cy="175" r="21" fill="#050204"/><ellipse cx="1056" cy="210" rx="39" ry="19" fill="#050204"/><circle cx="1088" cy="183" r="19" fill="#050204"/><ellipse cx="1088" cy="215" rx="35" ry="17" fill="#050204"/><circle cx="1130" cy="174" r="18" fill="#050204"/><ellipse cx="1130" cy="205" rx="33" ry="16" fill="#050204"/><circle cx="1172" cy="180" r="19" fill="#050204"/><ellipse cx="1172" cy="214" rx="37" ry="17" fill="#050204"/><circle cx="1204" cy="180" r="16" fill="#050204"/><ellipse cx="1204" cy="211" rx="31" ry="15" fill="#050204"/></svg>
+    </section>
+
+    <div class="nf-ticker" aria-hidden="true"><div class="nf-ticker-track">
+      <span>Music</span><i>✺</i><span>Dance</span><i>✺</i><span>Film</span><i>✺</i><span>October 2027</span><i>✺</i><span>San Diego</span><i>✺</i>
+      <span>Music</span><i>✺</i><span>Dance</span><i>✺</i><span>Film</span><i>✺</i><span>October 2027</span><i>✺</i><span>San Diego</span><i>✺</i>
+    </div></div>
+
+    <section class="nf-sec">
+      <div class="nf-sec-eb">One Festival, Three Worlds</div>
+      <h2 class="nf-sec-h">Three stages. <em>One night.</em></h2>
+      <p class="nf-sec-p">Music, dance, and film each get their own stage, and the night moves between them. Wander from a live set to the dance floor to a screening, and end up somewhere you didn't expect.</p>
+      <div class="nf-worlds">
+        <div class="nf-world" style="--c:#f5a623"><div class="nf-world-glow"></div><div class="nf-world-n">01</div><div class="nf-world-t">Music</div><div class="nf-world-d">Live sets and DJs from the artists who built the Nexus stage.</div></div>
+        <div class="nf-world" style="--c:#ff3d9a"><div class="nf-world-glow"></div><div class="nf-world-n">02</div><div class="nf-world-t">Dance</div><div class="nf-world-d">Performances and an open floor that doesn't stop moving.</div></div>
+        <div class="nf-world" style="--c:#2fd4c7"><div class="nf-world-glow"></div><div class="nf-world-n">03</div><div class="nf-world-t">Film</div><div class="nf-world-d">Screenings from San Diego filmmakers, projected big.</div></div>
+      </div>
+    </section>
+
+    <section class="nf-sec">
+      <div class="nf-details">
+        <div class="nf-detail"><div class="nf-detail-l">When</div><div class="nf-detail-v">October 2027</div></div>
+        <div class="nf-detail"><div class="nf-detail-l">Where</div><div class="nf-detail-v">San Diego, venue revealed soon</div></div>
+        <div class="nf-detail"><div class="nf-detail-l">Format</div><div class="nf-detail-v">Three stages: music, dance &amp; film</div></div>
+        <div class="nf-detail"><div class="nf-detail-l">Tickets</div><div class="nf-detail-v">Coming soon</div></div>
+      </div>
+    </section>
+
+    <section class="nf-sec" id="nf-involve">
+      <div class="nf-sec-eb">Built by the Community</div>
+      <h2 class="nf-sec-h">Be part of <em>the night</em></h2>
+      <p class="nf-sec-p">The Nexus Festival is made by the people it celebrates. There's a place for you on the lineup, on the grounds, or behind the scenes.</p>
+      <div class="nf-involve">
+        <div class="nf-card"><div class="nf-card-l">Artists &amp; Performers</div><div class="nf-card-t">Take a stage</div><div class="nf-card-d">Musicians, DJs, dancers, and filmmakers. Applications open soon.</div><button class="nf-card-btn" type="button" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Nexus Festival 2027 - Artist Interest'">Express interest →</button></div>
+        <div class="nf-card"><div class="nf-card-l">Vendors</div><div class="nf-card-t">Bring your booth</div><div class="nf-card-d">Food, drinks, and makers. Limited spots for vendors who fit the night.</div><button class="nf-card-btn" type="button" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Nexus Festival 2027 - Vendor Inquiry'">Apply as a vendor →</button></div>
+        <div class="nf-card"><div class="nf-card-l">Volunteers</div><div class="nf-card-t">Join the crew</div><div class="nf-card-d">Help build, run, and light up the festival, and be there for all of it.</div><button class="nf-card-btn" type="button" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Nexus Festival 2027 - Volunteer Sign-Up'">Sign up →</button></div>
+        <div class="nf-card"><div class="nf-card-l">Brands &amp; Sponsors</div><div class="nf-card-t">Partner with us</div><div class="nf-card-d">Put your brand at the center of San Diego's biggest night of culture.</div><button class="nf-card-btn" type="button" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Nexus Festival 2027 - Sponsorship'">Reach out →</button></div>
+      </div>
+    </section>
+
+    <section class="nf-close">
+      <div class="nf-close-t">See you under <em>the lights.</em></div>
+      <a class="nf-btn" href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">Follow @n3xus.now</a>
     </section>
 
     <div class="fest-footer">
       <button class="fest-footer-wm" onclick="go('home')">NEXUS</button>
       <div class="fest-footer-info">
-        <div>Nexus Festival &nbsp;·&nbsp; October 25, 2026</div>
+        <div>Nexus Festival &nbsp;·&nbsp; October 2027</div>
         <div>San Diego, California</div>
         <div>@n3xus.now</div>
       </div>
