@@ -4318,6 +4318,21 @@ textarea.finput{resize:vertical;min-height:110px;}
 }
 .glob-footer-wm:hover{opacity:.3;}
 .glob-footer-info{font-size:.5rem;letter-spacing:.14em;opacity:.22;text-align:right;line-height:2;}
+/* About page: centered layout */
+.glob-hero{align-items:center;justify-content:center;text-align:center;}
+.glob-intro,.glob-sec-p{margin-left:auto;margin-right:auto;}
+.glob-section{text-align:center;}
+.glob-team-grid{max-width:900px;margin-left:auto;margin-right:auto;}
+.glob-member{align-items:center;text-align:center;}
+.glob-roles-grid{max-width:1100px;margin-left:auto;margin-right:auto;}
+.glob-role-card{text-align:center;display:flex;flex-direction:column;align-items:center;}
+.glob-role-card::before{background:linear-gradient(90deg,transparent,var(--green),transparent);}
+.glob-role-desc{flex:1;}
+.glob-note{margin:3rem auto 0;font-size:.62rem;line-height:2;color:rgba(240,237,230,.55);max-width:520px;}
+.glob-note a{color:var(--green);text-decoration:none;border-bottom:1px solid rgba(62,207,90,.35);cursor:none;}
+.glob-footer{flex-direction:column;justify-content:center;gap:1.2rem;}
+.glob-footer-info{text-align:center;}
+@media(max-width:520px){.glob-logo{font-size:.5rem;letter-spacing:.12em;white-space:nowrap;}}
 </style>
 
 <div class="page" id="pg-global">
@@ -4334,23 +4349,23 @@ textarea.finput{resize:vertical;min-height:110px;}
     <div class="glob-hero">
       <div class="glob-eyebrow">San Diego, California &nbsp;·&nbsp; Est. 2025</div>
       <h1 class="glob-h1">About<br><em>Nexus</em></h1>
-      <p class="glob-intro">Nexus is a San Diego–based cultural organization at the intersection of music, dance, film, fashion, and sport. We create events, build community, and give artists the stage they deserve — without boundaries between disciplines.</p>
+      <p class="glob-intro">Nexus is a San Diego cultural organization at the intersection of music, dance, and film. We create live experiences, build community, and give independent artists the stage they deserve.</p>
     </div>
 
     <section class="glob-section">
       <div class="glob-sec-label">What We Do</div>
       <h2 class="glob-sec-h">The<br><em>Mission</em></h2>
-      <p class="glob-sec-p">San Diego has one of the most vibrant creative communities in the country — and one of the most underrepresented on the national stage. Nexus exists to change that. We bring artists together across every discipline, create moments that matter, and build the infrastructure for a thriving cultural ecosystem in this city.</p>
-      <p class="glob-sec-p" style="margin-top:0;">Every event we produce. Every artist we feature. Every series we build. It all points toward the same thing: a San Diego that the world pays attention to.</p>
+      <p class="glob-sec-p">San Diego is full of artists doing remarkable work, and too few people outside the city know it. Nexus exists to change that. We bring artists together across music, dance, and film, create nights worth remembering, and build the spaces and relationships a creative city needs to thrive.</p>
+      <p class="glob-sec-p" style="margin-top:0;">Every event we produce, every artist we feature, and every series we build points toward the same goal: a San Diego the world pays attention to.</p>
     </section>
 
     <section class="glob-section">
       <div class="glob-sec-label">Leadership</div>
       <h2 class="glob-sec-h">The<br><em>Team</em></h2>
-      <p class="glob-sec-p">Nexus is led by a small, intentional team of creators, organizers, and cultural advocates who believe in what San Diego's creative scene can become.</p>
+      <p class="glob-sec-p">Nexus is run by a small team of creators, organizers, and cultural advocates who believe in what San Diego's creative scene can become.</p>
       <div class="glob-team-grid">
         <div class="glob-member">
-          <div class="glob-member-role">Founder &amp; Director</div>
+          <div class="glob-member-role">Founder &amp; Creative Director</div>
           <div class="glob-member-name">Nicole Hernandez</div>
         </div>
         <div class="glob-member">
@@ -4365,54 +4380,60 @@ textarea.finput{resize:vertical;min-height:110px;}
           <div class="glob-member-role">Event Coordinator</div>
           <div class="glob-member-name">Melina Martinez</div>
         </div>
+        <div class="glob-member">
+          <div class="glob-member-role">Project Manager</div>
+          <div class="glob-member-name">Kendra McFadden</div>
+        </div>
+        <div class="glob-member">
+          <div class="glob-member-role">Cinematographer</div>
+          <div class="glob-member-name">Zavier Gordon</div>
+        </div>
       </div>
     </section>
 
     <section class="glob-section">
       <div class="glob-sec-label">Join the Team &amp; Internships</div>
       <h2 class="glob-sec-h">Work With<br><em>Nexus</em></h2>
-      <p class="glob-sec-p">We are building something real, and we need people who want to do real work. Whether you're looking for an internship, a volunteer role, or a creative partnership — there's a place for you here.</p>
+      <p class="glob-sec-p">We're building something real, and we're looking for people who want to build it with us. Whether you want an internship, a volunteer role, or a creative partnership, there's a place for you here.</p>
       <div class="glob-roles-grid">
         <div class="glob-role-card">
           <div class="glob-role-dept">Production</div>
           <div class="glob-role-title">Production &amp; Events</div>
           <div class="glob-role-desc">Stage management, logistics, vendor coordination, and on-the-ground event execution across all Nexus productions.</div>
-          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com'">Apply →</button>
+          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Join Nexus - Production and Events'">Apply →</button>
         </div>
         <div class="glob-role-card">
           <div class="glob-role-dept">Creative</div>
           <div class="glob-role-title">Content &amp; Media</div>
-          <div class="glob-role-desc">Photography, video, social content, and editorial — capturing the culture and telling the story of what Nexus is building.</div>
-          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com'">Apply →</button>
+          <div class="glob-role-desc">Photography, video, social content, and editorial that capture the culture and tell the story of what Nexus is building.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Join Nexus - Content and Media'">Apply →</button>
         </div>
         <div class="glob-role-card">
           <div class="glob-role-dept">Curation</div>
           <div class="glob-role-title">Artist &amp; Programming</div>
           <div class="glob-role-desc">Identifying talent, building lineups, and shaping the programming that defines what Nexus puts on stage.</div>
-          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com'">Apply →</button>
+          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Join Nexus - Artist and Programming'">Apply →</button>
         </div>
         <div class="glob-role-card">
           <div class="glob-role-dept">Community</div>
           <div class="glob-role-title">Outreach &amp; Partnerships</div>
           <div class="glob-role-desc">Building relationships with artists, venues, sponsors, and community organizations across San Diego.</div>
-          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com'">Apply →</button>
+          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Join Nexus - Outreach and Partnerships'">Apply →</button>
         </div>
         <div class="glob-role-card">
           <div class="glob-role-dept">Film &amp; Post</div>
           <div class="glob-role-title">Film Internship</div>
-          <div class="glob-role-desc">Production support, curation of film programming, post-production, and creative strategy for the Nexus film series and screenings.</div>
-          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com'">Apply →</button>
+          <div class="glob-role-desc">Production support, film programming, post-production, and creative strategy for Nexus screenings and the film festival.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Join Nexus - Film Internship'">Apply →</button>
         </div>
         <div class="glob-role-card">
           <div class="glob-role-dept">General</div>
           <div class="glob-role-title">Volunteer &amp; Support</div>
-          <div class="glob-role-desc">Help us run events, welcome guests, manage spaces, and be the human face of Nexus in the room.</div>
-          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com'">Apply →</button>
+          <div class="glob-role-desc">Help run events, welcome guests, manage spaces, and be the face of Nexus in the room.</div>
+          <button class="glob-apply-btn" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Join Nexus - Volunteer and Support'">Apply →</button>
         </div>
       </div>
-      <div style="margin-top:3rem;font-size:.62rem;line-height:2;opacity:.3;max-width:480px;">
-        To apply, send a brief introduction and your area of interest to <span style="color:var(--green);opacity:.9;">thenexx.usss@gmail.com</span>. Tell us who you are and what you want to build.
-      </div>
+      <p class="glob-note">To apply, email <a href="mailto:thenexx.usss@gmail.com?subject=Join Nexus">thenexx.usss@gmail.com</a> with a short introduction and the role you're interested in. Tell us who you are and what you want to build.</p>
     </section>
 
     <div class="glob-footer">
