@@ -860,84 +860,251 @@ body{
 #ms-festival .event-card:hover .event-ticket-badge{color:#d4af6a;border-color:rgba(212,175,106,.45);}
 
 /* ── LATIN JAZZ NIGHT — warm amber, candlelight ── */
-#ms-latin-jazz .ms-next{background:linear-gradient(160deg,#030508 0%,#0d0700 55%,#030508 100%);}
-#ms-latin-jazz .ms-eb{color:rgba(232,160,64,.65);}
-#ms-latin-jazz .ms-h em{color:#e8a040;}
-#ms-latin-jazz .ms-rule{background:linear-gradient(90deg,transparent,rgba(232,160,64,.28),transparent);}
-#ms-latin-jazz .event-card{border-color:rgba(232,160,64,.13);background:rgba(232,160,64,.018);}
-#ms-latin-jazz .event-card:hover{border-color:rgba(232,160,64,.38);background:rgba(232,160,64,.04);}
-#ms-latin-jazz .event-card::before{background:linear-gradient(90deg,#e8a040,rgba(232,160,64,.1),transparent);}
-#ms-latin-jazz .event-tag{color:rgba(232,160,64,.55);}
-#ms-latin-jazz .event-title em{color:#e8a040;}
-#ms-latin-jazz .event-meta-label{color:rgba(232,160,64,.45);}
-#ms-latin-jazz .event-ticket-badge{color:rgba(232,160,64,.55);border-color:rgba(232,160,64,.18);}
-#ms-latin-jazz .event-card:hover .event-ticket-badge{color:#e8a040;border-color:rgba(232,160,64,.45);}
+/* ── LATIN JAZZ NIGHT — vintage album-cover heat: sunburst, spotlights, notes, piano keys ── */
+#ms-latin-jazz{background:#170904;color:#f3e3c3;}
+.ljn-hero{position:relative;min-height:90vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.6rem 9rem;isolation:isolate;
+  background:radial-gradient(ellipse 80% 70% at 50% 42%,#f2a23a 0%,#e0662a 32%,#a8261a 62%,#3a0c06 100%);}
+.ljn-sun{position:absolute;left:50%;top:42%;width:220vmax;height:220vmax;transform:translate(-50%,-50%);z-index:0;opacity:.28;
+  background:repeating-conic-gradient(from 0deg,rgba(255,226,150,.55) 0deg 5deg,transparent 5deg 12deg);
+  -webkit-mask-image:radial-gradient(circle,#000 0%,transparent 45%);mask-image:radial-gradient(circle,#000 0%,transparent 45%);
+  animation:ljnSpin 90s linear infinite;}
+@keyframes ljnSpin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+.ljn-spot{position:absolute;top:-10%;width:34vw;min-width:220px;height:120%;z-index:0;mix-blend-mode:screen;opacity:.5;filter:blur(6px);
+  background:linear-gradient(180deg,rgba(255,240,200,.75),rgba(255,210,140,.12) 70%,transparent);
+  clip-path:polygon(45% 0,55% 0,100% 100%,0 100%);transform-origin:50% 0;}
+.ljn-spot--l{left:4%;animation:ljnSwingL 7s ease-in-out infinite alternate;}
+.ljn-spot--r{right:4%;animation:ljnSwingR 8s ease-in-out infinite alternate;}
+@keyframes ljnSwingL{from{transform:rotate(-24deg);}to{transform:rotate(-6deg);}}
+@keyframes ljnSwingR{from{transform:rotate(24deg);}to{transform:rotate(8deg);}}
+.ljn-staff{position:absolute;left:-5%;width:110%;top:58%;height:140px;z-index:0;opacity:.35;pointer-events:none;}
+.ljn-staff path{fill:none;stroke:#2a0d06;stroke-width:1.4;}
+.ljn-staff g{animation:ljnWave 9s ease-in-out infinite alternate;}
+@keyframes ljnWave{from{transform:translateY(-8px);}to{transform:translateY(10px);}}
+.ljn-notes{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.ljn-notes span{position:absolute;bottom:-40px;font-size:1.6rem;color:rgba(42,13,6,.55);animation:ljnNote 11s linear infinite;}
+.ljn-notes span:nth-child(1){left:8%;animation-delay:0s;}
+.ljn-notes span:nth-child(2){left:22%;animation-delay:-3s;font-size:1.1rem;}
+.ljn-notes span:nth-child(3){left:37%;animation-delay:-7s;font-size:2rem;}
+.ljn-notes span:nth-child(4){left:61%;animation-delay:-1.5s;}
+.ljn-notes span:nth-child(5){left:74%;animation-delay:-5s;font-size:1.2rem;}
+.ljn-notes span:nth-child(6){left:88%;animation-delay:-9s;font-size:1.9rem;}
+@keyframes ljnNote{0%{transform:translateY(0) rotate(-12deg);opacity:0;}10%{opacity:1;}50%{transform:translateY(-45vh) translateX(20px) rotate(10deg);}90%{opacity:.9;}100%{transform:translateY(-95vh) translateX(-10px) rotate(-8deg);opacity:0;}}
+.ljn-paper{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");}
+.ljn-hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 85% 75% at 50% 45%,transparent 45%,rgba(23,9,4,.7) 100%);}
+.ljn-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
+.ljn-presents{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.8em;text-transform:uppercase;color:#2a0d06;margin-bottom:1rem;padding-left:.8em;}
+.ljn-title{line-height:.82;margin-bottom:1.6rem;}
+.ljn-title-top{display:block;font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(3.6rem,13vw,10rem);letter-spacing:.08em;color:#f7e9c8;
+  text-shadow:4px 4px 0 #2a0d06,8px 8px 0 rgba(42,13,6,.35);padding-left:.08em;}
+.ljn-title-bot{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(2.8rem,9vw,6.6rem);color:#2a0d06;margin-top:.2em;letter-spacing:.01em;}
+.ljn-tag{font-size:.7rem;line-height:2;color:#2a0d06;max-width:520px;margin-bottom:2rem;font-weight:700;}
+.ljn-badge{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:#f7e9c8;background:#2a0d06;padding:1rem 1.6rem;box-shadow:5px 5px 0 rgba(42,13,6,.35);}
+.ljn-badge b{color:#f2b33d;font-weight:400;}
+.ljn-keys{position:absolute;left:0;right:0;bottom:0;height:64px;z-index:2;border-top:3px solid #2a0d06;
+  background:
+    linear-gradient(90deg,transparent 0 17px,#1a0805 17px 31px,transparent 31px 41px,#1a0805 41px 55px,transparent 55px 89px,#1a0805 89px 103px,transparent 103px 113px,#1a0805 113px 127px,transparent 127px 137px,#1a0805 137px 151px,transparent 151px 168px) 0 0/168px 62% repeat-x,
+    repeating-linear-gradient(90deg,#f3e3c3 0 23px,#9a7a52 23px 24px);}
+/* Body */
+.ljn-body{padding:1rem 1.6rem 7rem;background:linear-gradient(180deg,#170904 0%,#230d06 50%,#170904 100%);}
+.ljn-sec{max-width:880px;margin:0 auto;padding:4.5rem 0 0;text-align:center;}
+.ljn-sec-eb{font-family:'Space Mono',monospace;font-size:.4rem;letter-spacing:.5em;text-transform:uppercase;color:#f2b33d;margin-bottom:.8rem;}
+.ljn-sec-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1;color:#f7e9c8;margin-bottom:1.6rem;}
+.ljn-sec-h em{font-style:normal;font-weight:600;color:#e8742a;}
+.ljn-p{font-size:.64rem;line-height:2.05;color:rgba(243,227,195,.75);max-width:600px;margin:0 auto 2.4rem;}
+.ljn-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid #e8742a;max-width:900px;margin:0 auto;background:#1d0b05;box-shadow:8px 8px 0 rgba(184,50,31,.45);}
+.ljn-fact{padding:1.6rem 1.1rem;display:flex;flex-direction:column;gap:.5rem;border-right:1px solid rgba(232,116,42,.35);}
+.ljn-fact:last-child{border-right:none;}
+.ljn-fact-l{font-family:'Space Mono',monospace;font-size:.36rem;letter-spacing:.32em;text-transform:uppercase;color:#f2b33d;}
+.ljn-fact-v{font-family:'Cormorant Garamond',serif;font-size:1.12rem;line-height:1.3;color:#f7e9c8;}
+.ljn-records{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;justify-items:center;}
+.ljn-record{width:min(170px,38vw);aspect-ratio:1;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle,transparent 0 31%,#0e0503 31.5%),repeating-radial-gradient(circle,#140704 0 2px,#241008 2px 3px);
+  box-shadow:0 10px 30px rgba(0,0,0,.5);animation:ljnSpin2 8s linear infinite;animation-play-state:paused;}
+.ljn-record:hover{animation-play-state:running;}
+@media(hover:none){.ljn-record{animation-play-state:running;animation-duration:14s;}}
+@keyframes ljnSpin2{to{transform:rotate(360deg);}}
+.ljn-record::after{content:'';position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent 40%,rgba(255,255,255,.05) 60%,transparent);}
+.ljn-label{width:44%;aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:.3rem;
+  font-family:'Space Mono',monospace;font-size:.36rem;letter-spacing:.14em;text-transform:uppercase;color:#2a0d06;font-weight:700;box-shadow:inset 0 0 0 3px rgba(42,13,6,.25);}
+.ljn-label--a{background:#f2b33d;} .ljn-label--b{background:#e8742a;} .ljn-label--c{background:#f3e3c3;} .ljn-label--d{background:#c93a23;color:#f7e9c8;}
+.ljn-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;text-align:left;}
+.ljn-card{background:#f3e3c3;color:#2a0d06;padding:2rem 1.7rem;display:flex;flex-direction:column;gap:.7rem;box-shadow:6px 6px 0 #b8321f;transition:transform .25s,box-shadow .25s;}
+.ljn-card:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 #e8742a;}
+.ljn-card-n{font-family:'Unbounded',sans-serif;font-weight:700;font-size:.62rem;color:#b8321f;}
+.ljn-card-t{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.4rem;line-height:1.1;}
+.ljn-card-d{font-size:.57rem;line-height:1.9;color:rgba(42,13,6,.78);}
+.ljn-involve{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;text-align:left;}
+.ljn-involve .ljn-card{background:#1d0b05;color:#f3e3c3;border:2px solid #e8742a;box-shadow:6px 6px 0 rgba(184,50,31,.55);}
+.ljn-involve .ljn-card-d{color:rgba(243,227,195,.72);}
+.ljn-btn{align-self:flex-start;margin-top:.6rem;font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:#2a0d06;background:#f2b33d;border:none;padding:.95rem 1.35rem;cursor:none;box-shadow:4px 4px 0 #b8321f;transition:transform .2s,box-shadow .2s,background .2s;}
+.ljn-btn:hover{background:#e8742a;transform:translate(-2px,-2px);box-shadow:6px 6px 0 #b8321f;}
+@media(max-width:800px){
+  .ljn-facts,.ljn-records{grid-template-columns:1fr 1fr;}
+  .ljn-fact:nth-child(2){border-right:none;}
+  .ljn-fact:nth-child(-n+2){border-bottom:1px solid rgba(232,116,42,.35);}
+  .ljn-cards,.ljn-involve{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){
+  .ljn-sun,.ljn-spot,.ljn-staff g,.ljn-notes span,.ljn-record{animation:none;}
+}
+/* ── NEX UP — curated monthly showcase: intimate room, warm red stage wash ── */
+#ms-nex-up{background:#0c0605;color:#f2e8da;}
+.nxu-hero{position:relative;min-height:88vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 1.6rem 6rem;isolation:isolate;}
+.nxu-room{position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 0%,rgba(226,72,44,.55),rgba(226,72,44,0) 70%),
+    radial-gradient(ellipse 40% 30% at 50% 100%,rgba(242,160,70,.14),transparent 70%),
+    repeating-linear-gradient(90deg,rgba(0,0,0,.35) 0 14px,rgba(0,0,0,0) 30px,rgba(255,140,100,.03) 40px,rgba(0,0,0,.25) 58px),
+    linear-gradient(180deg,#2a0906 0%,#160605 55%,#0c0605 100%);
+  animation:nxuBreathe 9s ease-in-out infinite alternate;}
+.nxu-room::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 45%,transparent 40%,rgba(12,6,5,.8) 100%);}
+@keyframes nxuBreathe{from{filter:brightness(.92);}to{filter:brightness(1.08);}}
+.nxu-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:640px;}
+.nxu-eb{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(242,232,218,.6);margin-bottom:1.4rem;}
+.nxu-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(4rem,13vw,9.5rem);line-height:.85;letter-spacing:-.02em;color:#f2e8da;margin-bottom:1.4rem;}
+.nxu-title em{font-style:italic;color:#e2482c;}
+.nxu-lede{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.6rem);line-height:1.4;color:#f2e8da;margin-bottom:1rem;}
+.nxu-p{font-size:.64rem;line-height:2.05;color:rgba(242,232,218,.72);max-width:500px;margin-bottom:2.2rem;}
+.nxu-ctas{display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap;justify-content:center;}
+.nxu-btn{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:#0c0605;background:#f2e8da;border:none;padding:1.05rem 1.8rem;cursor:none;transition:background .25s,color .25s,box-shadow .25s;}
+.nxu-btn:hover{background:#e2482c;color:#f2e8da;box-shadow:0 0 30px rgba(226,72,44,.4);}
+.nxu-btn:disabled{opacity:.6;}
+.nxu-link{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:#f2e8da;text-decoration:none;border-bottom:1px solid rgba(226,72,44,.6);padding-bottom:3px;cursor:none;transition:color .2s;}
+.nxu-link:hover{color:#e2482c;}
+.nxu-body{padding:0 1.6rem 7rem;background:linear-gradient(180deg,#0c0605 0%,#140807 50%,#0c0605 100%);}
+.nxu-facts{display:grid;grid-template-columns:repeat(4,1fr);max-width:900px;margin:0 auto;border-top:1px solid rgba(242,232,218,.14);border-bottom:1px solid rgba(242,232,218,.14);}
+.nxu-fact{padding:1.6rem 1rem;text-align:center;display:flex;flex-direction:column;gap:.5rem;border-right:1px solid rgba(242,232,218,.1);}
+.nxu-fact:last-child{border-right:none;}
+.nxu-fact-l{font-family:'Space Mono',monospace;font-size:.36rem;letter-spacing:.32em;text-transform:uppercase;color:#e2482c;}
+.nxu-fact-v{font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.3;color:#f2e8da;}
+.nxu-sec{max-width:900px;margin:0 auto;padding:5rem 0 0;text-align:center;}
+#nxu-submit{scroll-margin-top:6rem;}
+.nxu-sec-eb{font-family:'Space Mono',monospace;font-size:.4rem;letter-spacing:.44em;text-transform:uppercase;color:#e2482c;margin-bottom:.9rem;}
+.nxu-sec-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.1rem,5.2vw,3.5rem);line-height:1.02;color:#f2e8da;margin-bottom:1.2rem;}
+.nxu-sec-h em{font-style:italic;color:#e2482c;}
+.nxu-sec-p{font-size:.62rem;line-height:2.05;color:rgba(242,232,218,.7);max-width:560px;margin:0 auto 2.6rem;}
+.nxu-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem;text-align:left;}
+.nxu-step{border-top:1px solid rgba(226,72,44,.5);padding-top:1.4rem;display:flex;flex-direction:column;gap:.6rem;}
+.nxu-step-n{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2.4rem;line-height:1;color:#e2482c;}
+.nxu-step-t{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.35rem;color:#f2e8da;}
+.nxu-step-d{font-size:.56rem;line-height:1.9;color:rgba(242,232,218,.66);}
+.nxu-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;max-width:720px;margin:0 auto;}
+.nxu-tags span{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;color:#f2e8da;border:1px solid rgba(242,232,218,.22);padding:.7rem 1.1rem;border-radius:999px;transition:border-color .2s,background .2s;}
+.nxu-tags span:hover{border-color:#e2482c;background:rgba(226,72,44,.1);}
+.nxu-form{margin:0 auto;padding:2.4rem 2.2rem;background:rgba(242,232,218,.03);border:1px solid rgba(242,232,218,.14);position:relative;}
+.nxu-form::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e2482c,transparent);}
+.nxu-form .ms-inp{background:rgba(242,232,218,.04);border:1px solid rgba(242,232,218,.16);color:#f2e8da;}
+.nxu-form .ms-inp::placeholder{color:rgba(242,232,218,.35);}
+.nxu-form .ms-inp:focus{border-color:#e2482c;background:rgba(226,72,44,.06);}
+.nxu-form select.ms-inp{appearance:none;-webkit-appearance:none;cursor:none;}
+.nxu-form select.ms-inp:invalid{color:rgba(242,232,218,.35);}
+.nxu-form select.ms-inp option{color:#0c0605;}
+.nxu-form .nxu-btn{align-self:flex-start;margin-top:.4rem;}
+.nxu-form-note{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.06em;line-height:1.8;color:rgba(242,232,218,.5);}
+@media(max-width:800px){
+  .nxu-facts{grid-template-columns:1fr 1fr;}
+  .nxu-fact:nth-child(2){border-right:none;}
+  .nxu-fact:nth-child(-n+2){border-bottom:1px solid rgba(242,232,218,.1);}
+  .nxu-steps{grid-template-columns:1fr;gap:1.6rem;}
+  .nxu-form{padding:1.8rem 1.2rem;}
+}
+@media(prefers-reduced-motion:reduce){.nxu-room{animation:none;}}
 
-/* ── MEL'S ROOM — fairy / whimsical ── */
-#ms-mels-room .ms-next{
-  background:linear-gradient(150deg,#120200 0%,#1e0600 45%,#0e0100 100%);
+/* ── UC SERIES · BEHIND THE CURTAIN — sheer curtains, projection, haze ── */
+#ms-uc-series{position:relative;background:#070506;color:#efe6da;}
+.btc-smoke{position:sticky;top:0;display:block;width:100%;height:100vh;margin-bottom:-100vh;pointer-events:none;z-index:4;mix-blend-mode:screen;}
+.btc-hero{position:relative;min-height:94vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.6rem 8rem;isolation:isolate;}
+.btc-stage{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.btc-light{position:absolute;left:50%;top:44%;width:min(900px,120vw);height:min(560px,80vh);transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center,rgba(239,230,218,.16) 0%,rgba(239,230,218,.05) 40%,transparent 70%);
+  animation:btcFlicker 7s steps(1,end) infinite;}
+.btc-curtains{position:absolute;inset:-4% -2% 0;display:flex;}
+.btc-panel{flex:1;transform-origin:50% 0;
+  background:linear-gradient(90deg,rgba(239,230,218,0),rgba(239,230,218,.16) 26%,rgba(239,230,218,.02) 50%,rgba(239,230,218,.13) 76%,rgba(239,230,218,0));
+  animation:btcBillow 8s ease-in-out infinite alternate;}
+.btc-panel:nth-child(2){animation-duration:10s;animation-delay:-3s;}
+.btc-panel:nth-child(3){animation-duration:7s;animation-delay:-5s;}
+.btc-panel:nth-child(4){animation-duration:11s;animation-delay:-1s;}
+.btc-panel:nth-child(5){animation-duration:9s;animation-delay:-6s;}
+.btc-panel:nth-child(6){animation-duration:8.5s;animation-delay:-2s;}
+.btc-panel:nth-child(7){animation-duration:12s;animation-delay:-4s;}
+@keyframes btcBillow{from{transform:skewX(-2deg) scaleX(1);opacity:.85;}to{transform:skewX(2.2deg) scaleX(1.06);opacity:1;}}
+.btc-fog{position:absolute;left:-20%;right:-20%;bottom:-18%;height:60%;filter:blur(40px);
+  background:radial-gradient(ellipse 50% 60% at 35% 70%,rgba(200,50,30,.42),transparent 70%),radial-gradient(ellipse 45% 55% at 70% 80%,rgba(160,30,25,.35),transparent 70%);
+  animation:btcFogDrift 18s ease-in-out infinite alternate;}
+@keyframes btcFogDrift{from{transform:translateX(-4%) scale(1);}to{transform:translateX(5%) scale(1.12);}}
+.btc-grain{position:absolute;inset:-50%;opacity:.1;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:btcGrain .9s steps(4) infinite;}
+@keyframes btcGrain{0%{transform:translate(0,0);}25%{transform:translate(-4%,3%);}50%{transform:translate(3%,-4%);}75%{transform:translate(-2%,-2%);}100%{transform:translate(0,0);}}
+@keyframes btcFlicker{0%,100%{opacity:1;}5%{opacity:.6;}7%{opacity:1;}46%{opacity:.82;}48%{opacity:1;}81%{opacity:.5;}82%{opacity:.95;}}
+.btc-hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 75% 65% at 50% 45%,transparent 35%,rgba(7,5,6,.85) 85%),linear-gradient(180deg,rgba(7,5,6,.6) 0%,transparent 18%,transparent 72%,#070506 100%);}
+.btc-hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
+.btc-eb{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(239,230,218,.7);margin-bottom:1.4rem;}
+/* The title reads like light projected onto fabric */
+.btc-projected{position:relative;margin-bottom:1.6rem;}
+.btc-projected::after{content:'';position:absolute;inset:-6% -4%;pointer-events:none;mix-blend-mode:multiply;
+  background:repeating-linear-gradient(90deg,rgba(7,5,6,.28) 0 4px,transparent 4px 13px,rgba(7,5,6,.12) 13px 19px,transparent 19px 30px);
+  -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 50%,#000 40%,transparent 75%);mask-image:radial-gradient(ellipse 60% 55% at 50% 50%,#000 40%,transparent 75%);
+  animation:btcBillow 9s ease-in-out infinite alternate;}
+.btc-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3.4rem,11vw,8.6rem);line-height:.86;letter-spacing:-.01em;color:#f4ece2;
+  text-shadow:0 0 28px rgba(239,230,218,.35),0 0 90px rgba(239,230,218,.15);animation:btcFlicker 7s steps(1,end) infinite,btcDrift 12s ease-in-out infinite alternate;}
+.btc-title em{font-style:italic;color:#e8503a;text-shadow:0 0 30px rgba(232,80,58,.5);}
+@keyframes btcDrift{from{transform:translateX(-4px);filter:blur(.2px);}to{transform:translateX(4px);filter:blur(.7px);}}
+.btc-lede{font-size:.68rem;line-height:2.05;color:rgba(239,230,218,.8);max-width:500px;margin-bottom:2rem;}
+.btc-date{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:#f4ece2;padding:.9rem 1.5rem;border:1px solid rgba(239,230,218,.3);background:rgba(7,5,6,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+.btc-date b{color:#e8503a;font-weight:400;}
+.btc-cue{position:absolute;bottom:2.4rem;left:50%;transform:translateX(-50%);z-index:2;font-family:'Space Mono',monospace;font-size:.38rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(239,230,218,.45);animation:btcCue 2.6s ease-in-out infinite;}
+@keyframes btcCue{0%,100%{opacity:.35;transform:translate(-50%,0);}50%{opacity:.8;transform:translate(-50%,6px);}}
+/* Body */
+.btc-body{position:relative;z-index:2;padding:1rem 1.6rem 7rem;background:linear-gradient(180deg,#070506 0%,#0d0708 50%,#070506 100%);}
+.btc-sec{max-width:860px;margin:0 auto;padding:4.5rem 0 0;text-align:center;}
+.btc-sec-eb{font-family:'Space Mono',monospace;font-size:.4rem;letter-spacing:.44em;text-transform:uppercase;color:rgba(232,80,58,.8);margin-bottom:.8rem;}
+.btc-sec-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1;color:#f4ece2;margin-bottom:1.6rem;}
+.btc-sec-h em{font-style:normal;font-weight:600;color:#e8503a;}
+.btc-p{font-size:.64rem;line-height:2.05;color:rgba(239,230,218,.72);max-width:600px;margin:0 auto 2.2rem;}
+.btc-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(239,230,218,.12);border:1px solid rgba(239,230,218,.12);padding:0;max-width:900px;margin:0 auto;}
+.btc-fact{background:#0a0708;padding:1.6rem 1.2rem;display:flex;flex-direction:column;gap:.5rem;text-align:center;}
+.btc-fact-l{font-family:'Space Mono',monospace;font-size:.36rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(232,80,58,.75);}
+.btc-fact-v{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:1.3;color:#f4ece2;}
+.btc-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;text-align:left;}
+.btc-card{border:1px solid rgba(239,230,218,.13);background:rgba(239,230,218,.025);padding:2rem 1.7rem;display:flex;flex-direction:column;gap:.7rem;transition:border-color .3s,background .3s;}
+.btc-card:hover{border-color:rgba(232,80,58,.45);background:rgba(232,80,58,.05);}
+.btc-card-n{font-family:'Space Mono',monospace;font-size:.4rem;letter-spacing:.3em;color:rgba(232,80,58,.8);}
+.btc-card-t{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.35rem;line-height:1.15;color:#f4ece2;}
+.btc-card-d{font-size:.57rem;line-height:1.9;color:rgba(239,230,218,.66);}
+.btc-moods{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;text-align:left;}
+.btc-mood{display:flex;flex-direction:column;gap:.7rem;}
+.btc-sw{height:150px;position:relative;overflow:hidden;background:#0b0708;border:1px solid rgba(239,230,218,.1);}
+.btc-sw--curtain{background:repeating-linear-gradient(90deg,rgba(239,230,218,.2) 0 9px,rgba(239,230,218,.05) 9px 20px,rgba(239,230,218,.14) 20px 26px,rgba(239,230,218,.03) 26px 38px),#0b0708;}
+.btc-sw--curtain::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,7,8,0),rgba(11,7,8,.7));animation:btcBillow 6s ease-in-out infinite alternate;}
+.btc-sw--projection::before{content:'';position:absolute;inset:18% 14%;background:radial-gradient(ellipse at 40% 45%,rgba(244,236,226,.75),rgba(244,236,226,.15) 45%,transparent 70%),radial-gradient(ellipse at 65% 55%,rgba(244,236,226,.45),transparent 60%);filter:grayscale(1) blur(2px);animation:btcFlicker 5s steps(1,end) infinite;}
+.btc-sw--projection::after{content:'';position:absolute;inset:0;mix-blend-mode:multiply;background:repeating-linear-gradient(90deg,rgba(11,7,8,.5) 0 3px,transparent 3px 9px);}
+.btc-sw--haze::before{content:'';position:absolute;inset:-30%;filter:blur(18px);background:radial-gradient(ellipse at 40% 80%,rgba(220,50,30,.75),transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(170,30,25,.5),transparent 60%);animation:btcFogDrift 9s ease-in-out infinite alternate;}
+.btc-sw--candle::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 18% 78%,rgba(255,196,90,.95) 0 3px,rgba(255,170,60,.25) 4px,transparent 22px),radial-gradient(circle at 34% 70%,rgba(255,196,90,.95) 0 3px,rgba(255,170,60,.25) 4px,transparent 22px),radial-gradient(circle at 52% 80%,rgba(255,196,90,.95) 0 3px,rgba(255,170,60,.25) 4px,transparent 22px),radial-gradient(circle at 68% 66%,rgba(255,196,90,.95) 0 3px,rgba(255,170,60,.25) 4px,transparent 22px),radial-gradient(circle at 84% 76%,rgba(255,196,90,.95) 0 3px,rgba(255,170,60,.25) 4px,transparent 22px),radial-gradient(ellipse at 50% 100%,rgba(255,150,50,.35),transparent 70%);
+  animation:btcCandle 1.6s ease-in-out infinite alternate;}
+@keyframes btcCandle{0%{opacity:.8;}40%{opacity:1;}60%{opacity:.88;}100%{opacity:.97;}}
+.btc-mood-t{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.15rem;color:#f4ece2;}
+.btc-mood-d{font-size:.54rem;line-height:1.85;color:rgba(239,230,218,.62);}
+.btc-involve{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;text-align:left;}
+.btc-involve .btc-card{padding:2.4rem 2rem;}
+.btc-btn{align-self:flex-start;margin-top:.6rem;font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.22em;text-transform:uppercase;color:#f4ece2;background:transparent;border:1px solid rgba(232,80,58,.6);padding:.95rem 1.35rem;cursor:none;transition:background .22s,color .22s,box-shadow .22s;}
+.btc-btn:hover{background:#e8503a;color:#070506;box-shadow:0 0 28px rgba(232,80,58,.45);}
+.btc-note{font-size:.52rem;line-height:1.9;color:rgba(239,230,218,.5);margin-top:1.8rem;}
+.btc-note a{color:#f4ece2;text-decoration:none;border-bottom:1px solid rgba(232,80,58,.5);cursor:none;}
+.btc-close{max-width:860px;margin:0 auto;padding:6rem 0 0;text-align:center;}
+.btc-close-t{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(2rem,5vw,3.4rem);color:#f4ece2;text-shadow:0 0 30px rgba(239,230,218,.25);margin-bottom:1rem;}
+.btc-close-s{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(239,230,218,.55);}
+@media(max-width:800px){
+  .btc-facts,.btc-moods{grid-template-columns:1fr 1fr;}
+  .btc-grid3,.btc-involve{grid-template-columns:1fr;}
 }
-#ms-mels-room .ms-next::before{
-  content:'✦';
-  position:absolute;top:0;left:0;right:0;bottom:0;
-  font-size:1rem;color:rgba(255,120,40,.07);
-  letter-spacing:4rem;line-height:5.5rem;word-break:break-all;
-  pointer-events:none;z-index:0;
-  animation:fairyDrift 18s ease-in-out infinite alternate;
+@media(prefers-reduced-motion:reduce){
+  .btc-light,.btc-panel,.btc-fog,.btc-grain,.btc-title,.btc-projected::after,.btc-cue,.btc-sw--curtain::after,.btc-sw--projection::before,.btc-sw--haze::before,.btc-sw--candle::before{animation:none;}
 }
-@keyframes fairyDrift{
-  from{transform:translateY(0) rotate(0deg);}
-  to{transform:translateY(-24px) rotate(4deg);}
-}
-.mels-glow{
-  position:absolute;top:20%;left:55%;
-  width:clamp(260px,40vw,480px);height:clamp(260px,40vw,480px);
-  background:radial-gradient(circle,rgba(255,90,30,.13) 0%,rgba(200,50,10,.06) 45%,transparent 72%);
-  border-radius:50%;pointer-events:none;z-index:0;
-  animation:fairyPulse 6s ease-in-out infinite alternate;
-}
-@keyframes fairyPulse{from{opacity:.6;transform:scale(1);}to{opacity:1;transform:scale(1.12);}}
-.mels-sparkle{
-  position:absolute;pointer-events:none;z-index:0;
-  font-size:.7rem;color:rgba(255,150,60,.65);
-  animation:sparklePop 3s ease-in-out infinite;
-}
-@keyframes sparklePop{
-  0%,100%{opacity:0;transform:scale(.4) translateY(0);}
-  50%{opacity:1;transform:scale(1) translateY(-10px);}
-}
-#ms-mels-room .ms-next>*{position:relative;z-index:1;}
-#ms-mels-room .mels-glow,
-#ms-mels-room .mels-sparkle{position:absolute;z-index:0;}
-#ms-mels-room .ms-eb{color:rgba(255,140,60,.65);letter-spacing:.6em;}
-#ms-mels-room .ms-h{font-style:italic;color:#fff0e8;}
-#ms-mels-room .ms-h em{color:#ff7832;font-style:normal;}
-#ms-mels-room .ms-p{color:rgba(255,220,190,.78);}
-.mels-concept{font-family:'Cormorant Garamond',serif;font-size:.88rem;line-height:2;color:rgba(255,210,180,.72);max-width:560px;margin-bottom:2.5rem;font-style:italic;position:relative;z-index:1;}
-.mels-what-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,100,40,.08);max-width:680px;margin-bottom:2.5rem;position:relative;z-index:1;}
-.mels-what-item{background:#0e0200;padding:1.6rem 1.8rem;display:flex;flex-direction:column;gap:.6rem;}
-.mels-what-label{font-size:.42rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,140,60,.65);}
-.mels-what-val{font-size:.62rem;line-height:1.85;color:rgba(255,210,180,.72);}
-.mels-past-label{font-size:.42rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,140,60,.55);margin-bottom:1.2rem;position:relative;z-index:1;}
-.mels-locations{display:flex;flex-direction:column;gap:.5rem;max-width:560px;margin-bottom:2.5rem;position:relative;z-index:1;}
-.mels-loc{font-family:'Cormorant Garamond',serif;font-size:.78rem;line-height:1.7;color:rgba(255,210,180,.65);padding:.5rem 0;border-bottom:1px solid rgba(255,100,40,.1);}
-.mels-loc::before{content:'✦ ';color:rgba(255,140,60,.45);font-size:.55rem;}
-.mels-follow-block{max-width:480px;margin-bottom:3rem;position:relative;z-index:1;}
-.mels-follow-title{font-size:.42rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,140,60,.65);margin-bottom:1rem;}
-.mels-follow-p{font-size:.66rem;line-height:2;color:rgba(255,210,180,.72);margin-bottom:1.2rem;}
-.mels-follow-link{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:#ff7832;text-decoration:none;border-bottom:1px solid rgba(255,120,50,.35);padding-bottom:2px;transition:color .2s,border-color .2s;}
-.mels-follow-link:hover{color:#ffaa60;border-color:rgba(255,160,80,.6);}
-#ms-mels-room .ms-rule{background:linear-gradient(90deg,transparent,rgba(255,100,30,.32),transparent);}
-#ms-mels-room .event-card{border-color:rgba(255,100,40,.15);background:rgba(180,50,10,.04);}
-#ms-mels-room .event-card:hover{border-color:rgba(255,120,50,.4);background:rgba(200,60,10,.06);box-shadow:0 0 30px rgba(255,80,20,.1);}
-#ms-mels-room .event-card::before{background:linear-gradient(90deg,#ff6020,rgba(255,100,30,.1),transparent);}
-#ms-mels-room .event-tag{color:rgba(255,140,60,.6);}
-#ms-mels-room .event-title{font-style:italic;}
-#ms-mels-room .event-title em{color:#ff7832;font-style:normal;}
-#ms-mels-room .event-meta-label{color:rgba(255,120,50,.5);}
-#ms-mels-room .event-ticket-badge{color:rgba(255,140,60,.6);border-color:rgba(255,100,40,.2);}
-#ms-mels-room .event-card:hover .event-ticket-badge{color:#ff7832;border-color:rgba(255,120,50,.48);}
-#ms-mels-room .event-desc{color:rgba(255,210,180,.72);}
 
 
 /* ── ARTIST WORKSHOPS — electric teal ── */
@@ -971,10 +1138,9 @@ body{
     <div class="music-subnav">
       <button class="msnav-btn active" data-msub="ms-artists">The Artists</button>
       <button class="msnav-btn" data-msub="ms-latin-jazz">Latin Jazz Night</button>
-      <button class="msnav-btn" data-msub="ms-mels-room">Mel's Room</button>
+      <button class="msnav-btn" data-msub="ms-uc-series">UC Series</button>
       <!-- Artist Workshops hidden for now: <button class="msnav-btn" data-msub="ms-workshops">Artist Workshops</button> -->
       <button class="msnav-btn" data-msub="ms-nex-up">Nex Up</button>
-      <button class="msnav-btn" data-msub="ms-submit">Submit</button>
     </div>
     <div class="music-sub msactive" id="ms-artists">
     <div class="music-hero-sec">
@@ -1316,110 +1482,163 @@ body{
 
     <!-- LATIN JAZZ NIGHT -->
     <div class="music-sub" id="ms-latin-jazz">
-      <div class="ms-next">
-        <div class="ms-eb">Nexus &nbsp;·&nbsp; Latin Jazz Night</div>
-        <h1 class="ms-h">Latin<br><em>Jazz Night</em></h1>
-        <p class="ms-p">Latin rhythm and jazz improvisation sharing one stage. Two traditions that have always spoken to each other — now with a dedicated monthly home in San Diego.</p>
-        <div class="ms-rule"></div>
-        <div class="event-cards">
-          <div class="event-card">
-            <div class="event-tag">Monthly Series &nbsp;·&nbsp; Launching August 2026</div>
-            <div class="event-title">Nexus<br><em>Latin Jazz Night</em></div>
-            <div class="event-meta">
-              <div class="event-meta-row"><span class="event-meta-label">Launch</span><span class="event-meta-val">August 2026</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Frequency</span><span class="event-meta-val">Monthly</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; TBA</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Format</span><span class="event-meta-val">Live Ensemble &amp; Improvisation</span></div>
-            </div>
-            <div class="event-ticket-badge">More Details Coming Soon</div>
-            <div class="event-desc">Cumbia, salsa, bossa nova, and bebop in real-time conversation. A monthly night where live musicians carry the room — no backing tracks, no DJ set. Just improvisation, presence, and the kind of music that makes you feel it. Launching August 2026. More details on @n3xus.now.</div>
-          </div>
+      <section class="ljn-hero">
+        <div class="ljn-sun" aria-hidden="true"></div>
+        <div class="ljn-spot ljn-spot--l" aria-hidden="true"></div>
+        <div class="ljn-spot ljn-spot--r" aria-hidden="true"></div>
+        <svg class="ljn-staff" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><g>
+          <path d="M0 40 C200 10 400 70 600 40 S1000 10 1200 40"/>
+          <path d="M0 55 C200 25 400 85 600 55 S1000 25 1200 55"/>
+          <path d="M0 70 C200 40 400 100 600 70 S1000 40 1200 70"/>
+          <path d="M0 85 C200 55 400 115 600 85 S1000 55 1200 85"/>
+          <path d="M0 100 C200 70 400 130 600 100 S1000 70 1200 100"/>
+        </g></svg>
+        <div class="ljn-notes" aria-hidden="true"><span>♪</span><span>♫</span><span>♩</span><span>♬</span><span>♪</span><span>♫</span></div>
+        <div class="ljn-paper" aria-hidden="true"></div>
+        <div class="ljn-inner">
+          <div class="ljn-presents">Nexus Presents</div>
+          <h1 class="ljn-title"><span class="ljn-title-top">LATIN</span><span class="ljn-title-bot">Jazz Night</span></h1>
+          <p class="ljn-tag">Latin rhythm and jazz improvisation sharing one stage. Two traditions that have always spoken to each other, now with a monthly home in San Diego.</p>
+          <div class="ljn-badge"><b>Launching November 2026</b> &nbsp;·&nbsp; Monthly &nbsp;·&nbsp; San Diego</div>
         </div>
+        <div class="ljn-keys" aria-hidden="true"></div>
+      </section>
+
+      <div class="ljn-body">
+        <div class="ljn-facts">
+          <div class="ljn-fact"><div class="ljn-fact-l">Launch</div><div class="ljn-fact-v">November 2026</div></div>
+          <div class="ljn-fact"><div class="ljn-fact-l">Frequency</div><div class="ljn-fact-v">Monthly</div></div>
+          <div class="ljn-fact"><div class="ljn-fact-l">Venue</div><div class="ljn-fact-v">San Diego, CA<br>To be announced</div></div>
+          <div class="ljn-fact"><div class="ljn-fact-l">Format</div><div class="ljn-fact-v">Live ensemble &amp; improvisation</div></div>
+        </div>
+
+        <section class="ljn-sec">
+          <div class="ljn-sec-eb">On the Record</div>
+          <h2 class="ljn-sec-h">The <em>Sound</em></h2>
+          <p class="ljn-p">Cumbia, salsa, bossa nova, and bebop in real-time conversation, all on the same stage.</p>
+          <div class="ljn-records">
+            <div class="ljn-record"><div class="ljn-label ljn-label--a">Cumbia</div></div>
+            <div class="ljn-record"><div class="ljn-label ljn-label--b">Salsa</div></div>
+            <div class="ljn-record"><div class="ljn-label ljn-label--c">Bossa Nova</div></div>
+            <div class="ljn-record"><div class="ljn-label ljn-label--d">Bebop</div></div>
+          </div>
+        </section>
+
+        <section class="ljn-sec">
+          <div class="ljn-sec-eb">The Night</div>
+          <h2 class="ljn-sec-h">Live, loud, <em>and in the moment</em></h2>
+          <div class="ljn-cards">
+            <div class="ljn-card"><div class="ljn-card-n">01</div><div class="ljn-card-t">Live Musicians Only</div><div class="ljn-card-d">No backing tracks, no DJ set. Horns, keys, bass, and percussion carry the room from the first note.</div></div>
+            <div class="ljn-card"><div class="ljn-card-n">02</div><div class="ljn-card-t">Made for Dancing</div><div class="ljn-card-d">The floor is part of the stage. When the rhythm section locks in, the room moves with it.</div></div>
+            <div class="ljn-card"><div class="ljn-card-n">03</div><div class="ljn-card-t">A Monthly Home</div><div class="ljn-card-d">Every month, a new lineup and the same heat. A night San Diego can come back to.</div></div>
+          </div>
+        </section>
+
+        <section class="ljn-sec">
+          <div class="ljn-sec-eb">Get Involved</div>
+          <h2 class="ljn-sec-h">Join the <em>Band</em></h2>
+          <div class="ljn-involve">
+            <div class="ljn-card">
+              <div class="ljn-card-n">Musicians</div>
+              <div class="ljn-card-t">Play Latin Jazz Night</div>
+              <div class="ljn-card-d">Horn players, pianists, bassists, percussionists, and vocalists: we're building the lineup for November.</div>
+              <button class="ljn-btn" type="button" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Latin Jazz Night - Musician Submission'">Submit Your Music →</button>
+            </div>
+            <div class="ljn-card">
+              <div class="ljn-card-n">Brands &amp; Venues</div>
+              <div class="ljn-card-t">Partner With Latin Jazz Night</div>
+              <div class="ljn-card-d">We're looking for brands, restaurants, bars, and venues that want to reach San Diego's live-music crowd every month. Host a night in your space, present the series, or activate on site with product, drinks, or an experience, in front of an audience that comes to listen, dance, and stay late.</div>
+              <button class="ljn-btn" type="button" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Latin Jazz Night - Partnership'">Become a Partner →</button>
+            </div>
+          </div>
+          <p class="ljn-p" style="margin-top:2.4rem;margin-bottom:0;">More details on <span style="color:#f2b33d;">@n3xus.now</span></p>
+        </section>
       </div>
     </div><!-- /ms-latin-jazz -->
 
-    <!-- MEL'S ROOM -->
-    <div class="music-sub" id="ms-mels-room">
-      <div class="ms-next">
-        <div class="mels-glow"></div>
-        <span class="mels-sparkle" style="top:12%;left:8%;animation-delay:0s;">✦</span>
-        <span class="mels-sparkle" style="top:28%;left:82%;animation-delay:1.1s;">✧</span>
-        <span class="mels-sparkle" style="top:55%;left:15%;animation-delay:2.3s;">✦</span>
-        <span class="mels-sparkle" style="top:72%;left:70%;animation-delay:.7s;">✧</span>
-        <span class="mels-sparkle" style="top:18%;left:48%;animation-delay:1.8s;">✦</span>
-        <span class="mels-sparkle" style="top:85%;left:35%;animation-delay:3.1s;">✧</span>
-
-        <div class="ms-eb">Nexus &nbsp;·&nbsp; Mel's Room &nbsp;✦</div>
-        <h1 class="ms-h"><em>Mel's</em><br>Room</h1>
-        <p class="ms-p">DJ sets in places you wouldn't expect. A rooftop, a bookstore, a parking garage, a garden at midnight — wherever the music feels like it shouldn't be, that's exactly where Mel's Room shows up.</p>
-
-        <div class="ms-rule"></div>
-
-        <p class="mels-concept">The idea is simple: music sounds different when the room surprises you. Mel's Room moves every month — a new location, a new mood, a new crowd. The only thing that stays the same is the quality of the set and the feeling that you found something nobody else knows about yet.</p>
-
-        <div class="mels-what-grid">
-          <div class="mels-what-item">
-            <div class="mels-what-label">The Location</div>
-            <div class="mels-what-val">Secret until 24 hours before. Ticket holders get the address direct. Walk in not knowing what the room looks like — that's the point.</div>
+    <!-- UC SERIES · BEHIND THE CURTAIN -->
+    <div class="music-sub" id="ms-uc-series">
+      <canvas class="btc-smoke" id="btc-smoke" aria-hidden="true"></canvas>
+      <section class="btc-hero">
+        <div class="btc-stage" aria-hidden="true">
+          <div class="btc-light"></div>
+          <div class="btc-curtains">
+            <span class="btc-panel"></span><span class="btc-panel"></span><span class="btc-panel"></span><span class="btc-panel"></span><span class="btc-panel"></span><span class="btc-panel"></span><span class="btc-panel"></span>
           </div>
-          <div class="mels-what-item">
-            <div class="mels-what-label">The Sound</div>
-            <div class="mels-what-val">No genre rules. The DJ decides what the space needs. Sets have gone deep house, Afrobeats, soul, broken beat, jazz fusion — the music follows the room.</div>
-          </div>
-          <div class="mels-what-item">
-            <div class="mels-what-label">The Crowd</div>
-            <div class="mels-what-val">Intentionally small. 40–80 people. No massive venues, no anonymous nights. Everyone in the room found out the same way — they were paying attention.</div>
-          </div>
-          <div class="mels-what-item">
-            <div class="mels-what-label">The Vibe</div>
-            <div class="mels-what-val">No VIP, no bottle service, no dress code beyond showing up as yourself. The music is the main character. Everything else is set dressing.</div>
-          </div>
+          <div class="btc-fog"></div>
+          <div class="btc-grain"></div>
+        </div>
+        <div class="btc-hero-inner">
+          <div class="btc-eb">Nexus × UC San Diego &nbsp;·&nbsp; UC Series, Chapter 01</div>
+          <div class="btc-projected"><h1 class="btc-title">Behind<br><em>the Curtain</em></h1></div>
+          <p class="btc-lede">An evening of live music, performance, and projected light, wrapped in sheer curtains and haze. The launch night of the Nexus UC Series at UC San Diego.</p>
+          <div class="btc-date"><b>Friday, October 30, 2026</b> &nbsp;·&nbsp; UC San Diego</div>
+        </div>
+        <div class="btc-cue" aria-hidden="true">Step inside ↓</div>
+      </section>
+
+      <div class="btc-body">
+        <div class="btc-facts">
+          <div class="btc-fact"><div class="btc-fact-l">Date</div><div class="btc-fact-v">Friday, October 30, 2026</div></div>
+          <div class="btc-fact"><div class="btc-fact-l">Where</div><div class="btc-fact-v">UC San Diego<br>Venue announced soon</div></div>
+          <div class="btc-fact"><div class="btc-fact-l">The Night</div><div class="btc-fact-v">Live music, performance &amp; projection</div></div>
+          <div class="btc-fact"><div class="btc-fact-l">Tickets</div><div class="btc-fact-v">Coming soon<br>Follow @n3xus.now</div></div>
         </div>
 
-        <div class="ms-rule"></div>
+        <section class="btc-sec">
+          <div class="btc-sec-eb">The Night</div>
+          <h2 class="btc-sec-h">A room made of <em>light and fabric</em></h2>
+          <p class="btc-p">Behind The Curtain turns an ordinary space into something you step into. Sheer curtains hang through the room and become screens: film, faces, and words are projected across the fabric while performers move behind and through it. Haze hangs in the air, candles light the corners, and the music carries the night from the first set to the last.</p>
+        </section>
 
-        <div class="mels-past-label">Locations We've Played &nbsp;✦</div>
-        <div class="mels-locations">
-          <div class="mels-loc">A rooftop above Barrio Logan at 2am</div>
-          <div class="mels-loc">A bookstore on a Tuesday night</div>
-          <div class="mels-loc">A parking garage in East Village</div>
-          <div class="mels-loc">A garden behind a restaurant that didn't know we were coming</div>
-          <div class="mels-loc">A warehouse corner in National City</div>
-          <div class="mels-loc">A clearing in Balboa Park</div>
-        </div>
+        <section class="btc-sec">
+          <div class="btc-sec-eb">What We're Building With UCSD</div>
+          <h2 class="btc-sec-h">Chapter 01 <em>starts here</em></h2>
+          <p class="btc-p">Nexus is partnering with the UC San Diego community to build a home for student culture: a night where artists, clubs, and audiences who usually stay in their own circles end up in the same room.</p>
+          <div class="btc-grid3">
+            <div class="btc-card"><div class="btc-card-n">01</div><div class="btc-card-t">A Stage for Student Artists</div><div class="btc-card-d">Real production and a real audience. UCSD musicians, DJs, dancers, and visual artists perform inside a fully designed experience.</div></div>
+            <div class="btc-card"><div class="btc-card-n">02</div><div class="btc-card-t">Every Club, One Room</div><div class="btc-card-d">Music, dance, film, art, and cultural orgs come together to shape the night and bring their communities with them.</div></div>
+            <div class="btc-card"><div class="btc-card-n">03</div><div class="btc-card-t">The Start of Something</div><div class="btc-card-d">Behind The Curtain is the first chapter of the Nexus UC Series, a campus series built to come back and grow with UCSD.</div></div>
+          </div>
+        </section>
 
-        <div class="ms-rule"></div>
+        <section class="btc-sec">
+          <div class="btc-sec-eb">The Atmosphere</div>
+          <h2 class="btc-sec-h">Inside <em>the Room</em></h2>
+          <div class="btc-moods">
+            <div class="btc-mood"><div class="btc-sw btc-sw--curtain" aria-hidden="true"></div><div class="btc-mood-t">Sheer Curtains</div><div class="btc-mood-d">Layers of translucent fabric divide the room into spaces to wander and discover.</div></div>
+            <div class="btc-mood"><div class="btc-sw btc-sw--projection" aria-hidden="true"></div><div class="btc-mood-t">Projections</div><div class="btc-mood-d">Black-and-white film and faces washing across the fabric, larger than life.</div></div>
+            <div class="btc-mood"><div class="btc-sw btc-sw--haze" aria-hidden="true"></div><div class="btc-mood-t">Red Haze</div><div class="btc-mood-d">Low light and fog, with deep red washing over the stage when the music peaks.</div></div>
+            <div class="btc-mood"><div class="btc-sw btc-sw--candle" aria-hidden="true"></div><div class="btc-mood-t">Candlelight</div><div class="btc-mood-d">Warm, flickering corners to slow down, gather, and take it all in.</div></div>
+          </div>
+        </section>
 
-        <div class="event-cards">
-          <div class="event-card">
-            <div class="event-tag">DJ Series &nbsp;·&nbsp; Monthly &nbsp;✧&nbsp; Unexpected Venues</div>
-            <div class="event-title"><em>Mel's</em><br>Room</div>
-            <div class="event-meta">
-              <div class="event-meta-row"><span class="event-meta-label">Frequency</span><span class="event-meta-val">Monthly</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Format</span><span class="event-meta-val">DJ Set &nbsp;·&nbsp; Secret Location</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Capacity</span><span class="event-meta-val">40–80 people &nbsp;·&nbsp; Limited Spots</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Tickets</span><span class="event-meta-val">TBD &nbsp;·&nbsp; Drops on @n3xus.now</span></div>
-              <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; Revealed 24hrs Before</span></div>
+        <section class="btc-sec">
+          <div class="btc-sec-eb">Get Involved</div>
+          <h2 class="btc-sec-h">Step <em>Behind the Curtain</em></h2>
+          <div class="btc-involve">
+            <div class="btc-card">
+              <div class="btc-card-n">UCSD Clubs &amp; Orgs</div>
+              <div class="btc-card-t">Build the Night With Us</div>
+              <div class="btc-card-d">Co-host a moment, bring your members, set up a table, or help shape the programming. We want the night to reflect the whole campus.</div>
+              <button class="btc-btn" type="button" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Behind The Curtain - UCSD Club Collaboration'">Collaborate With Us →</button>
             </div>
-            <div class="event-ticket-badge">Limited Spots &nbsp;✦&nbsp; Location Revealed at Drop</div>
-            <div class="event-desc">Every month, a DJ. Every month, a different place you didn't see coming. A stairwell that echoes. A courtyard behind a restaurant. A warehouse corner. A clearing. The venue is part of the art — the music sounds different when the room surprises you.</div>
+            <div class="btc-card">
+              <div class="btc-card-n">Performers &amp; Artists</div>
+              <div class="btc-card-t">Take the Stage</div>
+              <div class="btc-card-d">Musicians, bands, DJs, dancers, poets, and projection or visual artists: we're curating the lineup now.</div>
+              <button class="btc-btn" type="button" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Behind The Curtain - Performer Application'">Apply to Perform →</button>
+            </div>
           </div>
-        </div>
+          <p class="btc-note">Brands and sponsors: <a href="mailto:thenexx.usss@gmail.com?subject=Behind The Curtain - Sponsorship">thenexx.usss@gmail.com</a></p>
+        </section>
 
-        <div class="ms-rule"></div>
-
-        <div class="mels-follow-block">
-          <div class="mels-follow-title">How to Find Out</div>
-          <p class="mels-follow-p">Follow @n3xus.now on Instagram. Drops happen with 48–72 hours notice. No RSVP list, no waitlist — just watch the feed and move fast when it drops. The people who make it are the people who were paying attention.</p>
-          <a class="mels-follow-link" href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">Follow @n3xus.now &nbsp;✦</a>
-        </div>
-
-        <div class="music-foot" style="position:relative;z-index:1;">
-          <button class="fwm" data-go="home" style="color:#f0ede6;opacity:.1;">NEXUS</button>
-          <div class="finf" style="color:#ff9050;opacity:.38;">San Diego, CA<br>@n3xus.now</div>
+        <div class="btc-close">
+          <div class="btc-close-t">See you behind the curtain.</div>
+          <div class="btc-close-s">Friday, October 30 &nbsp;·&nbsp; Follow @n3xus.now for the reveal</div>
         </div>
       </div>
-    </div><!-- /ms-mels-room -->
+    </div><!-- /ms-uc-series -->
 
     <!-- ARTIST WORKSHOPS -->
     <div class="music-sub" id="ms-workshops">
@@ -1480,98 +1699,80 @@ body{
 
     <!-- NEX UP -->
     <div class="music-sub" id="ms-nex-up">
-      <div class="ms-next">
-        <div class="ms-eb">Nexus · Nex Up · Free Monthly Series</div>
-        <h2 class="ms-h">Nex<br><em>Up</em></h2>
-        <p class="ms-p">Every month. A different act. A different room. Free, always. Nex Up is the series that keeps the culture moving and new talent in front of the community — no barriers, no gatekeeping.</p>
-        <div class="ms-rule"></div>
-      </div>
-
-      <div class="ms-body">
-        <div class="event-card">
-          <div class="event-tag">Free Monthly Series &nbsp;·&nbsp; Ongoing 2026</div>
-          <div class="event-title">Nex Up<br><em>San Diego</em></div>
-          <div class="event-meta">
-            <div class="event-meta-row"><span class="event-meta-label">Frequency</span><span class="event-meta-val">Monthly &nbsp;·&nbsp; Rotating Acts</span></div>
-            <div class="event-meta-row"><span class="event-meta-label">Admission</span><span class="event-meta-val">Free</span></div>
-            <div class="event-meta-row"><span class="event-meta-label">Venue</span><span class="event-meta-val">San Diego, CA &nbsp;·&nbsp; Rotating</span></div>
-            <div class="event-meta-row"><span class="event-meta-label">Format</span><span class="event-meta-val">Live Performance &nbsp;·&nbsp; All Disciplines</span></div>
-          </div>
-          <div class="event-ticket-badge">Free &nbsp;·&nbsp; Follow @n3xus.now for Monthly Drops</div>
-          <div class="event-desc">No tickets, no barriers. Each Nex Up night puts a new voice on stage and a different room in the spotlight. From intimate venues to unexpected spaces — the location is announced close to the date. Follow @n3xus.now to catch the next one.</div>
-        </div>
-
-        <div style="font-size:.42rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(62,207,90,.55);margin-bottom:1.2rem;margin-top:2.5rem;">What to Expect</div>
-        <div class="ms-what-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(62,207,90,.06);max-width:680px;margin-bottom:2.5rem;">
-          <div style="background:#030508;padding:1.6rem 1.8rem;">
-            <div style="font-size:.42rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(62,207,90,.55);margin-bottom:.6rem;">The Act</div>
-            <div style="font-size:.62rem;line-height:1.85;color:rgba(240,237,230,.72);">A rotating lineup — musicians, dancers, spoken word artists, DJs. Every night is different. Every night is free.</div>
-          </div>
-          <div style="background:#030508;padding:1.6rem 1.8rem;">
-            <div style="font-size:.42rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(62,207,90,.55);margin-bottom:.6rem;">The Venue</div>
-            <div style="font-size:.62rem;line-height:1.85;color:rgba(240,237,230,.72);">A different room each month. Announced close to the date. Intimate, unexpected, always in San Diego.</div>
-          </div>
-          <div style="background:#030508;padding:1.6rem 1.8rem;">
-            <div style="font-size:.42rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(62,207,90,.55);margin-bottom:.6rem;">Admission</div>
-            <div style="font-size:.62rem;line-height:1.85;color:rgba(240,237,230,.72);">Always free. No tickets, no waitlist. Show up, pay attention, be part of it.</div>
-          </div>
-          <div style="background:#030508;padding:1.6rem 1.8rem;">
-            <div style="font-size:.42rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(62,207,90,.55);margin-bottom:.6rem;">How to Know</div>
-            <div style="font-size:.62rem;line-height:1.85;color:rgba(240,237,230,.72);">Follow @n3xus.now on Instagram. Drops happen with 48–72 hours notice. The people who make it are the people who were paying attention.</div>
+      <section class="nxu-hero">
+        <div class="nxu-room" aria-hidden="true"></div>
+        <div class="nxu-inner">
+          <div class="nxu-eb">Nexus &nbsp;·&nbsp; A Free Monthly Showcase</div>
+          <h1 class="nxu-title">Nex <em>Up</em></h1>
+          <p class="nxu-lede">The next voices in San Diego, heard first.</p>
+          <p class="nxu-p">Every month, Nex Up gives a handpicked lineup of emerging artists a real room, a real audience, and a night built around their work. Admission is always free.</p>
+          <div class="nxu-ctas">
+            <button class="nxu-btn" type="button" onclick="document.getElementById('nxu-submit').scrollIntoView({behavior:'smooth',block:'start'})">Submit Your Work</button>
+            <a class="nxu-link" href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">Catch the next night →</a>
           </div>
         </div>
+      </section>
 
-        <div style="font-size:.42rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(62,207,90,.55);margin-bottom:1.2rem;">Want to Perform?</div>
-        <p class="ms-p" style="max-width:520px;margin-bottom:1.5rem;">Nex Up is always looking for new voices. If you want to be considered for an upcoming night, submit through the Submit tab or reach out directly.</p>
-        <a class="ms-submit-btn" href="mailto:thenexx.usss@gmail.com">Get In Touch &nbsp;→</a>
+      <div class="nxu-body">
+        <div class="nxu-facts">
+          <div class="nxu-fact"><div class="nxu-fact-l">When</div><div class="nxu-fact-v">Monthly</div></div>
+          <div class="nxu-fact"><div class="nxu-fact-l">Admission</div><div class="nxu-fact-v">Always free</div></div>
+          <div class="nxu-fact"><div class="nxu-fact-l">Where</div><div class="nxu-fact-v">San Diego, a new room each month</div></div>
+          <div class="nxu-fact"><div class="nxu-fact-l">Who</div><div class="nxu-fact-v">Music, spoken word, dance &amp; DJs</div></div>
+        </div>
+
+        <section class="nxu-sec">
+          <div class="nxu-sec-eb">How It Works</div>
+          <h2 class="nxu-sec-h">Curated, <em>not closed</em></h2>
+          <p class="nxu-sec-p">Nex Up isn't an open mic. Every lineup is chosen with care, and it starts with as many artists as possible sending us their work.</p>
+          <div class="nxu-steps">
+            <div class="nxu-step"><div class="nxu-step-n">01</div><div class="nxu-step-t">You submit</div><div class="nxu-step-d">Send us your music, a performance clip, or a few lines about what you do. Submissions are open all year.</div></div>
+            <div class="nxu-step"><div class="nxu-step-n">02</div><div class="nxu-step-t">We curate</div><div class="nxu-step-d">Our team reviews every submission and builds each month's lineup around the room and the night.</div></div>
+            <div class="nxu-step"><div class="nxu-step-n">03</div><div class="nxu-step-t">You take the stage</div><div class="nxu-step-d">Selected artists perform for a room that came out to discover what's next.</div></div>
+          </div>
+        </section>
+
+        <section class="nxu-sec">
+          <div class="nxu-sec-eb">Who We're Looking For</div>
+          <h2 class="nxu-sec-h">If you're building something, <em>send it</em></h2>
+          <p class="nxu-sec-p">First shows, new projects, unreleased work. Nex Up is for artists on the way up. If you're not sure you're ready, submit anyway.</p>
+          <div class="nxu-tags">
+            <span>Singers</span><span>Songwriters</span><span>Rappers</span><span>Bands</span><span>Poets &amp; Spoken Word</span><span>DJs</span><span>Dancers</span><span>Producers</span>
+          </div>
+        </section>
+
+        <section class="nxu-sec" id="nxu-submit">
+          <div class="nxu-sec-eb">Submissions Open</div>
+          <h2 class="nxu-sec-h">Submit for <em>Nex Up</em></h2>
+          <form class="ms-form nxu-form" method="POST">
+            <input type="hidden" name="event" value="Nex Up" />
+            <div class="ms-2col">
+              <input class="ms-inp" type="text" name="name" placeholder="Your Name" required />
+              <input class="ms-inp" type="text" name="artist_name" placeholder="Artist Name" />
+            </div>
+            <input class="ms-inp" type="email" name="email" placeholder="Email Address" required />
+            <input class="ms-inp" type="text" name="social_handle" placeholder="Instagram or Social Handle" />
+            <select class="ms-inp" name="performance_type" required>
+              <option value="" disabled selected>What do you do?</option>
+              <option>Singer / Songwriter</option>
+              <option>Rapper / Hip-Hop</option>
+              <option>Band / Live Group</option>
+              <option>Poetry / Spoken Word</option>
+              <option>DJ / Producer</option>
+              <option>Dance</option>
+              <option>Something Else</option>
+            </select>
+            <input class="ms-inp" type="url" name="music_link" placeholder="Link to your work (optional)" />
+            <textarea class="ms-inp" name="bio" style="resize:vertical;min-height:100px;" placeholder="Tell us about your work and what you'd bring to a Nex Up night."></textarea>
+            <button class="nxu-btn" type="submit">Submit Your Work →</button>
+            <div class="nxu-form-note">We review every submission and reach out to the artists selected for upcoming nights.</div>
+          </form>
+        </section>
       </div>
-
-      <div class="finf" style="color:#f0ede6;">San Diego, CA<br>@n3xus.now</div>
     </div>
     <!-- /NEX UP -->
 
-    <!-- ARTIST / DJ SUBMISSION -->
-    <div class="music-sub" id="ms-submit">
-      <div class="ms-next">
-        <div class="ms-eb">Nexus &nbsp;·&nbsp; Join The Network</div>
-        <h1 class="ms-h">Artist<br><em>Submissions</em></h1>
-        <p class="ms-p">Nexus is built on transparency and growth. We are actively expanding our network of artists, DJs, and creatives at every level. If your work belongs in the room, tell us about it.</p>
-        <div class="ms-rule"></div>
-        <form class="ms-form" method="POST">
-          <div class="ms-2col">
-            <input class="ms-inp" type="text" name="name" placeholder="Your Name" />
-            <input class="ms-inp" type="text" name="artist_name" placeholder="Artist / DJ Name" />
-          </div>
-          <input class="ms-inp" type="email" name="email" placeholder="Email Address" />
-          <input class="ms-inp" type="text" name="social_handle" placeholder="Instagram or Social Handle" />
-          <div class="ms-2col">
-            <input class="ms-inp" type="text" name="city" placeholder="City / Location" />
-            <input class="ms-inp" type="text" name="years_active" placeholder="Years Active" />
-          </div>
-          <div style="margin:.2rem 0 .1rem;">
-            <div class="ms-inp" style="border-bottom:none;padding-bottom:.3em;background:transparent;border-left:none;border-right:none;border-top:none;border-color:rgba(62,207,90,.15);font-size:.38rem;letter-spacing:.18em;color:rgba(240,237,230,.25);">GENRE / STYLE — SELECT ALL THAT APPLY</div>
-            <div class="ms-check-group">
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Hip-Hop"> Hip-Hop</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="R&B / Soul"> R&amp;B / Soul</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Jazz"> Jazz</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Electronic / DJ"> Electronic / DJ</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Latin"> Latin</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Afrobeats"> Afrobeats</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Indie / Alternative"> Indie / Alternative</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Singer-Songwriter"> Singer-Songwriter</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Spoken Word"> Spoken Word</label>
-              <label class="ms-check-label"><input type="checkbox" name="genre" value="Other"> Other</label>
-            </div>
-          </div>
-          <input class="ms-inp" type="url" name="music_link" placeholder="Music Link — Spotify, SoundCloud, YouTube, etc." />
-          <input class="ms-inp" type="url" name="epk_link" placeholder="EPK or Press Kit Link (optional)" />
-          <textarea class="ms-inp" name="bio" style="resize:vertical;min-height:100px;" placeholder="Tell us about your work — your sound, your story, what you bring to a room."></textarea>
-          <textarea class="ms-inp" name="opportunity" style="resize:vertical;min-height:70px;" placeholder="What type of Nexus opportunity interests you? (performance, collaboration, all of the above…)"></textarea>
-          <button class="ms-submit-btn" type="submit">Submit for Consideration →</button>
-          <div class="ms-form-note">All submissions are reviewed. We'll be in touch if there's a fit. Thank you for building with us.</div>
-        </form>
-      </div>
-    </div><!-- /ms-submit -->
+
 
     <div class="music-foot">
       <button class="fwm" data-go="home" style="color:#f0ede6;opacity:.1;">NEXUS</button>
@@ -2651,7 +2852,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 .irole{font-family:'Unbounded',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.04em;color:#173420;}
 .idept{font-size:.46rem;letter-spacing:.24em;text-transform:uppercase;color:#6f8f26;opacity:.8;}
 .idesc{font-size:.62rem;line-height:1.9;opacity:.72;max-width:270px;}
-@media(max-width:600px){.igrid{grid-template-columns:1fr;}.tgrid{grid-template-columns:1fr;}.film-sub{padding:5rem 2rem;}.mels-what-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.igrid{grid-template-columns:1fr;}.tgrid{grid-template-columns:1fr;}.film-sub{padding:5rem 2rem;}}
 /* Film sub-pages (Tickets, Sponsorships, Donations): centered layout */
 .film-sub{align-items:center;text-align:center;}
 .film-sub .btt{align-self:center;}
@@ -4900,6 +5101,62 @@ document.getElementById('globe').addEventListener('click',()=>go('pg-global'));
 document.getElementById('global-back-btn').addEventListener('click',()=>go('home'));
 
 /* ════════════════════════════════════════════
+   UC SERIES — drifting smoke over Behind The Curtain
+════════════════════════════════════════════ */
+(function initBtcSmoke() {
+  const canvas = document.getElementById('btc-smoke');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Soft puff sprites: ivory haze and red fog
+  function puffSprite(rgb) {
+    const s = document.createElement('canvas'); s.width = s.height = 256;
+    const g = s.getContext('2d'), grad = g.createRadialGradient(128,128,0,128,128,128);
+    grad.addColorStop(0, 'rgba(' + rgb + ',.9)'); grad.addColorStop(.45, 'rgba(' + rgb + ',.35)'); grad.addColorStop(1, 'rgba(' + rgb + ',0)');
+    g.fillStyle = grad; g.fillRect(0,0,256,256); return s;
+  }
+  const ivory = puffSprite('236,226,214'), red = puffSprite('210,60,40');
+  let w = 0, h = 0, puffs = [];
+  function size() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function spawn(anywhere) {
+    return { x: Math.random() * w, y: anywhere ? Math.random() * h : h + 120,
+      r: 140 + Math.random() * 260, vx: (Math.random() - .5) * .3, vy: -(.12 + Math.random() * .3),
+      rot: Math.random() * 6.28, vr: (Math.random() - .5) * .0015,
+      max: .025 + Math.random() * .045, life: 0, span: 900 + Math.random() * 1100,
+      sprite: Math.random() < .35 ? red : ivory };
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (const p of puffs) {
+      p.life++; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      ctx.globalAlpha = p.max * Math.sin(Math.PI * Math.min(p.life / p.span, 1));
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.drawImage(p.sprite, -p.r, -p.r, p.r * 2, p.r * 2); ctx.restore();
+      if (p.life >= p.span) Object.assign(p, spawn(false));
+    }
+    ctx.globalAlpha = 1;
+  }
+  function frame() {
+    // Only animate while the UC Series tab is on screen
+    if (canvas.offsetParent !== null && document.getElementById('pg-music').classList.contains('on')) {
+      if (canvas.clientWidth !== w || canvas.clientHeight !== h || !puffs.length) {
+        size();
+        if (!puffs.length) puffs = Array.from({ length: w < 700 ? 16 : 28 }, () => spawn(true));
+      }
+      draw();
+      if (still) return; // one static frame of haze for reduced motion
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ════════════════════════════════════════════
    PAGE LINKS — every page and sub-page has its own URL,
    e.g. nexusglobal.info/#/film/sponsorships
 ════════════════════════════════════════════ */
@@ -4907,7 +5164,7 @@ const ROUTES = {
   'home':     { page:'home',        title:'Explore' },
   'music':    { page:'pg-music',    title:'Music', subs:{
                 'artists':['ms-artists','The Artists'], 'latin-jazz-night':['ms-latin-jazz','Latin Jazz Night'],
-                'mels-room':['ms-mels-room',"Mel's Room"], 'nex-up':['ms-nex-up','Nex Up'], 'submit':['ms-submit','Submit'] } },
+                'uc-series':['ms-uc-series','UC Series'], 'nex-up':['ms-nex-up','Nex Up'] } },
   'dance':    { page:'pg-dance',    title:'Dance' },
   'fashion':  { page:'pg-fashion',  title:'Fashion Show', subs:{
                 'casting':['fsub-casting','Model Casting'], 'sponsors':['fsub-sponsors','Sponsors'], 'tickets':['fsub-tickets','Tickets'] } },
