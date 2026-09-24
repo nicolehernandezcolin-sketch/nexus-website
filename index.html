@@ -1011,6 +1011,72 @@ body{
 }
 @media(prefers-reduced-motion:reduce){.nxu-room{animation:none;}}
 
+/* ── UC SERIES · PART 1: the series as a whole — open, beach sunset, young ── */
+.ucb-hero{position:relative;min-height:94vh;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;text-align:center;padding:14vh 1.6rem 40vh;isolation:isolate;}
+.ucb-sky{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,#a99bd6 0%,#d7a3c8 22%,#ffa9a3 42%,#ff9a6e 58%,#ffc66e 66%,#ffd89a 68%);}
+.ucb-sun{position:absolute;left:50%;top:52%;width:min(34vw,300px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-10%);z-index:0;
+  background:radial-gradient(circle,#fff6d6 0%,#ffe08a 45%,#ffb35c 70%,rgba(255,179,92,0) 72%);box-shadow:0 0 120px 40px rgba(255,200,110,.55);
+  animation:ucbSet 18s ease-in-out infinite alternate;}
+@keyframes ucbSet{from{transform:translate(-50%,-14%);}to{transform:translate(-50%,-2%);}}
+.ucb-sea{position:absolute;left:0;right:0;top:68%;bottom:0;z-index:1;overflow:hidden;background:linear-gradient(180deg,#f7a07c 0%,#c9789a 30%,#7b6aa8 65%,#4f5f96 100%);}
+.ucb-glint{position:absolute;left:50%;top:0;width:min(30vw,260px);height:100%;transform:translateX(-50%);
+  background:repeating-linear-gradient(180deg,rgba(255,236,180,.85) 0 3px,transparent 3px 11px);
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%);
+  animation:ucbGlint 2.4s ease-in-out infinite alternate;}
+@keyframes ucbGlint{from{opacity:.55;transform:translateX(-50%) scaleX(.85);}to{opacity:.95;transform:translateX(-50%) scaleX(1.1);}}
+.ucb-waves{position:absolute;left:0;bottom:9vh;width:200%;height:90px;z-index:2;}
+.ucb-wave--1{fill:rgba(255,240,225,.55);animation:ucbWave 14s linear infinite;}
+.ucb-wave--2{fill:rgba(255,248,238,.8);animation:ucbWave 9s linear infinite reverse;}
+@keyframes ucbWave{to{transform:translateX(-50%);}}
+.ucb-sand{position:absolute;left:0;right:0;bottom:0;height:11vh;z-index:2;background:linear-gradient(180deg,#f7dcb8,#efcb9c);}
+.ucb-palm{position:absolute;bottom:4vh;z-index:3;fill:#2b1628;transform-origin:50% 100%;}
+.ucb-palm g{transform-origin:55% 20%;animation:ucbSway 6s ease-in-out infinite alternate;}
+.ucb-palm--l{left:-3%;height:min(60vh,500px);}
+.ucb-palm--l2{left:9%;height:min(42vh,340px);}
+.ucb-palm--l2 g{animation-delay:-2s;}
+.ucb-palm--r{right:-2%;height:min(56vh,460px);}
+.ucb-palm--r g{animation-delay:-3.5s;}
+@keyframes ucbSway{from{transform:rotate(-2deg);}to{transform:rotate(2.5deg);}}
+.ucb-inner{position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;max-width:680px;}
+.ucb-eb{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.44em;text-transform:uppercase;color:#4a2445;margin-bottom:1rem;}
+.ucb-title{font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(3.2rem,11vw,8.4rem);line-height:.9;letter-spacing:-.04em;color:#fffaf2;text-shadow:0 4px 30px rgba(180,70,90,.35);margin-bottom:1rem;}
+.ucb-lede{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.7rem);line-height:1.35;color:#4a2445;margin-bottom:1.8rem;}
+.ucb-guide{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;}
+.ucb-chip{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:#4a2445;background:rgba(255,250,242,.7);border:1px solid rgba(74,36,69,.25);border-radius:999px;padding:.75rem 1.2rem;cursor:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .2s,color .2s;}
+.ucb-chip b{font-weight:700;margin-right:.4rem;color:#e8503a;}
+.ucb-chip:hover{background:#fffaf2;}
+.ucb-chip:not(.ucb-chip--on){background:#1a0d12;color:#f4ece2;border-color:#1a0d12;}
+.ucb-chip:not(.ucb-chip--on):hover{background:#2e1620;}
+.ucb-about{background:linear-gradient(180deg,#efcb9c 0%,#fbeee0 14%,#fff6ec 100%);color:#3a1d33;text-align:center;padding:4rem 1.6rem 5.5rem;scroll-margin-top:6rem;}
+.ucb-sec-eb{font-family:'Space Mono',monospace;font-size:.4rem;letter-spacing:.44em;text-transform:uppercase;color:#e0664a;margin-bottom:.8rem;}
+.ucb-sec-h{font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(1.6rem,4.4vw,2.9rem);line-height:1.05;letter-spacing:-.03em;color:#3a1d33;margin-bottom:1.3rem;}
+.ucb-sec-h em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;letter-spacing:0;color:#e0664a;}
+.ucb-p{font-size:.64rem;line-height:2.05;color:rgba(58,29,51,.8);max-width:600px;margin:0 auto 2.6rem;}
+.ucb-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:960px;margin:0 auto;text-align:left;}
+.ucb-card{background:#fffaf4;border:1px solid rgba(224,102,74,.18);border-radius:18px;padding:1.6rem 1.4rem;display:flex;flex-direction:column;gap:.5rem;box-shadow:0 10px 30px rgba(224,120,90,.12);transition:transform .25s,box-shadow .25s;}
+.ucb-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(224,120,90,.2);}
+.ucb-card-i{width:2.2rem;height:2.2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fffaf2;background:linear-gradient(135deg,#ffb35c,#ff7e79);}
+.ucb-card-t{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;color:#3a1d33;}
+.ucb-card-d{font-size:.56rem;line-height:1.85;color:rgba(58,29,51,.72);}
+/* Transition band: sunset fades to night */
+.ucb-bridge{min-height:70vh;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:0 1.6rem 5rem;
+  background:linear-gradient(180deg,#fff6ec 0%,#ffc9a3 16%,#ff8e7a 32%,#b8547a 50%,#4a1f3f 70%,#1a0a14 85%,#070506 100%);}
+.ucb-bridge-inner{display:flex;flex-direction:column;align-items:center;}
+.ucb-bridge-eb{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.44em;text-transform:uppercase;color:rgba(244,236,226,.75);margin-bottom:1rem;}
+.ucb-bridge-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.02;color:#f4ece2;margin-bottom:1.3rem;}
+.ucb-bridge-h em{font-style:italic;color:#e8503a;}
+.ucb-bridge-date{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:#f4ece2;border:1px solid rgba(244,236,226,.3);padding:.8rem 1.3rem;}
+.ucb-bridge-arrow{margin-top:1.6rem;font-size:1.2rem;color:rgba(244,236,226,.6);animation:btcCue 2.6s ease-in-out infinite;}
+.btc-wrap{position:relative;scroll-margin-top:5rem;}
+@media(max-width:800px){
+  .ucb-cards{grid-template-columns:1fr 1fr;}
+  .ucb-palm--l2{display:none;}
+  .ucb-palm--l{height:36vh;left:-14%;}
+  .ucb-palm--r{height:32vh;right:-14%;}
+  .ucb-hero{padding-top:10vh;}
+}
+@media(max-width:480px){.ucb-cards{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){.ucb-sun,.ucb-glint,.ucb-wave--1,.ucb-wave--2,.ucb-palm g,.ucb-bridge-arrow{animation:none;}}
 /* ── UC SERIES · BEHIND THE CURTAIN — sheer curtains, projection, haze ── */
 #ms-uc-series{position:relative;background:#070506;color:#efe6da;}
 .btc-smoke{position:sticky;top:0;display:block;width:100%;height:100vh;margin-bottom:-100vh;pointer-events:none;z-index:4;mix-blend-mode:screen;}
@@ -1558,6 +1624,69 @@ body{
 
     <!-- UC SERIES · BEHIND THE CURTAIN -->
     <div class="music-sub" id="ms-uc-series">
+      <!-- PART 1: THE SERIES (overall vibe) -->
+      <section class="ucb-hero" id="ucb-series">
+        <div class="ucb-sky" aria-hidden="true"></div>
+        <div class="ucb-sun" aria-hidden="true"></div>
+        <div class="ucb-sea" aria-hidden="true"><div class="ucb-glint"></div></div>
+        <svg class="ucb-waves" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+          <path class="ucb-wave ucb-wave--1" d="M0 60 C180 30 360 90 540 60 S900 30 1080 60 S1440 90 1620 60 S1980 30 2160 60 S2520 90 2880 60 V120 H0 Z"/>
+          <path class="ucb-wave ucb-wave--2" d="M0 80 C200 55 400 105 600 80 S1000 55 1200 80 S1600 105 1800 80 S2200 55 2400 80 S2800 105 2880 80 V120 H0 Z"/>
+        </svg>
+        <div class="ucb-sand" aria-hidden="true"></div>
+        <svg class="ucb-palm ucb-palm--l" viewBox="0 0 200 420" aria-hidden="true"><g>
+          <path d="M104 420 C100 330 92 250 106 170 C114 125 122 100 118 78" stroke="#2b1628" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <path d="M118 78 C80 58 40 64 8 96 C46 78 84 80 116 90Z"/><path d="M118 78 C92 40 54 22 14 30 C54 40 88 58 114 86Z"/>
+          <path d="M118 78 C126 38 150 12 184 6 C160 30 142 54 124 84Z"/><path d="M118 78 C154 60 186 70 200 102 C172 84 146 82 122 88Z"/>
+          <path d="M118 78 C142 94 156 124 150 158 C140 128 128 108 116 92Z"/><path d="M118 78 C96 96 84 126 90 160 C98 130 108 108 120 92Z"/>
+        </g></svg>
+        <svg class="ucb-palm ucb-palm--l2" viewBox="0 0 200 420" aria-hidden="true"><g>
+          <path d="M96 420 C104 340 110 260 96 180 C88 136 84 110 90 86" stroke="#2b1628" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path d="M90 86 C60 60 26 60 0 88 C34 74 64 78 88 96Z"/><path d="M90 86 C74 48 42 30 8 34 C42 46 70 64 86 94Z"/>
+          <path d="M90 86 C104 48 132 26 166 22 C140 44 118 64 94 94Z"/><path d="M90 86 C124 72 156 82 172 110 C144 94 118 92 92 96Z"/>
+          <path d="M90 86 C70 104 62 132 70 164 C76 136 84 116 94 100Z"/>
+        </g></svg>
+        <svg class="ucb-palm ucb-palm--r" viewBox="0 0 200 420" aria-hidden="true"><g>
+          <path d="M100 420 C96 330 104 250 90 170 C82 128 80 104 86 80" stroke="#2b1628" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <path d="M86 80 C56 56 22 58 0 90 C30 74 60 78 84 92Z"/><path d="M86 80 C70 42 38 24 4 30 C38 42 66 60 82 90Z"/>
+          <path d="M86 80 C100 42 128 18 164 14 C138 38 116 58 90 88Z"/><path d="M86 80 C122 64 158 74 180 104 C148 88 118 86 88 92Z"/>
+          <path d="M86 80 C110 98 124 128 118 162 C108 132 98 112 84 96Z"/><path d="M86 80 C64 100 54 130 60 164 C68 134 78 112 90 96Z"/>
+        </g></svg>
+        <div class="ucb-inner">
+          <div class="ucb-eb">Nexus &nbsp;·&nbsp; UC Series</div>
+          <h1 class="ucb-title">UC Series</h1>
+          <p class="ucb-lede">Live music on campus, out in the open, as the sun goes down.</p>
+          <div class="ucb-guide">
+            <button class="ucb-chip ucb-chip--on" type="button" onclick="document.getElementById('ucb-about').scrollIntoView({behavior:'smooth',block:'start'})"><b>01</b> The Series</button>
+            <button class="ucb-chip" type="button" onclick="document.getElementById('btc-month').scrollIntoView({behavior:'smooth',block:'start'})"><b>02</b> This Month: Behind The Curtain</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="ucb-about" id="ucb-about">
+        <div class="ucb-sec-eb">Part 01 &nbsp;·&nbsp; The Series</div>
+        <h2 class="ucb-sec-h">What every UC Series night <em>feels like</em></h2>
+        <p class="ucb-p">The UC Series brings student artists, campus clubs, and the Nexus community together for nights that start at golden hour and keep going after dark. It's launching at UC San Diego this fall, and every night has its own theme.</p>
+        <div class="ucb-cards">
+          <div class="ucb-card"><div class="ucb-card-i" aria-hidden="true">☀</div><div class="ucb-card-t">Golden hour</div><div class="ucb-card-d">The first sets start while the sky is still orange.</div></div>
+          <div class="ucb-card"><div class="ucb-card-i" aria-hidden="true">≋</div><div class="ucb-card-t">Open air</div><div class="ucb-card-d">Outdoors, on campus, with plenty of room to move around.</div></div>
+          <div class="ucb-card"><div class="ucb-card-i" aria-hidden="true">♫</div><div class="ucb-card-t">Student artists</div><div class="ucb-card-d">UCSD musicians, bands, and DJs on a real stage.</div></div>
+          <div class="ucb-card"><div class="ucb-card-i" aria-hidden="true">✺</div><div class="ucb-card-t">Your whole campus</div><div class="ucb-card-d">Clubs and friends from every corner of UCSD in one place.</div></div>
+        </div>
+      </section>
+
+      <!-- TRANSITION: series → this month's theme -->
+      <section class="ucb-bridge" aria-label="This month's theme">
+        <div class="ucb-bridge-inner">
+          <div class="ucb-bridge-eb">Every night has its own theme</div>
+          <h2 class="ucb-bridge-h">This month, <em>the lights go down.</em></h2>
+          <div class="ucb-bridge-date">Part 02 &nbsp;·&nbsp; October 30 &nbsp;·&nbsp; Behind The Curtain</div>
+          <div class="ucb-bridge-arrow" aria-hidden="true">↓</div>
+        </div>
+      </section>
+
+      <!-- PART 2: THIS MONTH'S THEME -->
+      <div class="btc-wrap" id="btc-month">
       <canvas class="btc-smoke" id="btc-smoke" aria-hidden="true"></canvas>
       <section class="btc-hero">
         <div class="btc-stage" aria-hidden="true">
@@ -1569,7 +1698,7 @@ body{
           <div class="btc-grain"></div>
         </div>
         <div class="btc-hero-inner">
-          <div class="btc-eb">Nexus × UC San Diego &nbsp;·&nbsp; UC Series, Chapter 01</div>
+          <div class="btc-eb">This Month's Theme &nbsp;·&nbsp; UC Series at UC San Diego</div>
           <div class="btc-projected"><h1 class="btc-title">Behind<br><em>the Curtain</em></h1></div>
           <p class="btc-lede">An evening of live music, performance, and projected light, wrapped in sheer curtains and haze. The launch night of the Nexus UC Series at UC San Diego.</p>
           <div class="btc-date"><b>Friday, October 30, 2026</b> &nbsp;·&nbsp; UC San Diego</div>
@@ -1638,6 +1767,7 @@ body{
           <div class="btc-close-s">Friday, October 30 &nbsp;·&nbsp; Follow @n3xus.now for the reveal</div>
         </div>
       </div>
+      </div><!-- /btc-wrap -->
     </div><!-- /ms-uc-series -->
 
     <!-- ARTIST WORKSHOPS -->
@@ -2910,7 +3040,7 @@ textarea.finput{resize:vertical;min-height:110px;}
       </div>
 
       <div class="seats-section">
-        <div class="seats-label">— Choose Your Section —</div>
+        <div class="seats-label">Choose Your Section</div>
         <div class="seat-rows">
 
           <!-- Tickets -->
@@ -2982,16 +3112,16 @@ textarea.finput{resize:vertical;min-height:110px;}
       <div class="fseb">Nexus Film · Tickets</div>
       <h1 class="fsh">Get Your<br><em>Seat</em></h1>
       <p class="fsp">October 10, 2026 &nbsp;·&nbsp; 7–10PM &nbsp;·&nbsp; The Giant Dome Theater at the Fleet Science Center, Balboa Park</p>
-      <p style="font-size:.68rem;line-height:2;opacity:.6;max-width:560px;margin-bottom:1.4rem;">San Diego's films, projected the way they deserve to be seen — under a full-dome screen with wraparound picture and immersive sound. This is a one-night-only screening inside one of the most striking theaters in the city.</p>
+      <p style="font-size:.68rem;line-height:2;opacity:.6;max-width:560px;margin-bottom:1.4rem;">When the lights go down on October 10, the dome over your head fills with a story from one of San Diego's own filmmakers. For one night only, every film on the Giant Dome Theater's screen at the Fleet Science Center comes from our local film community.</p>
       <div class="grule"></div>
       <div class="tgrid">
         <div class="tcard">
           <div class="ttier">General Admission</div>
-          <div class="tname">One Ticket, One Price</div>
+          <div class="tname">A Seat Under the Dome</div>
           <div class="tprice">$25</div>
-          <div class="tdetail">248 seats · No assigned seating<br>Non-refundable · Final sale</div>
+          <div class="tdetail">248 seats · Open seating<br>Non-refundable</div>
           <!-- Eventbrite embedded checkout -->
-          <button class="tbuy" onclick="openNexusFilmCheckout()">Buy Tickets — $25</button>
+          <button class="tbuy" onclick="openNexusFilmCheckout()">Buy Tickets · $25</button>
         </div>
       </div>
       <div class="eb-panel" id="eb-panel" hidden>
@@ -3037,7 +3167,7 @@ textarea.finput{resize:vertical;min-height:110px;}
             // A popup here would be blocked because it isn't tied to the click.
             document.getElementById(opts.iframeContainerId).innerHTML =
               '<a class="tbuy" href="https://www.eventbrite.com/e/' + opts.eventId +
-              '" target="_blank" rel="noopener">Checkout didn\'t load \u2014 buy on Eventbrite</a>';
+              '" target="_blank" rel="noopener">Checkout didn\'t load. Buy on Eventbrite</a>';
           };
           document.body.appendChild(s);
         }
@@ -3065,17 +3195,17 @@ textarea.finput{resize:vertical;min-height:110px;}
       <button class="btt" data-btt>Back to Theater</button>
       <div class="fseb">Nexus Film · Partnerships</div>
       <h1 class="fsh">Partner With<br><em>The Festival</em></h1>
-      <p class="fsp">On October 10, the first Nexus Film Festival fills the Giant Dome Theater at the Fleet Science Center, where the screen wraps over the whole room and pulls the audience into every frame. It's one night with San Diego's own filmmakers on the most immersive screen in the city. Put your name on the night the local film scene gets its premiere.</p>
+      <p class="fsp">On October 10, the first Nexus Film Festival takes over the Giant Dome Theater at the Fleet Science Center, where the screen wraps over the entire room. San Diego filmmakers will see their work on one of the most immersive screens in the city, and our sponsors will be part of that premiere.</p>
       <div class="grule"></div>
       <div class="igrid">
         <div class="icell"><div class="idept">Reach</div><div class="irole">A Full House in Balboa Park</div><div class="idesc">248 seats of creatives, filmmakers, and culture-forward San Diegans, inside one of the city's most iconic landmarks.</div></div>
         <div class="icell"><div class="idept">Visibility</div><div class="irole">Your Name on the Dome</div><div class="idesc">Your logo across the dome before the lights go down, signage at the venue, and recognition across every festival channel, from marketing to social.</div></div>
-        <div class="icell"><div class="idept">Community</div><div class="irole">Backing Homegrown Talent</div><div class="idesc">Every film on the program is made by a San Diego filmmaker. Sponsors stand behind local artists, not outside productions.</div></div>
+        <div class="icell"><div class="idept">Community</div><div class="irole">Backing Homegrown Talent</div><div class="idesc">Every film on the program is made by a San Diego filmmaker, so sponsors are backing local artists directly.</div></div>
         <div class="icell"><div class="idept">Access</div><div class="irole">Face Time in the Lobby</div><div class="idesc">A booth or table in the lobby and direct conversations with attendees before and after the screening.</div></div>
       </div>
       <div style="margin-top:2.5rem;">
-        <p class="irole" style="font-size:.8rem;margin-bottom:.8rem;">There's only one first year.</p>
-        <p style="font-size:.66rem;line-height:2;opacity:.70;max-width:460px;margin-bottom:1.4rem;">Sponsors who join now become part of the festival's origin story. Reach out and let's talk about how your brand fits into the night.</p>
+        <p class="irole" style="font-size:.8rem;margin-bottom:.8rem;">Be part of year one.</p>
+        <p style="font-size:.66rem;line-height:2;opacity:.70;max-width:460px;margin-bottom:1.4rem;">Sponsors who join now help launch the festival from the start. Reach out and we'll talk about how your brand fits into the night.</p>
         <button class="fsbtn" onclick="window.location='mailto:thenexx.usss@gmail.com?subject=Nexus Film Festival Sponsorship'">Become a Sponsor →</button>
       </div>
     </div>
@@ -3085,8 +3215,8 @@ textarea.finput{resize:vertical;min-height:110px;}
       <button class="btt" data-btt>Back to Theater</button>
       <div class="fseb">Nexus Film · Give</div>
       <h1 class="fsh">Support<br><em>The Filmmakers</em></h1>
-      <p class="fsp">Every film on the Nexus program is made by a San Diego filmmaker. Your donation goes to the artists behind the work, helping local storytellers keep creating, keep telling their stories, and keep building careers here at home.</p>
-      <p style="font-size:.66rem;line-height:2;opacity:.7;max-width:460px;margin-bottom:1.4rem;">Every gift, big or small, backs a local voice.</p>
+      <p class="fsp">Every film on the Nexus program is made by a San Diego filmmaker. Your donation goes to the artists behind the work and helps local storytellers build their careers here at home.</p>
+      <p style="font-size:.66rem;line-height:2;opacity:.7;max-width:460px;margin-bottom:1.4rem;">Thank you for supporting local film.</p>
       <div class="grule"></div>
       <div style="max-width:480px;">
         <!-- Square donation payment link -->
@@ -4322,7 +4452,9 @@ textarea.finput{resize:vertical;min-height:110px;}
 .glob-hero{align-items:center;justify-content:center;text-align:center;}
 .glob-intro,.glob-sec-p{margin-left:auto;margin-right:auto;}
 .glob-section{text-align:center;}
-.glob-team-grid{max-width:900px;margin-left:auto;margin-right:auto;}
+.glob-team-grid{max-width:1000px;margin-left:auto;margin-right:auto;grid-template-columns:repeat(4,1fr);}
+@media(max-width:900px){.glob-team-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.glob-team-grid{grid-template-columns:1fr;}}
 .glob-member{align-items:center;text-align:center;}
 .glob-roles-grid{max-width:1100px;margin-left:auto;margin-right:auto;}
 .glob-role-card{text-align:center;display:flex;flex-direction:column;align-items:center;}
@@ -4365,8 +4497,16 @@ textarea.finput{resize:vertical;min-height:110px;}
       <p class="glob-sec-p">Nexus is run by a small team of creators, organizers, and cultural advocates who believe in what San Diego's creative scene can become.</p>
       <div class="glob-team-grid">
         <div class="glob-member">
-          <div class="glob-member-role">Founder &amp; Creative Director</div>
+          <div class="glob-member-role">Creative Director</div>
           <div class="glob-member-name">Nicole Hernandez</div>
+        </div>
+        <div class="glob-member">
+          <div class="glob-member-role">Co-Founder</div>
+          <div class="glob-member-name">Jenny Xu</div>
+        </div>
+        <div class="glob-member">
+          <div class="glob-member-role">Strategic Finance Lead</div>
+          <div class="glob-member-name">Yaxi Zhang</div>
         </div>
         <div class="glob-member">
           <div class="glob-member-role">Community Relations Director</div>
