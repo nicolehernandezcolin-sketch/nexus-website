@@ -97,7 +97,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.min.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp" crossorigin="anonymous"></script>
 
 <style>
 /* ─────────────────────────────────────────
@@ -5837,14 +5837,39 @@ const _supa = window.supabase.createClient(
 (function(){
   const FORM_TYPES = {'ms-form':'artist','f-form':'fashion','fform':'film','inv-form':'involvement'};
 
+  // Spam guards: bots fill every field (including this hidden one) and submit instantly
+  const HONEYPOT = 'company_url';
+  const MIN_FILL_MS = 3000;
+  const loadedAt = Date.now();
+
+  function thankYou(form) {
+    const msg = document.createElement('div');
+    msg.style.cssText = 'padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;';
+    msg.textContent = "Thank you — we'll be in touch.";
+    form.replaceWith(msg);
+  }
+
   function handleForm(form) {
+    const trap = document.createElement('input');
+    trap.type = 'text';
+    trap.name = HONEYPOT;
+    trap.tabIndex = -1;
+    trap.autocomplete = 'off';
+    trap.setAttribute('aria-hidden', 'true');
+    trap.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;';
+    form.appendChild(trap);
+
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
+      // Pretend it worked so bots don't retry
+      if (trap.value || Date.now() - loadedAt < MIN_FILL_MS) { thankYou(form); return; }
+
       const btn = form.querySelector('button[type="submit"]');
       const orig = btn ? btn.textContent : '';
       if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
 
       const fd = new FormData(form);
+      fd.delete(HONEYPOT);
       const data = {};
       fd.forEach((v, k) => {
         if (data[k]) {
@@ -5865,11 +5890,8 @@ const _supa = window.supabase.createClient(
         data: data
       });
 
-      const msg = document.createElement('div');
-      msg.style.cssText = 'padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;';
       if (!error) {
-        msg.textContent = "Thank you — we'll be in touch.";
-        form.replaceWith(msg);
+        thankYou(form);
       } else {
         if (btn) { btn.textContent = orig; btn.disabled = false; }
         let err = form.querySelector('.nxs-err');
