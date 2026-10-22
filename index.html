@@ -1973,7 +1973,7 @@ body{
               <option>Dance</option>
               <option>Something Else</option>
             </select>
-            <input class="ms-inp" type="url" name="music_link" placeholder="Link to your work (optional)" />
+            <input class="ms-inp" type="text" inputmode="url" autocapitalize="off" name="music_link" placeholder="Link to your work (optional)" />
             <textarea class="ms-inp" name="bio" style="resize:vertical;min-height:100px;" placeholder="Tell us about your work and what you'd bring to a Nex Up night."></textarea>
             <button class="nxu-btn" type="submit">Submit Your Work →</button>
             <div class="nxu-form-note">We review every submission and reach out to the artists selected for upcoming nights.</div>
@@ -2883,7 +2883,7 @@ body{
         <input class="f-inp" type="email" name="email" placeholder="Email Address" />
         <input class="f-inp" type="text"  name="instagram" placeholder="Instagram Handle" />
         <input class="f-inp" type="text"  name="height" placeholder="Height" />
-        <input class="f-inp" type="url"   name="portfolio" placeholder="Portfolio or Photos Link (optional)" />
+        <input class="f-inp" type="text" inputmode="url" autocapitalize="off" name="portfolio" placeholder="Portfolio or Photos Link (optional)" />
         <textarea class="f-inp" name="bio" style="resize:vertical;min-height:90px;" placeholder="Tell us about yourself — what you do, what you bring to a room."></textarea>
         <button class="f-submit" type="submit">Submit Application →</button>
       </form>
@@ -5837,8 +5837,10 @@ const _supa = window.supabase.createClient(
 (function(){
   const FORM_TYPES = {'ms-form':'artist','f-form':'fashion','fform':'film','inv-form':'involvement'};
 
-  // Spam guards: bots fill every field (including this hidden one) and submit instantly
-  const HONEYPOT = 'company_url';
+  // Spam guards: bots fill every field (including this hidden one) and submit instantly.
+  // Suspected spam is still saved, just flagged, so a real person is never lost.
+  // The trap's name avoids words autofill recognises (company, url, email, phone…).
+  const HONEYPOT = 'nx_hp_field';
   const MIN_FILL_MS = 3000;
   const loadedAt = Date.now();
 
@@ -5847,6 +5849,18 @@ const _supa = window.supabase.createClient(
     msg.style.cssText = 'padding:3rem 0;text-align:center;font-family:"Space Mono",monospace;letter-spacing:.12em;font-size:.7rem;opacity:.85;';
     msg.textContent = "Thank you — we'll be in touch.";
     form.replaceWith(msg);
+  }
+
+  function showError(form, text) {
+    let err = form.querySelector('.nxs-err');
+    if (!err) {
+      err = document.createElement('p');
+      err.className = 'nxs-err';
+      err.setAttribute('role', 'alert');
+      err.style.cssText = 'color:rgba(240,80,80,.9);font-size:.6rem;margin-top:.8rem;';
+      form.appendChild(err);
+    }
+    err.textContent = text;
   }
 
   function handleForm(form) {
@@ -5859,10 +5873,16 @@ const _supa = window.supabase.createClient(
     trap.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;';
     form.appendChild(trap);
 
+    // The browser's own "please fill in" bubble is easy to miss here, so say it on the page too
+    form.addEventListener('invalid', function(e) {
+      const field = e.target;
+      const label = field.placeholder || (field.options && field.options[0].text) || 'a required field';
+      showError(form, 'Please check: ' + label.replace(/\s*\(optional\)/i, ''));
+    }, true);
+
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      // Pretend it worked so bots don't retry
-      if (trap.value || Date.now() - loadedAt < MIN_FILL_MS) { thankYou(form); return; }
+      const suspectedSpam = !!trap.value || Date.now() - loadedAt < MIN_FILL_MS;
 
       const btn = form.querySelector('button[type="submit"]');
       const orig = btn ? btn.textContent : '';
@@ -5884,24 +5904,40 @@ const _supa = window.supabase.createClient(
         if (form.classList.contains(cls)) { formType = type; break; }
       }
 
-      const { error } = await _supa.from('submissions').insert({
-        form_type: formType,
-        email: data.email || null,
-        data: data
-      });
+      if (suspectedSpam) data.suspected_spam = true;
+
+      let error;
+      try {
+        ({ error } = await _supa.from('submissions').insert({
+          form_type: formType,
+          email: data.email || null,
+          data: data
+        }));
+      } catch (networkErr) {
+        error = networkErr;
+      }
 
       if (!error) {
         thankYou(form);
       } else {
+        console.error('Form submission failed:', error);
         if (btn) { btn.textContent = orig; btn.disabled = false; }
-        let err = form.querySelector('.nxs-err');
-        if (!err) {
-          err = document.createElement('p');
-          err.className = 'nxs-err';
-          err.style.cssText = 'color:rgba(240,80,80,.8);font-size:.6rem;margin-top:.8rem;';
-          form.appendChild(err);
+        showError(form, "Couldn't send right now. Tap below to email your submission to us instead.");
+        // Fallback so nobody is stuck: open their mail app with the answers filled in
+        let mail = form.querySelector('.nxs-mail');
+        if (!mail) {
+          mail = document.createElement('a');
+          mail.className = 'nxs-mail';
+          mail.style.cssText = 'display:inline-block;margin-top:.6rem;font-size:.62rem;letter-spacing:.1em;color:inherit;text-decoration:underline;cursor:none;';
+          mail.textContent = 'Email my submission →';
+          form.appendChild(mail);
         }
-        err.textContent = 'Could not send — please try again or email thenexx.usss@gmail.com';
+        const subject = 'Nexus ' + (data.event || formType) + ' submission' + (data.name ? ' from ' + data.name : '');
+        const body = Object.entries(data)
+          .filter(([k]) => k !== 'suspected_spam')
+          .map(([k, v]) => k.replace(/_/g, ' ') + ': ' + [].concat(v).join(', '))
+          .join('\n');
+        mail.href = 'mailto:thenexx.usss@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       }
     });
   }
