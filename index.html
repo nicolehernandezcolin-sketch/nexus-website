@@ -3207,6 +3207,11 @@ textarea.finput{resize:vertical;min-height:110px;}
   filter:drop-shadow(0 0 18px rgba(241,213,142,.35));}
 .reel-title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;}
 .reel-tag{margin-top:.8rem;font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rcream);opacity:.8;}
+/* title-card credit: "A Series by K. Screens" */
+.reel-credit{display:flex;flex-direction:column;align-items:center;gap:.35rem;margin:-.2rem 0 2rem;}
+.reel-credit span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--rcream);opacity:.75;}
+.reel-credit b{font-family:'Limelight',serif;font-weight:400;font-size:clamp(1.05rem,2.6vw,1.4rem);letter-spacing:.06em;color:var(--rg-hi);text-shadow:0 0 18px rgba(241,213,142,.3);}
+.reel-credit::after{content:'';width:120px;height:1px;margin-top:.5rem;background:linear-gradient(90deg,transparent,var(--rg),transparent);}
 .reel-lede{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.6rem);line-height:1.45;color:var(--rcream);max-width:600px;margin:0 auto 2.4rem;}
 
 /* Vintage admit-one ticket */
@@ -3289,6 +3294,7 @@ textarea.finput{resize:vertical;min-height:110px;}
       <div class="reel-drape-title">
         <div class="reel-drape-eb">Nexus Presents</div>
         <div class="reel-drape-name">REELFilms</div>
+        <div class="reel-drape-eb">A Series by K. Screens</div>
       </div>
     </div>
     <div class="curtain-l" id="curtain-l"></div>
@@ -3437,6 +3443,8 @@ textarea.finput{resize:vertical;min-height:110px;}
           <h2 class="reel-title">REEL<em>Films</em></h2>
           <div class="reel-tag">Now Accepting Submissions</div>
         </div>
+
+        <div class="reel-credit"><span>A Series by</span><b>K. Screens</b></div>
 
         <p class="reel-lede">An immersive screening night showcasing some of the most talented filmmakers in San Diego, on the big screen of a classic movie house.</p>
 
