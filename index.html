@@ -3283,6 +3283,77 @@ textarea.finput{resize:vertical;min-height:110px;}
   #film-reel{padding-left:2.2rem;padding-right:2.2rem;}
 }
 @media(prefers-reduced-motion:reduce){.reel-marquee::before{animation:none;}}
+button.reel-btn{border:none;font:inherit;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;}
+
+/* ── NEXUS TICKETING overlays (box office, ticket wallet, door) ── */
+.nx-ov{position:fixed;inset:0;z-index:2000;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:4vh 16px;background:rgba(8,3,4,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);cursor:auto;}
+.nx-ov[hidden]{display:none;}
+.nx-ov *{cursor:auto;}
+.nx-ov button,.nx-ov label,.nx-ov a{cursor:pointer;}
+body:has(.nx-ov:not([hidden])) #cur{display:none;}
+.nx-sheet{position:relative;width:100%;max-width:520px;background:linear-gradient(180deg,#1f0608,#120405);border:1px solid rgba(212,173,91,.5);outline:1px solid rgba(212,173,91,.2);outline-offset:-8px;padding:2.4rem clamp(1.2rem,5vw,2.4rem) 2rem;color:#f3e6cc;box-shadow:0 40px 120px rgba(0,0,0,.6);}
+.nx-x{position:absolute;top:.9rem;right:.9rem;background:none;border:none;color:rgba(241,213,142,.7);font-size:1rem;padding:.4rem;}
+.nx-eb{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.42em;text-transform:uppercase;color:#d4ad5b;text-align:center;}
+.nx-h{font-family:'Limelight',serif;font-weight:400;font-size:clamp(2rem,8vw,2.8rem);text-align:center;color:#f1d58e;margin:.4rem 0 .2rem;}
+.nx-h em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;}
+.nx-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;text-align:center;color:rgba(243,230,204,.8);margin-bottom:1.6rem;}
+.nx-step{display:flex;flex-direction:column;gap:.9rem;}
+.nx-step[hidden]{display:none;}
+.nx-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;border-top:1px solid rgba(212,173,91,.25);border-bottom:1px solid rgba(212,173,91,.25);}
+.nx-k{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.3rem;}
+.nx-small{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.06em;color:rgba(243,230,204,.6);margin-top:.2rem;}
+.nx-qty{display:flex;align-items:center;gap:.2rem;border:1px solid rgba(212,173,91,.5);}
+.nx-qty button{width:2.4rem;height:2.4rem;background:none;border:none;color:#f1d58e;font-size:1.1rem;}
+.nx-qty button:disabled{opacity:.3;}
+.nx-qty output{min-width:1.6rem;text-align:center;font-family:'Space Mono',monospace;font-size:.8rem;}
+.nx-total{display:flex;justify-content:space-between;align-items:baseline;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(243,230,204,.7);}
+.nx-total b{font-family:'Limelight',serif;font-weight:400;font-size:1.6rem;letter-spacing:0;color:#f1d58e;}
+.nx-in{width:100%;background:rgba(243,230,204,.05);border:1px solid rgba(212,173,91,.3);color:#f3e6cc;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.04em;padding:.95rem 1rem;border-radius:2px;outline:none;}
+.nx-in:focus{border-color:#d4ad5b;background:rgba(142,18,25,.14);}
+.nx-in::placeholder{color:rgba(243,230,204,.4);}
+.nx-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.nx-check{display:flex;gap:.7rem;align-items:flex-start;font-size:.54rem;line-height:1.7;color:rgba(243,230,204,.75);}
+.nx-check input{margin-top:.25rem;accent-color:#c4943c;}
+.nx-fine{font-size:.5rem;line-height:1.8;color:rgba(243,230,204,.55);text-align:center;}
+.nx-err{min-height:1em;font-size:.58rem;line-height:1.6;color:#ff9a8a;text-align:center;}
+.nx-btn{background:linear-gradient(180deg,#f1d58e,#c4943c);color:#1a0507;border:none;padding:1.05rem 1.4rem;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;}
+.nx-btn:disabled{opacity:.55;}
+.nx-powered{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(212,173,91,.6);text-align:center;}
+.nx-back{align-self:flex-start;background:none;border:none;color:rgba(241,213,142,.75);font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;padding:0;}
+#nx-stripe{background:#fff;border-radius:6px;overflow:hidden;min-height:420px;}
+.nx-wait{padding:2.4rem 0;text-align:center;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:#d4ad5b;}
+
+/* Ticket wallet: admit-one stubs with the QR */
+.nx-sheet--tix{max-width:440px;}
+.nx-ticket{background:#f3e6cc;color:#2a0609;margin:0 auto 1.4rem;max-width:340px;display:flex;flex-direction:column;align-items:center;padding:1.4rem 1.2rem 1.2rem;position:relative;
+  -webkit-mask:radial-gradient(circle 12px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 12px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;}
+.nx-ticket-eb{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.34em;text-transform:uppercase;color:#8e1219;}
+.nx-ticket-t{font-family:'Limelight',serif;font-size:1.6rem;margin:.2rem 0;}
+.nx-ticket-n{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.25rem;}
+.nx-ticket-tier{font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-bottom:.8rem;}
+.nx-qr{width:220px;height:220px;background:#fff;padding:10px;border-top:2px dashed rgba(42,6,9,.3);}
+.nx-qr img,.nx-qr svg{width:100%;height:100%;display:block;image-rendering:pixelated;}
+.nx-ticket-used{margin-top:.7rem;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:#1f6b35;}
+.nx-ticket.is-used .nx-qr{opacity:.25;}
+
+/* Door scanner: plain, bright, readable in a dark lobby */
+.nx-ov--door{padding:0;background:#000;align-items:stretch;}
+.nx-door{width:100%;max-width:560px;margin:0 auto;display:flex;flex-direction:column;color:#fff;font-family:'Space Mono',monospace;min-height:100%;}
+.nx-door-top{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:1rem;font-size:.7rem;letter-spacing:.1em;border-bottom:1px solid #333;}
+.nx-door-x{background:none;border:none;color:#fff;font-size:1.2rem;}
+.nx-door-pin{display:flex;flex-direction:column;gap:1rem;padding:2rem 1.2rem;font-size:.7rem;}
+.nx-cam{position:relative;aspect-ratio:1;background:#111;overflow:hidden;}
+.nx-cam video{width:100%;height:100%;object-fit:cover;}
+.nx-cam-frame{position:absolute;inset:18%;border:3px solid rgba(255,255,255,.75);border-radius:14px;}
+.nx-result{padding:1.4rem 1rem;font-size:1.05rem;line-height:1.4;text-align:center;font-weight:700;background:#222;}
+.nx-result.ok{background:#1f8a3d;}
+.nx-result.bad{background:#b3261e;}
+.nx-door-find{padding:1rem 1rem .4rem;}
+#nx-find-list{padding:0 1rem 2rem;display:flex;flex-direction:column;gap:.5rem;}
+.nx-hit{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:.8rem;border:1px solid #333;font-size:.62rem;line-height:1.5;}
+.nx-hit button{background:#fff;color:#000;border:none;padding:.6rem .9rem;font-family:inherit;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;}
+.nx-hit button:disabled{background:#444;color:#aaa;}
 
 </style>
 
@@ -3478,11 +3549,12 @@ textarea.finput{resize:vertical;min-height:110px;}
             <a class="reel-btn" href="#reel-submit" data-reel-jump id="reel-submit-btn">Submit Your Film ↓</a>
           </div>
           <div class="reel-card">
-            <div class="reel-card-k">Tickets · Nexus App</div>
-            <div class="reel-card-v">On Sale Nov 1</div>
-            <div class="reel-card-d">Tickets are sold through the Nexus App, on your phone or on the web.</div>
-            <div class="reel-count" id="reel-count">Tickets go live November 1</div>
-            <a class="reel-btn reel-btn--ghost" href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">Get Notified →</a>
+            <div class="reel-card-k" id="reel-tier">Tickets · Early Bird</div>
+            <!-- All-in prices (ticket + Nexus fee) are shown first, as California requires for live events -->
+            <div class="reel-card-v" id="reel-price">$21.59</div>
+            <div class="reel-card-d" id="reel-price-d">$20 ticket + $1.59 fee. Early bird through November 6, then $22 + fee.</div>
+            <div class="reel-count" id="reel-count">Early bird ends November 6</div>
+            <button class="reel-btn" type="button" id="reel-buy" data-reel-buy>Get Tickets →</button>
           </div>
         </div>
 
@@ -5110,6 +5182,84 @@ textarea.finput{resize:vertical;min-height:110px;}
   </div>
 </div><!-- /pg-global -->
 
+<!-- ═══════════════════════════════════════════
+     NEXUS TICKETING — box office, ticket wallet, door scanner
+     Backed by the Nexus app's Supabase functions (nexus-app/supabase/functions):
+     create-guest-checkout, guest-tickets, door-check-in.
+═══════════════════════════════════════════ -->
+<div class="nx-ov" id="nx-box" hidden role="dialog" aria-modal="true" aria-labelledby="nx-box-h">
+  <div class="nx-sheet">
+    <button class="nx-x" type="button" data-nx-close aria-label="Close">✕</button>
+    <div class="nx-eb">Nexus Box Office</div>
+    <h2 class="nx-h" id="nx-box-h">REEL<em>Films</em></h2>
+    <div class="nx-sub">Saturday, November 14 · 7–10 PM · UltraStar Coronado Village Theatre</div>
+
+    <form class="nx-step" id="nx-buy-form" novalidate>
+      <div class="nx-row">
+        <div>
+          <div class="nx-k" id="nx-tier-name">Early Bird</div>
+          <div class="nx-small" id="nx-tier-note">$20 ticket + $1.59 fee each</div>
+        </div>
+        <div class="nx-qty" role="group" aria-label="Number of tickets">
+          <button type="button" data-qty="-1" aria-label="One fewer">−</button>
+          <output id="nx-qty">1</output>
+          <button type="button" data-qty="1" aria-label="One more">+</button>
+        </div>
+      </div>
+      <div class="nx-total"><span>Total</span><b id="nx-total">$21.59</b></div>
+      <input class="nx-in" name="fullname" autocomplete="name" placeholder="Full name (name on the ticket)" required>
+      <input class="nx-in" name="email" type="email" autocomplete="email" placeholder="Email (we send your tickets here)" required>
+      <input class="nx-in" name="phone" type="tel" autocomplete="tel" placeholder="Mobile number" required>
+      <input class="nx-hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="nx-check"><input type="checkbox" name="optin"> Text and email me about future Nexus screenings and events. Optional. Msg &amp; data rates may apply; reply STOP to opt out.</label>
+      <p class="nx-fine">We use your email and phone to deliver your tickets and reach you about this event. Up to 4 tickets per person.</p>
+      <p class="nx-err" id="nx-buy-err" role="alert"></p>
+      <button class="nx-btn" type="submit" id="nx-buy-go">Continue to Payment →</button>
+      <div class="nx-powered">Nexus Ticketing · Payments secured by Stripe</div>
+    </form>
+
+    <div class="nx-step" id="nx-pay" hidden>
+      <button class="nx-back" type="button" id="nx-pay-back">← Edit details</button>
+      <div id="nx-stripe"></div>
+    </div>
+  </div>
+</div>
+
+<div class="nx-ov" id="nx-tix" hidden role="dialog" aria-modal="true" aria-labelledby="nx-tix-h">
+  <div class="nx-sheet nx-sheet--tix">
+    <button class="nx-x" type="button" data-nx-close aria-label="Close">✕</button>
+    <div class="nx-eb">Nexus Ticketing</div>
+    <h2 class="nx-h" id="nx-tix-h">Your <em>Tickets</em></h2>
+    <div class="nx-sub" id="nx-tix-sub"></div>
+    <div id="nx-tix-list"><div class="nx-wait">Finding your tickets…</div></div>
+    <p class="nx-fine" id="nx-tix-fine" hidden>Show the QR code at the door. Bookmark this page or take a screenshot, and keep it private: anyone with this link can use your tickets.</p>
+  </div>
+</div>
+
+<div class="nx-ov nx-ov--door" id="nx-door" hidden role="dialog" aria-modal="true" aria-label="Door check-in">
+  <div class="nx-door">
+    <div class="nx-door-top">
+      <b>Nexus Door</b>
+      <span id="nx-door-stats"></span>
+      <button class="nx-door-x" type="button" data-nx-close aria-label="Close">✕</button>
+    </div>
+    <form id="nx-door-pin" class="nx-door-pin">
+      <p>Staff check-in for REELFilms · Nov 14</p>
+      <input class="nx-in" type="password" inputmode="text" autocomplete="off" placeholder="Staff PIN" id="nx-pin" required>
+      <button class="nx-btn" type="submit">Start Scanning</button>
+      <p class="nx-err" id="nx-pin-err" role="alert"></p>
+    </form>
+    <div id="nx-door-live" hidden>
+      <div class="nx-cam"><video id="nx-video" playsinline muted></video><div class="nx-cam-frame"></div></div>
+      <div class="nx-result" id="nx-result" aria-live="assertive">Point the camera at a ticket</div>
+      <form id="nx-door-find" class="nx-door-find">
+        <input class="nx-in" id="nx-find" placeholder="No QR? Search name, email or last 4 of phone" autocomplete="off">
+      </form>
+      <div id="nx-find-list"></div>
+    </div>
+  </div>
+</div>
+
 
 
 <script>
@@ -5516,14 +5666,298 @@ document.querySelectorAll('[data-reel-jump]').forEach(el => {
     document.getElementById('reel-submit').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
-(function reelCountdown() {
-  const el = document.getElementById('reel-count');
-  const onSale = new Date('2026-11-01T00:00:00-07:00');
-  const days = Math.ceil((onSale - Date.now()) / 86400000);
-  if (days > 1) el.textContent = 'Tickets go live in ' + days + ' days';
-  else if (days === 1) el.textContent = 'Tickets go live tomorrow';
-  else el.textContent = 'On sale now on the Nexus App';
-})();
+/* ════════════════════════════════════════════
+   NEXUS TICKETING — guest checkout, ticket wallet, door scanner
+   Server side lives in the Nexus app's Supabase project (nexus-app/supabase/functions).
+   Prices, the early bird switch and the 4-ticket limit are all decided there.
+════════════════════════════════════════════ */
+const NX = {
+  fn: 'https://valeivzqquetjjhspgjk.supabase.co/functions/v1/',
+  event: 'reelfilms-2026',
+  stripeJs: 'https://js.stripe.com/endive/stripe.js',
+  libs: {
+    qr: ['https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js', 'sha384-8FWZA6BGMXhsfO+BLtrJK0We6gg5o1JyO8xQm6peWDEUs17ACA5ziE/NIAkl9z2k'],
+    jsqr: ['https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js', 'sha384-b5Ya4Bq3qCyz39m2ISh+4DxjAIljdeFwK/BsXLuj9gugaNwAcj/ia15fxNZL9Nlx'],
+  },
+  quote: null,
+};
+const nxMoney = c => '$' + (c / 100).toFixed(2).replace(/\.00$/, '');
+const nxMoney2 = c => '$' + (c / 100).toFixed(2);
+async function nxCall(name, body) {
+  try {
+    const r = await fetch(NX.fn + name, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok && !data.error) data.error = 'Something went wrong. Please try again.';
+    return data;
+  } catch (e) {
+    return { error: "Couldn't reach the box office. Check your connection and try again.", offline: true };
+  }
+}
+const nxScripts = {};
+function nxLoad(src, integrity) {
+  if (!nxScripts[src]) nxScripts[src] = new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src;
+    if (integrity) { s.integrity = integrity; s.crossOrigin = 'anonymous'; }
+    s.onload = res; s.onerror = () => { delete nxScripts[src]; rej(new Error('load failed')); };
+    document.head.appendChild(s);
+  });
+  return nxScripts[src];
+}
+function nxShow(id) { document.getElementById(id).hidden = false; }
+function nxHide(id) { document.getElementById(id).hidden = true; }
+function nxSaved() { try { return JSON.parse(localStorage.getItem('nx_tickets') || '[]'); } catch (e) { return []; } }
+function nxSave(ref) { try { localStorage.setItem('nx_tickets', JSON.stringify([...new Set([ref, ...nxSaved()])].slice(0, 10))); } catch (e) {} }
+
+/* ── Ticket card: live price from the server ── */
+async function nxLoadQuote() {
+  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: NX.event });
+  const buy = document.getElementById('reel-buy');
+  const set = (id, t) => { document.getElementById(id).textContent = t; };
+  if (q.offline || (q.error && q.onSale === undefined)) {
+    // Box office not reachable: keep the printed prices and send people to Instagram for now
+    buy.textContent = 'Get Notified →';
+    buy.onclick = () => window.open('https://www.instagram.com/n3xus.now/', '_blank', 'noopener');
+    return;
+  }
+  if (q.onSale === false) {
+    set('reel-tier', 'Tickets');
+    set('reel-price', 'Sales Closed');
+    set('reel-price-d', 'Online ticket sales for this screening have ended.');
+    set('reel-count', 'See you at the pictures');
+    buy.remove();
+    return;
+  }
+  NX.quote = q;
+  set('reel-tier', 'Tickets · ' + q.tier.name);
+  set('reel-price', nxMoney2(q.allInCents));
+  let d = nxMoney(q.unitCents) + ' ticket + ' + nxMoney2(q.feeCents) + ' fee.';
+  if (q.next) d += ' ' + q.tier.name + ' through ' + new Date(Date.parse(q.next.from) - 1).toLocaleDateString('en-US', { month: 'long', day: 'numeric', timeZone: 'America/Los_Angeles' }) + ', then $' + q.next.price + ' + fee.';
+  set('reel-price-d', d);
+  if (q.tier.until) {
+    // The last moment the price applies, shown as a day in San Diego: "ends Friday, Nov 6"
+    const last = new Date(Date.parse(q.tier.until) - 1000), pt = { timeZone: 'America/Los_Angeles' };
+    const day = d => d.toLocaleDateString('en-US', { ...pt, year: 'numeric', month: 'numeric', day: 'numeric' });
+    const what = q.next ? q.tier.name + ' ends' : 'Sales close';
+    set('reel-count', day(last) === day(new Date()) ? what + ' tonight'
+      : what + ' ' + last.toLocaleDateString('en-US', { ...pt, weekday: 'long', month: 'short', day: 'numeric' }));
+  }
+  buy.textContent = 'Get Tickets →';
+  buy.onclick = nxOpenBox;
+  if (nxSaved().length && !document.getElementById('reel-mine')) {
+    const a = document.createElement('button');
+    a.type = 'button'; a.id = 'reel-mine'; a.className = 'reel-btn reel-btn--ghost';
+    a.textContent = 'View My Tickets';
+    a.onclick = () => nxOpenTickets(nxSaved()[0]);
+    buy.after(a);
+  }
+}
+
+/* ── Box office ── */
+let nxQty = 1, nxCheckout = null, nxOrderRef = null;
+function nxRenderQty() {
+  const q = NX.quote; if (!q) return;
+  document.getElementById('nx-qty').textContent = nxQty;
+  document.getElementById('nx-tier-name').textContent = q.tier.name;
+  document.getElementById('nx-tier-note').textContent = nxMoney(q.unitCents) + ' ticket + ' + nxMoney2(q.feeCents) + ' fee each';
+  document.getElementById('nx-total').textContent = nxMoney2(q.allInCents * nxQty);
+  document.querySelector('[data-qty="-1"]').disabled = nxQty <= 1;
+  document.querySelector('[data-qty="1"]').disabled = nxQty >= q.limit;
+}
+function nxOpenBox() {
+  nxQty = 1; nxRenderQty();
+  document.getElementById('nx-buy-err').textContent = '';
+  nxShow('nx-buy-form'); nxHide('nx-pay'); nxShow('nx-box');
+  setTimeout(() => document.querySelector('#nx-buy-form [name=fullname]').focus(), 50);
+}
+document.querySelectorAll('[data-qty]').forEach(b => b.addEventListener('click', () => {
+  nxQty = Math.max(1, Math.min(NX.quote.limit, nxQty + Number(b.dataset.qty))); nxRenderQty();
+}));
+// Leaving the payment step releases the held order so it doesn't count against the 4-ticket limit
+async function nxReleaseOrder() {
+  if (nxCheckout) { try { (nxCheckout.destroy || nxCheckout.unmount).call(nxCheckout); } catch (e) {} nxCheckout = null; }
+  document.getElementById('nx-stripe').innerHTML = '';
+  if (nxOrderRef) { const ref = nxOrderRef; nxOrderRef = null; nxCall('create-guest-checkout', { mode: 'cancel', ticket: ref }); }
+}
+document.getElementById('nx-pay-back').addEventListener('click', async () => {
+  await nxReleaseOrder(); nxHide('nx-pay'); nxShow('nx-buy-form');
+});
+document.getElementById('nx-buy-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, err = document.getElementById('nx-buy-err'), go = document.getElementById('nx-buy-go');
+  const name = f.fullname.value.trim(), email = f.email.value.trim(), phone = f.phone.value.trim();
+  if (name.length < 2) { err.textContent = 'Please enter your full name.'; f.fullname.focus(); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'Please enter a valid email address.'; f.email.focus(); return; }
+  if (phone.replace(/\D/g, '').length < 10) { err.textContent = 'Please enter your mobile number.'; f.phone.focus(); return; }
+  if (!NX.quote.publishableKey) { err.textContent = 'Checkout is being set up. Please try again soon.'; return; }
+  err.textContent = ''; go.disabled = true; go.textContent = 'Holding your seats…';
+  const res = await nxCall('create-guest-checkout', {
+    event: NX.event, quantity: nxQty, name, email, phone, marketingOptIn: f.optin.checked, company: f.company.value,
+  });
+  go.disabled = false; go.textContent = 'Continue to Payment →';
+  if (res.error) { err.textContent = res.error; return; }
+  nxOrderRef = res.ticket; nxSave(res.ticket);
+  try {
+    await nxLoad(NX.stripeJs);
+    const stripe = Stripe(NX.quote.publishableKey);
+    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { const ref = nxOrderRef; nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(ref); } };
+    nxCheckout = stripe.createEmbeddedCheckoutPage ? await stripe.createEmbeddedCheckoutPage(opts) : await stripe.initEmbeddedCheckout(opts);
+    nxHide('nx-buy-form'); nxShow('nx-pay');
+    nxCheckout.mount('#nx-stripe');
+  } catch (e2) {
+    await nxReleaseOrder();
+    err.textContent = "Payment couldn't load. If you use an ad blocker, pause it for this page and try again.";
+  }
+});
+
+/* ── Ticket wallet: nexusglobal.info/#/ticket/<order>.<token> ── */
+let nxPoll = null;
+async function nxOpenTickets(ref) {
+  if (!ref) return;
+  history.replaceState(null, '', location.pathname + '#/ticket/' + ref);
+  nxShow('nx-tix');
+  const list = document.getElementById('nx-tix-list'), sub = document.getElementById('nx-tix-sub');
+  list.innerHTML = '<div class="nx-wait">Finding your tickets…</div>';
+  clearTimeout(nxPoll);
+  let tries = 0;
+  const load = async () => {
+    const r = await nxCall('guest-tickets', { ticket: ref });
+    if (r.error) { list.innerHTML = ''; const p = document.createElement('div'); p.className = 'nx-wait'; p.textContent = r.error; list.appendChild(p); return; }
+    sub.textContent = r.event ? [r.event.when_text, r.event.where_text].filter(Boolean).join(' · ') : '';
+    if (r.status === 'pending') {
+      list.innerHTML = '<div class="nx-wait">Confirming your payment…</div>';
+      if (tries++ < 40) nxPoll = setTimeout(load, 2500);
+      else list.innerHTML = '<div class="nx-wait">Still confirming. Refresh this page in a minute. Your link is saved.</div>';
+      return;
+    }
+    if (r.status !== 'paid') {
+      list.innerHTML = '<div class="nx-wait">This checkout wasn\'t completed, so no tickets were issued.</div>';
+      return;
+    }
+    nxSave(ref);
+    await nxLoad(...NX.libs.qr);
+    list.innerHTML = '';
+    r.tickets.forEach((t, i) => {
+      const card = document.createElement('div');
+      card.className = 'nx-ticket' + (t.status === 'used' ? ' is-used' : '');
+      const add = (cls, text) => { const d = document.createElement('div'); d.className = cls; d.textContent = text; card.appendChild(d); return d; };
+      add('nx-ticket-eb', 'Admit One · ' + (i + 1) + ' of ' + r.tickets.length);
+      add('nx-ticket-t', r.event ? r.event.title : 'Nexus');
+      add('nx-ticket-n', t.name);
+      add('nx-ticket-tier', t.tier);
+      const qr = qrcode(0, 'M'); qr.addData(t.code); qr.make();
+      const box = add('nx-qr', ''); box.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+      if (t.status === 'used') add('nx-ticket-used', 'Checked in ' + new Date(t.checkedInAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
+      if (t.status === 'refunded') add('nx-ticket-used', 'Refunded');
+      list.appendChild(card);
+    });
+    document.getElementById('nx-tix-fine').hidden = false;
+  };
+  load();
+}
+
+/* ── Door scanner: nexusglobal.info/#/door (staff only, PIN-protected) ── */
+let nxPin = '', nxStream = null, nxLast = { code: '', at: 0 }, nxBusy = false;
+function nxDoorResult(ok, text) {
+  const el = document.getElementById('nx-result');
+  el.className = 'nx-result ' + (ok ? 'ok' : 'bad'); el.textContent = text;
+  if (navigator.vibrate) navigator.vibrate(ok ? 80 : [80, 60, 80]);
+  clearTimeout(el._t); el._t = setTimeout(() => { el.className = 'nx-result'; el.textContent = 'Point the camera at a ticket'; }, 3500);
+}
+async function nxDoorStats() {
+  const s = await nxCall('door-check-in', { pin: nxPin, event: NX.event, mode: 'stats' });
+  if (!s.error) document.getElementById('nx-door-stats').textContent = s.in + ' / ' + s.expected + ' in';
+  return s;
+}
+async function nxAdmit(body) {
+  nxBusy = true;
+  const r = await nxCall('door-check-in', { pin: nxPin, event: NX.event, ...body });
+  nxBusy = false;
+  if (r.error) nxDoorResult(false, r.error);
+  else if (r.ok) nxDoorResult(true, '✓ ' + r.name + ' · ' + r.tier);
+  else nxDoorResult(false, '✕ ' + r.reason + (r.name ? ' · ' + r.name : '') + (r.checkedInAt ? ' at ' + new Date(r.checkedInAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : ''));
+  nxDoorStats();
+  return r;
+}
+async function nxStartCamera() {
+  const video = document.getElementById('nx-video');
+  try {
+    nxStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
+  } catch (e) { nxDoorResult(false, 'Camera blocked. Allow camera access, or search by name below.'); return; }
+  video.srcObject = nxStream; await video.play();
+  await nxLoad(...NX.libs.jsqr);
+  const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const tick = () => {
+    if (!nxStream) return;
+    if (!nxBusy && video.readyState === video.HAVE_ENOUGH_DATA) {
+      const w = 480, h = Math.round(480 * video.videoHeight / video.videoWidth);
+      canvas.width = w; canvas.height = h; ctx.drawImage(video, 0, 0, w, h);
+      const hit = jsQR(ctx.getImageData(0, 0, w, h).data, w, h, { inversionAttempts: 'dontInvert' });
+      // Ignore the same code held in front of the camera for a few seconds
+      if (hit && hit.data && (hit.data !== nxLast.code || Date.now() - nxLast.at > 4000)) {
+        nxLast = { code: hit.data, at: Date.now() };
+        nxAdmit({ code: hit.data });
+      }
+    }
+    requestAnimationFrame(tick);
+  };
+  tick();
+}
+function nxStopCamera() { if (nxStream) { nxStream.getTracks().forEach(t => t.stop()); nxStream = null; } }
+function nxOpenDoor() {
+  nxShow('nx-door');
+  try { nxPin = sessionStorage.getItem('nx_pin') || ''; } catch (e) {}
+  if (nxPin) document.getElementById('nx-door-pin').requestSubmit();
+}
+document.getElementById('nx-door-pin').addEventListener('submit', async e => {
+  e.preventDefault();
+  const input = document.getElementById('nx-pin');
+  if (input.value) nxPin = input.value;
+  const s = await nxDoorStats();
+  if (s.error) { document.getElementById('nx-pin-err').textContent = s.error; nxPin = ''; try { sessionStorage.removeItem('nx_pin'); } catch (e2) {} return; }
+  try { sessionStorage.setItem('nx_pin', nxPin); } catch (e2) {}
+  input.value = '';
+  nxHide('nx-door-pin'); nxShow('nx-door-live');
+  nxStartCamera();
+});
+let nxFindT = null;
+document.getElementById('nx-find').addEventListener('input', e => {
+  clearTimeout(nxFindT);
+  const q = e.target.value.trim(), list = document.getElementById('nx-find-list');
+  if (q.length < 2) { list.innerHTML = ''; return; }
+  nxFindT = setTimeout(async () => {
+    const r = await nxCall('door-check-in', { pin: nxPin, event: NX.event, query: q });
+    list.innerHTML = '';
+    (r.results || []).forEach(m => {
+      const row = document.createElement('div'); row.className = 'nx-hit';
+      const info = document.createElement('div'); info.textContent = m.name + ' · ' + m.tier + (m.email ? ' · ' + m.email : '');
+      const b = document.createElement('button'); b.type = 'button';
+      b.textContent = m.status === 'used' ? 'In' : m.status === 'refunded' ? 'Refunded' : 'Admit';
+      b.disabled = m.status !== 'valid';
+      b.onclick = async () => { const res = await nxAdmit({ ticketId: m.ticketId }); if (res.ok || res.reason) { b.textContent = 'In'; b.disabled = true; } };
+      row.append(info, b); list.appendChild(row);
+    });
+    if (!(r.results || []).length) list.textContent = r.error || 'No match';
+  }, 300);
+});
+document.getElementById('nx-door-find').addEventListener('submit', e => e.preventDefault());
+
+/* ── Opening and closing ── */
+document.querySelectorAll('.nx-ov [data-nx-close]').forEach(b => b.addEventListener('click', () => {
+  const ov = b.closest('.nx-ov');
+  if (ov.id === 'nx-box') nxReleaseOrder();
+  if (ov.id === 'nx-door') nxStopCamera();
+  if (ov.id === 'nx-tix') clearTimeout(nxPoll);
+  ov.hidden = true;
+  if (ov.id !== 'nx-box') { history.replaceState(null, '', location.pathname + '#/film/reelfilms'); openRoute(); }
+}));
+function nxFromHash() {
+  const h = location.hash;
+  if (h.startsWith('#/ticket/')) { nxOpenTickets(h.slice(9)); return true; }
+  if (h === '#/door') { nxOpenDoor(); return true; }
+  return false;
+}
+nxLoadQuote();
 // Film submissions close at 11:59 PM Pacific on Nov 2 (PST after Nov 1). Checked every
 // minute so a page left open past the deadline closes too.
 (function reelSubmissionWindow() {
@@ -6109,6 +6543,7 @@ document.addEventListener('click', e => {
 
 // Open whatever page the URL points to (direct links, back/forward buttons)
 function openRoute() {
+  if (nxFromHash()) return; // #/ticket/… and #/door open as overlays
   const [slug, subSlug] = location.hash.replace(/^#\/?/, '').split('/');
   const r = ROUTES[slug];
   const pageId = r ? r.page : 'pg-landing';
