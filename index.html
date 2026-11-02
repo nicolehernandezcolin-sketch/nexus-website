@@ -2944,6 +2944,7 @@ body{
 
 </div>
 
+<!-- ═══════════════════════════════════════════
      FILM — Red Velvet Theater
 ═══════════════════════════════════════════ -->
 <style>
@@ -3347,7 +3348,7 @@ textarea.finput{resize:vertical;min-height:110px;}
               <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
             </div>
             <div class="seat-row-label">REELFilms</div>
-            <div class="seat-row-sub">Submissions Open &nbsp;·&nbsp; Nov 14 &nbsp;·&nbsp; Coronado</div>
+            <div class="seat-row-sub" id="reel-seat-sub">Submissions Close Tonight &nbsp;·&nbsp; Nov 14 &nbsp;·&nbsp; Coronado</div>
           </a>
 
           <div class="row-div"></div>
@@ -3441,7 +3442,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 
         <div class="reel-marquee">
           <h2 class="reel-title">REEL<em>Films</em></h2>
-          <div class="reel-tag">Now Accepting Submissions</div>
+          <div class="reel-tag" id="reel-tag">Now Accepting Submissions</div>
         </div>
 
         <div class="reel-credit"><span>A Series by</span><b>K. Screens</b></div>
@@ -3472,8 +3473,9 @@ textarea.finput{resize:vertical;min-height:110px;}
           <div class="reel-card">
             <div class="reel-card-k">Film Submissions</div>
             <div class="reel-card-v">Free</div>
-            <div class="reel-card-d">No entry fee. Send us your film and our team will watch every submission.</div>
-            <a class="reel-btn" href="#reel-submit" data-reel-jump>Submit Your Film ↓</a>
+            <div class="reel-card-d" id="reel-sub-d">No entry fee. Send us your film and our team will watch every submission.</div>
+            <div class="reel-count" id="reel-deadline">Deadline · Tonight, Nov 2 · 11:59 PM</div>
+            <a class="reel-btn" href="#reel-submit" data-reel-jump id="reel-submit-btn">Submit Your Film ↓</a>
           </div>
           <div class="reel-card">
             <div class="reel-card-k">Tickets · Nexus App</div>
@@ -3501,8 +3503,9 @@ textarea.finput{resize:vertical;min-height:110px;}
         <div class="reel-rule">✦</div>
 
         <h3 class="reel-h" id="reel-submit">Submit Your <em>Film</em></h3>
-        <p class="reel-p">Free to submit. Share a screening link we can watch (YouTube, Vimeo, or Google Drive) and tell us about your film.</p>
-        <form class="fform reel-form" method="POST">
+        <div class="reel-count reel-count--deadline" id="reel-deadline-2">Submissions close tonight, Monday, November 2, at 11:59 PM</div>
+        <p class="reel-p" id="reel-submit-p">Free to submit. Share a screening link we can watch (YouTube, Vimeo, or Google Drive) and tell us about your film.</p>
+        <form class="fform reel-form" id="reel-form" method="POST">
           <input type="hidden" name="event" value="REELFilms" />
           <div class="reel-2col">
             <input class="finput" type="text" name="name" placeholder="Filmmaker Name" required />
@@ -5520,6 +5523,33 @@ document.querySelectorAll('[data-reel-jump]').forEach(el => {
   if (days > 1) el.textContent = 'Tickets go live in ' + days + ' days';
   else if (days === 1) el.textContent = 'Tickets go live tomorrow';
   else el.textContent = 'On sale now on the Nexus App';
+})();
+// Film submissions close at 11:59 PM Pacific on Nov 2 (PST after Nov 1). Checked every
+// minute so a page left open past the deadline closes too.
+(function reelSubmissionWindow() {
+  const deadline = new Date('2026-11-02T23:59:59-08:00');
+  function closeIfPast() {
+    if (Date.now() <= deadline) return false;
+    const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    set('reel-tag', 'Submissions Closed');
+    set('reel-seat-sub', 'Submissions Closed · Nov 14 · Coronado');
+    set('reel-sub-d', 'Thank you to every filmmaker who submitted. Selected filmmakers will hear from us before November 14.');
+    set('reel-deadline', 'Closed');
+    set('reel-deadline-2', 'Submissions closed November 2 at 11:59 PM');
+    set('reel-submit-p', 'Submissions for this screening are closed. Thank you to every filmmaker who sent us their work.');
+    const btn = document.getElementById('reel-submit-btn');
+    if (btn) btn.remove();
+    // Don't snatch the form from someone mid-entry at midnight; let them finish
+    const form = document.getElementById('reel-form');
+    if (form && !started) form.remove();
+    return true;
+  }
+  let started = false;
+  const reelForm = document.getElementById('reel-form');
+  if (reelForm) reelForm.addEventListener('input', () => { started = true; }, { once: true });
+  if (!closeIfPast()) {
+    const timer = setInterval(() => { if (closeIfPast()) clearInterval(timer); }, 60000);
+  }
 })();
 document.querySelectorAll('[data-filmsub]').forEach(el => {
   el.addEventListener('click', e => {
