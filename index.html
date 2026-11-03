@@ -3337,7 +3337,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 .nx-qr{width:220px;height:220px;background:#fff;padding:10px;border-top:2px dashed rgba(42,6,9,.3);}
 .nx-qr img,.nx-qr svg{width:100%;height:100%;display:block;image-rendering:pixelated;}
 .nx-ticket-pin{margin-top:.8rem;text-align:center;font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.3em;text-transform:uppercase;opacity:.75;}
-.nx-ticket-pin b{display:block;font-size:1.25rem;letter-spacing:.2em;opacity:1;margin-top:.15rem;color:#2a0609;}
+.nx-ticket-pin b{font-size:.55rem;letter-spacing:.18em;opacity:1;color:#2a0609;margin-left:.3em;}
 .nx-ticket-used{margin-top:.7rem;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:#1f6b35;}
 .nx-ticket.is-used .nx-qr{opacity:.25;}
 
@@ -5498,7 +5498,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
     <h2 class="nx-h" id="nx-tix-h">Your <em>Tickets</em></h2>
     <div class="nx-sub" id="nx-tix-sub"></div>
     <div id="nx-tix-list"><div class="nx-wait">Finding your tickets…</div></div>
-    <p class="nx-fine" id="nx-tix-fine" hidden>Show the QR code at the door. No signal? Give the door your name or ticket PIN. Your tickets are in your email too. Bookmark this page or take a screenshot, and keep it private: anyone with this link can use your tickets.</p>
+    <p class="nx-fine" id="nx-tix-fine" hidden>Show the QR code at the door. No signal? Just give the door your name. Your tickets are in your email too. Bookmark this page or take a screenshot, and keep it private: anyone with this link can use your tickets.</p>
   </div>
 </div>
 
@@ -5519,7 +5519,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
       <div class="nx-cam"><video id="nx-video" playsinline muted></video><div class="nx-cam-frame"></div></div>
       <div class="nx-result" id="nx-result" aria-live="assertive">Point the camera at a ticket</div>
       <form id="nx-door-find" class="nx-door-find">
-        <input class="nx-in" id="nx-find" placeholder="No QR? Search ticket PIN, name, email or last 4 of phone" autocomplete="off">
+        <input class="nx-in" id="nx-find" placeholder="No QR? Search name, email, ticket # or last 4 of phone" autocomplete="off">
       </form>
       <div id="nx-find-list"></div>
     </div>
@@ -6113,7 +6113,7 @@ async function nxOpenTickets(ref) {
       add('nx-ticket-tier', t.tier);
       const qr = qrcode(0, 'M'); qr.addData(t.code); qr.make();
       const box = add('nx-qr', ''); box.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
-      if (t.pin) { const p = add('nx-ticket-pin', 'Ticket PIN'); const b = document.createElement('b'); b.textContent = t.pin.slice(0, 3) + ' ' + t.pin.slice(3); p.appendChild(b); }
+      if (t.pin) { const p = add('nx-ticket-pin', 'Ticket #'); const b = document.createElement('b'); b.textContent = t.pin.slice(0, 3) + ' ' + t.pin.slice(3); p.appendChild(b); }
       if (t.status === 'used') add('nx-ticket-used', 'Checked in ' + new Date(t.checkedInAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
       if (t.status === 'refunded') add('nx-ticket-used', 'Refunded');
       list.appendChild(card);
@@ -6197,7 +6197,7 @@ document.getElementById('nx-find').addEventListener('input', e => {
     list.innerHTML = '';
     (r.results || []).forEach(m => {
       const row = document.createElement('div'); row.className = 'nx-hit';
-      const info = document.createElement('div'); info.textContent = m.name + ' · ' + m.tier + (m.pin ? ' · PIN ' + m.pin : '') + (m.email ? ' · ' + m.email : '');
+      const info = document.createElement('div'); info.textContent = m.name + ' · ' + m.tier + (m.pin ? ' · #' + m.pin : '') + (m.email ? ' · ' + m.email : '');
       const b = document.createElement('button'); b.type = 'button';
       b.textContent = m.status === 'used' ? 'In' : m.status === 'refunded' ? 'Refunded' : 'Admit';
       b.disabled = m.status !== 'valid';
