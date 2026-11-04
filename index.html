@@ -3267,6 +3267,33 @@ textarea.finput{resize:vertical;min-height:110px;}
 .reel-check{display:flex;gap:.8rem;align-items:flex-start;font-size:.56rem;line-height:1.8;color:rgba(243,230,204,.8);cursor:none;}
 .reel-check input{accent-color:#c4943c;margin-top:.3rem;cursor:none;}
 .reel-form .reel-btn{align-self:center;}
+/* Three views of one page: overview, tickets (#/film/reelfilms/tickets), submit (#/film/reelfilms/submit) */
+#film-reel .rv{display:none;width:100%;flex-direction:column;align-items:center;}
+#film-reel:not([data-view]) .rv-home,#film-reel[data-view=tickets] .rv-tickets,#film-reel[data-view=submit] .rv-submit{display:flex;}
+.reel-tabs{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:560px;margin:0 auto 2.6rem;border:1px solid rgba(212,173,91,.45);}
+.reel-tabs a{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:.9rem .6rem;text-decoration:none;cursor:none;color:var(--rcream);transition:background .25s;}
+.reel-tabs a + a{border-left:1px solid rgba(212,173,91,.45);}
+.reel-tabs b{font-family:'Limelight',serif;font-weight:400;font-size:clamp(.95rem,2.4vw,1.15rem);letter-spacing:.04em;color:var(--rg-hi);}
+.reel-tabs span{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.22em;text-transform:uppercase;opacity:.7;}
+.reel-tabs a:hover{background:rgba(142,18,25,.25);}
+#film-reel[data-view=tickets] .reel-tabs a[data-reel-view=tickets],#film-reel[data-view=submit] .reel-tabs a[data-reel-view=submit]{background:linear-gradient(180deg,rgba(142,18,25,.55),rgba(90,8,14,.55));}
+.reel-card--solo{width:100%;max-width:480px;margin:0 auto 2.4rem;}
+/* A shorter marquee on the tickets and submit pages, so the button is on the first screen */
+#film-reel[data-view] .reel-eb{display:none;}
+#film-reel[data-view] .reel-marquee{padding:1.6rem clamp(1.2rem,5vw,3rem) 1.4rem;margin-top:0;}
+#film-reel[data-view] .reel-title{font-size:clamp(2rem,7vw,4.6rem);}
+#film-reel[data-view] .reel-credit{margin-bottom:1.4rem;}
+#film-reel[data-view] .reel-tabs{margin-bottom:1.8rem;}
+@media(max-width:640px){
+  #film-reel[data-view] .reel-marquee{padding:1.1rem 1rem 1rem;}
+  #film-reel[data-view] .reel-credit{margin-bottom:1rem;}
+  #film-reel[data-view] .reel-tabs{margin-bottom:1.2rem;}
+  .reel-tabs a{padding:.7rem .4rem;}
+  .reel-tabs b{font-size:.88rem;white-space:nowrap;}
+  .reel-card--solo{padding:1.8rem 1.2rem 1.6rem;}
+}
+.reel-btn--big{font-size:.58rem;padding:1.15rem 2.4rem;}
+.rv-submit .reel-lede b{font-style:normal;color:var(--rg-hi);font-weight:600;}
 .reel-form-note{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.06em;line-height:1.8;color:rgba(243,230,204,.5);text-align:center;}
 .reel-close{margin-top:4rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,2rem);color:var(--rg-hi);}
 
@@ -3340,6 +3367,16 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 .nx-ticket-pin b{font-size:.55rem;letter-spacing:.18em;opacity:1;color:#2a0609;margin-left:.3em;}
 .nx-ticket-used{margin-top:.7rem;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:#1f6b35;}
 .nx-ticket.is-used .nx-qr{opacity:.25;}
+.nx-live{width:220px;height:5px;background:linear-gradient(90deg,#8e1219,#e8c27a,#8e1219,#e8c27a,#8e1219);background-size:200% 100%;animation:nxLive 2.4s linear infinite;}
+@keyframes nxLive{to{background-position:-200% 0;}}
+.nx-live-t{margin-top:.45rem;font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;opacity:.75;}
+.nx-ticket.is-used .nx-live{animation:none;opacity:.3;}
+.nx-signin{display:flex;flex-direction:column;gap:.8rem;margin-top:.4rem;}
+.nx-signin[hidden]{display:none;}
+.nx-signin-p{font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.5;color:#f3e6cc;text-align:center;}
+.nx-in--code{text-align:center;font-size:1.3rem;letter-spacing:.5em;}
+.nx-back--c{align-self:center;margin:1rem auto 0;display:block;text-align:center;}
+.nx-back--c[hidden]{display:none;}
 
 /* Door scanner: plain, bright, readable in a dark lobby */
 .nx-ov--door{padding:0;background:#000;align-items:stretch;}
@@ -3423,7 +3460,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
               <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
             </div>
             <div class="seat-row-label">REELFilms</div>
-            <div class="seat-row-sub" id="reel-seat-sub">Submissions Close Tonight &nbsp;·&nbsp; Nov 14 &nbsp;·&nbsp; Coronado</div>
+            <div class="seat-row-sub">Tickets for Nov 14 &nbsp;·&nbsp; Submissions Open for Dec 5</div>
           </a>
 
           <div class="row-div"></div>
@@ -3517,101 +3554,136 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 
         <div class="reel-marquee">
           <h2 class="reel-title">REEL<em>Films</em></h2>
-          <div class="reel-tag" id="reel-tag">Now Accepting Submissions</div>
+          <div class="reel-tag" id="reel-tag">Screenings in San Diego</div>
         </div>
 
         <div class="reel-credit"><span>A Series by</span><b>K. Screens</b></div>
 
-        <p class="reel-lede">An immersive screening night showcasing some of the most talented filmmakers in San Diego, on the big screen of a classic movie house.</p>
+        <nav class="reel-tabs" aria-label="REELFilms">
+          <a href="#/film/reelfilms/tickets" data-reel-view="tickets"><b>Tickets</b><span>Nov 14 Screening</span></a>
+          <a href="#/film/reelfilms/submit" data-reel-view="submit"><b>Submit a Film</b><span>Now Open · Dec 5</span></a>
+        </nav>
 
-        <div class="reel-ticket">
-          <div class="reel-tk">
-            <div class="reel-tk-l">Date</div>
-            <div class="reel-tk-v">Saturday, November 14</div>
-            <div class="reel-tk-s">2026</div>
+        <!-- Overview: nexusglobal.info/#/film/reelfilms -->
+        <section class="rv rv-home">
+          <p class="reel-lede">An immersive screening night showcasing some of the most talented filmmakers in San Diego, on the big screen of a classic movie house.</p>
+          <div class="reel-cards">
+            <div class="reel-card">
+              <div class="reel-card-k">Next Screening</div>
+              <div class="reel-card-v">Nov 14</div>
+              <div class="reel-card-d">Saturday, 7 – 10 PM at UltraStar Coronado Village Theatre. Tickets on sale now.</div>
+              <a class="reel-btn" href="#/film/reelfilms/tickets" data-reel-view="tickets">Get Tickets →</a>
+            </div>
+            <div class="reel-card">
+              <div class="reel-card-k">Film Submissions</div>
+              <div class="reel-card-v">Open</div>
+              <div class="reel-card-d">Free to submit. Now accepting films for our December 5 screening and future screenings.</div>
+              <a class="reel-btn" href="#/film/reelfilms/submit" data-reel-view="submit">Submit Your Film →</a>
+            </div>
           </div>
-          <div class="reel-tk">
-            <div class="reel-tk-l">Showtime</div>
-            <div class="reel-tk-v">7 – 10 PM</div>
-            <div class="reel-tk-s">An immersive screening</div>
-          </div>
-          <div class="reel-tk">
-            <div class="reel-tk-l">Venue</div>
-            <div class="reel-tk-v">UltraStar Coronado Village Theatre</div>
-            <div class="reel-tk-s">Coronado, CA</div>
-          </div>
-        </div>
+        </section>
 
-        <div class="reel-rule">✦</div>
-
-        <div class="reel-cards">
-          <div class="reel-card">
-            <div class="reel-card-k">Film Submissions</div>
-            <div class="reel-card-v">Free</div>
-            <div class="reel-card-d" id="reel-sub-d">No entry fee. Send us your film and our team will watch every submission.</div>
-            <div class="reel-count" id="reel-deadline">Deadline · Tonight, Nov 2 · 11:59 PM</div>
-            <a class="reel-btn" href="#reel-submit" data-reel-jump id="reel-submit-btn">Submit Your Film ↓</a>
-          </div>
-          <div class="reel-card">
+        <!-- Tickets: nexusglobal.info/#/film/reelfilms/tickets (the link to share) -->
+        <section class="rv rv-tickets">
+          <div class="reel-card reel-card--solo">
             <div class="reel-card-k" id="reel-tier">Tickets · Early Bird</div>
             <!-- All-in prices (ticket + Nexus fee) are shown first, as California requires for live events -->
             <div class="reel-card-v" id="reel-price">$21.59</div>
             <div class="reel-card-d" id="reel-price-d">$20 ticket + $1.59 fee. Early bird through November 6, then $22 + fee.</div>
             <div class="reel-count" id="reel-count">Early bird ends November 6</div>
-            <button class="reel-btn" type="button" id="reel-buy" data-reel-buy>Get Tickets →</button>
+            <button class="reel-btn reel-btn--big" type="button" id="reel-buy" data-reel-buy>Get Tickets →</button>
           </div>
-        </div>
 
-        <div class="reel-rule">✦</div>
-
-        <h3 class="reel-h">How It <em>Works</em></h3>
-        <ol class="reel-steps">
-          <li><b>I</b><strong>Submit</strong><span>Send us a link to your film using the form below. It's free.</span></li>
-          <li><b>II</b><strong>Selection</strong><span>We watch every film and reach out to the filmmakers selected for the program.</span></li>
-          <li><b>III</b><strong>Screening</strong><span>Selected films play on the big screen in Coronado on November 14.</span></li>
-        </ol>
-
-        <div class="reel-rule">✦</div>
-
-        <h3 class="reel-h">The <em>Venue</em></h3>
-        <p class="reel-p">UltraStar Coronado Village Theatre is a classic movie house on Orange Avenue, with the red velvet, gold, and glow of Hollywood's golden age. For one night it becomes a showcase for the filmmakers shaping San Diego's screen today.</p>
-
-        <div class="reel-rule">✦</div>
-
-        <h3 class="reel-h" id="reel-submit">Submit Your <em>Film</em></h3>
-        <div class="reel-count reel-count--deadline" id="reel-deadline-2">Submissions close tonight, Monday, November 2, at 11:59 PM</div>
-        <p class="reel-p" id="reel-submit-p">Free to submit. Share a screening link we can watch (YouTube, Vimeo, or Google Drive) and tell us about your film.</p>
-        <form class="fform reel-form" id="reel-form" method="POST">
-          <input type="hidden" name="event" value="REELFilms" />
-          <div class="reel-2col">
-            <input class="finput" type="text" name="name" placeholder="Filmmaker Name" required />
-            <input class="finput" type="email" name="email" placeholder="Email Address" required />
+          <div class="reel-ticket">
+            <div class="reel-tk">
+              <div class="reel-tk-l">Date</div>
+              <div class="reel-tk-v">Saturday, November 14</div>
+              <div class="reel-tk-s">2026</div>
+            </div>
+            <div class="reel-tk">
+              <div class="reel-tk-l">Showtime</div>
+              <div class="reel-tk-v">7 – 10 PM</div>
+              <div class="reel-tk-s">An immersive screening</div>
+            </div>
+            <div class="reel-tk">
+              <div class="reel-tk-l">Venue</div>
+              <div class="reel-tk-v">UltraStar Coronado Village Theatre</div>
+              <div class="reel-tk-s">Coronado, CA</div>
+            </div>
           </div>
-          <div class="reel-2col">
-            <input class="finput" type="text" name="film_title" placeholder="Film Title" required />
-            <input class="finput" type="text" name="runtime" placeholder="Runtime (e.g. 8 min)" />
+
+          <div class="reel-rule">✦</div>
+
+          <h3 class="reel-h">Your <em>Ticket</em></h3>
+          <ol class="reel-steps">
+            <li><b>I</b><strong>Buy</strong><span>Pick up to 4 tickets and pay right here. No account or app needed.</span></li>
+            <li><b>II</b><strong>Keep</strong><span>Your tickets open on this phone right away. On another phone, sign in with your email.</span></li>
+            <li><b>III</b><strong>Arrive</strong><span>Show your live ticket at the door. Its code changes every few seconds, so screenshots won't scan.</span></li>
+          </ol>
+
+          <div class="reel-rule">✦</div>
+
+          <h3 class="reel-h">The <em>Venue</em></h3>
+          <p class="reel-p">UltraStar Coronado Village Theatre is a classic movie house on Orange Avenue, with the red velvet, gold, and glow of Hollywood's golden age. For one night it becomes a showcase for the filmmakers shaping San Diego's screen today.</p>
+        </section>
+
+        <!-- Submissions: nexusglobal.info/#/film/reelfilms/submit -->
+        <section class="rv rv-submit">
+          <p class="reel-lede">Submissions for November 14 are closed. Thank you to every filmmaker who sent us their work. We're now accepting films for our <b>December 5</b> screening and future REELFilms nights.</p>
+
+          <div class="reel-card reel-card--solo">
+            <div class="reel-card-k">Film Submissions</div>
+            <div class="reel-card-v">Free</div>
+            <div class="reel-card-d">No entry fee. Our team watches every submission.</div>
+            <div class="reel-count">Now accepting films · Next screening Dec 5</div>
+            <a class="reel-btn reel-btn--big" href="#reel-submit" data-reel-jump>Submit Your Film ↓</a>
           </div>
-          <select class="finput" name="genre" required>
-            <option value="" disabled selected>Genre</option>
-            <option>Drama</option>
-            <option>Comedy</option>
-            <option>Horror / Thriller</option>
-            <option>Sci-Fi / Fantasy</option>
-            <option>Documentary</option>
-            <option>Animation</option>
-            <option>Experimental</option>
-            <option>Something Else</option>
-          </select>
-          <div class="reel-2col">
-            <input class="finput" type="text" inputmode="url" autocapitalize="off" name="screener_link" placeholder="Screening Link" required />
-            <input class="finput" type="text" name="screener_access" placeholder="Link Password (if any)" autocomplete="off" />
-          </div>
-          <input class="finput" type="text" name="social_handle" placeholder="Instagram or Social Handle" />
-          <textarea class="finput" name="logline" placeholder="Tell us about your film: the story, the team, and where it was made."></textarea>
-          <label class="reel-check"><input type="checkbox" name="rights_confirmed" value="yes" required aria-label="Rights confirmation" /> I made this film or have the rights to submit it for screening.</label>
-          <button class="reel-btn" type="submit">Submit My Film →</button>
-          <div class="reel-form-note">We review every film and reach out to the filmmakers selected for November 14.</div>
-        </form>
+
+          <div class="reel-rule">✦</div>
+
+          <h3 class="reel-h">How It <em>Works</em></h3>
+          <ol class="reel-steps">
+            <li><b>I</b><strong>Submit</strong><span>Send us a link to your film using the form below. It's free.</span></li>
+            <li><b>II</b><strong>Selection</strong><span>We watch every film and reach out to the filmmakers selected for the program.</span></li>
+            <li><b>III</b><strong>Screening</strong><span>Selected films play on the big screen on December 5, or at a future REELFilms night.</span></li>
+          </ol>
+
+          <div class="reel-rule">✦</div>
+
+          <h3 class="reel-h" id="reel-submit">Submit Your <em>Film</em></h3>
+          <p class="reel-p">Free to submit. Share a screening link we can watch (YouTube, Vimeo, or Google Drive) and tell us about your film.</p>
+          <form class="fform reel-form" id="reel-form" method="POST">
+            <input type="hidden" name="event" value="REELFilms · Dec 5" />
+            <div class="reel-2col">
+              <input class="finput" type="text" name="name" placeholder="Filmmaker Name" required />
+              <input class="finput" type="email" name="email" placeholder="Email Address" required />
+            </div>
+            <div class="reel-2col">
+              <input class="finput" type="text" name="film_title" placeholder="Film Title" required />
+              <input class="finput" type="text" name="runtime" placeholder="Runtime (e.g. 8 min)" />
+            </div>
+            <select class="finput" name="genre" required>
+              <option value="" disabled selected>Genre</option>
+              <option>Drama</option>
+              <option>Comedy</option>
+              <option>Horror / Thriller</option>
+              <option>Sci-Fi / Fantasy</option>
+              <option>Documentary</option>
+              <option>Animation</option>
+              <option>Experimental</option>
+              <option>Something Else</option>
+            </select>
+            <div class="reel-2col">
+              <input class="finput" type="text" inputmode="url" autocapitalize="off" name="screener_link" placeholder="Screening Link" required />
+              <input class="finput" type="text" name="screener_access" placeholder="Link Password (if any)" autocomplete="off" />
+            </div>
+            <input class="finput" type="text" name="social_handle" placeholder="Instagram or Social Handle" />
+            <textarea class="finput" name="logline" placeholder="Tell us about your film: the story, the team, and where it was made."></textarea>
+            <label class="reel-check"><input type="checkbox" name="rights_confirmed" value="yes" required aria-label="Rights confirmation" /> I made this film or have the rights to submit it for screening.</label>
+            <button class="reel-btn" type="submit">Submit My Film →</button>
+            <div class="reel-form-note">We watch every film and reach out to the filmmakers selected for December 5. Films we love that don't fit this program are considered for future screenings.</div>
+          </form>
+        </section>
 
         <div class="reel-close">See you at the pictures.</div>
       </div>
@@ -5498,7 +5570,21 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
     <h2 class="nx-h" id="nx-tix-h">Your <em>Tickets</em></h2>
     <div class="nx-sub" id="nx-tix-sub"></div>
     <div id="nx-tix-list"><div class="nx-wait">Finding your tickets…</div></div>
-    <p class="nx-fine" id="nx-tix-fine" hidden>Show the QR code at the door. No signal? Just give the door your name. Your tickets are in your email too. Bookmark this page or take a screenshot, and keep it private: anyone with this link can use your tickets.</p>
+    <form class="nx-signin" id="nx-signin" hidden novalidate>
+      <p class="nx-signin-p">Enter the email you used at checkout. We'll send you a one-time code to open your tickets on this device.</p>
+      <input class="nx-in" type="email" name="email" placeholder="Email" autocomplete="email" required>
+      <button class="nx-btn" type="submit">Send My Code →</button>
+      <p class="nx-err" role="alert"></p>
+    </form>
+    <form class="nx-signin" id="nx-code" hidden novalidate>
+      <p class="nx-signin-p" id="nx-code-p">Check your email for a 6-digit code.</p>
+      <input class="nx-in nx-in--code" type="text" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••" required>
+      <button class="nx-btn" type="submit">Open My Tickets →</button>
+      <p class="nx-err" role="alert"></p>
+      <button class="nx-back nx-back--c" type="button" id="nx-code-again">Use a different email or send a new code</button>
+    </form>
+    <p class="nx-fine" id="nx-tix-fine" hidden>Show this live ticket at the door. The QR code changes every few seconds, so screenshots and forwarded copies won't scan. No signal or dead battery? Just give the door your name.</p>
+    <button class="nx-back nx-back--c" type="button" id="nx-tix-add" hidden>Bought more tickets with another email? Add them</button>
   </div>
 </div>
 
@@ -5911,6 +5997,7 @@ function closeFilmCurtain(cb) {
 function swapFilmView(show) {
   if (curtainBusy) return;
   setRoute('pg-film', show);
+  if (show === 'film-reel' && !routeSilent) setReelView(null);
   const ft = document.getElementById('film-theater');
   closeFilmCurtain(() => {
     document.querySelectorAll('.film-sub').forEach(s => s.classList.remove('fsactive'));
@@ -5925,7 +6012,23 @@ function swapFilmView(show) {
     setTimeout(openCurtains, 120);
   });
 }
-// REELFilms: scroll to the form inside the theater, and count down to the ticket drop
+// REELFilms has three views on one page: overview, tickets and submit, each with its own link
+// (#/film/reelfilms, #/film/reelfilms/tickets, #/film/reelfilms/submit).
+const REEL_VIEWS = { tickets: 'Tickets', submit: 'Submit a Film' };
+function setReelView(view, push) {
+  const el = document.getElementById('film-reel');
+  if (REEL_VIEWS[view]) el.dataset.view = view; else delete el.dataset.view;
+  if (push) {
+    const hash = '#/film/reelfilms' + (REEL_VIEWS[view] ? '/' + view : '');
+    if (location.hash !== hash) history.pushState(null, '', hash);
+    document.getElementById('film-theater').scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.title = (REEL_VIEWS[view] ? REEL_VIEWS[view] + ' · ' : '') + 'REELFilms · Film Festival · Nexus San Diego';
+}
+document.querySelectorAll('[data-reel-view]').forEach(el => {
+  el.addEventListener('click', e => { e.preventDefault(); setReelView(el.dataset.reelView, true); });
+});
+// REELFilms: scroll to the form inside the theater
 document.querySelectorAll('[data-reel-jump]').forEach(el => {
   el.addEventListener('click', e => {
     e.preventDefault();
@@ -6010,11 +6113,11 @@ async function nxLoadQuote() {
   }
   buy.textContent = 'Get Tickets →';
   buy.onclick = nxOpenBox;
-  if (nxSaved().length && !document.getElementById('reel-mine')) {
+  if (!document.getElementById('reel-mine')) {
     const a = document.createElement('button');
     a.type = 'button'; a.id = 'reel-mine'; a.className = 'reel-btn reel-btn--ghost';
     a.textContent = 'View My Tickets';
-    a.onclick = () => nxOpenTickets(nxSaved()[0]);
+    a.onclick = () => nxOpenTickets();
     buy.after(a);
   }
 }
@@ -6066,7 +6169,7 @@ document.getElementById('nx-buy-form').addEventListener('submit', async e => {
   try {
     await nxLoad(NX.stripeJs);
     const stripe = Stripe(NX.quote.publishableKey);
-    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { const ref = nxOrderRef; nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(ref); } };
+    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(); } };
     nxCheckout = stripe.createEmbeddedCheckoutPage ? await stripe.createEmbeddedCheckoutPage(opts) : await stripe.initEmbeddedCheckout(opts);
     nxHide('nx-buy-form'); nxShow('nx-pay');
     nxCheckout.mount('#nx-stripe');
@@ -6076,52 +6179,142 @@ document.getElementById('nx-buy-form').addEventListener('submit', async e => {
   }
 });
 
-/* ── Ticket wallet: nexusglobal.info/#/ticket/<order>.<token> ── */
-let nxPoll = null;
-async function nxOpenTickets(ref) {
-  if (!ref) return;
-  history.replaceState(null, '', location.pathname + '#/ticket/' + ref);
-  nxShow('nx-tix');
+/* ── Ticket wallet: nexusglobal.info/#/tickets ──
+   No ticket links. Tickets open on the browser that bought them (its order key is saved here)
+   or after a one-time code sent to the buyer's email. Each QR code is redrawn every 15 seconds
+   from the ticket's key (NXT2.<ticket>.<step>.<signature>, checked by door-check-in), so
+   screenshots and forwarded copies don't scan. The last good copy is kept on this device, so
+   tickets still open with no signal at the theater. */
+const NX_STEP = 15;
+let nxPoll = null, nxTick = null;
+function nxWalletCache(v) {
+  try {
+    if (v === undefined) return JSON.parse(localStorage.getItem('nx_wallet') || 'null');
+    localStorage.setItem('nx_wallet', JSON.stringify(v));
+  } catch (e) { return null; }
+}
+async function nxSign(qrKey, ticketId, step) {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey('raw', enc.encode(qrKey), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const sig = await crypto.subtle.sign('HMAC', key, enc.encode(ticketId + '.' + step));
+  return [...new Uint8Array(sig)].map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 20);
+}
+function nxSigninStep(which) {
+  nxHide('nx-tix-fine'); nxHide('nx-tix-add');
+  document.getElementById('nx-signin').hidden = which !== 'email';
+  document.getElementById('nx-code').hidden = which !== 'code';
+  document.querySelectorAll('.nx-signin .nx-err').forEach(e => e.textContent = '');
+  if (which === 'email') { document.getElementById('nx-tix-list').innerHTML = ''; setTimeout(() => document.querySelector('#nx-signin [name=email]').focus(), 50); }
+  if (which === 'code') setTimeout(() => document.querySelector('#nx-code [name=code]').focus(), 50);
+}
+function nxRenderWallet(w) {
   const list = document.getElementById('nx-tix-list'), sub = document.getElementById('nx-tix-sub');
-  list.innerHTML = '<div class="nx-wait">Finding your tickets…</div>';
+  clearInterval(nxTick);
+  const paid = (w.orders || []).filter(o => o.status === 'paid' && o.tickets && o.tickets.length);
+  const ev = (paid[0] || (w.orders || [])[0] || {}).event;
+  sub.textContent = ev ? [ev.when_text, ev.where_text].filter(Boolean).join(' · ') : '';
+  list.innerHTML = '';
+  const live = [];
+  const all = paid.flatMap(o => o.tickets.map(t => ({ ...t, event: o.event })));
+  all.forEach((t, i) => {
+    const card = document.createElement('div');
+    card.className = 'nx-ticket' + (t.status === 'used' ? ' is-used' : '');
+    const add = (cls, text) => { const d = document.createElement('div'); d.className = cls; d.textContent = text; card.appendChild(d); return d; };
+    add('nx-ticket-eb', 'Admit One · ' + (i + 1) + ' of ' + all.length);
+    add('nx-ticket-t', t.event ? t.event.title : 'Nexus');
+    add('nx-ticket-n', t.name);
+    add('nx-ticket-tier', t.tier);
+    const box = add('nx-qr', '');
+    add('nx-live', '');
+    const clock = add('nx-live-t', '');
+    if (t.pin) { const p = add('nx-ticket-pin', 'Ticket #'); const b = document.createElement('b'); b.textContent = t.pin.slice(0, 3) + ' ' + t.pin.slice(3); p.appendChild(b); }
+    if (t.status === 'used') add('nx-ticket-used', 'Checked in ' + new Date(t.checkedInAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
+    if (t.status === 'refunded') add('nx-ticket-used', 'Refunded');
+    list.appendChild(card);
+    if (t.status === 'valid') live.push({ t, box, clock, step: null });
+    else { box.innerHTML = ''; clock.textContent = t.status === 'used' ? 'Used' : 'Not valid'; }
+  });
+  if (!all.length) {
+    const pending = (w.orders || []).some(o => o.status === 'pending');
+    list.innerHTML = '<div class="nx-wait">' + (pending ? 'Confirming your payment…' : 'No tickets on this device yet') + '</div>';
+  }
+  document.getElementById('nx-tix-fine').hidden = !all.length;
+  document.getElementById('nx-tix-add').hidden = false;
+  // A live clock and a new code every 15 seconds, like a ticket on a phone at a stadium.
+  const offset = (w.serverTime || Date.now()) - (w.fetchedAt || Date.now());
+  const draw = async () => {
+    const now = Date.now() + offset, step = Math.floor(now / 1000 / NX_STEP);
+    for (const l of live) {
+      l.clock.textContent = 'Live · ' + new Date(now).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+      if (l.step === step) continue;
+      l.step = step;
+      const sig = await nxSign(l.t.qrKey, l.t.id, step);
+      const qr = qrcode(0, 'M'); qr.addData('NXT2.' + l.t.id + '.' + step + '.' + sig); qr.make();
+      l.box.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+    }
+  };
+  if (live.length) { draw(); nxTick = setInterval(draw, 1000); }
+}
+async function nxOpenTickets() {
+  if (location.hash !== '#/tickets') history.replaceState(null, '', location.pathname + '#/tickets');
+  nxShow('nx-tix');
+  document.getElementById('nx-signin').hidden = true; document.getElementById('nx-code').hidden = true;
+  const list = document.getElementById('nx-tix-list');
   clearTimeout(nxPoll);
+  const refs = nxSaved().map(r => { const [order, key] = String(r).split('.'); return { order, key }; }).filter(r => r.order && r.key);
+  if (!refs.length) { nxSigninStep('email'); return; }
+  const cached = nxWalletCache();
+  list.innerHTML = '<div class="nx-wait">Finding your tickets…</div>';
+  try { await nxLoad(...NX.libs.qr); } catch (e) { list.innerHTML = '<div class="nx-wait">Couldn\'t load your tickets. Check your connection and try again.</div>'; return; }
+  if (cached) nxRenderWallet(cached);
   let tries = 0;
   const load = async () => {
-    const r = await nxCall('guest-tickets', { ticket: ref });
+    const r = await nxCall('guest-tickets', { tickets: refs });
+    if (r.offline) { if (cached) nxRenderWallet(cached); else list.innerHTML = '<div class="nx-wait">No connection. Try again when you have signal.</div>'; return; }
     if (r.error) { list.innerHTML = ''; const p = document.createElement('div'); p.className = 'nx-wait'; p.textContent = r.error; list.appendChild(p); return; }
-    sub.textContent = r.event ? [r.event.when_text, r.event.where_text].filter(Boolean).join(' · ') : '';
-    if (r.status === 'pending') {
-      list.innerHTML = '<div class="nx-wait">Confirming your payment…</div>';
+    // Keys the server no longer knows (signed out, or a checkout that was never paid) are dropped.
+    const keep = new Set(r.orders.filter(o => o.status === 'paid' || o.status === 'pending').map(o => o.order));
+    try { localStorage.setItem('nx_tickets', JSON.stringify(nxSaved().filter(x => keep.has(String(x).split('.')[0])))); } catch (e) {}
+    const w = { ...r, orders: r.orders.filter(o => keep.has(o.order)), fetchedAt: Date.now() };
+    nxWalletCache(w);
+    if (!w.orders.length) { nxSigninStep('email'); return; }
+    nxRenderWallet(w);
+    if (w.orders.some(o => o.status === 'pending')) {
       if (tries++ < 40) nxPoll = setTimeout(load, 2500);
-      else list.innerHTML = '<div class="nx-wait">Still confirming. Refresh this page in a minute. Your link is saved.</div>';
-      return;
+      else list.innerHTML = '<div class="nx-wait">Still confirming your payment. Refresh this page in a minute.</div>';
     }
-    if (r.status !== 'paid') {
-      list.innerHTML = '<div class="nx-wait">This checkout wasn\'t completed, so no tickets were issued.</div>';
-      return;
-    }
-    nxSave(ref);
-    await nxLoad(...NX.libs.qr);
-    list.innerHTML = '';
-    r.tickets.forEach((t, i) => {
-      const card = document.createElement('div');
-      card.className = 'nx-ticket' + (t.status === 'used' ? ' is-used' : '');
-      const add = (cls, text) => { const d = document.createElement('div'); d.className = cls; d.textContent = text; card.appendChild(d); return d; };
-      add('nx-ticket-eb', 'Admit One · ' + (i + 1) + ' of ' + r.tickets.length);
-      add('nx-ticket-t', r.event ? r.event.title : 'Nexus');
-      add('nx-ticket-n', t.name);
-      add('nx-ticket-tier', t.tier);
-      const qr = qrcode(0, 'M'); qr.addData(t.code); qr.make();
-      const box = add('nx-qr', ''); box.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
-      if (t.pin) { const p = add('nx-ticket-pin', 'Ticket #'); const b = document.createElement('b'); b.textContent = t.pin.slice(0, 3) + ' ' + t.pin.slice(3); p.appendChild(b); }
-      if (t.status === 'used') add('nx-ticket-used', 'Checked in ' + new Date(t.checkedInAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
-      if (t.status === 'refunded') add('nx-ticket-used', 'Refunded');
-      list.appendChild(card);
-    });
-    document.getElementById('nx-tix-fine').hidden = false;
   };
   load();
 }
+let nxSigninEmail = '';
+document.getElementById('nx-signin').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, err = f.querySelector('.nx-err'), btn = f.querySelector('button');
+  const email = f.email.value.trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'Please enter a valid email address.'; return; }
+  btn.disabled = true; btn.textContent = 'Sending…';
+  const r = await nxCall('guest-tickets', { mode: 'send-code', email });
+  btn.disabled = false; btn.textContent = 'Send My Code →';
+  if (r.error) { err.textContent = r.error; return; }
+  nxSigninEmail = email;
+  document.getElementById('nx-code-p').textContent = 'If ' + email + ' has tickets, we just sent it a 6-digit code. It can take a minute; check spam too.';
+  nxSigninStep('code');
+});
+document.getElementById('nx-code').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, err = f.querySelector('.nx-err'), btn = f.querySelector('button[type=submit]');
+  const code = f.code.value.replace(/\D/g, '');
+  if (code.length !== 6) { err.textContent = 'Enter the 6-digit code from your email.'; return; }
+  btn.disabled = true; btn.textContent = 'Checking…';
+  const r = await nxCall('guest-tickets', { mode: 'verify-code', email: nxSigninEmail, code });
+  btn.disabled = false; btn.textContent = 'Open My Tickets →';
+  if (r.error) { err.textContent = r.error; return; }
+  (r.tickets || []).forEach(t => nxSave(t.order + '.' + t.key));
+  f.reset();
+  nxOpenTickets();
+});
+document.getElementById('nx-code-again').addEventListener('click', () => nxSigninStep('email'));
+document.getElementById('nx-tix-add').addEventListener('click', () => { clearInterval(nxTick); nxSigninStep('email'); });
 
 /* ── Door scanner: nexusglobal.info/#/door (staff only, PIN-protected) ── */
 let nxPin = '', nxStream = null, nxLast = { code: '', at: 0 }, nxBusy = false;
@@ -6214,13 +6407,15 @@ document.querySelectorAll('.nx-ov [data-nx-close]').forEach(b => b.addEventListe
   const ov = b.closest('.nx-ov');
   if (ov.id === 'nx-box') nxReleaseOrder();
   if (ov.id === 'nx-door') nxStopCamera();
-  if (ov.id === 'nx-tix') clearTimeout(nxPoll);
+  if (ov.id === 'nx-tix') { clearTimeout(nxPoll); clearInterval(nxTick); }
   ov.hidden = true;
   if (ov.id !== 'nx-box') { history.replaceState(null, '', location.pathname + '#/film/reelfilms'); openRoute(); }
 }));
 function nxFromHash() {
   const h = location.hash;
-  if (h.startsWith('#/ticket/')) { nxOpenTickets(h.slice(9)); return true; }
+  // Old-style links from before tickets needed this device or an email code: remember the order, open the wallet.
+  if (h.startsWith('#/ticket/')) { nxSave(h.slice(9)); nxOpenTickets(); return true; }
+  if (h === '#/tickets') { nxOpenTickets(); return true; }
   if (h === '#/door') { nxOpenDoor(); return true; }
   return false;
 }
@@ -6300,31 +6495,6 @@ nxLoadQuote();
 })();
 // Film submissions close at 11:59 PM Pacific on Nov 2 (PST after Nov 1). Checked every
 // minute so a page left open past the deadline closes too.
-(function reelSubmissionWindow() {
-  const deadline = new Date('2026-11-02T23:59:59-08:00');
-  function closeIfPast() {
-    if (Date.now() <= deadline) return false;
-    const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
-    set('reel-tag', 'Submissions Closed');
-    set('reel-seat-sub', 'Submissions Closed · Nov 14 · Coronado');
-    set('reel-sub-d', 'Thank you to every filmmaker who submitted. Selected filmmakers will hear from us before November 14.');
-    set('reel-deadline', 'Closed');
-    set('reel-deadline-2', 'Submissions closed November 2 at 11:59 PM');
-    set('reel-submit-p', 'Submissions for this screening are closed. Thank you to every filmmaker who sent us their work.');
-    const btn = document.getElementById('reel-submit-btn');
-    if (btn) btn.remove();
-    // Don't snatch the form from someone mid-entry at midnight; let them finish
-    const form = document.getElementById('reel-form');
-    if (form && !started) form.remove();
-    return true;
-  }
-  let started = false;
-  const reelForm = document.getElementById('reel-form');
-  if (reelForm) reelForm.addEventListener('input', () => { started = true; }, { once: true });
-  if (!closeIfPast()) {
-    const timer = setInterval(() => { if (closeIfPast()) clearInterval(timer); }, 60000);
-  }
-})();
 document.querySelectorAll('[data-filmsub]').forEach(el => {
   el.addEventListener('click', e => {
     e.preventDefault();
@@ -6885,11 +7055,12 @@ document.addEventListener('click', e => {
 // Open whatever page the URL points to (direct links, back/forward buttons)
 function openRoute() {
   if (nxFromHash()) return; // #/ticket/… and #/door open as overlays
-  const [slug, subSlug] = location.hash.replace(/^#\/?/, '').split('/');
+  const [slug, subSlug, view] = location.hash.replace(/^#\/?/, '').split('/');
   const r = ROUTES[slug];
   const pageId = r ? r.page : 'pg-landing';
   const subId = r && subSlug && r.subs && r.subs[subSlug] ? r.subs[subSlug][0] : null;
   document.title = titleFor(routeFor(pageId, subId));
+  if (subId === 'film-reel') setReelView(view);
   routeSilent = true;
   const arriving = curP !== pageId;
   if (arriving) {
@@ -6908,7 +7079,9 @@ function openRoute() {
       if (subId) openGolfSub(subId);
       else if (!arriving) closeGolfSub();
     } else if (pageId === 'pg-film' && !arriving) {
-      swapFilmView(subId);
+      // Moving between REELFilms views doesn't redraw the curtains
+      const onReel = document.getElementById('film-reel').classList.contains('fsactive');
+      if (!(subId === 'film-reel' && onReel)) swapFilmView(subId);
     }
     routeSilent = false;
   }, arriving ? 700 : 0);
