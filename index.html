@@ -3460,7 +3460,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
               <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
             </div>
             <div class="seat-row-label">REELFilms</div>
-            <div class="seat-row-sub" id="reel-seat-sub">Tickets for Nov 14 &nbsp;·&nbsp; Submissions Open for Dec 5</div>
+            <div class="seat-row-sub" id="reel-seat-sub">Tickets for Nov 14 &nbsp;·&nbsp; Submissions Open for Nov 14 &amp; Dec 5</div>
           </a>
 
           <div class="row-div"></div>
@@ -3561,7 +3561,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 
         <nav class="reel-tabs" aria-label="REELFilms">
           <a href="#/film/reelfilms/tickets" data-reel-view="tickets"><b>Tickets</b><span>Nov 14 Screening</span></a>
-          <a href="#/film/reelfilms/submit" data-reel-view="submit"><b>Submit a Film</b><span id="reel-tab-sub">Open · Due Nov 21</span></a>
+          <a href="#/film/reelfilms/submit" data-reel-view="submit"><b>Submit a Film</b><span id="reel-tab-sub">Open · Nov 14 &amp; Dec 5</span></a>
         </nav>
 
         <!-- Overview: nexusglobal.info/#/film/reelfilms -->
@@ -3577,7 +3577,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
             <div class="reel-card">
               <div class="reel-card-k">Film Submissions</div>
               <div class="reel-card-v">Open</div>
-              <div class="reel-card-d" id="reel-home-sub">Free to submit. Now accepting films for our December 5 screening. Deadline Saturday, Nov 21.</div>
+              <div class="reel-card-d" id="reel-home-sub">Free to submit. Still accepting films for our November 14 screening, and for December 5 (deadline Saturday, Nov 21).</div>
               <a class="reel-btn" href="#/film/reelfilms/submit" data-reel-view="submit">Submit Your Film →</a>
             </div>
           </div>
@@ -3629,12 +3629,12 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 
         <!-- Submissions: nexusglobal.info/#/film/reelfilms/submit -->
         <section class="rv rv-submit">
-          <p class="reel-lede" id="reel-sub-lede">Submissions for November 14 are closed. Thank you to every filmmaker who sent us their work. We're now accepting films for our <b>December 5</b> screening and future REELFilms nights.</p>
+          <p class="reel-lede" id="reel-sub-lede">We're still accepting films for our <b>November 14</b> screening. Last call! Submissions are also open for <b>December 5</b> and future REELFilms nights.</p>
 
           <div class="reel-ticket">
             <div class="reel-tk">
-              <div class="reel-tk-l">Next Screening</div>
-              <div class="reel-tk-v">Saturday, December 5</div>
+              <div class="reel-tk-l" id="reel-sub-when-l">Screenings</div>
+              <div class="reel-tk-v" id="reel-sub-when">Nov 14 &amp; Dec 5</div>
               <div class="reel-tk-s">2026</div>
             </div>
             <div class="reel-tk">
@@ -3654,7 +3654,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
             <div class="reel-card-k">Film Submissions</div>
             <div class="reel-card-v">Free</div>
             <div class="reel-card-d">No entry fee. Our team watches every submission.</div>
-            <div class="reel-count" id="reel-sub-deadline">Deadline · Sat, Nov 21 · 11:59 PM</div>
+            <div class="reel-count" id="reel-sub-deadline">Nov 14 · Last Call &nbsp;·&nbsp; Dec 5 · Due Nov 21</div>
             <a class="reel-btn reel-btn--big" href="#reel-submit" data-reel-jump>Submit Your Film ↓</a>
           </div>
 
@@ -3664,15 +3664,20 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
           <ol class="reel-steps">
             <li><b>I</b><strong>Submit</strong><span>Send us a link to your film using the form below. It's free.</span></li>
             <li><b>II</b><strong>Selection</strong><span>We watch every film and reach out to the filmmakers selected for the program.</span></li>
-            <li><b>III</b><strong>Screening</strong><span id="reel-sub-step">Selected films play on the big screen in Coronado on December 5. Submit by November 21.</span></li>
+            <li><b>III</b><strong>Screening</strong><span id="reel-sub-step">Selected films play on the big screen in Coronado on November 14 or December 5.</span></li>
           </ol>
 
           <div class="reel-rule">✦</div>
 
           <h3 class="reel-h" id="reel-submit">Submit Your <em>Film</em></h3>
-          <p class="reel-p"><span id="reel-sub-due">Submit by Saturday, November 21, at 11:59 PM for the December 5 screening.</span> Free to submit. Share a screening link we can watch (YouTube, Vimeo, or Google Drive) and tell us about your film.</p>
+          <p class="reel-p"><span id="reel-sub-due">Submissions are still open for November 14 (last call). For December 5, submit by Saturday, November 21, at 11:59 PM.</span> Free to submit. Share a screening link we can watch (YouTube, Vimeo, or Google Drive) and tell us about your film.</p>
           <form class="fform reel-form" id="reel-form" method="POST">
-            <input type="hidden" name="event" value="REELFilms · Dec 5" />
+            <select class="finput" name="event" id="reel-sub-event" required aria-label="Screening">
+              <option value="" disabled selected>Which screening?</option>
+              <option value="REELFilms · Nov 14" id="reel-opt-nov14">November 14 (last call)</option>
+              <option value="REELFilms · Dec 5">December 5</option>
+              <option value="REELFilms · Either">Either one</option>
+            </select>
             <div class="reel-2col">
               <input class="finput" type="text" name="name" placeholder="Filmmaker Name" required />
               <input class="finput" type="email" name="email" placeholder="Email Address" required />
@@ -3700,7 +3705,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
             <textarea class="finput" name="logline" placeholder="Tell us about your film: the story, the team, and where it was made."></textarea>
             <label class="reel-check"><input type="checkbox" name="rights_confirmed" value="yes" required aria-label="Rights confirmation" /> I made this film or have the rights to submit it for screening.</label>
             <button class="reel-btn" type="submit">Submit My Film →</button>
-            <div class="reel-form-note">We watch every film and reach out to the filmmakers selected for December 5. Films we love that don't fit this program are considered for future screenings.</div>
+            <div class="reel-form-note"><span id="reel-sub-note">We watch every film and reach out to the filmmakers selected for November 14 and December 5.</span> Films we love that don't fit this program are considered for future screenings.</div>
           </form>
         </section>
 
@@ -6047,6 +6052,35 @@ function setReelView(view, push) {
 document.querySelectorAll('[data-reel-view]').forEach(el => {
   el.addEventListener('click', e => { e.preventDefault(); setReelView(el.dataset.reelView, true); });
 });
+// REELFilms submissions for Nov 14 stay open until 11:59 PM PT on Nov 12; after that the page
+// shows Dec 5 only and the Nov 14 choice leaves the form.
+(function reelNov14Close() {
+  const close = new Date('2026-11-12T23:59:59-08:00');
+  function closeIfPast() {
+    if (Date.now() <= close) return false;
+    const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    set('reel-sub-lede', 'Submissions for November 14 are closed. Thank you to every filmmaker who sent us their work. We\'re now accepting films for our December 5 screening and future REELFilms nights.');
+    set('reel-sub-when-l', 'Next Screening');
+    set('reel-sub-when', 'Saturday, December 5');
+    set('reel-sub-deadline', 'Deadline · Sat, Nov 21 · 11:59 PM');
+    set('reel-sub-step', 'Selected films play on the big screen in Coronado on December 5. Submit by November 21.');
+    set('reel-sub-due', 'Submit by Saturday, November 21, at 11:59 PM for the December 5 screening.');
+    set('reel-sub-note', 'We watch every film and reach out to the filmmakers selected for December 5.');
+    set('reel-home-sub', 'Free to submit. Now accepting films for our December 5 screening. Deadline Saturday, Nov 21.');
+    set('reel-tab-sub', 'Open · Due Nov 21');
+    set('reel-seat-sub', 'Tickets for Nov 14 · Submissions Open for Dec 5');
+    const sel = document.getElementById('reel-sub-event');
+    const nov = document.getElementById('reel-opt-nov14');
+    const either = sel && sel.querySelector('option[value="REELFilms · Either"]');
+    if (nov) nov.remove();
+    if (either) either.remove();
+    if (sel) sel.value = 'REELFilms · Dec 5';
+    return true;
+  }
+  if (!closeIfPast()) {
+    const timer = setInterval(() => { if (closeIfPast()) clearInterval(timer); }, 60000);
+  }
+})();
 // REELFilms submissions for Dec 5 close at 11:59 PM PT on Nov 21 (two weeks before). The form stays
 // open after that, for future screenings.
 (function reelSubmissionDeadline() {
