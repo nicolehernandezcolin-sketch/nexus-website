@@ -96,7 +96,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&family=Limelight&family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600&family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&family=Limelight&family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600&family=Anton&family=Permanent+Marker&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.min.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp" crossorigin="anonymous"></script>
 
 <style>
@@ -2143,7 +2143,7 @@ body{
             <div class="bb-left" id="bb-left"></div>
             <button class="bb-btn" type="button" id="bb-buy">Get Tickets →</button>
             <button class="bb-btn bb-btn--ghost" type="button" id="bb-mine">View My Tickets</button>
-            <div class="bb-perks"><b>Your ticket</b><br>Sent to your email and kept on your phone, with a live QR code that changes every few seconds, so it can't be copied. Up to 4 per person. 21+ with ID.</div>
+            <div class="bb-perks"><b>Your ticket</b><br>Sent to your email and kept on your phone, with a live QR code that changes every few seconds, so it can't be copied. Up to 4 per person. 21+ with ID.<br><b>All sales are final. Tickets are non-refundable.</b></div>
           </div>
           <div class="bb-card">
             <div class="bb-k">Every Price</div>
@@ -2201,6 +2201,7 @@ body{
       </div>
     </div>
     <!-- /NEXUS LIVE -->
+
 
 
 
@@ -3319,6 +3320,7 @@ textarea.finput{resize:vertical;min-height:110px;}
 .rc-stat-v{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(1.3rem,3.4vw,2.3rem);letter-spacing:-.03em;color:#173420;line-height:1.05;}
 .rc-stat:first-child .rc-stat-v{color:#6f8f26;}
 .rc-stat-l{font-family:'Space Mono',monospace;font-size:.4rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(23,52,32,.6);margin-top:.5rem;}
+.reel-final{margin-top:.8rem;font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7;text-align:center;}
 .rc-quote{margin:3.4rem auto 0;max-width:640px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1.5rem,3.4vw,2.3rem);line-height:1.2;color:#173420;}
 .rc-quote cite{display:block;margin-top:.9rem;font-family:'Space Mono',monospace;font-style:normal;font-size:.42rem;letter-spacing:.26em;text-transform:uppercase;color:#6f8f26;}
 .rc-sec{width:100%;max-width:1020px;margin:4.5rem auto 0;}
@@ -3558,6 +3560,8 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 .nx-in:focus{border-color:#d4ad5b;background:rgba(142,18,25,.14);}
 .nx-in::placeholder{color:rgba(243,230,204,.4);}
 .nx-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.nx-final{margin:-.3rem 0 0;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;color:inherit;opacity:.85;}
+.nx-final b{font-weight:700;}
 .nx-promo{display:flex;gap:.5rem;}
 .nx-promo[hidden]{display:none;}
 .nx-promo .nx-in{flex:1;text-transform:uppercase;}
@@ -3579,6 +3583,30 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 
 /* Ticket wallet: admit-one stubs with the QR */
 .nx-sheet--tix{max-width:440px;}
+.nx-addr{position:relative;overflow:hidden;margin:0 0 1.2rem;padding:1.3rem 1.2rem;background:#160c0a;border:2px solid #c8102e;color:#f3e7d3;text-align:left;}
+.nx-addr::after{content:attr(data-mark) attr(data-mark) attr(data-mark) attr(data-mark) attr(data-mark) attr(data-mark);position:absolute;inset:-40%;pointer-events:none;transform:rotate(-24deg);font-family:'Space Mono',monospace;font-size:.62rem;line-height:2.4;letter-spacing:.1em;color:rgba(243,231,211,.07);word-spacing:.4em;white-space:normal;}
+.nx-addr.is-locked{border-style:dashed;border-color:rgba(244,182,66,.6);}
+.nx-addr-eb{font-family:'Space Mono',monospace;font-size:.46rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#f4b642;}
+.nx-addr-v{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.25rem;line-height:1.3;margin:.5rem 0 .4rem;user-select:none;-webkit-user-select:none;}
+.nx-addr-d{font-family:'Instrument Sans',sans-serif;font-size:.82rem;line-height:1.5;color:rgba(243,231,211,.8);margin-top:.3rem;}
+.nx-addr-map{display:inline-block;margin-top:.8rem;font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#c8102e;padding:.6em 1em;text-decoration:none;}
+.nx-addr-mark{margin-top:.9rem;font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.08em;color:rgba(243,231,211,.55);}
+#nx-box[data-theme="hp"] .nx-sheet{background:radial-gradient(ellipse 70% 40% at 20% 0%,rgba(244,182,66,.22),transparent 70%),linear-gradient(180deg,#24130f,#140a08);border:1px solid rgba(200,16,46,.6);outline:none;color:#f3e7d3;}
+#nx-box[data-theme="hp"] .nx-eb{color:#f4b642;}
+#nx-box[data-theme="hp"] .nx-h{font-family:'Permanent Marker',cursive;color:#f3e7d3;font-size:clamp(2.4rem,10vw,3.2rem);transform:rotate(-2deg);text-shadow:3px 3px 0 #c8102e;}
+#nx-box[data-theme="hp"] .nx-h em{font-family:'Permanent Marker',cursive;font-style:normal;font-weight:400;color:#c8102e;text-shadow:3px 3px 0 #120908;}
+#nx-box[data-theme="hp"] .nx-sub{font-family:'Space Mono',monospace;font-style:normal;font-size:.58rem;color:rgba(243,231,211,.75);}
+#nx-box[data-theme="hp"] .nx-row{border-color:rgba(243,231,211,.15);}
+#nx-box[data-theme="hp"] .nx-k{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.1rem;}
+#nx-box[data-theme="hp"] .nx-qty{border-color:rgba(243,231,211,.4);}
+#nx-box[data-theme="hp"] .nx-qty button{color:#f3e7d3;}
+#nx-box[data-theme="hp"] .nx-total b{font-family:'Permanent Marker',cursive;color:#f4b642;}
+#nx-box[data-theme="hp"] .nx-in{border-color:rgba(243,231,211,.25);}
+#nx-box[data-theme="hp"] .nx-in:focus{border-color:#c8102e;background:rgba(200,16,46,.12);}
+#nx-box[data-theme="hp"] .nx-btn{background:#c8102e;color:#fff;font-family:'Archivo',sans-serif;font-weight:900;font-size:.95rem;letter-spacing:.06em;}
+#nx-box[data-theme="hp"] .nx-promo-go{border-color:#f4b642;color:#f4b642;}
+#nx-box[data-theme="hp"] .nx-check input{accent-color:#c8102e;}
+#nx-box[data-theme="hp"] .nx-powered,#nx-box[data-theme="hp"] .nx-back{color:rgba(244,182,66,.75);}
 .nx-bb-burst{display:none;}
 #nx-box[data-theme="bb"]{background:rgba(20,18,16,.78);}
 #nx-box[data-theme="bb"] .nx-sheet{background:#e7e2d6;background-image:radial-gradient(rgba(20,18,16,.06) 1px,transparent 1.2px);background-size:5px 5px;
@@ -3856,6 +3884,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
             <div class="reel-card-v" id="reel-price">$21.59</div>
             <div class="reel-card-d" id="reel-price-d">$20 ticket + $1.59 fee. Early bird through November 6, then $22 + fee.</div>
             <div class="reel-count" id="reel-count">Early bird ends November 6</div>
+            <div class="reel-final">All sales are final. Tickets are non-refundable.</div>
             <button class="reel-btn reel-btn--big" type="button" id="reel-buy" data-reel-buy>Get Tickets →</button>
           </div>
 
@@ -5846,6 +5875,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
       <input class="nx-hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="nx-check"><input type="checkbox" name="optin"> Text and email me about future Nexus events. Optional. Msg &amp; data rates may apply; reply STOP to opt out.</label>
       <p class="nx-fine">We use your email and phone to deliver your tickets and reach you about this event. Up to 4 tickets per person.</p>
+      <p class="nx-final"><b>All sales are final. Tickets are non-refundable.</b></p>
       <p class="nx-err" id="nx-buy-err" role="alert"></p>
       <button class="nx-btn" type="submit" id="nx-buy-go">Continue to Payment →</button>
       <div class="nx-powered">Nexus Ticketing · Payments secured by Stripe</div>
@@ -6647,6 +6677,34 @@ function nxSigninStep(which) {
   if (which === 'email') { document.getElementById('nx-tix-list').innerHTML = ''; setTimeout(() => document.querySelector('#nx-signin [name=email]').focus(), 50); }
   if (which === 'code') setTimeout(() => document.querySelector('#nx-code [name=code]').focus(), 50);
 }
+// A secret venue (house party): before release only the area and when it opens; after, the
+// address, marked with the holder's name and ticket # so a screenshot can be traced.
+function nxLocationCard(o) {
+  const L = o.location, card = document.createElement('div');
+  const add = (cls, text, tag) => { const d = document.createElement(tag || 'div'); d.className = cls; d.textContent = text; card.appendChild(d); return d; };
+  const when = t => new Date(t).toLocaleString('en-US', { weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles' });
+  if (!L.released) {
+    card.className = 'nx-addr is-locked';
+    add('nx-addr-eb', '🔒 Secret Address');
+    add('nx-addr-v', 'Unlocks ' + when(L.releaseAt));
+    if (L.area) add('nx-addr-d', 'Area: ' + L.area);
+    add('nx-addr-d', "We'll text and email you when it opens. It will appear right here.");
+    return card;
+  }
+  const t = (o.tickets || [])[0] || {};
+  card.className = 'nx-addr';
+  add('nx-addr-eb', 'The Address · Keep It Private');
+  add('nx-addr-v', L.address);
+  if (L.details) add('nx-addr-d', L.details);
+  const maps = document.createElement('a');
+  maps.className = 'nx-addr-map'; maps.target = '_blank'; maps.rel = 'noopener';
+  maps.href = 'https://maps.google.com/?q=' + encodeURIComponent(L.address);
+  maps.textContent = 'Open in Maps →';
+  card.appendChild(maps);
+  add('nx-addr-mark', 'For ' + (t.name || 'ticket holder') + (t.pin ? ' · Ticket #' + t.pin.slice(0, 3) + ' ' + t.pin.slice(3) : '') + ' · Every view is logged');
+  card.dataset.mark = (t.name || 'Nexus') + '  ·  ';
+  return card;
+}
 function nxRenderWallet(w) {
   const list = document.getElementById('nx-tix-list'), sub = document.getElementById('nx-tix-sub');
   clearInterval(nxTick);
@@ -6654,6 +6712,7 @@ function nxRenderWallet(w) {
   const ev = (paid[0] || (w.orders || [])[0] || {}).event;
   sub.textContent = ev ? [ev.when_text, ev.where_text].filter(Boolean).join(' · ') : '';
   list.innerHTML = '';
+  paid.forEach(o => { if (o.location) list.appendChild(nxLocationCard(o)); });
   const live = [];
   const all = paid.flatMap(o => o.tickets.map(t => ({ ...t, event: o.event })));
   all.forEach((t, i) => {
