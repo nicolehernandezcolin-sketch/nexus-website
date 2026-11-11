@@ -2005,7 +2005,9 @@ body{
     .bb-title{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.84;color:var(--bb-ink);
       font-size:clamp(4.4rem,11vw,9rem);letter-spacing:.01em;-webkit-text-stroke:0;text-shadow:3px 3px 0 var(--bb-red);margin:0;}
     .bb-title>span{display:block;}
-    .bb-title .bb-amp{color:var(--bb-red);text-shadow:3px 3px 0 var(--bb-ink);transform:rotate(-4deg);transform-origin:left;}
+    .bb-title .bb-amp{color:var(--bb-red);text-shadow:3px 3px 0 var(--bb-ink);transform:rotate(-4deg);transform-origin:center;}
+    .bb-hero>div{text-align:center;}
+    .bb-hero>div .bb-sub{margin-left:0;margin-right:0;}
     .bb-sub{display:inline-block;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(2rem,4.6vw,3.2rem);color:var(--bb-ink);transform:rotate(-5deg);margin:.5rem 0 1.4rem .3rem;letter-spacing:.02em;
       background:var(--bb-yel);padding:.05em .35em;border:3px solid var(--bb-ink);box-shadow:4px 4px 0 var(--bb-red);}
     .bb-sub span{color:var(--bb-red);}
@@ -2088,8 +2090,8 @@ body{
     #ms-live[data-view="tickets"] .bb-title{font-size:clamp(3.4rem,8vw,6rem);}
     #ms-live[data-view="tickets"] .bb-title>span{display:inline;}
     #ms-live[data-view="tickets"] .bb-title>span+span{margin-left:.25em;}
-    #ms-live[data-view="tickets"] .bb-sub{display:block;width:max-content;margin:.3rem 0 1rem .2rem;}
-    #ms-live[data-view="tickets"] .bb-mini{display:block;margin-top:1.2rem;font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.06em;color:#fff;line-height:1.9;}
+    #ms-live[data-view="tickets"] .bb-sub{display:block;width:max-content;margin:.3rem auto 1rem;}
+    #ms-live[data-view="tickets"] .bb-mini{display:block;margin-top:1.2rem;background:var(--bb-ink);padding:.5rem .8rem;width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.06em;color:#fff;line-height:1.9;}
     #ms-live[data-view="tickets"] .bb-mini b{color:var(--bb-yel);}
     .bb-see{display:none;text-align:center;margin-top:2.4rem;}
     #ms-live[data-view="tickets"] .bb-see{display:block;}
