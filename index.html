@@ -2005,9 +2005,10 @@ body{
     .bb-title{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.84;color:var(--bb-ink);
       font-size:clamp(4.4rem,11vw,9rem);letter-spacing:.01em;-webkit-text-stroke:0;text-shadow:3px 3px 0 var(--bb-red);margin:0;}
     .bb-title>span{display:block;}
-    .bb-title .bb-amp{color:var(--bb-red);text-shadow:3px 3px 0 var(--bb-ink);}
-    .bb-sub{display:inline-block;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(1.6rem,3.6vw,2.6rem);color:var(--bb-red);transform:rotate(-6deg);margin:.6rem 0 1.4rem .3rem;letter-spacing:.02em;
-      text-shadow:2px 2px 0 var(--bb-ink);}
+    .bb-title .bb-amp{color:var(--bb-red);text-shadow:3px 3px 0 var(--bb-ink);transform:rotate(-4deg);transform-origin:left;}
+    .bb-sub{display:inline-block;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(2rem,4.6vw,3.2rem);color:var(--bb-ink);transform:rotate(-5deg);margin:.5rem 0 1.4rem .3rem;letter-spacing:.02em;
+      background:var(--bb-yel);padding:.05em .35em;border:3px solid var(--bb-ink);box-shadow:4px 4px 0 var(--bb-red);}
+    .bb-sub span{color:var(--bb-red);}
     .bb-when{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(1rem,2vw,1.3rem);text-transform:uppercase;line-height:1.35;color:var(--bb-ink);display:inline-block;background:var(--bb-yel);border:3px solid var(--bb-ink);box-shadow:5px 5px 0 var(--bb-ink);padding:.6rem .9rem;}
     .bb-when small{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:.62rem;letter-spacing:.12em;color:var(--bb-ink);margin-top:.35rem;text-transform:none;}
     .bb-flyer{position:relative;justify-self:center;width:min(100%,430px);transform:rotate(2.5deg);}
@@ -2119,8 +2120,8 @@ body{
         <svg class="bb-burst" viewBox="-100 -100 200 200" aria-hidden="true"><polygon fill="#f2dc12" points="0,-100 9,-26 59,-81 21,-14 95,-31 24,4 81,59 13,22 31,95 -2,25 -31,95 -15,20 -81,59 -25,4 -95,-31 -22,-12 -59,-81 -10,-25"/></svg>
         <div>
           <div class="bb-eb">Nexus Live <b>✦</b> Nexus x NUDAYGO</div>
-          <h2 class="bb-title"><span>Bass</span><span><span class="bb-amp">&amp;</span> Bars</span></h2>
-          <div class="bb-sub">After Party</div>
+          <h2 class="bb-title"><span>After</span><span class="bb-amp">Party</span></h2>
+          <div class="bb-sub">Bass <span>&amp;</span> Bars</div>
           <div class="bb-when">Thursday, Nov 19 · 10 PM – 1 AM<small>Uppercuts · 4932 Newport Ave, Ocean Beach, San Diego</small></div>
           <div class="bb-mini"><b>10:00</b> Deleon Nox &nbsp;·&nbsp; <b>10:30</b> Nur &nbsp;·&nbsp; <b>11:00</b> 30 Foez &nbsp;·&nbsp; <b>11:30</b> ThaSpeakerBoxx</div>
         </div>
@@ -3574,6 +3575,46 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 
 /* Ticket wallet: admit-one stubs with the QR */
 .nx-sheet--tix{max-width:440px;}
+.nx-bb-burst{display:none;}
+#nx-box[data-theme="bb"]{background:rgba(20,18,16,.78);}
+#nx-box[data-theme="bb"] .nx-sheet{background:#e7e2d6;background-image:radial-gradient(rgba(20,18,16,.06) 1px,transparent 1.2px);background-size:5px 5px;
+  border:4px solid #141210;outline:none;box-shadow:10px 10px 0 #141210;color:#141210;overflow:hidden;isolation:isolate;}
+#nx-box[data-theme="bb"] .nx-sheet::before{content:'';position:absolute;left:-5%;right:-5%;top:0;height:13.5rem;background:#3b7a35;z-index:-2;
+  clip-path:polygon(0 0,100% 0,100% 86%,86% 94%,70% 88%,52% 96%,34% 89%,16% 97%,0 90%);}
+#nx-box[data-theme="bb"] .nx-bb-burst{display:block;position:absolute;right:-70px;top:-70px;width:260px;height:260px;fill:#f2dc12;z-index:-1;animation:nxSpin 50s linear infinite;}
+@keyframes nxSpin{to{transform:rotate(360deg);}}
+#nx-box[data-theme="bb"] .nx-x{color:#141210;background:#fff;border:3px solid #141210;width:2.2rem;height:2.2rem;padding:0;font-weight:700;box-shadow:2px 2px 0 #141210;z-index:2;}
+#nx-box[data-theme="bb"] .nx-eb{font-family:'Space Mono',monospace;font-weight:700;color:#e7e2d6;background:#141210;display:table;margin:0 auto;padding:.5em .9em;letter-spacing:.3em;}
+#nx-box[data-theme="bb"] .nx-h{font-family:'Anton',sans-serif;text-transform:uppercase;color:#141210;line-height:.9;margin:.9rem 0 .5rem;}
+#nx-box[data-theme="bb"] .nx-bb-big{display:block;font-size:clamp(3.2rem,15vw,4.6rem);letter-spacing:.01em;text-shadow:3px 3px 0 #e8372c;}
+#nx-box[data-theme="bb"] .nx-bb-big b{font-weight:400;color:#e8372c;text-shadow:3px 3px 0 #141210;}
+#nx-box[data-theme="bb"] .nx-bb-small{display:inline-block;margin-top:.55rem;font-size:clamp(1.3rem,6vw,1.7rem);background:#f2dc12;border:3px solid #141210;padding:.05em .4em;transform:rotate(-4deg);box-shadow:3px 3px 0 #e8372c;}
+#nx-box[data-theme="bb"] .nx-bb-small b{font-weight:400;color:#e8372c;}
+#nx-box[data-theme="bb"] .nx-sub{font-family:'Space Mono',monospace;font-style:normal;font-weight:700;font-size:.6rem;line-height:1.7;color:#fff;background:#141210;display:table;margin:.9rem auto 2.2rem;padding:.4em .8em;}
+#nx-box[data-theme="bb"] .nx-row{border-top:3px solid #141210;border-bottom:3px dashed rgba(20,18,16,.35);}
+#nx-box[data-theme="bb"] .nx-k{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:1.5rem;}
+#nx-box[data-theme="bb"] .nx-small{color:#4a443d;}
+#nx-box[data-theme="bb"] .nx-qty{border:3px solid #141210;background:#fff;}
+#nx-box[data-theme="bb"] .nx-qty button{color:#141210;font-weight:700;}
+#nx-box[data-theme="bb"] .nx-qty output{color:#141210;font-weight:700;}
+#nx-box[data-theme="bb"] .nx-total{color:#141210;font-weight:700;}
+#nx-box[data-theme="bb"] .nx-total b{font-family:'Anton',sans-serif;font-size:2.2rem;color:#141210;text-shadow:2px 2px 0 #e8372c;}
+#nx-box[data-theme="bb"] .nx-in{background:#fff;border:3px solid #141210;color:#141210;border-radius:0;font-size:.72rem;}
+#nx-box[data-theme="bb"] .nx-in:focus{background:#fffbe0;box-shadow:3px 3px 0 #141210;}
+#nx-box[data-theme="bb"] .nx-in::placeholder{color:rgba(20,18,16,.45);}
+#nx-box[data-theme="bb"] .nx-promo-go{border:3px solid #141210;background:#f2dc12;color:#141210;font-weight:700;}
+#nx-box[data-theme="bb"] .nx-promo-msg{color:#2c6a27;font-weight:700;}
+#nx-box[data-theme="bb"] .nx-promo-msg.is-bad{color:#c2241b;}
+#nx-box[data-theme="bb"] .nx-check{color:#3a3530;}
+#nx-box[data-theme="bb"] .nx-check input{accent-color:#e8372c;}
+#nx-box[data-theme="bb"] .nx-fine{color:#4a443d;}
+#nx-box[data-theme="bb"] .nx-err{color:#c2241b;font-weight:700;}
+#nx-box[data-theme="bb"] .nx-btn{font-family:'Archivo',sans-serif;font-weight:900;font-size:1rem;letter-spacing:.06em;color:#fff;background:#e8372c;border:3px solid #141210;box-shadow:4px 4px 0 #141210;}
+#nx-box[data-theme="bb"] .nx-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #141210;}
+#nx-box[data-theme="bb"] .nx-powered{color:#4a443d;}
+#nx-box[data-theme="bb"] .nx-back{color:#141210;font-weight:700;}
+#nx-box[data-theme="bb"] #nx-stripe{border:3px solid #141210;background:#fff;box-shadow:5px 5px 0 #141210;}
+@media (prefers-reduced-motion:reduce){ #nx-box[data-theme="bb"] .nx-bb-burst{animation:none;} }
 .nx-ticket{background:#f3e6cc;color:#2a0609;margin:0 auto 1.4rem;max-width:340px;display:flex;flex-direction:column;align-items:center;padding:1.4rem 1.2rem 1.2rem;position:relative;
   -webkit-mask:radial-gradient(circle 12px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;
   mask:radial-gradient(circle 12px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;}
@@ -5772,6 +5813,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 <div class="nx-ov" id="nx-box" hidden role="dialog" aria-modal="true" aria-labelledby="nx-box-h">
   <div class="nx-sheet">
     <button class="nx-x" type="button" data-nx-close aria-label="Close">✕</button>
+    <svg class="nx-bb-burst" viewBox="-100 -100 200 200" aria-hidden="true"><polygon points="0,-100 9,-26 59,-81 21,-14 95,-31 24,4 81,59 13,22 31,95 -2,25 -31,95 -15,20 -81,59 -25,4 -95,-31 -22,-12 -59,-81 -10,-25"/></svg>
     <div class="nx-eb">Nexus Box Office</div>
     <h2 class="nx-h" id="nx-box-h">REEL<em>Films</em></h2>
     <div class="nx-sub">Saturday, November 14 · 7–10 PM · UltraStar Coronado Village Theatre</div>
@@ -6340,9 +6382,9 @@ document.querySelectorAll('[data-reel-jump]').forEach(el => {
 ════════════════════════════════════════════ */
 // Events sold here. The door scanner picks one with #/door/<key> (or the next one coming up).
 const NX_EVENTS = {
-  'reelfilms-2026': { key: 'reelfilms', h: 'REEL<em>Films</em>', sub: 'Saturday, November 14 · 7–10 PM · UltraStar Coronado Village Theatre',
+  'reelfilms-2026': { key: 'reelfilms', theme: 'reel', h: 'REEL<em>Films</em>', sub: 'Saturday, November 14 · 7–10 PM · UltraStar Coronado Village Theatre',
     door: 'REELFilms · Nov 14', back: '#/film/reelfilms', ends: '2026-11-15T01:00:00-08:00' },
-  'bass-and-bars-2026': { key: 'bass-and-bars', h: 'Bass <em>&amp;</em> Bars', sub: 'Thursday, November 19 · 10 PM – 1 AM · Uppercuts, 4932 Newport Ave, Ocean Beach',
+  'bass-and-bars-2026': { key: 'bass-and-bars', theme: 'bb', h: '<span class="nx-bb-big">After <b>Party</b></span><span class="nx-bb-small">Bass <b>&amp;</b> Bars</span>', sub: 'Thursday, November 19 · 10 PM – 1 AM · Uppercuts, 4932 Newport Ave, Ocean Beach',
     door: 'Bass & Bars After Party · Nov 19', back: '#/music/nexus-live/tickets', ends: '2026-11-20T02:00:00-08:00' },
 };
 const NX = {
@@ -6444,6 +6486,7 @@ function nxOpenBox(slug) {
   NX.quote = NX.quotes[slug];
   const ev = NX_EVENTS[slug];
   document.getElementById('nx-box-h').innerHTML = ev.h;
+  document.getElementById('nx-box').dataset.theme = ev.theme;
   document.querySelector('#nx-box .nx-sub').textContent = ev.sub;
   document.getElementById('nx-promo').hidden = !NX.quote.hasCodes;
   document.getElementById('nx-promo-in').value = '';
