@@ -2015,7 +2015,9 @@ body{
     .bb-when small{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:.62rem;letter-spacing:.12em;color:var(--bb-ink);margin-top:.35rem;text-transform:none;}
     .bb-flyer{position:relative;justify-self:center;width:min(100%,430px);transform:rotate(2.5deg);}
     .bb-flyer img{display:block;width:100%;height:auto;border:6px solid #fff;box-shadow:10px 12px 0 var(--bb-ink);}
-    .bb-flyer::after{content:'Tickets Online';position:absolute;right:-14px;bottom:28px;background:var(--bb-red);color:#fff;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:.7rem;letter-spacing:.06em;padding:.6em .9em;transform:rotate(-4deg);box-shadow:3px 3px 0 var(--bb-ink);}
+    /* Covers the flyer's own "Tickets in Bio!" box exactly: 199x64 at (881,1278) on the 1080x1350 image, inside a 6px frame */
+    .bb-flyer{container-type:inline-size;}
+    .bb-flyer::after{content:'Tickets Online';position:absolute;box-sizing:border-box;left:calc(6px + (100% - 12px) * .8157);top:calc(6px + (100% - 12px) * .9467);width:calc((100% - 12px) * .1843);height:calc((100% - 12px) * .0474);display:flex;align-items:center;justify-content:center;background:var(--bb-red);color:#fff;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:2.6cqw;letter-spacing:.02em;white-space:nowrap;}
 
     .bb-wrap{max-width:1180px;margin:0 auto;padding:0 2rem 5rem;}
     .bb-tix{display:grid;grid-template-columns:1fr 1.25fr;gap:2rem;align-items:stretch;margin-top:1rem;}
