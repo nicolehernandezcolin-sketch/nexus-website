@@ -96,7 +96,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&family=Limelight&family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&family=Limelight&family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600&family=Anton&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.min.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp" crossorigin="anonymous"></script>
 
 <style>
@@ -886,6 +886,8 @@ body{
 .msnav-btn{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;padding:.55em 1.5em;border-radius:2px;border:1px solid rgba(62,207,90,.22);background:transparent;color:rgba(240,237,230,.62);cursor:none;transition:color .2s,border-color .2s,background .2s;white-space:nowrap;}
 .msnav-btn:hover{color:rgba(240,237,230,.9);border-color:rgba(62,207,90,.45);}
 .msnav-btn.active{color:var(--green);border-color:rgba(62,207,90,.6);background:rgba(62,207,90,.08);}
+.msnav-btn--live::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:#e8372c;margin-right:.6em;vertical-align:middle;animation:liveDot 1.4s ease-in-out infinite;}
+@keyframes liveDot{50%{opacity:.25;}}
 .music-sub{display:none;}.music-sub.msactive{display:block;}
 /* Event sub-pages */
 .ms-next{padding:4rem 3.5rem 7rem;position:relative;min-height:75vh;background:#030508;text-align:center;display:flex;flex-direction:column;align-items:center;}
@@ -1290,6 +1292,7 @@ body{
       <button class="msnav-btn" data-msub="ms-uc-series">Campus Series</button>
       <!-- Artist Workshops hidden for now: <button class="msnav-btn" data-msub="ms-workshops">Artist Workshops</button> -->
       <button class="msnav-btn" data-msub="ms-nex-up">Nex Up</button>
+      <button class="msnav-btn msnav-btn--live" data-msub="ms-live">Nexus Live</button>
     </div>
     <div class="music-sub msactive" id="ms-artists">
     <div class="music-hero-sec">
@@ -1984,6 +1987,215 @@ body{
       </div>
     </div>
     <!-- /NEX UP -->
+
+    <!-- NEXUS LIVE · BASS & BARS AFTER PARTY — nexusglobal.info/#/music/nexus-live
+         Tickets sell through the Nexus box office (event slug bass-and-bars-2026). -->
+    <style>
+    #ms-live{--bb-card:#e7e2d6;--bb-green:#3b7a35;--bb-yel:#f2dc12;--bb-red:#e8372c;--bb-or:#f07a1a;--bb-ink:#141210;
+      background:var(--bb-card);color:var(--bb-ink);overflow:hidden;
+      background-image:radial-gradient(rgba(20,18,16,.05) 1px,transparent 1.2px);background-size:5px 5px;}
+    #ms-live *{cursor:none;}
+    .bb-hero{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;max-width:1180px;margin:0 auto;padding:4.5rem 2rem 4rem;isolation:isolate;}
+    .bb-hero::before{content:'';position:absolute;left:-10%;right:-10%;top:30%;height:52%;background:var(--bb-green);z-index:-2;
+      clip-path:polygon(0 8%,9% 0,22% 6%,38% 1%,55% 7%,71% 0,86% 6%,100% 2%,100% 94%,84% 100%,63% 95%,41% 100%,20% 94%,0 100%);}
+    .bb-burst{position:absolute;left:46%;top:44%;width:620px;height:620px;transform:translate(-50%,-50%);z-index:-1;pointer-events:none;animation:bbSpin 60s linear infinite;}
+    @keyframes bbSpin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+    .bb-eb{display:inline-flex;gap:.6rem;align-items:center;font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;background:var(--bb-ink);color:var(--bb-card);padding:.6em 1em;margin-bottom:1.4rem;}
+    .bb-eb b{color:var(--bb-or);}
+    .bb-title{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.84;color:var(--bb-ink);
+      font-size:clamp(4.4rem,11vw,9rem);letter-spacing:.01em;-webkit-text-stroke:0;text-shadow:3px 3px 0 var(--bb-red);margin:0;}
+    .bb-title>span{display:block;}
+    .bb-title .bb-amp{color:var(--bb-red);text-shadow:3px 3px 0 var(--bb-ink);}
+    .bb-sub{display:inline-block;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(1.6rem,3.6vw,2.6rem);color:var(--bb-red);transform:rotate(-6deg);margin:.6rem 0 1.4rem .3rem;letter-spacing:.02em;
+      text-shadow:2px 2px 0 var(--bb-ink);}
+    .bb-when{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(1rem,2vw,1.3rem);text-transform:uppercase;line-height:1.35;color:var(--bb-ink);display:inline-block;background:var(--bb-yel);border:3px solid var(--bb-ink);box-shadow:5px 5px 0 var(--bb-ink);padding:.6rem .9rem;}
+    .bb-when small{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:.62rem;letter-spacing:.12em;color:var(--bb-ink);margin-top:.35rem;text-transform:none;}
+    .bb-flyer{position:relative;justify-self:center;width:min(100%,430px);transform:rotate(2.5deg);}
+    .bb-flyer img{display:block;width:100%;height:auto;border:6px solid #fff;box-shadow:10px 12px 0 var(--bb-ink);}
+    .bb-flyer::after{content:'Tickets Online';position:absolute;right:-14px;bottom:28px;background:var(--bb-red);color:#fff;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:.7rem;letter-spacing:.06em;padding:.6em .9em;transform:rotate(-4deg);box-shadow:3px 3px 0 var(--bb-ink);}
+
+    .bb-wrap{max-width:1180px;margin:0 auto;padding:0 2rem 5rem;}
+    .bb-tix{display:grid;grid-template-columns:1fr 1.25fr;gap:2rem;align-items:stretch;margin-top:1rem;}
+    .bb-card{background:#fff;border:3px solid var(--bb-ink);box-shadow:8px 8px 0 var(--bb-ink);padding:2rem 1.8rem;position:relative;}
+    .bb-k{font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--bb-green);}
+    .bb-price{font-family:'Anton',sans-serif;font-size:clamp(3rem,7vw,4.6rem);line-height:1;margin:.4rem 0 .5rem;}
+    .bb-d{font-family:'Instrument Sans',sans-serif;font-size:.86rem;line-height:1.55;color:#3a3530;}
+    .bb-left{display:inline-block;margin-top:.9rem;font-family:'Space Mono',monospace;font-size:.52rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--bb-yel);padding:.45em .8em;border:2px solid var(--bb-ink);}
+    .bb-left:empty{display:none;}
+    .bb-btn{display:block;width:100%;margin-top:1.3rem;font-family:'Archivo',sans-serif;font-weight:900;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--bb-red);border:3px solid var(--bb-ink);padding:1em;box-shadow:4px 4px 0 var(--bb-ink);transition:transform .12s,box-shadow .12s;}
+    .bb-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--bb-ink);}
+    .bb-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--bb-ink);}
+    .bb-btn--ghost{background:#fff;color:var(--bb-ink);font-size:.8rem;margin-top:.7rem;}
+    .bb-ladder{list-style:none;margin:0;padding:0;}
+    .bb-ladder li{display:grid;grid-template-columns:1fr auto;gap:.2rem 1rem;align-items:baseline;padding:.85rem 0;border-bottom:2px dashed rgba(20,18,16,.25);}
+    .bb-ladder li:last-child{border-bottom:none;}
+    .bb-ladder b{font-family:'Archivo',sans-serif;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.02em;}
+    .bb-ladder span{font-family:'Anton',sans-serif;font-size:1.5rem;}
+    .bb-ladder small{grid-column:1/-1;font-family:'Instrument Sans',sans-serif;font-size:.78rem;color:#5a534b;}
+    .bb-ladder li.is-now{background:var(--bb-yel);margin:0 -.8rem;padding:.85rem .8rem;border:2px solid var(--bb-ink);}
+    .bb-ladder li.is-now b::after{content:'On sale now';margin-left:.6rem;font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.14em;background:var(--bb-ink);color:var(--bb-yel);padding:.3em .55em;vertical-align:middle;}
+    .bb-ladder li.is-door{opacity:.75;}
+    .bb-ladder li.is-door span{text-decoration:line-through;text-decoration-color:var(--bb-red);text-decoration-thickness:3px;}
+    .bb-codes{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.4rem;}
+    .bb-code{border:3px solid var(--bb-ink);background:var(--bb-card);padding:1rem 1.1rem;}
+    .bb-code code{display:inline-block;font-family:'Space Mono',monospace;font-weight:700;font-size:.8rem;background:var(--bb-ink);color:var(--bb-yel);padding:.25em .55em;letter-spacing:.08em;}
+    .bb-code b{display:block;font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:.85rem;margin:.6rem 0 .2rem;}
+    .bb-code p{margin:0;font-family:'Instrument Sans',sans-serif;font-size:.78rem;line-height:1.45;color:#3a3530;}
+    .bb-code p em{font-family:'Anton',sans-serif;font-style:normal;font-size:1.25rem;color:var(--bb-ink);margin-right:.3rem;}
+    .bb-why{margin-top:2.2rem;display:flex;gap:1rem;align-items:center;background:var(--bb-ink);color:var(--bb-card);padding:1.1rem 1.4rem;font-family:'Archivo',sans-serif;font-weight:700;font-size:.95rem;line-height:1.4;}
+    .bb-why i{font-style:normal;font-family:'Anton',sans-serif;font-size:2rem;color:var(--bb-yel);line-height:1;}
+
+    .bb-h{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(2.6rem,6vw,4.4rem);line-height:.95;margin:5rem 0 .6rem;text-shadow:3px 3px 0 var(--bb-red);}
+    .bb-lede{font-family:'Instrument Sans',sans-serif;font-size:1rem;line-height:1.6;max-width:640px;color:#3a3530;margin:0 0 2rem;}
+    .bb-lineup{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+    .bb-act{background:#fff;border:3px solid var(--bb-ink);box-shadow:6px 6px 0 var(--bb-ink);overflow:hidden;transition:transform .2s;}
+    .bb-act:nth-child(odd){transform:rotate(-1.2deg);} .bb-act:nth-child(even){transform:rotate(1.2deg);}
+    .bb-act:hover{transform:rotate(0) translateY(-4px);}
+    .bb-act img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-bottom:3px solid var(--bb-ink);}
+    .bb-act div{padding:.8rem .9rem 1rem;}
+    .bb-act b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:1.5rem;text-transform:uppercase;line-height:1;}
+    .bb-act span{display:inline-block;margin-top:.45rem;font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--bb-green);color:#fff;padding:.3em .6em;}
+
+    .bb-night{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+    .bb-step{border:3px solid var(--bb-ink);background:#fff;padding:1.4rem 1.3rem;}
+    .bb-step:nth-child(2){background:var(--bb-green);color:#fff;}
+    .bb-step:nth-child(2) p{color:rgba(255,255,255,.88);}
+    .bb-step i{font-style:normal;font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--bb-or);}
+    .bb-step b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:1.7rem;text-transform:uppercase;line-height:1;margin:.5rem 0 .6rem;}
+    .bb-step p{margin:0;font-family:'Instrument Sans',sans-serif;font-size:.86rem;line-height:1.55;color:#3a3530;}
+    .bb-step a{color:inherit;font-weight:700;}
+
+    .bb-sponsors{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+    .bb-logo{display:flex;align-items:center;justify-content:center;background:#fff;border:3px solid var(--bb-ink);aspect-ratio:3/2;padding:1.2rem;}
+    .bb-logo img{max-width:100%;max-height:100%;object-fit:contain;}
+    .bb-logo--tall img{max-height:88%;}
+
+    .bb-info{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1rem;}
+    .bb-info div{border-top:4px solid var(--bb-ink);padding-top:.8rem;font-family:'Instrument Sans',sans-serif;font-size:.86rem;line-height:1.55;color:#3a3530;}
+    .bb-info b{display:block;font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:.85rem;color:var(--bb-ink);margin-bottom:.3rem;}
+    .bb-info a{color:var(--bb-ink);}
+    .bb-close{margin-top:4rem;text-align:center;}
+    .bb-close .bb-btn{display:inline-block;width:auto;padding:1em 2.4em;}
+
+    .bb-tabs{display:flex;justify-content:center;gap:.6rem;padding:1.2rem 1rem 0;flex-wrap:wrap;}
+    .bb-tabs a{font-family:'Archivo',sans-serif;font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--bb-ink);text-decoration:none;border:3px solid var(--bb-ink);background:#fff;padding:.55em 1.2em;box-shadow:3px 3px 0 var(--bb-ink);}
+    #ms-live:not([data-view]) .bb-tabs a[data-bb-view="home"],#ms-live[data-view="tickets"] .bb-tabs a[data-bb-view="tickets"]{background:var(--bb-ink);color:var(--bb-yel);}
+    .bb-mini{display:none;}
+    #ms-live[data-view="tickets"] .bb-hero{grid-template-columns:1fr;padding-top:2.4rem;padding-bottom:2rem;}
+    #ms-live[data-view="tickets"] .bb-flyer,#ms-live[data-view="tickets"] .bb-more,#ms-live[data-view="tickets"] .bb-burst{display:none;}
+    #ms-live[data-view="tickets"] .bb-hero::before{top:12%;height:76%;}
+    #ms-live[data-view="tickets"] .bb-title{font-size:clamp(3.4rem,8vw,6rem);}
+    #ms-live[data-view="tickets"] .bb-title>span{display:inline;}
+    #ms-live[data-view="tickets"] .bb-title>span+span{margin-left:.25em;}
+    #ms-live[data-view="tickets"] .bb-sub{display:block;width:max-content;margin:.3rem 0 1rem .2rem;}
+    #ms-live[data-view="tickets"] .bb-mini{display:block;margin-top:1.2rem;font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.06em;color:#fff;line-height:1.9;}
+    #ms-live[data-view="tickets"] .bb-mini b{color:var(--bb-yel);}
+    .bb-see{display:none;text-align:center;margin-top:2.4rem;}
+    #ms-live[data-view="tickets"] .bb-see{display:block;}
+    .bb-see a{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:.85rem;color:var(--bb-ink);}
+    #ms-live[data-view="tickets"] .bb-close{display:none;}
+    .bb-perks{margin-top:1.3rem;padding-top:1.1rem;border-top:2px dashed rgba(20,18,16,.25);font-family:'Instrument Sans',sans-serif;font-size:.82rem;line-height:1.6;color:#3a3530;}
+    .bb-perks b{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:.78rem;color:var(--bb-ink);}
+    @media (max-width:900px){
+      .bb-hero{grid-template-columns:1fr;padding:3rem 1.2rem 2.5rem;gap:2rem;}
+      .bb-hero::before{top:22%;height:40%;}
+      .bb-burst{left:50%;top:30%;width:440px;height:440px;}
+      .bb-flyer{width:min(86%,380px);}
+      .bb-wrap{padding:0 1.2rem 4rem;}
+      .bb-tix{grid-template-columns:1fr;}
+      .bb-lineup,.bb-sponsors{grid-template-columns:repeat(2,1fr);}
+      .bb-night,.bb-info{grid-template-columns:1fr;}
+    }
+    @media (max-width:900px){ #ms-live[data-view="tickets"] .bb-eb{display:none;} #ms-live[data-view="tickets"] .bb-hero{padding-top:1.4rem;padding-bottom:1.4rem;gap:0;} #ms-live[data-view="tickets"] .bb-when{font-size:.95rem;} }
+    @media (max-width:520px){ .bb-codes{grid-template-columns:1fr;} .bb-act b{font-size:1.2rem;} }
+    @media (prefers-reduced-motion:reduce){ .bb-burst{animation:none;} }
+    </style>
+    <div class="music-sub" id="ms-live">
+      <nav class="bb-tabs" aria-label="Bass and Bars">
+        <a href="#/music/nexus-live" data-bb-view="home">The Night</a>
+        <a href="#/music/nexus-live/tickets" data-bb-view="tickets">Tickets</a>
+      </nav>
+      <section class="bb-hero">
+        <svg class="bb-burst" viewBox="-100 -100 200 200" aria-hidden="true"><polygon fill="#f2dc12" points="0,-100 9,-26 59,-81 21,-14 95,-31 24,4 81,59 13,22 31,95 -2,25 -31,95 -15,20 -81,59 -25,4 -95,-31 -22,-12 -59,-81 -10,-25"/></svg>
+        <div>
+          <div class="bb-eb">Nexus Live <b>✦</b> Nexus x NUDAYGO</div>
+          <h2 class="bb-title"><span>Bass</span><span><span class="bb-amp">&amp;</span> Bars</span></h2>
+          <div class="bb-sub">After Party</div>
+          <div class="bb-when">Thursday, Nov 19 · 10 PM – 1 AM<small>Uppercuts · 4932 Newport Ave, Ocean Beach, San Diego</small></div>
+          <div class="bb-mini"><b>10:00</b> Deleon Nox &nbsp;·&nbsp; <b>10:30</b> Nur &nbsp;·&nbsp; <b>11:00</b> 30 Foez &nbsp;·&nbsp; <b>11:30</b> ThaSpeakerBoxx</div>
+        </div>
+        <figure class="bb-flyer" style="margin:0;">
+          <img src="images/bass-and-bars/flyer-lineup.webp" width="1080" height="1350" alt="Bass and Bars After Party flyer: Deleon Nox, 30 Foez, Nur and ThaSpeakerBoxx. November 19, 10 PM to 1 AM, 4932 Newport Ave, San Diego." loading="lazy">
+        </figure>
+      </section>
+
+      <div class="bb-wrap">
+        <div class="bb-tix" id="bb-tickets">
+          <div class="bb-card">
+            <div class="bb-k" id="bb-tier">Tickets · Early Bird</div>
+            <div class="bb-price" id="bb-price">$15</div>
+            <div class="bb-d" id="bb-price-d">First 60 tickets. Then $20 general admission.</div>
+            <div class="bb-left" id="bb-left"></div>
+            <button class="bb-btn" type="button" id="bb-buy">Get Tickets →</button>
+            <button class="bb-btn bb-btn--ghost" type="button" id="bb-mine">View My Tickets</button>
+            <div class="bb-perks"><b>Your ticket</b><br>Sent to your email and kept on your phone, with a live QR code that changes every few seconds, so it can't be copied. Up to 4 per person. 21+ with ID.</div>
+          </div>
+          <div class="bb-card">
+            <div class="bb-k">Every Price</div>
+            <ul class="bb-ladder" id="bb-ladder">
+              <li data-tier="early"><b>Early Bird</b><span>$15</span><small>First 60 tickets, online</small></li>
+              <li data-tier="general"><b>General Admission</b><span>$20</span><small>Online, through Nov 18</small></li>
+              <li data-tier="dayof"><b>Day Of</b><span>$25</span><small>Online on Nov 19, until 9:30 PM</small></li>
+              <li class="is-door"><b>At the Door</b><span>$30</span><small>If any spots are left. Buy online and save.</small></li>
+            </ul>
+            <div class="bb-codes">
+              <div class="bb-code"><code>OB25</code><b>OB Residents</b><p><em>$15</em>Online only. Enter the code at checkout.</p></div>
+              <div class="bb-code"><code>STUDENT20</code><b>Students 21+ with the Nexus App</b><p><em>$16</em>Online only. Bring your student ID.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="bb-why"><i>!</i><span>Buy online. Tickets are cheapest now and go up every step, to $30 at the door. Your ticket lives on your phone, with a live QR code.</span></div>
+
+        <div class="bb-more">
+        <h3 class="bb-h">The Lineup</h3>
+        <p class="bb-lede">Four sets, one room. MCs and DJs from the San Diego scene take Uppercuts from 10 PM until close.</p>
+        <div class="bb-lineup">
+          <div class="bb-act"><img src="images/bass-and-bars/deleon-nox.webp" alt="Deleon Nox" loading="lazy"><div><b>Deleon Nox</b><span>Set at 10:00 PM</span></div></div>
+          <div class="bb-act"><img src="images/bass-and-bars/nur.webp" alt="Nur" loading="lazy"><div><b>Nur</b><span>Set at 10:30 PM</span></div></div>
+          <div class="bb-act"><img src="images/bass-and-bars/30-foez.webp" alt="30 Foez" loading="lazy"><div><b>30 Foez</b><span>Set at 11:00 PM</span></div></div>
+          <div class="bb-act"><img src="images/bass-and-bars/thaspeakerboxx.webp" alt="ThaSpeakerBoxx" loading="lazy"><div><b>ThaSpeakerBoxx</b><span>Set at 11:30 PM</span></div></div>
+        </div>
+
+        <h3 class="bb-h">The Night</h3>
+        <p class="bb-lede">Bass &amp; Bars is the after party for our sponsor collaboration with the MC Club at UC San Diego.</p>
+        <div class="bb-night">
+          <div class="bb-step"><i>6 – 9 PM · UC San Diego</i><b>The Showcase</b><p>The MC Club's showcase on campus, with Nexus and our sponsors live on the ground. Celsius, Koia, Solely and WaterBoy.</p></div>
+          <div class="bb-step"><i>10 PM – 1 AM · Uppercuts</i><b>The After Party</b><p>The night moves to Ocean Beach. Four live sets and the whole crowd from the showcase.</p></div>
+          <div class="bb-step"><i>All Night</i><b>The Nexus App</b><p>Find the next show, keep your tickets and connect with the artists. <a href="#/app">Get early access →</a></p></div>
+        </div>
+
+        <h3 class="bb-h">Showcase Sponsors</h3>
+        <p class="bb-lede">Thank you to the brands joining us at the MC Club showcase at UC San Diego.</p>
+        <div class="bb-sponsors">
+          <div class="bb-logo"><img src="images/bass-and-bars/logo-celsius.png" alt="Celsius" loading="lazy"></div>
+          <div class="bb-logo bb-logo--tall"><img src="images/bass-and-bars/logo-koia.png" alt="Koia" loading="lazy"></div>
+          <div class="bb-logo"><img src="images/bass-and-bars/logo-solely.jpg" alt="Solely" loading="lazy"></div>
+          <div class="bb-logo"><img src="images/bass-and-bars/logo-waterboy.png" alt="WaterBoy" loading="lazy"></div>
+        </div>
+
+        </div><!-- /bb-more -->
+
+        <h3 class="bb-h">Good to Know</h3>
+        <div class="bb-info">
+          <div><b>Where</b>Uppercuts, 4932 Newport Ave, San Diego, CA 92107. <a href="https://maps.google.com/?q=4932+Newport+Ave+San+Diego+CA" target="_blank" rel="noopener">Map →</a></div>
+          <div><b>Entry</b>21+ with a valid photo ID. Show the live ticket on your phone at the door. Screenshots won't scan.</div>
+          <div><b>Questions</b>Email <a href="mailto:now@nexusglobal.info?subject=Bass%20%26%20Bars%20After%20Party">now@nexusglobal.info</a> or DM <a href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">@n3xus.now</a>.</div>
+        </div>
+        <div class="bb-close"><a class="bb-btn" href="#/music/nexus-live/tickets" data-bb-view="tickets" style="text-decoration:none;">Get Tickets →</a></div>
+        <div class="bb-see"><a href="#/music/nexus-live" data-bb-view="home">See the lineup and the night →</a></div>
+      </div>
+    </div>
+    <!-- /NEXUS LIVE -->
 
 
 
@@ -3341,6 +3553,14 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 .nx-in:focus{border-color:#d4ad5b;background:rgba(142,18,25,.14);}
 .nx-in::placeholder{color:rgba(243,230,204,.4);}
 .nx-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.nx-promo{display:flex;gap:.5rem;}
+.nx-promo[hidden]{display:none;}
+.nx-promo .nx-in{flex:1;text-transform:uppercase;}
+.nx-promo-go{flex:none;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;background:none;border:1px solid #d4ad5b;color:#f1d58e;padding:0 1.1rem;cursor:none;}
+.nx-promo-go:disabled{opacity:.5;}
+.nx-promo-msg{margin:-.4rem 0 0;color:#9fd8a8;}
+.nx-promo-msg:empty{display:none;}
+.nx-promo-msg.is-bad{color:#ff9b8a;}
 .nx-check{display:flex;gap:.7rem;align-items:flex-start;font-size:.54rem;line-height:1.7;color:rgba(243,230,204,.75);}
 .nx-check input{margin-top:.25rem;accent-color:#c4943c;}
 .nx-fine{font-size:.5rem;line-height:1.8;color:rgba(243,230,204,.55);text-align:center;}
@@ -5568,12 +5788,17 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
           <button type="button" data-qty="1" aria-label="One more">+</button>
         </div>
       </div>
+      <div class="nx-promo" id="nx-promo" hidden>
+        <input class="nx-in" name="promo" id="nx-promo-in" placeholder="Have a code?" autocomplete="off" autocapitalize="characters" spellcheck="false">
+        <button type="button" class="nx-promo-go" id="nx-promo-go">Apply</button>
+      </div>
+      <p class="nx-small nx-promo-msg" id="nx-promo-msg" role="status"></p>
       <div class="nx-total"><span>Total</span><b id="nx-total">$21.59</b></div>
       <input class="nx-in" name="fullname" autocomplete="name" placeholder="Full name (name on the ticket)" required>
       <input class="nx-in" name="email" type="email" autocomplete="email" placeholder="Email (we send your tickets here)" required>
       <input class="nx-in" name="phone" type="tel" autocomplete="tel" placeholder="Mobile number" required>
       <input class="nx-hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label class="nx-check"><input type="checkbox" name="optin"> Text and email me about future Nexus screenings and events. Optional. Msg &amp; data rates may apply; reply STOP to opt out.</label>
+      <label class="nx-check"><input type="checkbox" name="optin"> Text and email me about future Nexus events. Optional. Msg &amp; data rates may apply; reply STOP to opt out.</label>
       <p class="nx-fine">We use your email and phone to deliver your tickets and reach you about this event. Up to 4 tickets per person.</p>
       <p class="nx-err" id="nx-buy-err" role="alert"></p>
       <button class="nx-btn" type="submit" id="nx-buy-go">Continue to Payment →</button>
@@ -5620,7 +5845,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
       <button class="nx-door-x" type="button" data-nx-close aria-label="Close">✕</button>
     </div>
     <form id="nx-door-pin" class="nx-door-pin">
-      <p>Staff check-in for REELFilms · Nov 14</p>
+      <p id="nx-door-label">Staff check-in for REELFilms · Nov 14</p>
       <input class="nx-in" type="password" inputmode="text" autocomplete="off" placeholder="Staff PIN" id="nx-pin" required>
       <button class="nx-btn" type="submit">Start Scanning</button>
       <p class="nx-err" id="nx-pin-err" role="alert"></p>
@@ -6113,9 +6338,17 @@ document.querySelectorAll('[data-reel-jump]').forEach(el => {
    Server side lives in the Nexus app's Supabase project (nexus-app/supabase/functions).
    Prices, the early bird switch and the 4-ticket limit are all decided there.
 ════════════════════════════════════════════ */
+// Events sold here. The door scanner picks one with #/door/<key> (or the next one coming up).
+const NX_EVENTS = {
+  'reelfilms-2026': { key: 'reelfilms', h: 'REEL<em>Films</em>', sub: 'Saturday, November 14 · 7–10 PM · UltraStar Coronado Village Theatre',
+    door: 'REELFilms · Nov 14', back: '#/film/reelfilms', ends: '2026-11-15T01:00:00-08:00' },
+  'bass-and-bars-2026': { key: 'bass-and-bars', h: 'Bass <em>&amp;</em> Bars', sub: 'Thursday, November 19 · 10 PM – 1 AM · Uppercuts, 4932 Newport Ave, Ocean Beach',
+    door: 'Bass & Bars After Party · Nov 19', back: '#/music/nexus-live/tickets', ends: '2026-11-20T02:00:00-08:00' },
+};
 const NX = {
   fn: 'https://valeivzqquetjjhspgjk.supabase.co/functions/v1/',
   event: 'reelfilms-2026',
+  quotes: {},
   stripeJs: 'https://js.stripe.com/endive/stripe.js',
   libs: {
     qr: ['https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js', 'sha384-8FWZA6BGMXhsfO+BLtrJK0We6gg5o1JyO8xQm6peWDEUs17ACA5ziE/NIAkl9z2k'],
@@ -6153,7 +6386,7 @@ function nxSave(ref) { try { localStorage.setItem('nx_tickets', JSON.stringify([
 
 /* ── Ticket card: live price from the server ── */
 async function nxLoadQuote() {
-  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: NX.event });
+  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: 'reelfilms-2026' });
   const buy = document.getElementById('reel-buy');
   const set = (id, t) => { document.getElementById(id).textContent = t; };
   if (q.offline || (q.error && q.onSale === undefined)) {
@@ -6170,7 +6403,7 @@ async function nxLoadQuote() {
     buy.remove();
     return;
   }
-  NX.quote = q;
+  NX.quotes['reelfilms-2026'] = q;
   set('reel-tier', 'Tickets · ' + q.tier.name);
   set('reel-price', nxMoney2(q.allInCents));
   let d = nxMoney(q.unitCents) + ' ticket + ' + nxMoney2(q.feeCents) + ' fee.';
@@ -6185,12 +6418,12 @@ async function nxLoadQuote() {
       : what + ' ' + last.toLocaleDateString('en-US', { ...pt, weekday: 'long', month: 'short', day: 'numeric' }));
   }
   buy.textContent = 'Get Tickets →';
-  buy.onclick = nxOpenBox;
+  buy.onclick = () => nxOpenBox('reelfilms-2026');
   if (!document.getElementById('reel-mine')) {
     const a = document.createElement('button');
     a.type = 'button'; a.id = 'reel-mine'; a.className = 'reel-btn reel-btn--ghost';
     a.textContent = 'View My Tickets';
-    a.onclick = () => nxOpenTickets();
+    a.onclick = () => { NX.event = 'reelfilms-2026'; nxOpenTickets(); };
     buy.after(a);
   }
 }
@@ -6206,7 +6439,15 @@ function nxRenderQty() {
   document.querySelector('[data-qty="-1"]').disabled = nxQty <= 1;
   document.querySelector('[data-qty="1"]').disabled = nxQty >= q.limit;
 }
-function nxOpenBox() {
+function nxOpenBox(slug) {
+  NX.event = slug;
+  NX.quote = NX.quotes[slug];
+  const ev = NX_EVENTS[slug];
+  document.getElementById('nx-box-h').innerHTML = ev.h;
+  document.querySelector('#nx-box .nx-sub').textContent = ev.sub;
+  document.getElementById('nx-promo').hidden = !NX.quote.hasCodes;
+  document.getElementById('nx-promo-in').value = '';
+  document.getElementById('nx-promo-msg').textContent = '';
   nxQty = 1; nxRenderQty();
   document.getElementById('nx-buy-err').textContent = '';
   nxShow('nx-buy-form'); nxHide('nx-pay'); nxShow('nx-box');
@@ -6235,9 +6476,15 @@ document.getElementById('nx-buy-form').addEventListener('submit', async e => {
   err.textContent = ''; go.disabled = true; go.textContent = 'Holding your seats…';
   const res = await nxCall('create-guest-checkout', {
     event: NX.event, quantity: nxQty, name, email, phone, marketingOptIn: f.optin.checked, company: f.company.value,
+    code: NX.quote.code || undefined,
   });
   go.disabled = false; go.textContent = 'Continue to Payment →';
-  if (res.error) { err.textContent = res.error; return; }
+  if (res.error) {
+    err.textContent = res.error;
+    // A capped price just sold out: show the new price before they try again
+    if (res.soldOut) { await nxRefreshQuote(); nxRenderQty(); }
+    return;
+  }
   nxOrderRef = res.ticket; nxSave(res.ticket);
   try {
     await nxLoad(NX.stripeJs);
@@ -6251,6 +6498,79 @@ document.getElementById('nx-buy-form').addEventListener('submit', async e => {
     err.textContent = "Payment couldn't load. If you use an ad blocker, pause it for this page and try again.";
   }
 });
+
+/* ── Codes (e.g. OB25): the server says which price a code unlocks ── */
+async function nxRefreshQuote(code) {
+  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: NX.event, code: code || undefined });
+  if (!q.error) { NX.quote = q; if (!code) NX.quotes[NX.event] = q; if (NX.event === 'bass-and-bars-2026' && !code) nxShowBB(q); }
+  return q;
+}
+async function nxApplyCode() {
+  const input = document.getElementById('nx-promo-in'), msg = document.getElementById('nx-promo-msg'), btn = document.getElementById('nx-promo-go');
+  const code = input.value.replace(/\s+/g, '').toUpperCase();
+  btn.disabled = true; msg.textContent = code ? 'Checking…' : '';
+  const q = await nxRefreshQuote(code);
+  btn.disabled = false;
+  if (q.error) {
+    msg.textContent = q.error; msg.classList.add('is-bad');
+    if (code) await nxRefreshQuote();
+  } else {
+    msg.classList.remove('is-bad');
+    msg.textContent = code ? '✓ ' + q.tier.name + ' price applied: ' + nxMoney(q.unitCents) + ' a ticket.' : '';
+  }
+  nxQty = Math.min(nxQty, NX.quote.limit); nxRenderQty();
+}
+document.getElementById('nx-promo-go').addEventListener('click', nxApplyCode);
+document.getElementById('nx-promo-in').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); nxApplyCode(); } });
+
+/* ── Bass & Bars After Party ticket card (nexusglobal.info/#/music/nexus-live/tickets) ── */
+function nxShowBB(q) {
+  const set = (id, t) => { document.getElementById(id).textContent = t; };
+  set('bb-tier', 'Tickets · ' + q.tier.name);
+  set('bb-price', nxMoney2(q.allInCents));
+  let d = nxMoney(q.unitCents) + ' ticket + ' + nxMoney2(q.feeCents) + ' fee.';
+  if (q.left !== null && q.after) d += ' First 60 tickets, then ' + nxMoney(q.after.price * 100) + ' + fee.';
+  else if (q.next) d += ' Goes up to $' + q.next.price + ' + fee on ' + new Date(q.next.from).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'America/Los_Angeles' }) + '.';
+  else if (q.tier.until) d += ' Online sales close at ' + new Date(q.tier.until).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles' }) + '. $30 at the door.';
+  set('bb-price-d', d);
+  set('bb-left', q.left !== null ? (q.left <= 20 ? 'Only ' + q.left + ' early bird tickets left' : q.left + ' early bird tickets left') : '');
+  document.querySelectorAll('#bb-ladder li[data-tier]').forEach(li => li.classList.toggle('is-now', li.dataset.tier === q.tier.id));
+}
+async function nxLoadBB() {
+  const buy = document.getElementById('bb-buy');
+  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: 'bass-and-bars-2026' });
+  if (q.offline || (q.error && q.onSale === undefined)) {
+    buy.textContent = 'Try Again →';
+    buy.onclick = () => { buy.textContent = 'Loading…'; nxLoadBB(); };
+    return;
+  }
+  if (q.onSale === false) {
+    document.getElementById('bb-tier').textContent = 'Tickets';
+    document.getElementById('bb-price').textContent = 'Online Sales Closed';
+    document.getElementById('bb-price-d').textContent = 'Tickets are $30 at the door, if any spots are left.';
+    document.getElementById('bb-left').textContent = '';
+    buy.remove();
+    return;
+  }
+  NX.quotes['bass-and-bars-2026'] = q;
+  nxShowBB(q);
+  buy.textContent = 'Get Tickets →';
+  buy.onclick = () => nxOpenBox('bass-and-bars-2026');
+}
+document.getElementById('bb-mine').addEventListener('click', () => { NX.event = 'bass-and-bars-2026'; nxOpenTickets(); });
+// The page has two views, each with its own link: the night (#/music/nexus-live) and tickets (…/tickets)
+function setBBView(view, push) {
+  const el = document.getElementById('ms-live');
+  if (view === 'tickets') el.dataset.view = 'tickets'; else delete el.dataset.view;
+  if (push) {
+    const hash = '#/music/nexus-live' + (view === 'tickets' ? '/tickets' : '');
+    if (location.hash !== hash) history.pushState(null, '', hash);
+    document.getElementById('music-body').scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.title = (view === 'tickets' ? 'Tickets · ' : '') + 'Bass & Bars After Party · Nexus Live · Nexus San Diego';
+}
+document.querySelectorAll('[data-bb-view]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); setBBView(a.dataset.bbView, true); }));
+document.querySelector('.msnav-btn[data-msub="ms-live"]').addEventListener('click', () => { if (!routeSilent) setBBView(null); });
 
 /* ── Ticket wallet: nexusglobal.info/#/tickets ──
    No ticket links. Tickets open on the browser that bought them (its order key is saved here)
@@ -6437,7 +6757,10 @@ async function nxStartCamera() {
   tick();
 }
 function nxStopCamera() { if (nxStream) { nxStream.getTracks().forEach(t => t.stop()); nxStream = null; } }
-function nxOpenDoor() {
+function nxOpenDoor(key) {
+  const slugs = Object.keys(NX_EVENTS);
+  NX.event = slugs.find(s => NX_EVENTS[s].key === key) || slugs.find(s => Date.now() < Date.parse(NX_EVENTS[s].ends)) || slugs[slugs.length - 1];
+  document.getElementById('nx-door-label').textContent = 'Staff check-in for ' + NX_EVENTS[NX.event].door;
   nxShow('nx-door');
   try { nxPin = sessionStorage.getItem('nx_pin') || ''; } catch (e) {}
   if (nxPin) document.getElementById('nx-door-pin').requestSubmit();
@@ -6482,17 +6805,18 @@ document.querySelectorAll('.nx-ov [data-nx-close]').forEach(b => b.addEventListe
   if (ov.id === 'nx-door') nxStopCamera();
   if (ov.id === 'nx-tix') { clearTimeout(nxPoll); clearInterval(nxTick); }
   ov.hidden = true;
-  if (ov.id !== 'nx-box') { history.replaceState(null, '', location.pathname + '#/film/reelfilms'); openRoute(); }
+  if (ov.id !== 'nx-box') { history.replaceState(null, '', location.pathname + (NX_EVENTS[NX.event] || NX_EVENTS['reelfilms-2026']).back); openRoute(); }
 }));
 function nxFromHash() {
   const h = location.hash;
   // Old-style links from before tickets needed this device or an email code: remember the order, open the wallet.
   if (h.startsWith('#/ticket/')) { nxSave(h.slice(9)); nxOpenTickets(); return true; }
   if (h === '#/tickets') { nxOpenTickets(); return true; }
-  if (h === '#/door') { nxOpenDoor(); return true; }
+  if (h === '#/door' || h.startsWith('#/door/')) { nxOpenDoor(h.slice(7)); return true; }
   return false;
 }
 nxLoadQuote();
+nxLoadBB();
 
 /* ════════════════════════════════════════════
    THE NEXUS APP — early sign-up (nexusglobal.info/#/app)
@@ -7065,7 +7389,8 @@ const ROUTES = {
   'home':     { page:'home',        title:'Explore' },
   'music':    { page:'pg-music',    title:'Music', subs:{
                 'artists':['ms-artists','The Artists'], 'latin-jazz-night':['ms-latin-jazz','Latin Jazz Night'],
-                'uc-series':['ms-uc-series','Campus Series'], 'nex-up':['ms-nex-up','Nex Up'] } },
+                'uc-series':['ms-uc-series','Campus Series'], 'nex-up':['ms-nex-up','Nex Up'],
+                'nexus-live':['ms-live','Bass & Bars After Party · Nexus Live'] } },
   'dance':    { page:'pg-dance',    title:'Dance' },
   'fashion':  { page:'pg-fashion',  title:'Fashion Show', subs:{
                 'casting':['fsub-casting','Model Casting'], 'sponsors':['fsub-sponsors','Sponsors'], 'tickets':['fsub-tickets','Tickets'] } },
@@ -7134,6 +7459,7 @@ function openRoute() {
   const subId = r && subSlug && r.subs && r.subs[subSlug] ? r.subs[subSlug][0] : null;
   document.title = titleFor(routeFor(pageId, subId));
   if (subId === 'film-reel') setReelView(view);
+  if (subId === 'ms-live') setBBView(view);
   routeSilent = true;
   const arriving = curP !== pageId;
   if (arriving) {
