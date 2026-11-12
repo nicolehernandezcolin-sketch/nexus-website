@@ -7599,6 +7599,18 @@ function openRoute() {
   }, arriving ? 700 : 0);
 }
 window.addEventListener('popstate', openRoute);
+// Clean share links without a "#" (Linktree and some in-app browsers drop it):
+// nexusglobal.info/tickets, /afterparty, /music/nexus-live/tickets, etc. open that page directly
+(function () {
+  if (location.hash.length > 2) return;
+  const path = location.pathname.replace(/\/(index\.html)?$/, '').replace(/^\//, '').toLowerCase();
+  if (!path) return;
+  const SHORT = { 'tickets': 'music/nexus-live/tickets', 'afterparty': 'music/nexus-live/tickets',
+                  'after-party': 'music/nexus-live/tickets', 'bassandbars': 'music/nexus-live/tickets',
+                  'bass-and-bars': 'music/nexus-live/tickets' };
+  const route = SHORT[path] || (ROUTES[path.split('/')[0]] ? path : null);
+  if (route) history.replaceState(null, '', '/' + location.search + '#/' + route);
+})();
 if (location.hash.length > 2) openRoute();
 
 /* ════════════════════════════════════════════
