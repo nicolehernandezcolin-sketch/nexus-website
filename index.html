@@ -2071,9 +2071,13 @@ body{
     .bb-step a{color:inherit;font-weight:700;}
 
     .bb-sponsors{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
-    .bb-logo{display:flex;align-items:center;justify-content:center;background:#fff;border:3px solid var(--bb-ink);aspect-ratio:3/2;padding:1.2rem;}
-    .bb-logo img{max-width:100%;max-height:100%;object-fit:contain;}
-    .bb-logo--tall img{max-height:88%;}
+    .bb-logo{display:flex;align-items:center;justify-content:center;background:#fff;border:3px solid var(--bb-ink);box-shadow:5px 5px 0 var(--bb-ink);aspect-ratio:3/2;padding:0;overflow:hidden;}
+    /* Every logo gets the same optical size, and one ink tone so four brand palettes don't fight; full colour on hover */
+    .bb-logo img{display:block;width:auto;height:auto;max-width:74%;max-height:46%;object-fit:contain;filter:grayscale(1) contrast(1.6) brightness(1.08);mix-blend-mode:multiply;transition:filter .25s;}
+    .bb-logo:hover img{filter:none;}
+    .bb-logo--tall img{max-height:62%;max-width:40%;filter:grayscale(1) brightness(.45) contrast(1.4);}
+    .bb-logo--tall:hover img{filter:none;}
+    .bb-logo--wide img{max-width:60%;max-height:30%;}
 
     .bb-info{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1rem;}
     .bb-info div{border-top:4px solid var(--bb-ink);padding-top:.8rem;font-family:'Instrument Sans',sans-serif;font-size:.86rem;line-height:1.55;color:#3a3530;}
@@ -2185,7 +2189,7 @@ body{
           <div class="bb-logo"><img src="images/bass-and-bars/logo-celsius.png" alt="Celsius" loading="lazy"></div>
           <div class="bb-logo bb-logo--tall"><img src="images/bass-and-bars/logo-koia.png" alt="Koia" loading="lazy"></div>
           <div class="bb-logo"><img src="images/bass-and-bars/logo-solely.jpg" alt="Solely" loading="lazy"></div>
-          <div class="bb-logo"><img src="images/bass-and-bars/logo-waterboy.png" alt="WaterBoy" loading="lazy"></div>
+          <div class="bb-logo bb-logo--wide"><img src="images/bass-and-bars/logo-waterboy.png" alt="WaterBoy" loading="lazy"></div>
         </div>
 
         </div><!-- /bb-more -->
