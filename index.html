@@ -2015,9 +2015,9 @@ body{
     .bb-when small{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:.62rem;letter-spacing:.12em;color:var(--bb-ink);margin-top:.35rem;text-transform:none;}
     .bb-flyer{position:relative;justify-self:center;width:min(100%,430px);transform:rotate(2.5deg);}
     .bb-flyer img{display:block;width:100%;height:auto;border:6px solid #fff;box-shadow:10px 12px 0 var(--bb-ink);}
-    /* Covers the flyer's own "Tickets in Bio!" box exactly: 199x64 at (881,1278) on the 1080x1350 image, inside a 6px frame */
+    /* New flyers print "Tickets ONLINE!" themselves, so no overlay is needed */
     .bb-flyer{container-type:inline-size;}
-    .bb-flyer::after{content:'Tickets Online';position:absolute;box-sizing:border-box;left:calc(6px + (100% - 12px) * .8157);top:calc(6px + (100% - 12px) * .9467);width:calc((100% - 12px) * .1843);height:calc((100% - 12px) * .0474);display:flex;align-items:center;justify-content:center;background:var(--bb-red);color:#fff;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:2.6cqw;letter-spacing:.02em;white-space:nowrap;}
+    .bb-flyer::after{content:none;}
 
     .bb-wrap{max-width:1180px;margin:0 auto;padding:0 2rem 5rem;}
     .bb-tix{display:grid;grid-template-columns:1fr 1.25fr;gap:2rem;align-items:stretch;margin-top:1rem;}
@@ -2127,10 +2127,10 @@ body{
           <h2 class="bb-title"><span>After</span><span class="bb-amp">Party</span></h2>
           <div class="bb-sub">Bass <span>&amp;</span> Bars</div>
           <div class="bb-when">Thursday, Nov 19 · 10 PM – 1 AM<small>Uppercuts · 4932 Newport Ave, Ocean Beach, San Diego</small></div>
-          <div class="bb-mini"><b>10:00</b> Deleon Nox &nbsp;·&nbsp; <b>10:30</b> Nur &nbsp;·&nbsp; <b>11:00</b> 30 Foez &nbsp;·&nbsp; <b>11:30</b> ThaSpeakerBoxx</div>
+          <div class="bb-mini"><b>10:30</b> Deleon Nox &nbsp;·&nbsp; <b>11:00</b> Nur &nbsp;·&nbsp; <b>11:30</b> 30 Foez &nbsp;·&nbsp; <b>12:00</b> ThaSpeakerBoxx</div>
         </div>
         <figure class="bb-flyer" style="margin:0;">
-          <img src="images/bass-and-bars/flyer-lineup.webp" width="1080" height="1350" alt="Bass and Bars After Party flyer: Deleon Nox, 30 Foez, Nur and ThaSpeakerBoxx. November 19, 10 PM to 1 AM, 4932 Newport Ave, San Diego." loading="lazy">
+          <img src="images/bass-and-bars/flyer-lineup.webp?v=2" width="1080" height="1350" alt="Bass and Bars After Party flyer: Deleon Nox, Nur, 30 Foez and ThaSpeakerBoxx. November 19, 10 PM to 1 AM, 4932 Newport Ave, San Diego." loading="lazy">
         </figure>
       </section>
 
@@ -2165,10 +2165,10 @@ body{
         <h3 class="bb-h">The Lineup</h3>
         <p class="bb-lede">Four sets, one room. MCs and DJs from the San Diego scene take Uppercuts from 10 PM until close.</p>
         <div class="bb-lineup">
-          <div class="bb-act"><img src="images/bass-and-bars/deleon-nox.webp" alt="Deleon Nox" loading="lazy"><div><b>Deleon Nox</b><span>Set at 10:00 PM</span></div></div>
-          <div class="bb-act"><img src="images/bass-and-bars/nur.webp" alt="Nur" loading="lazy"><div><b>Nur</b><span>Set at 10:30 PM</span></div></div>
-          <div class="bb-act"><img src="images/bass-and-bars/30-foez.webp" alt="30 Foez" loading="lazy"><div><b>30 Foez</b><span>Set at 11:00 PM</span></div></div>
-          <div class="bb-act"><img src="images/bass-and-bars/thaspeakerboxx.webp" alt="ThaSpeakerBoxx" loading="lazy"><div><b>ThaSpeakerBoxx</b><span>Set at 11:30 PM</span></div></div>
+          <div class="bb-act"><img src="images/bass-and-bars/deleon-nox.webp?v=2" alt="Deleon Nox" loading="lazy"><div><b>Deleon Nox</b><span>Set at 10:30 PM</span></div></div>
+          <div class="bb-act"><img src="images/bass-and-bars/nur.webp?v=2" alt="Nur" loading="lazy"><div><b>Nur</b><span>Set at 11:00 PM</span></div></div>
+          <div class="bb-act"><img src="images/bass-and-bars/30-foez.webp?v=2" alt="30 Foez" loading="lazy"><div><b>30 Foez</b><span>Set at 11:30 PM</span></div></div>
+          <div class="bb-act"><img src="images/bass-and-bars/thaspeakerboxx.webp?v=2" alt="ThaSpeakerBoxx" loading="lazy"><div><b>ThaSpeakerBoxx</b><span>Set at 12:00 AM</span></div></div>
         </div>
 
         <h3 class="bb-h">The Night</h3>
