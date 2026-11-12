@@ -2056,6 +2056,9 @@ body{
     .bb-act{background:#fff;border:3px solid var(--bb-ink);box-shadow:6px 6px 0 var(--bb-ink);overflow:hidden;transition:transform .2s;}
     .bb-act:nth-child(odd){transform:rotate(-1.2deg);} .bb-act:nth-child(even){transform:rotate(1.2deg);}
     .bb-act:hover{transform:rotate(0) translateY(-4px);}
+    .bb-act--link{display:block;color:inherit;text-decoration:none;cursor:none;}
+    .bb-act--link em{display:block;margin-top:.55rem;font-family:'Space Mono',monospace;font-style:normal;font-size:.55rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bb-ink);}
+    .bb-act--link:hover em{text-decoration:underline;}
     .bb-act img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-bottom:3px solid var(--bb-ink);}
     .bb-act div{padding:.8rem .9rem 1rem;}
     .bb-act b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:1.5rem;text-transform:uppercase;line-height:1;}
@@ -2172,7 +2175,7 @@ body{
           <div class="bb-act"><img src="images/bass-and-bars/deleon-nox.webp?v=2" alt="Deleon Nox" loading="lazy"><div><b>Deleon Nox</b><span>Set at 10:30 PM</span></div></div>
           <div class="bb-act"><img src="images/bass-and-bars/nur.webp?v=2" alt="Nur" loading="lazy"><div><b>Nur</b><span>Set at 11:00 PM</span></div></div>
           <div class="bb-act"><img src="images/bass-and-bars/30-foez.webp?v=2" alt="30 Foez" loading="lazy"><div><b>30 Foez</b><span>Set at 11:30 PM</span></div></div>
-          <div class="bb-act"><img src="images/bass-and-bars/thaspeakerboxx.webp?v=3" alt="ThaSpeakerBoxx" loading="lazy"><div><b>ThaSpeakerBoxx</b><span>Set at 12:00 AM</span></div></div>
+          <a class="bb-act bb-act--link" href="https://www.thaspeakerboxx.com/" target="_blank" rel="noopener" aria-label="ThaSpeakerBoxx, set at 12:00 AM. Visit website"><img src="images/bass-and-bars/thaspeakerboxx.webp?v=3" alt="ThaSpeakerBoxx" loading="lazy"><div><b>ThaSpeakerBoxx</b><span>Set at 12:00 AM</span><em>Visit website →</em></div></a>
         </div>
 
         <h3 class="bb-h">The Night</h3>
