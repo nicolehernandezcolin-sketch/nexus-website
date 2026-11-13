@@ -1293,6 +1293,7 @@ body{
       <!-- Artist Workshops hidden for now: <button class="msnav-btn" data-msub="ms-workshops">Artist Workshops</button> -->
       <button class="msnav-btn" data-msub="ms-nex-up">Nex Up</button>
       <button class="msnav-btn msnav-btn--live" data-msub="ms-live">Nexus Live</button>
+      <button class="msnav-btn" data-msub="ms-house">House Party</button>
     </div>
     <div class="music-sub msactive" id="ms-artists">
     <div class="music-hero-sec">
@@ -2209,6 +2210,159 @@ body{
     </div>
     <!-- /NEXUS LIVE -->
 
+    <!-- HOUSE PARTY — nexusglobal.info/#/music/house-party (short link /houseparty)
+         Secret venue: the address is never on this page. It opens inside a paid ticket on the day
+         (guest-tickets + event_locations), and buyers get a text and email with a link when it does. -->
+    <style>
+    #ms-house{--hp-night:#160c0a;--hp-wall:#2a1712;--hp-red:#c8102e;--hp-red2:#a6192e;--hp-gold:#f4b642;--hp-cream:#f3e7d3;--hp-ink:#120908;
+      background:var(--hp-night);color:var(--hp-cream);overflow:hidden;position:relative;}
+    #ms-house *{cursor:none;}
+    .hp-hero{position:relative;min-height:88vh;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;max-width:1180px;margin:0 auto;padding:5rem 2rem 4rem;isolation:isolate;}
+    /* A backyard at night: stars, a warm glow from the string lights, and a fence line */
+    .hp-room{position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-2;pointer-events:none;
+      background:
+        radial-gradient(1.5px 1.5px at 12% 18%,rgba(255,255,255,.8),transparent),radial-gradient(1px 1px at 27% 9%,rgba(255,255,255,.7),transparent),
+        radial-gradient(1.5px 1.5px at 44% 24%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 61% 12%,rgba(255,255,255,.8),transparent),
+        radial-gradient(1.5px 1.5px at 76% 22%,rgba(255,255,255,.7),transparent),radial-gradient(1px 1px at 89% 8%,rgba(255,255,255,.6),transparent),
+        radial-gradient(1px 1px at 35% 33%,rgba(255,255,255,.5),transparent),radial-gradient(1px 1px at 82% 35%,rgba(255,255,255,.5),transparent),
+        radial-gradient(circle at 86% 16%,rgba(243,231,211,.9) 0 22px,rgba(243,231,211,.12) 23px 60px,transparent 61px),
+        radial-gradient(ellipse 50% 35% at 30% 45%,rgba(244,182,66,.22),transparent 70%),
+        radial-gradient(ellipse 45% 30% at 75% 80%,rgba(200,16,46,.22),transparent 70%),
+        linear-gradient(180deg,#0d1020 0%,#1a1220 45%,#1b0f0c 80%);}
+    .hp-room::after{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;background:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%27150%27%3E%3Cpolygon points=%274,18 23,2 42,18 42,150 4,150%27 fill=%27%23100907%27/%3E%3Crect x=%270%27 y=%2750%27 width=%2748%27 height=%278%27 fill=%27%230a0504%27/%3E%3Crect x=%270%27 y=%27110%27 width=%2748%27 height=%278%27 fill=%27%230a0504%27/%3E%3C/svg%3E") repeat-x bottom left;opacity:.95;}
+    .hp-room::before{content:'';position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(180deg,transparent,rgba(13,20,10,.6));}
+    .hp-lights{position:absolute;left:50%;width:100vw;transform:translateX(-50%);top:0;height:120px;z-index:-1;pointer-events:none;}
+    .hp-lights path{fill:none;stroke:rgba(243,231,211,.25);stroke-width:1.5;}
+    .hp-lights circle{fill:var(--hp-gold);filter:drop-shadow(0 0 6px rgba(244,182,66,.9));animation:hpGlow 2.6s ease-in-out infinite alternate;}
+    .hp-lights circle:nth-child(3n){fill:#ff6b5a;filter:drop-shadow(0 0 6px rgba(255,107,90,.9));animation-delay:.8s;}
+    .hp-lights circle:nth-child(4n){animation-delay:1.5s;}
+    @keyframes hpGlow{from{opacity:.55;}to{opacity:1;}}
+    .hp-eb{display:inline-flex;gap:.6rem;align-items:center;font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--hp-gold);border:1px solid rgba(244,182,66,.45);padding:.6em 1em;margin-bottom:1.6rem;}
+    .hp-title{font-family:'Permanent Marker',cursive;font-weight:400;font-size:clamp(4.2rem,11vw,8.6rem);line-height:.88;margin:0;color:var(--hp-cream);transform:rotate(-3deg);
+      text-shadow:0 0 28px rgba(244,182,66,.35),4px 4px 0 var(--hp-red);}
+    .hp-title span{display:block;color:var(--hp-red);text-shadow:0 0 30px rgba(200,16,46,.5),4px 4px 0 var(--hp-ink);margin-left:.6em;}
+    .hp-with{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(.9rem,1.8vw,1.1rem);margin:1.8rem 0 .6rem;}
+    .hp-with b{color:var(--hp-red);}
+    .hp-lede{font-family:'Instrument Sans',sans-serif;font-size:1.02rem;line-height:1.65;color:rgba(243,231,211,.82);max-width:520px;margin:0;}
+    .hp-when{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem;}
+    .hp-chip{font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(243,231,211,.08);border:1px solid rgba(243,231,211,.22);padding:.55em .9em;}
+    .hp-chip b{color:var(--hp-gold);}
+
+    .hp-card{position:relative;background:var(--hp-cream);color:var(--hp-ink);padding:2rem 1.8rem 1.8rem;box-shadow:0 30px 60px rgba(0,0,0,.5);transform:rotate(1.5deg);}
+    .hp-card::before{content:'';position:absolute;top:-14px;left:50%;width:110px;height:28px;transform:translateX(-50%) rotate(-2deg);background:rgba(244,182,66,.75);box-shadow:0 2px 4px rgba(0,0,0,.2);}
+    .hp-k{font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--hp-red2);}
+    .hp-price{font-family:'Permanent Marker',cursive;font-size:clamp(3rem,7vw,4.2rem);line-height:1;margin:.5rem 0 .4rem;}
+    .hp-d{font-family:'Instrument Sans',sans-serif;font-size:.86rem;line-height:1.5;color:#4a3a34;}
+    .hp-lock{display:flex;gap:.8rem;align-items:flex-start;margin-top:1.2rem;padding:1rem;background:var(--hp-ink);color:var(--hp-cream);}
+    .hp-lock svg{flex:none;width:28px;height:28px;color:var(--hp-gold);}
+    .hp-lock b{display:block;font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:.82rem;letter-spacing:.04em;}
+    .hp-lock span{font-family:'Instrument Sans',sans-serif;font-size:.8rem;line-height:1.5;color:rgba(243,231,211,.78);}
+    .hp-btn{display:block;width:100%;margin-top:1.2rem;font-family:'Archivo',sans-serif;font-weight:900;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--hp-red);border:none;padding:1.05em;box-shadow:0 8px 24px rgba(200,16,46,.4);transition:transform .15s,box-shadow .15s;}
+    .hp-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(200,16,46,.55);}
+    .hp-btn--ghost{background:transparent;color:var(--hp-ink);border:2px solid var(--hp-ink);box-shadow:none;font-size:.8rem;margin-top:.7rem;}
+    .hp-final{margin-top:1rem;font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;color:#4a3a34;}
+    .hp-btn--ghost:hover{box-shadow:none;background:rgba(18,9,8,.06);}
+
+    .hp-wrap{max-width:1180px;margin:0 auto;padding:0 2rem 5rem;}
+    .hp-h{font-family:'Permanent Marker',cursive;font-weight:400;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1;margin:4.5rem 0 .6rem;color:var(--hp-cream);}
+    .hp-h em{font-style:normal;color:var(--hp-red);}
+    .hp-p{font-family:'Instrument Sans',sans-serif;font-size:1rem;line-height:1.65;color:rgba(243,231,211,.78);max-width:640px;margin:0 0 2rem;}
+    .hp-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;counter-reset:hp;}
+    .hp-step{position:relative;background:var(--hp-wall);border:1px solid rgba(243,231,211,.12);padding:1.6rem 1.4rem 1.4rem;}
+    .hp-step::before{counter-increment:hp;content:counter(hp);position:absolute;top:-18px;left:1.2rem;width:38px;height:38px;border-radius:50%;background:var(--hp-red);color:#fff;font-family:'Permanent Marker',cursive;font-size:1.2rem;display:grid;place-items:center;}
+    .hp-step b{display:block;font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:.95rem;margin:.5rem 0 .5rem;}
+    .hp-step p{margin:0;font-family:'Instrument Sans',sans-serif;font-size:.88rem;line-height:1.6;color:rgba(243,231,211,.75);}
+    .hp-rules{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem 2rem;list-style:none;padding:0;margin:0;}
+    .hp-rules li{display:flex;gap:.9rem;align-items:flex-start;font-family:'Instrument Sans',sans-serif;font-size:.92rem;line-height:1.6;color:rgba(243,231,211,.82);}
+    .hp-rules li::before{content:'';flex:none;width:10px;height:10px;margin-top:.5rem;background:var(--hp-red);transform:rotate(45deg);}
+    .hp-rules b{color:var(--hp-cream);}
+    .hp-amg{display:grid;grid-template-columns:auto 1fr;gap:1.6rem;align-items:center;margin-top:1rem;padding:1.6rem;border:1px solid rgba(200,16,46,.4);background:linear-gradient(90deg,rgba(200,16,46,.14),transparent);}
+    .hp-amg-badge{font-family:'Permanent Marker',cursive;font-size:1.5rem;line-height:1;color:#fff;background:var(--hp-red);padding:.7rem .9rem;transform:rotate(-4deg);text-align:center;}
+    .hp-amg p{margin:0;font-family:'Instrument Sans',sans-serif;font-size:.95rem;line-height:1.6;color:rgba(243,231,211,.82);}
+    .hp-faq details{border-bottom:1px solid rgba(243,231,211,.14);padding:1rem 0;}
+    .hp-faq summary{font-family:'Archivo',sans-serif;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.03em;list-style:none;}
+    .hp-faq summary::after{content:'+';float:right;color:var(--hp-red);font-size:1.2rem;}
+    .hp-faq details[open] summary::after{content:'–';}
+    .hp-faq p{font-family:'Instrument Sans',sans-serif;font-size:.9rem;line-height:1.6;color:rgba(243,231,211,.75);margin:.7rem 0 0;}
+    .hp-faq a{color:var(--hp-gold);}
+    @media (max-width:900px){
+      .hp-hero{grid-template-columns:1fr;min-height:0;padding:4rem 1.2rem 2.5rem;gap:2.6rem;}
+      .hp-wrap{padding:0 1.2rem 4rem;}
+      .hp-steps,.hp-rules{grid-template-columns:1fr;}
+      .hp-steps{gap:1.8rem;}
+      .hp-card{transform:none;}
+      .hp-amg{grid-template-columns:1fr;}
+    }
+    @media (prefers-reduced-motion:reduce){ .hp-lights circle{animation:none;} }
+    </style>
+    <div class="music-sub" id="ms-house">
+      <section class="hp-hero">
+        <div class="hp-room" aria-hidden="true"></div>
+        <svg class="hp-lights" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 20 Q150 90 300 30 T600 30 T900 30 T1200 20"/>
+          <circle cx="40" cy="40" r="5"/><circle cx="110" cy="62" r="5"/><circle cx="190" cy="68" r="5"/><circle cx="265" cy="45" r="5"/>
+          <circle cx="340" cy="38" r="5"/><circle cx="420" cy="62" r="5"/><circle cx="500" cy="62" r="5"/><circle cx="570" cy="40" r="5"/>
+          <circle cx="640" cy="38" r="5"/><circle cx="720" cy="62" r="5"/><circle cx="800" cy="62" r="5"/><circle cx="870" cy="40" r="5"/>
+          <circle cx="940" cy="38" r="5"/><circle cx="1020" cy="62" r="5"/><circle cx="1100" cy="58" r="5"/><circle cx="1170" cy="30" r="5"/>
+        </svg>
+        <div>
+          <div class="hp-eb">Nexus Live &nbsp;·&nbsp; Invite Only</div>
+          <h2 class="hp-title">House <span>Party</span></h2>
+          <div class="hp-with">Nexus <b>×</b> Aztec Music Group <b>·</b> SDSU</div>
+          <p class="hp-lede">Live music under the string lights in a San Diego backyard. A small crowd, a secret address, and the artists of SDSU's Aztec Music Group a few feet away.</p>
+          <div class="hp-when">
+            <span class="hp-chip" id="hp-when">Date <b>announced soon</b></span>
+            <span class="hp-chip" id="hp-area">Address <b>revealed the day of</b></span>
+          </div>
+        </div>
+        <div class="hp-card" id="hp-tickets">
+          <div class="hp-k" id="hp-tier">Tickets</div>
+          <div class="hp-price" id="hp-price">Soon</div>
+          <div class="hp-d" id="hp-price-d">Tickets go on sale here. Spots are limited to keep the backyard safe.</div>
+          <div class="hp-lock">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor"/></svg>
+            <div><b id="hp-lock-h">Secret address</b><span id="hp-lock-d">Unlocks inside your ticket on the day of the party. We'll text you when it does.</span></div>
+          </div>
+          <button class="hp-btn" type="button" id="hp-buy">Get Notified →</button>
+          <button class="hp-btn hp-btn--ghost" type="button" id="hp-mine">View My Ticket</button>
+          <div class="hp-final">All sales are final. Tickets are non-refundable.</div>
+        </div>
+      </section>
+
+      <div class="hp-wrap">
+        <h3 class="hp-h">How it <em>works</em></h3>
+        <p class="hp-p">Like a secret show: you get in by ticket, and the address finds you on the day.</p>
+        <div class="hp-steps">
+          <div class="hp-step"><b>Get your ticket</b><p>Buy it right here. Your ticket is saved on your phone and tied to your name and number.</p></div>
+          <div class="hp-step"><b>We text you the day of</b><p>When the address unlocks, you get a text and an email with a link to your ticket. The address is never in the message itself.</p></div>
+          <div class="hp-step"><b>Open your ticket, come through</b><p>The address appears inside your live ticket. Show the moving QR code at the door and you're in.</p></div>
+        </div>
+
+        <h3 class="hp-h">Keeping it <em>safe</em></h3>
+        <p class="hp-p">It's someone's backyard, so the guest list is the guest list. These rules keep the address from spreading and the night from getting overcrowded.</p>
+        <ul class="hp-rules">
+          <li><span><b>The address lives in your ticket only.</b> It isn't on this site, in a text, or in an email, so forwarding a message gives nothing away.</span></li>
+          <li><span><b>It's marked with your name and ticket number,</b> and every time it's opened is logged. A leaked address can be traced back to the ticket it came from.</span></li>
+          <li><span><b>No ticket, no entry.</b> Every guest shows a live QR code that changes every few seconds. Screenshots don't scan, and the door turns away anyone not on the list.</span></li>
+          <li><span><b>Please keep it to yourself.</b> A shared address can cost the whole crew future house parties. Bringing a friend? Buy their ticket here, up to 4 per person.</span></li>
+        </ul>
+
+        <h3 class="hp-h">With <em>Aztec Music Group</em></h3>
+        <div class="hp-amg">
+          <div class="hp-amg-badge">AMG<br><small style="font-size:.6em;">SDSU</small></div>
+          <p>Nexus is teaming up with SDSU's Aztec Music Group for a night in the backyard: student artists under the string lights, an intimate crowd, and the kind of show you tell people about after.</p>
+        </div>
+
+        <h3 class="hp-h">Good to <em>know</em></h3>
+        <div class="hp-faq">
+          <details><summary>When do I get the address?</summary><p id="hp-faq-when">On the day of the party. It unlocks inside your ticket and we text and email you when it does.</p></details>
+          <details><summary>I didn't get the text</summary><p>Open your ticket anytime at <a href="#/tickets">nexusglobal.info/#/tickets</a>. On a new phone, sign in with the email you used at checkout and we'll send you a code.</p></details>
+          <details><summary>Can I send my ticket to a friend?</summary><p>Tickets are tied to the buyer, so the safest way is to buy your friend's ticket with yours (up to 4). If plans change, email us and we'll sort it out.</p></details>
+          <details><summary>Questions?</summary><p>Email <a href="mailto:now@nexusglobal.info?subject=House%20Party">now@nexusglobal.info</a> or DM <a href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">@n3xus.now</a>.</p></details>
+        </div>
+      </div>
+    </div>
+    <!-- /HOUSE PARTY -->
 
 
 
@@ -6427,6 +6581,8 @@ const NX_EVENTS = {
     door: 'REELFilms · Nov 14', back: '#/film/reelfilms', ends: '2026-11-15T01:00:00-08:00' },
   'bass-and-bars-2026': { key: 'bass-and-bars', theme: 'bb', h: '<span class="nx-bb-big">After <b>Party</b></span><span class="nx-bb-small">Bass <b>&amp;</b> Bars</span>', sub: 'Thursday, November 19 · 10 PM – 1 AM · Uppercuts, 4932 Newport Ave, Ocean Beach',
     door: 'Bass & Bars After Party · Nov 19', back: '#/music/nexus-live/tickets', ends: '2026-11-20T02:00:00-08:00' },
+  'house-party-amg': { key: 'house-party', theme: 'hp', h: 'House <em>Party</em>', sub: 'Nexus × Aztec Music Group · Address revealed the day of',
+    door: 'House Party · Nexus × AMG', back: '#/music/house-party', ends: '2099-01-01T00:00:00Z' },
 };
 const NX = {
   fn: 'https://valeivzqquetjjhspgjk.supabase.co/functions/v1/',
@@ -6641,6 +6797,33 @@ async function nxLoadBB() {
   buy.textContent = 'Get Tickets →';
   buy.onclick = () => nxOpenBox('bass-and-bars-2026');
 }
+/* ── House Party (nexusglobal.info/#/music/house-party): the address is never on this page ── */
+async function nxLoadHP() {
+  const buy = document.getElementById('hp-buy'), set = (id, t) => { document.getElementById(id).textContent = t; };
+  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: 'house-party-amg' });
+  if (q.offline || q.error || !q.onSale) {
+    if (q.onSale === false) { set('hp-price', 'Sold Out'); set('hp-price-d', 'Online tickets are gone. Follow @n3xus.now for the next one.'); }
+    buy.textContent = 'Get Notified →';
+    buy.onclick = () => window.open('https://www.instagram.com/n3xus.now/', '_blank', 'noopener');
+    return;
+  }
+  NX.quotes['house-party-amg'] = q;
+  set('hp-tier', 'Tickets · ' + q.tier.name);
+  set('hp-price', nxMoney2(q.allInCents));
+  set('hp-price-d', nxMoney(q.unitCents) + ' ticket + ' + nxMoney2(q.feeCents) + ' fee.' + (q.left !== null ? ' ' + q.left + ' spots left.' : '') + ' Up to 4 per person.');
+  const pt = { timeZone: 'America/Los_Angeles' };
+  if (q.event && q.event.when) document.getElementById('hp-when').innerHTML = '<b>' + q.event.when.replace(/[<&]/g, '') + '</b>';
+  if (q.secretLocation) {
+    const r = new Date(q.secretLocation.releaseAt);
+    const at = r.toLocaleString('en-US', { ...pt, weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    document.getElementById('hp-area').innerHTML = (q.secretLocation.area ? '<b>' + q.secretLocation.area.replace(/[<&]/g, '') + '</b> · ' : '') + 'Address unlocks ' + r.toLocaleTimeString('en-US', { ...pt, hour: 'numeric', minute: '2-digit' }) + ' day of';
+    set('hp-lock-d', 'Unlocks inside your ticket ' + at + '. We\'ll text and email you when it does.');
+    set('hp-faq-when', 'At ' + at + '. It unlocks inside your ticket, and we text and email you a link when it does.');
+  }
+  buy.textContent = 'Get Tickets →';
+  buy.onclick = () => nxOpenBox('house-party-amg');
+}
+document.getElementById('hp-mine').addEventListener('click', () => { NX.event = 'house-party-amg'; nxOpenTickets(); });
 document.getElementById('bb-mine').addEventListener('click', () => { NX.event = 'bass-and-bars-2026'; nxOpenTickets(); });
 // The page has two views, each with its own link: the night (#/music/nexus-live) and tickets (…/tickets)
 function setBBView(view, push) {
@@ -6930,6 +7113,7 @@ function nxFromHash() {
 }
 nxLoadQuote();
 nxLoadBB();
+nxLoadHP();
 
 /* ════════════════════════════════════════════
    THE NEXUS APP — early sign-up (nexusglobal.info/#/app)
@@ -7503,7 +7687,8 @@ const ROUTES = {
   'music':    { page:'pg-music',    title:'Music', subs:{
                 'artists':['ms-artists','The Artists'], 'latin-jazz-night':['ms-latin-jazz','Latin Jazz Night'],
                 'uc-series':['ms-uc-series','Campus Series'], 'nex-up':['ms-nex-up','Nex Up'],
-                'nexus-live':['ms-live','Bass & Bars After Party · Nexus Live'] } },
+                'nexus-live':['ms-live','Bass & Bars After Party · Nexus Live'],
+                'house-party':['ms-house','House Party · Nexus x Aztec Music Group'] } },
   'dance':    { page:'pg-dance',    title:'Dance' },
   'fashion':  { page:'pg-fashion',  title:'Fashion Show', subs:{
                 'casting':['fsub-casting','Model Casting'], 'sponsors':['fsub-sponsors','Sponsors'], 'tickets':['fsub-tickets','Tickets'] } },
@@ -7607,7 +7792,8 @@ window.addEventListener('popstate', openRoute);
   if (!path) return;
   const SHORT = { 'tickets': 'music/nexus-live/tickets', 'afterparty': 'music/nexus-live/tickets',
                   'after-party': 'music/nexus-live/tickets', 'bassandbars': 'music/nexus-live/tickets',
-                  'bass-and-bars': 'music/nexus-live/tickets' };
+                  'bass-and-bars': 'music/nexus-live/tickets',
+                  'houseparty': 'music/house-party', 'house-party': 'music/house-party' };
   const route = SHORT[path] || (ROUTES[path.split('/')[0]] ? path : null);
   if (route) history.replaceState(null, '', '/' + location.search + '#/' + route);
 })();
