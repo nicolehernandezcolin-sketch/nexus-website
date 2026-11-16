@@ -6764,8 +6764,8 @@ const NX = {
    No names, emails or payment details are ever sent from here.
 ════════════════════════════════════════════ */
 const NXA = {
-  url: 'https://valeivzqquetjjhspgjk.supabase.co/rest/v1/rpc/track_event',
-  key: 'sb_publishable_ZIsURGGqpS25wk8PO0jx7Q_b6y6r3Gi',
+  url: 'https://ljmeugrvvuxglwfyhxhj.supabase.co/rest/v1/rpc/track_event',
+  key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqbWV1Z3J2dnV4Z2x3ZnloeGhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NzExOTcsImV4cCI6MjA5NDQ0NzE5N30.B8O0qLMOjPKUP_xoOE3lF5R8kJOQJt6QBM3f1kkE-5k',
   lastPage: null,
 };
 (function () {
@@ -6831,9 +6831,12 @@ document.addEventListener('click', e => {
 
 const nxMoney = c => '$' + (c / 100).toFixed(2).replace(/\.00$/, '');
 const nxMoney2 = c => '$' + (c / 100).toFixed(2);
+// Which ticket server an event sells through. Events on Nexus's own Supabase project list it here.
+const NX_FN_BY_EVENT = { 'house-party-amg': 'https://ljmeugrvvuxglwfyhxhj.supabase.co/functions/v1/' };
 async function nxCall(name, body) {
+  const ev = (body && body.event) || NX.event;
   try {
-    const r = await fetch(NX.fn + name, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const r = await fetch((NX_FN_BY_EVENT[ev] || NX.fn) + name, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     const data = await r.json().catch(() => ({}));
     if (!r.ok && !data.error) data.error = 'Something went wrong. Please try again.';
     return data;
