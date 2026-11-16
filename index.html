@@ -323,40 +323,32 @@ body{
 }
 
 
-/* ─── FEATURED EVENT SUN (centre of home; replaces the globe while an event is featured) ─── */
-:root{--sun:min(300px,40vmin);}
-body.has-feature #globe,body.has-feature #nxs,body.has-feature #globe-hint,body.has-feature #otr1{visibility:hidden;pointer-events:none;}
-#feat-sun{position:fixed;top:50%;left:50%;width:var(--sun);height:var(--sun);transform:translate(-50%,-50%) scale(.6);
-  z-index:22;border-radius:50%;display:none;text-decoration:none;cursor:none;opacity:0;
-  transition:opacity 1.4s ease,transform 1.4s cubic-bezier(.2,.9,.25,1.1);-webkit-tap-highlight-color:transparent;}
-body.has-feature #feat-sun{display:block;}
-#feat-sun.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
-#feat-sun .fs-corona{position:absolute;inset:-38%;border-radius:50%;
-  background:radial-gradient(circle closest-side,rgba(255,196,84,.55) 0%,rgba(255,140,40,.28) 32%,rgba(224,120,40,.10) 52%,transparent 70%);
-  animation:fsBreathe 5s ease-in-out infinite;pointer-events:none;}
-#feat-sun .fs-rays{position:absolute;inset:-22%;border-radius:50%;pointer-events:none;opacity:.55;
-  background:repeating-conic-gradient(from 0deg,rgba(255,214,120,.35) 0deg 3deg,transparent 3deg 15deg);
-  -webkit-mask:radial-gradient(circle,transparent 46%,#000 50%,transparent 72%);mask:radial-gradient(circle,transparent 46%,#000 50%,transparent 72%);
-  animation:fsSpin 60s linear infinite;}
-#feat-sun .fs-core{position:absolute;inset:0;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.2em;
-  background:radial-gradient(circle at 38% 32%,#fff6d8 0%,#ffd36a 22%,#f6a332 52%,#e0662a 82%,#b8431f 100%);
-  box-shadow:0 0 60px rgba(255,170,60,.65),0 0 140px rgba(255,120,40,.35),inset -14px -18px 40px rgba(150,40,10,.35),inset 10px 12px 30px rgba(255,255,255,.35);
-  color:#2a0f04;font-size:calc(var(--sun) / 15);transition:transform .35s ease,box-shadow .35s ease;}
-#feat-sun:hover .fs-core,#feat-sun:focus-visible .fs-core{transform:scale(1.05);box-shadow:0 0 80px rgba(255,180,70,.85),0 0 180px rgba(255,120,40,.5),inset -14px -18px 40px rgba(150,40,10,.35),inset 10px 12px 30px rgba(255,255,255,.35);}
-.fs-k{font-family:'Space Mono',monospace;font-weight:700;font-size:.62em;letter-spacing:.22em;text-transform:uppercase;opacity:.8;}
-.fs-t{font-family:'Unbounded',sans-serif;font-weight:900;font-size:1.55em;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;}
-.fs-s{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:1.05em;}
-.fs-cta{margin-top:.35em;font-family:'Space Mono',monospace;font-weight:700;font-size:.6em;letter-spacing:.16em;text-transform:uppercase;
-  background:#2a0f04;color:#ffd36a;padding:.6em 1.1em;border-radius:99px;}
-#feat-label{position:fixed;top:calc(50% + var(--sun) / 2 + 18px);left:50%;transform:translateX(-50%);z-index:21;display:none;
-  font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,200,110,.85);
-  white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 1s ease;}
-body.has-feature #feat-label{display:block;}
-#feat-label.show{opacity:1;}
-@media (max-width:640px){body.has-feature #feat-label{display:none;}}
-@keyframes fsBreathe{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.07);opacity:1}}
-@keyframes fsSpin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){#feat-sun .fs-corona,#feat-sun .fs-rays{animation:none;}}
+/* ─── FEATURED EVENTS MOON (centre of home): this month's paid events, one slice each ─── */
+:root{--sun:min(330px,46vmin);}
+body.has-feature #globe,body.has-feature #nxs,body.has-feature #globe-hint,body.has-feature #otr1,body.has-feature #nav-hint{visibility:hidden;pointer-events:none;}
+#feat-moon{position:fixed;top:50%;left:50%;width:var(--sun);height:var(--sun);transform:translate(-50%,-50%) scale(.7);z-index:22;display:none;opacity:0;
+  transition:opacity 1.4s ease,transform 1.4s cubic-bezier(.2,.9,.25,1.1);pointer-events:none;}
+body.has-feature #feat-moon{display:block;}
+#feat-moon.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+#feat-moon svg{position:absolute;left:50%;top:50%;width:180%;height:180%;transform:translate(-50%,-50%);overflow:visible;pointer-events:none;}
+#feat-moon .fm-beams line{stroke-linecap:round;animation:fmBeam 3.2s ease-in-out infinite alternate;}
+#feat-moon .fm-slice{pointer-events:auto;cursor:none;transition:filter .3s ease;}
+#feat-moon .fm-slice:hover,#feat-moon .fm-slice:focus-visible{filter:brightness(1.15) saturate(1.15);outline:none;}
+#feat-moon .fm-lbl{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:.22em;
+  font-size:calc(var(--sun) / 21);width:44%;line-height:1;text-shadow:0 1px 6px rgba(0,0,0,.18);}
+.fm-k{font-family:'Space Mono',monospace;font-weight:700;font-size:.6em;letter-spacing:.12em;text-transform:uppercase;}
+.fm-t{font-family:'Unbounded',sans-serif;font-weight:900;font-size:1.35em;line-height:.92;text-transform:uppercase;}
+.fm-s{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:1em;}
+.fm-cta{margin-top:.35em;font-family:'Space Mono',monospace;font-weight:700;font-size:.56em;letter-spacing:.12em;text-transform:uppercase;padding:.55em .9em;border-radius:99px;white-space:nowrap;text-shadow:none;}
+/* Plain buttons under the moon: the easiest way in, same links */
+#feat-pills{position:fixed;left:50%;bottom:calc(66px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:25;display:none;gap:10px;flex-wrap:wrap;justify-content:center;width:max-content;max-width:calc(100vw - 32px);
+  opacity:0;transition:opacity 1s ease;}
+body.has-feature #feat-pills{display:flex;}
+#feat-pills.show{opacity:1;}
+#feat-pills a{font-family:'Space Mono',monospace;font-weight:700;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:none;
+  padding:.85em 1.2em;border-radius:99px;box-shadow:0 6px 22px rgba(0,0,0,.45);white-space:nowrap;}
+@keyframes fmBeam{from{opacity:.25}to{opacity:.95}}
+@media (prefers-reduced-motion:reduce){#feat-moon .fm-beams line{animation:none;opacity:.7;}}
 /* About page: the Nexus globe now lives here */
 .glob-globe{width:min(180px,42vw);height:min(180px,42vw);margin:0 auto 1.6rem;animation:globSpin 32s linear infinite;
   filter:drop-shadow(0 0 12px rgba(62,207,90,.5)) drop-shadow(0 0 40px rgba(62,207,90,.18));}
@@ -789,17 +781,9 @@ body.has-feature #feat-label{display:block;}
   <div id="nxs" role="button" tabindex="0" aria-label="About Nexus">NEXUS</div>
   <div id="globe-hint" aria-hidden="true">About Nexus</div>
 
-  <!-- FEATURED EVENT: the warm sun in the centre. Change FEATURE in the script to promote the next big event. -->
-  <a id="feat-sun" href="#/music/nexus-live/tickets" data-track="Home sun: After Party" aria-label="Bass and Bars After Party, Thursday November 19. Get tickets">
-    <span class="fs-corona"></span><span class="fs-rays"></span>
-    <span class="fs-core">
-      <span class="fs-k">Thu · Nov 19</span>
-      <span class="fs-t">After<br>Party</span>
-      <span class="fs-s">Bass &amp; Bars</span>
-      <span class="fs-cta">Get Tickets →</span>
-    </span>
-  </a>
-  <div id="feat-label" aria-hidden="true">Uppercuts · Ocean Beach · 21+</div>
+  <!-- FEATURED EVENTS: this month's paid events as one split moon. Edit FEATURES in the script. -->
+  <div id="feat-moon" role="group" aria-label="This month's events"></div>
+  <nav id="feat-pills" aria-label="Get tickets"></nav>
 
   <!-- PLANETS -->
   <a class="planet" id="p-music"   data-go="pg-music"   href="#" style="--fd:7.2s;--fo:0s;">
@@ -6179,7 +6163,7 @@ document.addEventListener('mousemove', e => {
   cur.style.left = mouseX + 'px';
   cur.style.top  = mouseY + 'px';
 });
-document.querySelectorAll('#feat-sun,a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model,.artist-card,.orig-card,.dancer-profile,.move-card,.inv-card,.tcard,#globe,#nxs,.fest-card,.glob-member,.glob-role-card').forEach(el => {
+document.querySelectorAll('#feat-moon .fm-slice,a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model,.artist-card,.orig-card,.dancer-profile,.move-card,.inv-card,.tcard,#globe,#nxs,.fest-card,.glob-member,.glob-role-card').forEach(el => {
   el.addEventListener('mouseenter', () => cur.classList.add('h'));
   el.addEventListener('mouseleave', () => cur.classList.remove('h'));
 });
@@ -6314,23 +6298,77 @@ document.querySelectorAll('[data-go]').forEach(el =>
    ORBITAL RING SIZING
 ════════════════════════════════════════════ */
 /* ════════════════════════════════════════════
-   FEATURED EVENT — the sun in the centre of home
-   To promote the next event: change href/text in #feat-sun and the dates here.
-   After "ends", the Nexus globe comes back to the centre automatically.
+   FEATURED EVENTS — this month's paid events, as one split moon in the centre of home.
+   Each month: list the events below. Past events drop off on their own ("ends");
+   with none left, the Nexus globe returns to the centre.
 ════════════════════════════════════════════ */
-const FEATURE = { slug: 'bass-and-bars-2026', ends: '2026-11-20T01:00:00-08:00' };
-const FEATURE_ON = Date.now() < Date.parse(FEATURE.ends);
+const FEATURES = [
+  { slug: 'bass-and-bars-2026', href: '#/music/nexus-live/tickets', ends: '2026-11-20T01:00:00-08:00',
+    k: 'Thu · Nov 19', t: 'After<br>Party', s: 'Bass &amp; Bars', pill: 'After Party · Tickets',
+    colors: ['#3b7d2f', '#e8372c', '#f2dc12'], grad: '#24521c', ink: '#fff6d6', cta: ['#f2dc12', '#141210'] },
+  { slug: 'house-party-amg', href: '#/music/house-party', ends: '2026-12-01T00:00:00-08:00',
+    k: 'SDSU · AMG', t: 'House<br>Party', s: 'Nexus × Aztec', pill: 'House Party · Tickets',
+    colors: ['#e9dcc3', '#2f5ea8', '#c9b48e'], grad: '#d6c4a2', ink: '#1d3f78', cta: ['#2f5ea8', '#f6efe0'] },
+].filter(f => Date.now() < Date.parse(f.ends));
+const FEATURE_ON = FEATURES.length > 0;
 if (FEATURE_ON) document.body.classList.add('has-feature');
 function coreSize() {
   const m = Math.min(window.innerWidth, window.innerHeight);
-  return FEATURE_ON ? Math.min(300, 0.40 * m) : Math.min(200, 0.26 * m);
+  return FEATURE_ON ? Math.min(330, 0.46 * m) : Math.min(200, 0.26 * m);
 }
-document.getElementById('feat-sun').addEventListener('click', e => {
+function featGo(e) {
   e.preventDefault();
-  const h = e.currentTarget.getAttribute('href');
-  history.pushState(null, '', h);
+  history.pushState(null, '', e.currentTarget.getAttribute('href'));
   openRoute();
-});
+}
+(function buildMoon() {
+  if (!FEATURE_ON) return;
+  const n = FEATURES.length, R = 100, span = 360 / n, rad = d => d * Math.PI / 180;
+  const pt = (a, r) => [+(Math.cos(rad(a)) * r).toFixed(2), +(Math.sin(rad(a)) * r).toFixed(2)];
+  // The cracked seam between slices: a zig-zag from the centre out past the rim
+  const seam = a => {
+    const out = [];
+    for (let r = 0, k = 0; r <= R + 10; r += 11, k++) {
+      const [x, y] = pt(a, r), o = r < 4 ? 0 : (k % 2 ? 4.5 : -4.5);
+      out.push([+(x + Math.cos(rad(a + 90)) * o).toFixed(2), +(y + Math.sin(rad(a + 90)) * o).toFixed(2)]);
+    }
+    return out;
+  };
+  const start = n === 2 ? 90 : -90; // two events: left half and right half
+  let defs = '<clipPath id="fm-clip"><circle r="100"/></clipPath>', beams = '', slices = '', labels = '', pills = '';
+  FEATURES.forEach((f, i) => {
+    const a0 = start + i * span, a1 = a0 + span, c = f.colors;
+    defs += `<pattern id="fm-dot${i}" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.4" fill="${c[1]}" opacity=".5"/></pattern>
+      <linearGradient id="fm-g${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${f.grad || c[0]}"/></linearGradient>`;
+    // Beams in the event's own colours, radiating from its side of the moon
+    let b = 0;
+    for (let a = a0 + 4; a < a1 - 2; a += 7, b++) {
+      const len = 130 + ((b * 23) % 40), col = c[b % c.length];
+      const [x1, y1] = pt(a, 110), [x2, y2] = pt(a, len);
+      beams += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${2 + (b % 3)}" style="animation-delay:${(b * 0.37) % 3}s"/>`;
+    }
+    const shape = n === 1 ? '<circle r="110"'
+      : `<polygon points="${seam(a0).concat(Array.from({ length: 30 }, (_, k) => pt(a0 + span * k / 29, R + 10))).concat(seam(a1).reverse()).map(p => p.join(',')).join(' ')}"`;
+    const [c1x, c1y] = pt(a0 + span * .3, 64), [c2x, c2y] = pt(a0 + span * .72, 34);
+    slices += `<a class="fm-slice" href="${f.href}" data-track="Home moon: ${f.slug}" aria-label="${f.t.replace('<br>', ' ')}, ${f.k}. Get tickets" clip-path="url(#fm-clip)">
+      ${shape} fill="url(#fm-g${i})"/>${shape} fill="url(#fm-dot${i})"/>
+      <circle cx="${c1x}" cy="${c1y}" r="11" fill="#000" opacity=".09"/><circle cx="${c2x}" cy="${c2y}" r="6" fill="#000" opacity=".08"/></a>`;
+    const [lx, ly] = n === 1 ? [0, 0] : pt(a0 + span / 2, 48);
+    labels += `<div class="fm-lbl" style="left:${50 + lx / 2}%;top:${50 + ly / 2}%;color:${f.ink};${n === 1 ? 'width:70%;font-size:calc(var(--sun) / 15);' : ''}">
+      <span class="fm-k">${f.k}</span><span class="fm-t">${f.t}</span><span class="fm-s">${f.s}</span>
+      <span class="fm-cta" style="background:${f.cta[0]};color:${f.cta[1]}">Tickets →</span></div>`;
+    pills += `<a href="${f.href}" data-track="Home pill: ${f.slug}" style="background:${f.cta[0]};color:${f.cta[1]}">${f.pill} →</a>`;
+  });
+  // Moonlight: soft light top-left, shadow bottom-right, across every slice
+  defs += '<radialGradient id="fm-shade" cx=".32" cy=".28" r=".85"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient>';
+  document.getElementById('feat-moon').innerHTML =
+    `<svg viewBox="-180 -180 360 360"><defs>${defs}</defs>
+      <g class="fm-beams">${beams}</g>${slices}
+      <circle r="100" fill="url(#fm-shade)" pointer-events="none"/>
+      <circle r="100" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.2" pointer-events="none"/></svg>${labels}`;
+  document.getElementById('feat-pills').innerHTML = pills;
+  document.querySelectorAll('#feat-moon .fm-slice,#feat-pills a').forEach(a => a.addEventListener('click', featGo));
+})();
 
 function sizeRings() {
   const vw = window.innerWidth, vh = window.innerHeight;
@@ -6484,7 +6522,7 @@ draw('sp', 1700, 360, 0);
 }, 1980 + i * 120));
 setTimeout(() => document.getElementById('globe').classList.add('spin'), 2480);
 setTimeout(() => document.getElementById('nxs').classList.add('show'), 2660);
-setTimeout(() => { document.getElementById('feat-sun').classList.add('show'); document.getElementById('feat-label').classList.add('show'); }, 1200);
+setTimeout(() => { document.getElementById('feat-moon').classList.add('show'); document.getElementById('feat-pills').classList.add('show'); }, 1200);
 setTimeout(() => {
   document.querySelectorAll('.orbit-ring').forEach((r, i) => {
     setTimeout(() => r.classList.add('show'), i * 200);
