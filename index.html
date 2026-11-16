@@ -2334,6 +2334,27 @@ body.has-feature #feat-pills{display:flex;}
       .hp-amg{grid-template-columns:1fr;}
     }
     @media (prefers-reduced-motion:reduce){ .hp-lights circle{animation:none;} }
+    
+    /* Themed to the flyer: SDSU House Show Kickback (blue + cream poster) */
+    #ms-house{--hp-night:#4b72a0;--hp-wall:#41668f;--hp-red:#1d3a5f;--hp-red2:#2c5585;--hp-gold:#f1dfc4;--hp-cream:#f1dfc4;--hp-ink:#1d3a5f;
+      background:#4b72a0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");}
+    #ms-house .hp-room,#ms-house .hp-lights{display:none;}
+    #ms-house .hp-flyer{display:block;width:min(100%,460px);height:auto;border:10px solid #f1dfc4;box-shadow:0 26px 60px rgba(16,32,56,.45);transform:rotate(-1.5deg);margin:0 0 1.4rem;}
+    #ms-house .hp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+    #ms-house .hp-eb{color:#f1dfc4;border-color:rgba(241,223,196,.5);}
+    #ms-house .hp-with{color:#f1dfc4;} #ms-house .hp-with b{color:#f1dfc4;opacity:.7;}
+    #ms-house .hp-lede{color:rgba(241,223,196,.92);}
+    #ms-house .hp-chip{background:rgba(29,58,95,.35);border-color:rgba(241,223,196,.35);color:#f1dfc4;}
+    #ms-house .hp-chip b{color:#fff4e3;}
+    #ms-house .hp-card{background:#f1dfc4;color:#1d3a5f;}
+    #ms-house .hp-card::before{background:rgba(75,114,160,.55);}
+    #ms-house .hp-k{color:#2c5585;} #ms-house .hp-d,#ms-house .hp-final{color:#3d5878;}
+    #ms-house .hp-price{color:#1d3a5f;}
+    #ms-house .hp-lock{background:#1d3a5f;color:#f1dfc4;} #ms-house .hp-lock svg{color:#f1dfc4;}
+    #ms-house .hp-btn{background:#1d3a5f;color:#f1dfc4;box-shadow:0 8px 24px rgba(16,32,56,.4);}
+    #ms-house .hp-btn--ghost{background:transparent;color:#1d3a5f;border-color:#1d3a5f;box-shadow:none;}
+    #ms-house .hp-h,#ms-house .hp-h em{color:#f1dfc4;} #ms-house .hp-h em{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px;}
+    #ms-house .hp-p{color:rgba(241,223,196,.88);}
     </style>
     <div class="music-sub" id="ms-house">
       <section class="hp-hero">
@@ -2346,22 +2367,23 @@ body.has-feature #feat-pills{display:flex;}
           <circle cx="940" cy="38" r="5"/><circle cx="1020" cy="62" r="5"/><circle cx="1100" cy="58" r="5"/><circle cx="1170" cy="30" r="5"/>
         </svg>
         <div>
-          <div class="hp-eb">Nexus Live &nbsp;·&nbsp; Invite Only</div>
-          <h2 class="hp-title">House <span>Party</span></h2>
-          <div class="hp-with">Nexus <b>×</b> Aztec Music Group <b>·</b> SDSU</div>
-          <p class="hp-lede">Live music under the string lights in a San Diego backyard. A small crowd, a secret address, and the artists of SDSU's Aztec Music Group a few feet away.</p>
+          <div class="hp-eb">SDSU House Show &nbsp;·&nbsp; Kickback</div>
+          <h2 class="hp-sr">SDSU House Show Kickback with The 805 and The Junction</h2>
+          <img class="hp-flyer" src="images/house-party/flyer.webp" width="1290" height="1661" alt="SDSU House Show Kickback flyer: The 805 and The Junction. $5. Doors at 7 PM, November 21. Presented by Aztec Music Group, KPE Records and Nexus.">
+          <div class="hp-with">The 805 <b>+</b> The Junction <b>·</b> live</div>
+          <p class="hp-lede">A $5 house show near SDSU with live sets from The 805 and The Junction. Presented by Aztec Music Group, KPE Records and Nexus. Small crowd, secret address, doors at 7.</p>
           <div class="hp-when">
-            <span class="hp-chip" id="hp-when">Date <b>announced soon</b></span>
+            <span class="hp-chip" id="hp-when"><b>Sat, Nov 21</b> · Doors 7 PM</span>
             <span class="hp-chip" id="hp-area">Address <b>revealed the day of</b></span>
           </div>
         </div>
         <div class="hp-card" id="hp-tickets">
           <div class="hp-k" id="hp-tier">Tickets</div>
-          <div class="hp-price" id="hp-price">Soon</div>
-          <div class="hp-d" id="hp-price-d">Tickets go on sale here. Spots are limited to keep the backyard safe.</div>
+          <div class="hp-price" id="hp-price">$5</div>
+          <div class="hp-d" id="hp-price-d">Get your ticket here. Spots are limited to keep the house safe.</div>
           <div class="hp-lock">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor"/></svg>
-            <div><b id="hp-lock-h">Secret address</b><span id="hp-lock-d">Unlocks inside your ticket on the day of the party. We'll text you when it does.</span></div>
+            <div><b id="hp-lock-h">Secret address</b><span id="hp-lock-d">Unlocks inside your ticket on the day of the show. We'll email you when it does.</span></div>
           </div>
           <button class="hp-btn" type="button" id="hp-buy">Get Notified →</button>
           <button class="hp-btn hp-btn--ghost" type="button" id="hp-mine">View My Ticket</button>
@@ -2374,7 +2396,7 @@ body.has-feature #feat-pills{display:flex;}
         <p class="hp-p">Like a secret show: you get in by ticket, and the address finds you on the day.</p>
         <div class="hp-steps">
           <div class="hp-step"><b>Get your ticket</b><p>Buy it right here. Your ticket is saved on your phone and tied to your name and number.</p></div>
-          <div class="hp-step"><b>We text you the day of</b><p>When the address unlocks, you get a text and an email with a link to your ticket. The address is never in the message itself.</p></div>
+          <div class="hp-step"><b>We message you the day of</b><p>When the address unlocks, you get an email with a link to your ticket. The address is never in the message itself.</p></div>
           <div class="hp-step"><b>Open your ticket, come through</b><p>The address appears inside your live ticket. Show the moving QR code at the door and you're in.</p></div>
         </div>
 
@@ -2395,7 +2417,7 @@ body.has-feature #feat-pills{display:flex;}
 
         <h3 class="hp-h">Good to <em>know</em></h3>
         <div class="hp-faq">
-          <details><summary>When do I get the address?</summary><p id="hp-faq-when">On the day of the party. It unlocks inside your ticket and we text and email you when it does.</p></details>
+          <details><summary>When do I get the address?</summary><p id="hp-faq-when">On the day of the party. It unlocks inside your ticket and we email you when it does.</p></details>
           <details><summary>I didn't get the text</summary><p>Open your ticket anytime at <a href="#/tickets">nexusglobal.info/#/tickets</a>. On a new phone, sign in with the email you used at checkout and we'll send you a code.</p></details>
           <details><summary>Can I send my ticket to a friend?</summary><p>Tickets are tied to the buyer, so the safest way is to buy your friend's ticket with yours (up to 4). If plans change, email us and we'll sort it out.</p></details>
           <details><summary>Questions?</summary><p>Email <a href="mailto:now@nexusglobal.info?subject=House%20Party">now@nexusglobal.info</a> or DM <a href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">@n3xus.now</a>.</p></details>
@@ -6306,9 +6328,9 @@ const FEATURES = [
   { slug: 'bass-and-bars-2026', href: '#/music/nexus-live/tickets', ends: '2026-11-20T01:00:00-08:00',
     k: 'Thu · Nov 19', t: 'After<br>Party', s: 'Bass &amp; Bars', pill: 'After Party · Tickets',
     colors: ['#3b7d2f', '#e8372c', '#f2dc12'], grad: '#24521c', ink: '#fff6d6', cta: ['#f2dc12', '#141210'] },
-  { slug: 'house-party-amg', href: '#/music/house-party', ends: '2026-12-01T00:00:00-08:00',
-    k: 'SDSU · AMG', t: 'House<br>Party', s: 'Nexus × Aztec', pill: 'House Party · Tickets',
-    colors: ['#e9dcc3', '#2f5ea8', '#c9b48e'], grad: '#d6c4a2', ink: '#1d3f78', cta: ['#2f5ea8', '#f6efe0'] },
+  { slug: 'house-party-amg', href: '#/music/house-party', ends: '2026-11-22T01:00:00-08:00',
+    k: 'Sat · Nov 21', t: 'House<br>Show', s: 'SDSU Kickback', pill: 'SDSU House Show · $5',
+    colors: ['#f1dfc4', '#4b72a0', '#2c5585'], grad: '#e3cba6', ink: '#1d3a5f', cta: ['#4b72a0', '#f1dfc4'] },
 ].filter(f => Date.now() < Date.parse(f.ends));
 const FEATURE_ON = FEATURES.length > 0;
 if (FEATURE_ON) document.body.classList.add('has-feature');
@@ -6708,7 +6730,7 @@ const NX_EVENTS = {
     door: 'REELFilms · Nov 14', back: '#/film/reelfilms', ends: '2026-11-15T01:00:00-08:00' },
   'bass-and-bars-2026': { key: 'bass-and-bars', theme: 'bb', h: '<span class="nx-bb-big">After <b>Party</b></span><span class="nx-bb-small">Bass <b>&amp;</b> Bars</span>', sub: 'Thursday, November 19 · 10 PM – 1 AM · Uppercuts, 4932 Newport Ave, Ocean Beach',
     door: 'Bass & Bars After Party · Nov 19', back: '#/music/nexus-live/tickets', ends: '2026-11-20T02:00:00-08:00' },
-  'house-party-amg': { key: 'house-party', theme: 'hp', h: 'House <em>Party</em>', sub: 'Nexus × Aztec Music Group · Address revealed the day of',
+  'house-party-amg': { key: 'house-party', theme: 'hp', h: 'House <em>Show</em>', sub: 'SDSU Kickback · The 805 + The Junction · Sat, Nov 21 · Doors 7 PM · Address revealed the day of',
     door: 'House Party · Nexus × AMG', back: '#/music/house-party', ends: '2099-01-01T00:00:00Z' },
 };
 const NX = {
@@ -7017,8 +7039,8 @@ async function nxLoadHP() {
     const r = new Date(q.secretLocation.releaseAt);
     const at = r.toLocaleString('en-US', { ...pt, weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
     document.getElementById('hp-area').innerHTML = (q.secretLocation.area ? '<b>' + q.secretLocation.area.replace(/[<&]/g, '') + '</b> · ' : '') + 'Address unlocks ' + r.toLocaleTimeString('en-US', { ...pt, hour: 'numeric', minute: '2-digit' }) + ' day of';
-    set('hp-lock-d', 'Unlocks inside your ticket ' + at + '. We\'ll text and email you when it does.');
-    set('hp-faq-when', 'At ' + at + '. It unlocks inside your ticket, and we text and email you a link when it does.');
+    set('hp-lock-d', 'Unlocks inside your ticket ' + at + '. We\'ll email you when it does.');
+    set('hp-faq-when', 'At ' + at + '. It unlocks inside your ticket, and we email you a link when it does.');
   }
   buy.textContent = 'Get Tickets →';
   buy.onclick = () => nxOpenBox('house-party-amg');
@@ -7078,7 +7100,7 @@ function nxLocationCard(o) {
     add('nx-addr-eb', '🔒 Secret Address');
     add('nx-addr-v', 'Unlocks ' + when(L.releaseAt));
     if (L.area) add('nx-addr-d', 'Area: ' + L.area);
-    add('nx-addr-d', "We'll text and email you when it opens. It will appear right here.");
+    add('nx-addr-d', "We'll email you when it opens. It will appear right here.");
     return card;
   }
   const t = (o.tickets || [])[0] || {};
