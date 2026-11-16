@@ -322,6 +322,46 @@ body{
     drop-shadow(0 0 40px rgba(62,207,90,.18));
 }
 
+
+/* ─── FEATURED EVENT SUN (centre of home; replaces the globe while an event is featured) ─── */
+:root{--sun:min(300px,40vmin);}
+body.has-feature #globe,body.has-feature #nxs,body.has-feature #globe-hint,body.has-feature #otr1{visibility:hidden;pointer-events:none;}
+#feat-sun{position:fixed;top:50%;left:50%;width:var(--sun);height:var(--sun);transform:translate(-50%,-50%) scale(.6);
+  z-index:22;border-radius:50%;display:none;text-decoration:none;cursor:none;opacity:0;
+  transition:opacity 1.4s ease,transform 1.4s cubic-bezier(.2,.9,.25,1.1);-webkit-tap-highlight-color:transparent;}
+body.has-feature #feat-sun{display:block;}
+#feat-sun.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+#feat-sun .fs-corona{position:absolute;inset:-38%;border-radius:50%;
+  background:radial-gradient(circle closest-side,rgba(255,196,84,.55) 0%,rgba(255,140,40,.28) 32%,rgba(224,120,40,.10) 52%,transparent 70%);
+  animation:fsBreathe 5s ease-in-out infinite;pointer-events:none;}
+#feat-sun .fs-rays{position:absolute;inset:-22%;border-radius:50%;pointer-events:none;opacity:.55;
+  background:repeating-conic-gradient(from 0deg,rgba(255,214,120,.35) 0deg 3deg,transparent 3deg 15deg);
+  -webkit-mask:radial-gradient(circle,transparent 46%,#000 50%,transparent 72%);mask:radial-gradient(circle,transparent 46%,#000 50%,transparent 72%);
+  animation:fsSpin 60s linear infinite;}
+#feat-sun .fs-core{position:absolute;inset:0;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.2em;
+  background:radial-gradient(circle at 38% 32%,#fff6d8 0%,#ffd36a 22%,#f6a332 52%,#e0662a 82%,#b8431f 100%);
+  box-shadow:0 0 60px rgba(255,170,60,.65),0 0 140px rgba(255,120,40,.35),inset -14px -18px 40px rgba(150,40,10,.35),inset 10px 12px 30px rgba(255,255,255,.35);
+  color:#2a0f04;font-size:calc(var(--sun) / 15);transition:transform .35s ease,box-shadow .35s ease;}
+#feat-sun:hover .fs-core,#feat-sun:focus-visible .fs-core{transform:scale(1.05);box-shadow:0 0 80px rgba(255,180,70,.85),0 0 180px rgba(255,120,40,.5),inset -14px -18px 40px rgba(150,40,10,.35),inset 10px 12px 30px rgba(255,255,255,.35);}
+.fs-k{font-family:'Space Mono',monospace;font-weight:700;font-size:.62em;letter-spacing:.22em;text-transform:uppercase;opacity:.8;}
+.fs-t{font-family:'Unbounded',sans-serif;font-weight:900;font-size:1.55em;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;}
+.fs-s{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:1.05em;}
+.fs-cta{margin-top:.35em;font-family:'Space Mono',monospace;font-weight:700;font-size:.6em;letter-spacing:.16em;text-transform:uppercase;
+  background:#2a0f04;color:#ffd36a;padding:.6em 1.1em;border-radius:99px;}
+#feat-label{position:fixed;top:calc(50% + var(--sun) / 2 + 18px);left:50%;transform:translateX(-50%);z-index:21;display:none;
+  font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,200,110,.85);
+  white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 1s ease;}
+body.has-feature #feat-label{display:block;}
+#feat-label.show{opacity:1;}
+@media (max-width:640px){body.has-feature #feat-label{display:none;}}
+@keyframes fsBreathe{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.07);opacity:1}}
+@keyframes fsSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){#feat-sun .fs-corona,#feat-sun .fs-rays{animation:none;}}
+/* About page: the Nexus globe now lives here */
+.glob-globe{width:min(180px,42vw);height:min(180px,42vw);margin:0 auto 1.6rem;animation:globSpin 32s linear infinite;
+  filter:drop-shadow(0 0 12px rgba(62,207,90,.5)) drop-shadow(0 0 40px rgba(62,207,90,.18));}
+@keyframes globSpin{to{transform:rotate(360deg)}}
+
 /* NEXUS — clickable, centred */
 #nxs{
   position:fixed;
@@ -749,6 +789,18 @@ body{
   <div id="nxs" role="button" tabindex="0" aria-label="About Nexus">NEXUS</div>
   <div id="globe-hint" aria-hidden="true">About Nexus</div>
 
+  <!-- FEATURED EVENT: the warm sun in the centre. Change FEATURE in the script to promote the next big event. -->
+  <a id="feat-sun" href="#/music/nexus-live/tickets" data-track="Home sun: After Party" aria-label="Bass and Bars After Party, Thursday November 19. Get tickets">
+    <span class="fs-corona"></span><span class="fs-rays"></span>
+    <span class="fs-core">
+      <span class="fs-k">Thu · Nov 19</span>
+      <span class="fs-t">After<br>Party</span>
+      <span class="fs-s">Bass &amp; Bars</span>
+      <span class="fs-cta">Get Tickets →</span>
+    </span>
+  </a>
+  <div id="feat-label" aria-hidden="true">Uppercuts · Ocean Beach · 21+</div>
+
   <!-- PLANETS -->
   <a class="planet" id="p-music"   data-go="pg-music"   href="#" style="--fd:7.2s;--fo:0s;">
     <div class="orb"><div class="orb-dot"></div></div>
@@ -773,6 +825,10 @@ body{
   <a class="planet" id="p-festival" data-go="pg-festival" href="#" style="--fd:7.1s;--fo:1.4s;">
     <div class="orb"><div class="orb-dot"></div></div>
     <span class="plbl">Festival</span>
+  </a>
+  <a class="planet" id="p-about" data-go="pg-global" href="#" style="--fd:6.9s;--fo:1.0s;">
+    <div class="orb"><div class="orb-dot"></div></div>
+    <span class="plbl">About</span>
   </a>
 
   <!-- Navigation hint -->
@@ -5628,6 +5684,18 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
     </nav>
 
     <div class="glob-hero">
+      <svg class="glob-globe" viewBox="0 0 420 420" fill="none" aria-hidden="true">
+        <circle cx="210" cy="210" r="170" stroke="rgba(62,207,90,.06)" stroke-width="18"/>
+        <circle cx="210" cy="210" r="155" stroke="#3ECF5A" stroke-width="1.2" opacity=".85"/>
+        <ellipse cx="210" cy="210" rx="36" ry="155" stroke="#3ECF5A" stroke-width=".7" opacity=".3"/>
+        <ellipse cx="210" cy="210" rx="78" ry="155" stroke="#3ECF5A" stroke-width=".7" opacity=".3"/>
+        <ellipse cx="210" cy="210" rx="120" ry="155" stroke="#3ECF5A" stroke-width=".7" opacity=".28"/>
+        <ellipse cx="210" cy="168" rx="132" ry="22" stroke="#3ECF5A" stroke-width=".7" opacity=".28"/>
+        <ellipse cx="210" cy="210" rx="155" ry="22" stroke="#3ECF5A" stroke-width=".7" opacity=".28"/>
+        <ellipse cx="210" cy="252" rx="132" ry="22" stroke="#3ECF5A" stroke-width=".7" opacity=".28"/>
+        <ellipse cx="210" cy="232" rx="192" ry="50" stroke="#3ECF5A" stroke-width="2" opacity=".92"/>
+        <path d="M18 242 L28 232 L18 222 L8 232Z" fill="#3ECF5A"/><path d="M402 222 L412 232 L402 242 L392 232Z" fill="#3ECF5A"/>
+      </svg>
       <div class="glob-eyebrow">San Diego, California &nbsp;·&nbsp; Est. 2025</div>
       <h2 class="glob-h1">About<br><em>Nexus</em></h2>
       <p class="glob-intro">Nexus is a San Diego cultural organization at the intersection of music, dance, and film. We create live experiences, build community, and give independent artists the stage they deserve.</p>
@@ -6111,7 +6179,7 @@ document.addEventListener('mousemove', e => {
   cur.style.left = mouseX + 'px';
   cur.style.top  = mouseY + 'px';
 });
-document.querySelectorAll('a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model,.artist-card,.orig-card,.dancer-profile,.move-card,.inv-card,.tcard,#globe,#nxs,.fest-card,.glob-member,.glob-role-card').forEach(el => {
+document.querySelectorAll('#feat-sun,a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model,.artist-card,.orig-card,.dancer-profile,.move-card,.inv-card,.tcard,#globe,#nxs,.fest-card,.glob-member,.glob-role-card').forEach(el => {
   el.addEventListener('mouseenter', () => cur.classList.add('h'));
   el.addEventListener('mouseleave', () => cur.classList.remove('h'));
 });
@@ -6245,10 +6313,29 @@ document.querySelectorAll('[data-go]').forEach(el =>
 /* ════════════════════════════════════════════
    ORBITAL RING SIZING
 ════════════════════════════════════════════ */
+/* ════════════════════════════════════════════
+   FEATURED EVENT — the sun in the centre of home
+   To promote the next event: change href/text in #feat-sun and the dates here.
+   After "ends", the Nexus globe comes back to the centre automatically.
+════════════════════════════════════════════ */
+const FEATURE = { slug: 'bass-and-bars-2026', ends: '2026-11-20T01:00:00-08:00' };
+const FEATURE_ON = Date.now() < Date.parse(FEATURE.ends);
+if (FEATURE_ON) document.body.classList.add('has-feature');
+function coreSize() {
+  const m = Math.min(window.innerWidth, window.innerHeight);
+  return FEATURE_ON ? Math.min(300, 0.40 * m) : Math.min(200, 0.26 * m);
+}
+document.getElementById('feat-sun').addEventListener('click', e => {
+  e.preventDefault();
+  const h = e.currentTarget.getAttribute('href');
+  history.pushState(null, '', h);
+  openRoute();
+});
+
 function sizeRings() {
   const vw = window.innerWidth, vh = window.innerHeight;
   const mobile = vw < 640;
-  const gPx = Math.min(200, 0.26 * Math.min(vw, vh));
+  const gPx = coreSize();
   const gR  = gPx / 2;
   // On mobile, cap ring radii so they don't explode off-screen
   const maxR = Math.min(vw, vh) * 0.44;
@@ -6287,12 +6374,13 @@ const planetDefs = [
   { id:'p-fashion',  deg:  60, rOff:  20 },
   { id:'p-festival', deg: 125, rOff:  15 },
   { id:'p-film',     deg: 180, rOff: -35 },
+  { id:'p-about',    deg: 228, rOff:  10 },
 ];
 
 function placePlanets() {
   const vw = window.innerWidth, vh = window.innerHeight;
   const cx = vw / 2, cy = vh / 2;
-  const gPx = Math.min(200, 0.26 * Math.min(vw, vh));
+  const gPx = coreSize();
   const gR  = gPx / 2;
   const orbitR = Math.min(gR + 175, cx * 0.78, cy * 0.78);
   planetDefs.forEach(p => {
@@ -6396,6 +6484,7 @@ draw('sp', 1700, 360, 0);
 }, 1980 + i * 120));
 setTimeout(() => document.getElementById('globe').classList.add('spin'), 2480);
 setTimeout(() => document.getElementById('nxs').classList.add('show'), 2660);
+setTimeout(() => { document.getElementById('feat-sun').classList.add('show'); document.getElementById('feat-label').classList.add('show'); }, 1200);
 setTimeout(() => {
   document.querySelectorAll('.orbit-ring').forEach((r, i) => {
     setTimeout(() => r.classList.add('show'), i * 200);
@@ -6595,6 +6684,77 @@ const NX = {
   },
   quote: null,
 };
+/* ════════════════════════════════════════════
+   SITE ANALYTICS — feeds nexusglobal.info/dashboard
+   Anonymous: a random visitor id, the page, what was clicked, where they came from.
+   No names, emails or payment details are ever sent from here.
+════════════════════════════════════════════ */
+const NXA = {
+  url: 'https://valeivzqquetjjhspgjk.supabase.co/rest/v1/rpc/track_event',
+  key: 'sb_publishable_ZIsURGGqpS25wk8PO0jx7Q_b6y6r3Gi',
+  lastPage: null,
+};
+(function () {
+  const rid = () => Math.random().toString(36).slice(2) + Date.now().toString(36);
+  try { NXA.visitor = localStorage.getItem('nx_vid') || rid(); localStorage.setItem('nx_vid', NXA.visitor); } catch (e) { NXA.visitor = rid(); }
+  try { NXA.session = sessionStorage.getItem('nx_sid') || rid(); sessionStorage.setItem('nx_sid', NXA.session); } catch (e) { NXA.session = rid(); }
+  // Where this visit came from: ?utm_source=linktree etc., or the referring site. Kept for the whole visit.
+  const q = new URLSearchParams(location.search);
+  let src = null;
+  try { src = JSON.parse(sessionStorage.getItem('nx_src') || 'null'); } catch (e) {}
+  if (!src) {
+    const ref = document.referrer && !document.referrer.includes(location.host) ? document.referrer : '';
+    src = { r: ref, s: q.get('utm_source') || q.get('src') || '', m: q.get('utm_medium') || '', c: q.get('utm_campaign') || '' };
+    try { sessionStorage.setItem('nx_src', JSON.stringify(src)); } catch (e) {}
+  }
+  NXA.src = src;
+  NXA.device = /iPad|Tablet/i.test(navigator.userAgent) ? 'tablet' : /Mobi|Android|iPhone/i.test(navigator.userAgent) ? 'phone' : 'desktop';
+})();
+function nxPageName() {
+  const h = location.hash.replace(/^#\/?/, '');
+  if (h) return '/' + h.split('?')[0];
+  const on = document.querySelector('.page.on');
+  return on ? (on.id === 'pg-landing' ? '/ (enter screen)' : on.id === 'home' ? '/ (home)' : on.id) : '/';
+}
+function nxEventFor(page) {
+  if (/music\/nexus-live|afterparty|bass-and-bars|^\/tickets/.test(page)) return 'bass-and-bars-2026';
+  if (/film\/reelfilms|reelfilms/.test(page)) return 'reelfilms-2026';
+  if (/house-party/.test(page)) return 'house-party-amg';
+  return null;
+}
+function nxTrack(name, o) {
+  o = o || {};
+  const page = o.page || nxPageName();
+  const body = {
+    p_visitor: NXA.visitor, p_session: NXA.session, p_name: name, p_page: page,
+    p_label: o.label ? String(o.label).slice(0, 120) : null, p_event: o.event || nxEventFor(page),
+    p_referrer: NXA.src.r || null, p_utm_source: NXA.src.s || null, p_utm_medium: NXA.src.m || null,
+    p_utm_campaign: NXA.src.c || null, p_device: NXA.device,
+  };
+  try {
+    fetch(NXA.url, { method: 'POST', keepalive: true,
+      headers: { 'Content-Type': 'application/json', apikey: NXA.key, Authorization: 'Bearer ' + NXA.key },
+      body: JSON.stringify(body) }).catch(() => {});
+  } catch (e) {}
+}
+// Page views: checked twice a second so every way of moving around the site is caught
+function nxCheckPage() {
+  const page = nxPageName();
+  if (page === NXA.lastPage) return;
+  NXA.lastPage = page;
+  nxTrack('page_view', { page });
+  if (/\/tickets$/.test(page) || page === '/tickets') nxTrack('tickets_view', { page });
+}
+setInterval(nxCheckPage, 500);
+window.addEventListener('load', nxCheckPage);
+// Clicks on anything clickable, named by what the visitor sees
+document.addEventListener('click', e => {
+  const el = e.target.closest('a,button,[role=button],.planet,[data-track]');
+  if (!el) return;
+  const label = el.dataset.track || el.getAttribute('aria-label') || (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim() || el.id || el.tagName.toLowerCase();
+  nxTrack('click', { label: label.slice(0, 80) });
+}, true);
+
 const nxMoney = c => '$' + (c / 100).toFixed(2).replace(/\.00$/, '');
 const nxMoney2 = c => '$' + (c / 100).toFixed(2);
 async function nxCall(name, body) {
@@ -6679,6 +6839,7 @@ function nxRenderQty() {
   document.querySelector('[data-qty="1"]').disabled = nxQty >= q.limit;
 }
 function nxOpenBox(slug) {
+  nxTrack('checkout_open', { event: slug, label: 'Get Tickets' });
   NX.event = slug;
   NX.quote = NX.quotes[slug];
   const ev = NX_EVENTS[slug];
@@ -6729,10 +6890,11 @@ document.getElementById('nx-buy-form').addEventListener('submit', async e => {
   try {
     await nxLoad(NX.stripeJs);
     const stripe = Stripe(NX.quote.publishableKey);
-    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(); } };
+    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { nxTrack('purchase_complete', { event: NX.event }); nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(); } };
     nxCheckout = stripe.createEmbeddedCheckoutPage ? await stripe.createEmbeddedCheckoutPage(opts) : await stripe.initEmbeddedCheckout(opts);
     nxHide('nx-buy-form'); nxShow('nx-pay');
     nxCheckout.mount('#nx-stripe');
+    nxTrack('payment_open', { event: NX.event, label: nxQty + ' ticket(s)' });
   } catch (e2) {
     await nxReleaseOrder();
     err.textContent = "Payment couldn't load. If you use an ad blocker, pause it for this page and try again.";

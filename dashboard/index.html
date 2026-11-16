@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Nexus Dashboard</title>
+<link rel="icon" href="/favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Unbounded:wght@600;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1ea;--card:#fff;--ink:#16130f;--muted:#6b645a;--line:#e3ddd1;
+  --green:#2f9e48;--green-soft:#e3f4e6;--orange:#d9692a;--orange-soft:#fbe9dc;--red:#c8372d;--red-soft:#fbe3e0;--gold:#e6a92e;
+  --bar:#2f9e48;--bar2:#d9692a;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d0f0c;--card:#171a16;--ink:#efece4;--muted:#a19a8d;--line:#2a2e28;
+  --green:#4fcf6a;--green-soft:#183020;--orange:#f08a4a;--orange-soft:#33200f;--red:#ff6b5e;--red-soft:#361613;--bar:#4fcf6a;--bar2:#f08a4a;}}
+:root[data-theme="dark"]{--bg:#0d0f0c;--card:#171a16;--ink:#efece4;--muted:#a19a8d;--line:#2a2e28;
+  --green:#4fcf6a;--green-soft:#183020;--orange:#f08a4a;--orange-soft:#33200f;--red:#ff6b5e;--red-soft:#361613;--bar:#4fcf6a;--bar2:#f08a4a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 16px 80px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:20px}
+h1{font-family:Unbounded,sans-serif;font-weight:900;font-size:clamp(1.3rem,3.5vw,2rem);margin:0;letter-spacing:-.01em}
+h1 small{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+h2{font-family:Unbounded,sans-serif;font-weight:600;font-size:1.05rem;margin:36px 0 12px}
+h3{font-size:.8rem;font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:700}
+.meta{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted)}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:9px 14px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 18px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 14px;font-weight:600;font-size:.85rem}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;gap:12px}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.kpi .v{font-family:Unbounded,sans-serif;font-weight:900;font-size:1.6rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:.78rem;color:var(--muted);font-weight:500;margin-bottom:6px}
+.kpi .s{font-size:.75rem;color:var(--muted);margin-top:4px}
+.two{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.alert{border-radius:12px;padding:14px 16px;margin:0 0 12px;border:1px solid;display:flex;gap:12px;align-items:flex-start}
+.alert b{display:block;margin-bottom:2px}
+.alert.bad{background:var(--red-soft);border-color:var(--red);}
+.alert.warn{background:var(--orange-soft);border-color:var(--orange);}
+.alert.good{background:var(--green-soft);border-color:var(--green);}
+.alert i{font-style:normal;font-size:1.2rem;line-height:1.2}
+.funnel .row{display:grid;grid-template-columns:minmax(120px,190px) 1fr 64px;gap:10px;align-items:center;margin:7px 0;font-size:.86rem}
+.funnel .track{background:var(--bg);border-radius:6px;height:22px;overflow:hidden}
+.funnel .fill{height:100%;background:var(--bar);border-radius:6px;min-width:2px}
+.funnel .fill.pay{background:var(--bar2)}
+.funnel .n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.funnel .drop{grid-column:2/4;font-size:.72rem;color:var(--muted);margin:-4px 0 2px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.7rem;font-family:'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.chip{display:inline-block;border-radius:99px;padding:2px 9px;font-size:.72rem;font-weight:700}
+.chip.paid{background:var(--green-soft);color:var(--green)}
+.chip.pending{background:var(--orange-soft);color:var(--orange)}
+.chip.expired{background:var(--bg);color:var(--muted)}
+.chip.refunded,.chip.stuck{background:var(--red-soft);color:var(--red)}
+.bars{display:flex;align-items:flex-end;gap:3px;height:140px;border-bottom:1px solid var(--line);padding-top:8px}
+.bars div{flex:1;background:var(--bar);border-radius:3px 3px 0 0;min-height:2px;position:relative}
+.bars div:hover{opacity:.75}
+.bars-x{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:4px;font-family:'Space Mono',monospace}
+.list .r{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.86rem}
+.list .r span:last-child{font-weight:700;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:.85rem;padding:12px 0}
+#gate{max-width:380px;margin:12vh auto;text-align:center}
+#gate input{width:100%;font:inherit;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);margin:16px 0 10px}
+#gate .err{color:var(--red);font-size:.85rem;min-height:1.3em}
+.explain p{margin:.4em 0;color:var(--muted);font-size:.88rem}
+.explain ol{margin:.4em 0;padding-left:1.2em;font-size:.88rem;color:var(--muted)}
+.tip{font-size:.78rem;color:var(--muted);margin-top:8px}
+code{font-family:'Space Mono',monospace;font-size:.8em;background:var(--bg);padding:1px 5px;border-radius:4px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="gate">
+    <h1><small>Nexus San Diego</small>Dashboard</h1>
+    <p class="meta">Enter the dashboard passcode</p>
+    <form id="gate-f">
+      <input id="pass" type="password" autocomplete="current-password" placeholder="Passcode" aria-label="Passcode" required>
+      <div class="err" id="gate-err"></div>
+      <button class="btn" type="submit" style="width:100%">Open dashboard</button>
+    </form>
+  </div>
+
+  <div id="app" hidden>
+    <header>
+      <h1><small>Nexus San Diego · Live</small>Sales &amp; Audience</h1>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <span class="meta" id="updated"></span>
+        <button class="btn ghost" id="refresh" type="button">Refresh</button>
+        <button class="btn ghost" id="lock" type="button">Lock</button>
+      </div>
+    </header>
+
+    <div id="health"></div>
+
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="event-view"></div>
+
+    <h2>Audience · last 30 days</h2>
+    <div class="grid kpis" id="traffic-kpis"></div>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><h3>Visitors per day</h3><div id="traffic-chart"></div></div>
+      <div class="card"><h3>Where visitors come from</h3><div class="list" id="sources"></div>
+        <div class="tip">Tag every link you post so it shows here by name, e.g. <code>nexusglobal.info/tickets?utm_source=linktree</code> or <code>?utm_source=instagram&amp;utm_campaign=afterparty</code>.</div></div>
+      <div class="card"><h3>Most-clicked things</h3><div class="scroll"><table id="clicks"></table></div></div>
+      <div class="card"><h3>Most-viewed pages</h3><div class="scroll"><table id="pages"></table></div></div>
+      <div class="card"><h3>Devices</h3><div class="list" id="devices"></div></div>
+      <div class="card"><h3>Campaigns</h3><div class="list" id="campaigns"></div></div>
+    </div>
+
+    <h2>How this works</h2>
+    <div class="card explain">
+      <p><b>Every number here comes from the same place the tickets do.</b> When someone taps <i>Get Tickets</i>, the Nexus ticket server records an order, then opens a Stripe checkout for that exact order. When Stripe takes the money it tells our server, and the order turns <span class="chip paid">paid</span> and the buyer's QR tickets are issued.</p>
+      <ol>
+        <li><b>Visit</b> – someone lands on nexusglobal.info (we note where they came from: Instagram, Linktree, a typed link…).</li>
+        <li><b>Event page &amp; ticket page</b> – they look at the event, then the ticket card.</li>
+        <li><b>Get Tickets</b> – they open the box office and enter their name, email and phone.</li>
+        <li><b>Payment</b> – Stripe's secure checkout opens inside our page.</li>
+        <li><b>Paid</b> – Stripe confirms; tickets are issued and counted here.</li>
+      </ol>
+      <p>Money: buyers pay the ticket price plus the Nexus fee (3% + $0.99 per ticket). Stripe's processing (about 2.9% + $0.30 per order) comes out of what Nexus receives, so "Est. to Nexus" is gross minus that estimate. Payouts land in the bank account connected to the Nexus Stripe account.</p>
+      <p>Privacy: visitor tracking is anonymous (a random ID, no names). Buyer names and emails are shortened on this page so it can be shared.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'https://valeivzqquetjjhspgjk.supabase.co/rest/v1/rpc/sales_dashboard';
+const KEY = 'sb_publishable_ZIsURGGqpS25wk8PO0jx7Q_b6y6r3Gi';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = c => '$' + (c / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num = n => Number(n || 0).toLocaleString('en-US');
+const pct = (a, b) => b ? Math.round(a / b * 100) + '%' : '–';
+const when = t => t ? new Date(t).toLocaleString('en-US', { timeZone: 'America/Los_Angeles', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+let pass = null, data = null, tab = null, timer = null;
+try { pass = sessionStorage.getItem('nx_dash'); } catch (e) {}
+
+async function load() {
+  const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY, Authorization: 'Bearer ' + KEY }, body: JSON.stringify({ passcode: pass }) });
+  if (r.status === 404) throw new Error('setup');
+  const j = await r.json();
+  if (j && j.error === 'wrong_passcode') throw new Error('pass');
+  if (!r.ok) throw new Error(j.message || 'load');
+  return j;
+}
+async function open() {
+  $('gate-err').textContent = '';
+  try {
+    data = await load();
+    try { sessionStorage.setItem('nx_dash', pass); } catch (e) {}
+    $('gate').hidden = true; $('app').hidden = false;
+    render();
+    clearInterval(timer); timer = setInterval(async () => { try { data = await load(); render(); } catch (e) {} }, 60000);
+  } catch (e) {
+    $('gate').hidden = false; $('app').hidden = true;
+    $('gate-err').textContent = e.message === 'pass' ? 'That passcode isn’t right.'
+      : e.message === 'setup' ? 'The dashboard isn’t switched on yet (run the 0010 SQL in Supabase).'
+      : 'Couldn’t reach the Nexus server. Check your connection.';
+  }
+}
+$('gate-f').addEventListener('submit', e => { e.preventDefault(); pass = $('pass').value; open(); });
+$('refresh').addEventListener('click', open);
+$('lock').addEventListener('click', () => { try { sessionStorage.removeItem('nx_dash'); } catch (e) {} location.reload(); });
+if (pass) open();
+
+function stripeFee(ev) { return Math.round(ev.gross_cents * 0.029) + ev.orders_paid * 30; }
+
+function render() {
+  $('updated').textContent = 'Updated ' + when(data.generated_at) + ' PT';
+  const evs = data.events || [];
+  // ---- Health checks: the things that would mean money or tickets are going missing ----
+  const h = [];
+  const stuck = evs.reduce((a, e) => a + e.checkouts_stuck, 0);
+  if (stuck) h.push(['bad', '!', stuck + ' checkout' + (stuck > 1 ? 's' : '') + ' never confirmed by Stripe',
+    'These buyers reached payment but our server never heard back. If they say they paid, the Stripe webhook isn’t reaching Nexus: in Stripe, open Developers → Webhooks and check the endpoint ending in <code>/functions/v1/stripe-webhook</code> shows successful deliveries. Matching Stripe sessions are listed under Recent orders.']);
+  if (!data.traffic.page_views_30d) h.push(['warn', '?', 'No website visits recorded yet', 'Tracking starts the moment the new site code is live. If this stays empty after visiting nexusglobal.info, the tracking SQL hasn’t been run.']);
+  if (!stuck && evs.some(e => e.orders_paid)) h.push(['good', '✓', 'Payments are flowing', 'Every checkout that reached Stripe in the last 30 minutes+ has been confirmed.']);
+  $('health').innerHTML = h.map(([k, i, t, d]) => `<div class="alert ${k}"><i>${i}</i><div><b>${t}</b>${d}</div></div>`).join('');
+
+  // ---- Tabs ----
+  if (!tab) tab = 'all';
+  const tabs = [['all', 'All events']].concat(evs.map(e => [e.slug, e.title]));
+  $('tabs').innerHTML = tabs.map(([k, t]) => `<button class="tab" role="tab" aria-selected="${k === tab}" data-k="${esc(k)}">${esc(t)}</button>`).join('');
+  $('tabs').querySelectorAll('.tab').forEach(b => b.onclick = () => { tab = b.dataset.k; render(); });
+  $('event-view').innerHTML = tab === 'all' ? renderAll(evs) : renderEvent(evs.find(e => e.slug === tab));
+  renderTraffic(data.traffic);
+}
+
+function kpi(l, v, s) { return `<div class="card kpi"><div class="l">${l}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`; }
+
+function renderAll(evs) {
+  const sum = k => evs.reduce((a, e) => a + Number(e[k] || 0), 0);
+  const gross = sum('gross_cents'), sf = evs.reduce((a, e) => a + stripeFee(e), 0);
+  let html = `<div class="grid kpis">
+    ${kpi('Tickets sold', num(sum('tickets_sold')), num(sum('orders_paid')) + ' paid orders')}
+    ${kpi('Gross collected', money(gross), 'what buyers paid')}
+    ${kpi('Est. to Nexus', money(gross - sf), 'after ~' + money(sf) + ' Stripe fees')}
+    ${kpi('Checkouts started', num(sum('checkouts_started')), pct(sum('orders_paid'), sum('checkouts_started')) + ' finished paying')}
+    ${kpi('Checked in at door', num(sum('checked_in')), '')}
+  </div>`;
+  html += `<div class="card" style="margin-top:12px"><h3>By event</h3><div class="scroll"><table>
+    <tr><th>Event</th><th>When</th><th class="num">Tickets</th><th class="num">Gross</th><th class="num">Checkouts</th><th class="num">Not confirmed</th></tr>
+    ${evs.map(e => `<tr><td><b>${esc(e.title)}</b></td><td>${esc(e.when)}</td><td class="num">${num(e.tickets_sold)}</td><td class="num">${money(e.gross_cents)}</td><td class="num">${num(e.checkouts_started)}</td><td class="num">${e.checkouts_stuck ? `<span class="chip stuck">${e.checkouts_stuck}</span>` : '0'}</td></tr>`).join('')}
+  </table></div></div>`;
+  return html;
+}
+
+function renderEvent(e) {
+  if (!e) return '<div class="empty">No data for this event.</div>';
+  const sf = stripeFee(e), f = e.funnel;
+  const steps = [
+    ['Visited the site', f.visitors], ['Saw the event page', f.event_page_visitors], ['Saw the ticket page', f.ticket_page_visitors],
+    ['Tapped Get Tickets', f.buy_clicks], ['Opened payment', f.payment_opened], ['Paid (orders)', f.paid_orders, 'pay'],
+  ];
+  const top = Math.max(1, ...steps.map(s => s[1] || 0));
+  let fun = steps.map((s, i) => {
+    const prev = i ? steps[i - 1][1] : null;
+    return `<div class="row"><span>${s[0]}</span><div class="track"><div class="fill ${s[2] || ''}" style="width:${(s[1] || 0) / top * 100}%"></div></div><span class="n">${num(s[1])}</span></div>`
+      + (i && prev ? `<div class="drop">${pct(s[1], prev)} of the step before</div>` : '');
+  }).join('');
+  const days = e.by_day || [];
+  const maxD = Math.max(1, ...days.map(d => d.tickets));
+  const chart = days.length ? `<div class="bars">${days.map(d => `<div style="height:${d.tickets / maxD * 100}%" title="${esc(d.day)}: ${d.tickets} tickets, ${money(d.cents)}"></div>`).join('')}</div>
+    <div class="bars-x"><span>${esc(days[0].day)}</span><span>${esc(days[days.length - 1].day)}</span></div>` : '<div class="empty">No paid tickets yet.</div>';
+  return `<div class="grid kpis">
+      ${kpi('Tickets sold', num(e.tickets_sold), num(e.orders_paid) + ' paid orders')}
+      ${kpi('Gross collected', money(e.gross_cents), money(e.ticket_cents) + ' tickets + ' + money(e.fee_cents) + ' fees')}
+      ${kpi('Est. to Nexus', money(e.gross_cents - sf), 'after ~' + money(sf) + ' Stripe fees')}
+      ${kpi('Checkouts started', num(e.checkouts_started), num(e.checkouts_expired) + ' left without paying')}
+      ${kpi('Not confirmed', e.checkouts_stuck ? `<span style="color:var(--red)">${e.checkouts_stuck}</span>` : '0', 'reached Stripe, no confirmation')}
+      ${kpi('Checked in', num(e.checked_in), 'scanned at the door')}
+    </div>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card funnel"><h3>From visit to paid</h3>${fun}<div class="tip">Visitors are people (counted once each), last 60 days.</div></div>
+      <div class="card"><h3>Tickets sold per day</h3>${chart}
+        <h3 style="margin-top:18px">By price</h3><div class="list">${(e.by_tier || []).map(t => `<div class="r"><span>${esc(t.tier)}</span><span>${num(t.tickets)} · ${money(t.cents)}</span></div>`).join('') || '<div class="empty">–</div>'}</div>
+        <h3 style="margin-top:18px">Bought on</h3><div class="list">${Object.entries(e.by_source || {}).map(([k, v]) => `<div class="r"><span>${k === 'website' ? 'Website' : 'Nexus app'}</span><span>${num(v)}</span></div>`).join('') || '<div class="empty">–</div>'}</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>Recent orders</h3><div class="scroll"><table>
+      <tr><th>Started</th><th>Buyer</th><th>Status</th><th class="num">Tickets</th><th>Price</th><th class="num">Total</th><th>Stripe session</th></tr>
+      ${(e.recent_orders || []).map(o => {
+        const st = o.status === 'pending' && Date.now() - Date.parse(o.at) > 30 * 60e3 ? 'stuck' : o.status;
+        const lbl = st === 'stuck' ? 'not confirmed' : st;
+        return `<tr><td>${when(o.at)}</td><td>${esc(o.buyer)}<br><span class="meta">${esc(o.email || '')}</span></td><td><span class="chip ${st}">${lbl}</span></td><td class="num">${o.tickets}</td><td>${esc(o.tier)}</td><td class="num">${money(o.total_cents)}</td><td class="meta">${o.stripe_session ? esc(o.stripe_session.slice(0, 18)) + '…' : '–'}</td></tr>`;
+      }).join('') || '<tr><td colspan="7" class="empty">No orders yet.</td></tr>'}
+    </table></div><div class="tip">To find an order in Stripe, search the Stripe dashboard for the buyer's email.</div></div>`;
+}
+
+function renderTraffic(t) {
+  $('traffic-kpis').innerHTML = kpi('Visitors', num(t.visitors_30d)) + kpi('Visits', num(t.sessions_30d)) + kpi('Page views', num(t.page_views_30d));
+  const d = t.by_day || [], m = Math.max(1, ...d.map(x => x.visitors));
+  $('traffic-chart').innerHTML = d.length ? `<div class="bars">${d.map(x => `<div style="height:${x.visitors / m * 100}%" title="${esc(x.day)}: ${x.visitors} visitors, ${x.views} page views"></div>`).join('')}</div>
+    <div class="bars-x"><span>${esc(d[0].day)}</span><span>${esc(d[d.length - 1].day)}</span></div>` : '<div class="empty">No visits recorded yet.</div>';
+  const list = (arr, a, b) => arr.length ? arr.map(x => `<div class="r"><span>${esc(x[a])}</span><span>${num(x[b])}</span></div>`).join('') : '<div class="empty">Nothing yet.</div>';
+  $('sources').innerHTML = list(t.sources || [], 'source', 'visitors');
+  $('campaigns').innerHTML = list(t.campaigns || [], 'campaign', 'visitors');
+  $('devices').innerHTML = list(Object.entries(t.devices || {}).map(([k, v]) => ({ k, v })), 'k', 'v');
+  $('clicks').innerHTML = '<tr><th>What</th><th>Where</th><th class="num">Clicks</th></tr>' + ((t.clicks || []).map(c => `<tr><td>${esc(c.label)}</td><td class="meta">${esc(c.page)}</td><td class="num">${num(c.clicks)}</td></tr>`).join('') || '<tr><td colspan="3" class="empty">Nothing yet.</td></tr>');
+  $('pages').innerHTML = '<tr><th>Page</th><th class="num">Views</th><th class="num">People</th></tr>' + ((t.pages || []).map(p => `<tr><td>${esc(p.page)}</td><td class="num">${num(p.views)}</td><td class="num">${num(p.visitors)}</td></tr>`).join('') || '<tr><td colspan="3" class="empty">Nothing yet.</td></tr>');
+}
+</script>
+</body>
+</html>
