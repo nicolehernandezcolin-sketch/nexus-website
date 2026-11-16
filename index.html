@@ -331,13 +331,14 @@ body.has-feature #globe,body.has-feature #nxs,body.has-feature #globe-hint,body.
 body.has-feature #feat-moon{display:block;}
 #feat-moon.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
 #feat-moon svg{position:absolute;left:50%;top:50%;width:180%;height:180%;transform:translate(-50%,-50%);overflow:visible;pointer-events:none;}
-#feat-moon .fm-beams line{stroke-linecap:round;animation:fmBeam 3.2s ease-in-out infinite alternate;}
+#feat-moon .fm-beams polygon{animation:fmBeam 3.6s ease-in-out infinite alternate;}
+#feat-moon svg{filter:drop-shadow(0 0 28px rgba(255,255,255,.08));}
 #feat-moon .fm-slice{pointer-events:auto;cursor:none;transition:filter .3s ease;}
 #feat-moon .fm-slice:hover,#feat-moon .fm-slice:focus-visible{filter:brightness(1.15) saturate(1.15);outline:none;}
 #feat-moon .fm-lbl{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:.22em;
-  font-size:calc(var(--sun) / 21);width:44%;line-height:1;text-shadow:0 1px 6px rgba(0,0,0,.18);}
+  font-size:calc(var(--sun) / 18.5);width:44%;line-height:1;text-shadow:0 1px 6px rgba(0,0,0,.18);}
 .fm-k{font-family:'Space Mono',monospace;font-weight:700;font-size:.6em;letter-spacing:.12em;text-transform:uppercase;}
-.fm-t{font-family:'Unbounded',sans-serif;font-weight:900;font-size:1.35em;line-height:.92;text-transform:uppercase;}
+.fm-t{font-family:'Unbounded',sans-serif;font-weight:900;font-size:1.45em;line-height:.92;text-transform:uppercase;}
 .fm-s{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:1em;}
 .fm-cta{margin-top:.35em;font-family:'Space Mono',monospace;font-weight:700;font-size:.56em;letter-spacing:.12em;text-transform:uppercase;padding:.55em .9em;border-radius:99px;white-space:nowrap;text-shadow:none;}
 /* Plain buttons under the moon: the easiest way in, same links */
@@ -347,8 +348,8 @@ body.has-feature #feat-pills{display:flex;}
 #feat-pills.show{opacity:1;}
 #feat-pills a{font-family:'Space Mono',monospace;font-weight:700;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:none;
   padding:.85em 1.2em;border-radius:99px;box-shadow:0 6px 22px rgba(0,0,0,.45);white-space:nowrap;}
-@keyframes fmBeam{from{opacity:.25}to{opacity:.95}}
-@media (prefers-reduced-motion:reduce){#feat-moon .fm-beams line{animation:none;opacity:.7;}}
+@keyframes fmBeam{from{opacity:.55}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){#feat-moon .fm-beams polygon{animation:none;opacity:.85;}}
 /* About page: the Nexus globe now lives here */
 .glob-globe{width:min(180px,42vw);height:min(180px,42vw);margin:0 auto 1.6rem;animation:globSpin 32s linear infinite;
   filter:drop-shadow(0 0 12px rgba(62,207,90,.5)) drop-shadow(0 0 40px rgba(62,207,90,.18));}
@@ -6357,18 +6358,27 @@ function featGo(e) {
     return out;
   };
   const start = n === 2 ? 90 : -90; // two events: left half and right half
-  let defs = '<clipPath id="fm-clip"><circle r="100"/></clipPath>', beams = '', slices = '', labels = '', pills = '';
+  let defs = '<clipPath id="fm-clip"><circle r="100"/></clipPath><filter id="fm-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>', beams = '', slices = '', labels = '', pills = '';
   FEATURES.forEach((f, i) => {
     const a0 = start + i * span, a1 = a0 + span, c = f.colors;
     defs += `<pattern id="fm-dot${i}" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.4" fill="${c[1]}" opacity=".5"/></pattern>
       <linearGradient id="fm-g${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${f.grad || c[0]}"/></linearGradient>`;
-    // Beams in the event's own colours, radiating from its side of the moon
-    let b = 0;
-    for (let a = a0 + 4; a < a1 - 2; a += 7, b++) {
-      const len = 130 + ((b * 23) % 40), col = c[b % c.length];
-      const [x1, y1] = pt(a, 110), [x2, y2] = pt(a, len);
-      beams += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${2 + (b % 3)}" style="animation-delay:${(b * 0.37) % 3}s"/>`;
+    // A few bold beams per event, each one rooted in the moon's rim and fading outward,
+    // plus a solid band of the event's colour hugging its half, so nothing floats loose
+    defs += `<radialGradient id="fm-fade${i}" cx="0" cy="0" r="185" gradientUnits="userSpaceOnUse">
+        <stop offset=".52" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+      <mask id="fm-m${i}" maskUnits="userSpaceOnUse" x="-200" y="-200" width="400" height="400"><circle r="200" fill="url(#fm-fade${i})"/></mask>`;
+    const count = Math.max(3, Math.round(span / 36)), step = span / count;
+    let rays = '';
+    for (let k = 0; k < count; k++) {
+      const mid = a0 + step * (k + .5), half = step * .26, len = k % 2 ? 168 : 185, col = c[(k % (c.length - 1)) + 1] || c[0];
+      const pts = [pt(mid - half, 100), pt(mid - 1.2, len), pt(mid + 1.2, len), pt(mid + half, 100)];
+      rays += `<polygon points="${pts.map(p => p.join(',')).join(' ')}" fill="${col}" style="animation-delay:${k * .5}s"/>`;
     }
+    beams += `<g mask="url(#fm-m${i})">${rays}</g>`;
+    const [r0x, r0y] = pt(a0 + 1.5, 106), [r1x, r1y] = pt(a1 - 1.5, 106);
+    beams += `<path d="M${r0x} ${r0y} A106 106 0 ${span > 180 ? 1 : 0} 1 ${r1x} ${r1y}" fill="none" stroke="${c[1]}" stroke-width="9" stroke-linecap="round"/>`;
+    beams += `<path d="M${r0x} ${r0y} A106 106 0 ${span > 180 ? 1 : 0} 1 ${r1x} ${r1y}" fill="none" stroke="${c[0]}" stroke-width="22" stroke-opacity=".18" filter="url(#fm-glow)"/>`;
     const shape = n === 1 ? '<circle r="110"'
       : `<polygon points="${seam(a0).concat(Array.from({ length: 30 }, (_, k) => pt(a0 + span * k / 29, R + 10))).concat(seam(a1).reverse()).map(p => p.join(',')).join(' ')}"`;
     const [c1x, c1y] = pt(a0 + span * .3, 64), [c2x, c2y] = pt(a0 + span * .72, 34);
@@ -6387,7 +6397,7 @@ function featGo(e) {
     `<svg viewBox="-180 -180 360 360"><defs>${defs}</defs>
       <g class="fm-beams">${beams}</g>${slices}
       <circle r="100" fill="url(#fm-shade)" pointer-events="none"/>
-      <circle r="100" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.2" pointer-events="none"/></svg>${labels}`;
+      <circle r="100" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2" pointer-events="none"/></svg>${labels}`;
   document.getElementById('feat-pills').innerHTML = pills;
   document.querySelectorAll('#feat-moon .fm-slice,#feat-pills a').forEach(a => a.addEventListener('click', featGo));
 })();
