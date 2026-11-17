@@ -2358,6 +2358,7 @@ body.has-feature #feat-pills{display:flex;}
     .ar-ctas{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;}
     .ar-btn{display:inline-block;font:700 .7rem 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.95em 1.2em;border:2px solid var(--ar-cream);color:var(--ar-cream);background:transparent;}
     .ar-btn--red{background:var(--ar-red);border-color:var(--ar-red);color:#fff;}
+    .ar-btn--gold{background:var(--ar-gold);border-color:var(--ar-gold);color:#111;}
     .ar-collab{font:.72rem/1.8 'Space Mono',monospace;color:rgba(243,234,216,.7);margin-top:1rem;}
     @media (max-width:860px){.ar-hero{grid-template-columns:1fr;padding-top:3rem;} .ar-flyer{max-width:360px;}}
     </style>
@@ -2370,6 +2371,7 @@ body.has-feature #feat-pills{display:flex;}
           <p class="ar-lede">A series highlighting musical genres and art forms that emerged from Black, Indigenous and POC communities. Aztlan Libre Galería Morán displays work from local artists capturing the music and forms of expression that developed as resistance to imperialist and colonialist structures. ¡Únete, comunidad!</p>
           <div class="ar-when"><b>Saturday, December 12 · 5–9 PM</b><span>2076 Logan Ave, San Diego</span></div>
           <div class="ar-ctas">
+            <button class="ar-btn ar-btn--gold" type="button" id="ar-donate" data-track="Mi Arte: donate online">Donate $10 online →</button>
             <a class="ar-btn ar-btn--red" href="https://maps.google.com/?q=2076+Logan+Ave+San+Diego+CA" target="_blank" rel="noopener" data-track="Mi Arte: directions">Get directions ↗</a>
             <a class="ar-btn" href="images/mi-arte/mi-arte-es-resistencia.ics" download data-track="Mi Arte: add to calendar">Add to calendar</a>
             <button class="ar-btn" type="button" id="ar-share" data-track="Mi Arte: share">Share</button>
@@ -2381,7 +2383,7 @@ body.has-feature #feat-pills{display:flex;}
         <h3 class="ar-h">Getting in</h3>
         <div class="ar-entry">
           <div class="ar-card"><div class="k">Option one</div><div class="v">Bring a toy</div><p>One new, unwrapped toy per participant for the community toy drive.</p></div>
-          <div class="ar-card"><div class="k">Option two</div><div class="v">$10 donation</div><p>A $10 minimum donation at the door, going to families separated by ICE and affected by immigration policies.</p></div>
+          <div class="ar-card"><div class="k">Option two</div><div class="v">$10 donation</div><p>Donate $10 online now and get a scannable entry pass on your phone, or give at the door. Every dollar goes to families separated by ICE and affected by immigration policies.</p><button class="ar-btn ar-btn--red" type="button" id="ar-donate2" style="margin-top:.9rem" data-track="Mi Arte: donate online (card)">Donate $10 online →</button></div>
         </div>
         <div class="ar-note">Sober space: respect the space and the surrounding community.</div>
 
@@ -3967,6 +3969,28 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
 .nx-addr-d{font-family:'Instrument Sans',sans-serif;font-size:.82rem;line-height:1.5;color:rgba(243,231,211,.8);margin-top:.3rem;}
 .nx-addr-map{display:inline-block;margin-top:.8rem;font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#c8102e;padding:.6em 1em;text-decoration:none;}
 .nx-addr-mark{margin-top:.9rem;font-family:'Space Mono',monospace;font-size:.46rem;letter-spacing:.08em;color:rgba(243,231,211,.55);}
+/* Mi Arte checkout: the flyer's red, black and cream with gothic lettering */
+#nx-box[data-theme="ar"]{background:rgba(10,0,0,.82);}
+#nx-box[data-theme="ar"] .nx-sheet{background:#111;border:10px solid #f3ead8;outline:2px solid #d2271f;color:#f3ead8;}
+#nx-box[data-theme="ar"] .nx-x{color:#111;background:#f3ead8;width:2.2rem;height:2.2rem;padding:0;}
+#nx-box[data-theme="ar"] .nx-eb{color:#111;background:#f2d13a;display:table;margin:0 auto;padding:.5em .9em;font-weight:700;}
+#nx-box[data-theme="ar"] .nx-h{font-family:'Grenze Gotisch',serif;font-weight:900;color:#d2271f;font-size:clamp(2.8rem,13vw,4rem);line-height:.9;}
+#nx-box[data-theme="ar"] .nx-h em{display:block;font-family:'Grenze Gotisch',serif;font-style:normal;color:#f3ead8;font-size:.55em;}
+#nx-box[data-theme="ar"] .nx-sub{color:#fff;background:#d2271f;display:table;margin:1rem auto 1.6rem;padding:.45em .8em;font-family:'Space Mono',monospace;font-style:normal;font-weight:700;font-size:.58rem;}
+#nx-box[data-theme="ar"] .nx-row{border-top:2px solid #f3ead8;border-bottom:2px dashed rgba(243,234,216,.4);}
+#nx-box[data-theme="ar"] .nx-k{font-family:'Grenze Gotisch',serif;font-weight:900;font-size:1.8rem;color:#f3ead8;}
+#nx-box[data-theme="ar"] .nx-qty{border:2px solid #f3ead8;} #nx-box[data-theme="ar"] .nx-qty button,#nx-box[data-theme="ar"] .nx-qty output{color:#f3ead8;}
+#nx-box[data-theme="ar"] .nx-total b{font-family:'Grenze Gotisch',serif;font-size:2.6rem;color:#f2d13a;}
+#nx-box[data-theme="ar"] .nx-in{background:#f3ead8;border:2px solid #111;color:#111;border-radius:0;}
+#nx-box[data-theme="ar"] .nx-btn{background:#d2271f;color:#fff;border:2px solid #f3ead8;font-weight:900;}
+#nx-box[data-theme="ar"] .nx-fine,#nx-box[data-theme="ar"] .nx-check,#nx-box[data-theme="ar"] .nx-final{color:rgba(243,234,216,.85);}
+#nx-tix[data-theme="ar"] .nx-sheet{background:#111;border:10px solid #f3ead8;outline:2px solid #d2271f;color:#f3ead8;}
+#nx-tix[data-theme="ar"] .nx-h,#nx-tix[data-theme="ar"] .nx-h em{font-family:'Grenze Gotisch',serif;color:#d2271f;font-style:normal;}
+#nx-tix[data-theme="ar"] .nx-sub,#nx-tix[data-theme="ar"] .nx-eb,#nx-tix[data-theme="ar"] .nx-fine,#nx-tix[data-theme="ar"] .nx-back,#nx-tix[data-theme="ar"] .nx-x{color:#f3ead8;font-style:normal;}
+#nx-tix[data-theme="ar"] .nx-ticket{background:#f3ead8;color:#111;} #nx-tix[data-theme="ar"] .nx-ticket-t{font-family:'Grenze Gotisch',serif;font-weight:900;color:#d2271f;}
+.nx-evcard--ar{background:#111;color:#f3ead8;border:6px solid #f3ead8;outline:2px solid #d2271f;}
+.nx-evcard--ar .nx-evcard-t{font-family:'Grenze Gotisch',serif;font-weight:900;color:#d2271f;text-transform:none;font-size:2rem;}
+.nx-evcard--ar .nx-evcard-go{background:#d2271f;color:#fff;}
 /* House Show checkout, themed to its flyer: blue poster, cream type and border, wavy Anton headline */
 #nx-box[data-theme="hp"]{background:rgba(16,32,56,.82);}
 #nx-box[data-theme="hp"] .nx-sheet{background:#4b72a0;background-image:radial-gradient(rgba(16,32,56,.12) 1px,transparent 1.3px);background-size:6px 6px;border:10px solid #f1dfc4;outline:2px solid #1d3a5f;outline-offset:0;color:#f1dfc4;box-shadow:0 30px 70px rgba(10,20,40,.55);}
@@ -6636,7 +6660,10 @@ const FEATURES = [
   { slug: 'house-party-amg', href: '#/music/house-party', ends: '2026-11-22T01:00:00-08:00',
     k: 'Sat · Nov 21', t: 'House<br>Show', s: 'SDSU Kickback', pill: 'SDSU House Show · $5',
     colors: ['#f1dfc4', '#4b72a0', '#2c5585'], grad: '#e3cba6', ink: '#1d3a5f', cta: ['#4b72a0', '#f1dfc4'] },
-].filter(f => Date.now() < Date.parse(f.ends));
+  { slug: 'mi-arte-2026', href: '#/music/mi-arte-es-resistencia', ends: '2026-12-13T00:00:00-08:00',
+    k: 'Sat · Dec 12', t: 'Mi Arte', s: 'es Resistencia', pill: 'Mi Arte · Donate $10',
+    colors: ['#d2271f', '#f3ead8', '#f2d13a'], grad: '#7d140f', ink: '#f3ead8', cta: ['#f2d13a', '#111'] },
+].filter(f => Date.now() < Date.parse(f.ends)).slice(0, 2);
 const FEATURE_ON = FEATURES.length > 0;
 if (FEATURE_ON) document.body.classList.add('has-feature');
 function coreSize() {
@@ -7056,6 +7083,8 @@ const NX_EVENTS = {
     door: 'REELFilms · Dec 5', back: '#/film/reelfilms/tickets', ends: '2026-12-06T01:00:00-08:00' },
   'bass-and-bars-2026': { key: 'bass-and-bars', theme: 'bb', h: '<span class="nx-bb-big">After <b>Party</b></span><span class="nx-bb-small">Bass <b>&amp;</b> Bars</span>', sub: 'Thursday, November 19 · 10 PM – 1 AM · Uppercuts, 4932 Newport Ave, Ocean Beach',
     door: 'Bass & Bars After Party · Nov 19', back: '#/music/nexus-live/tickets', ends: '2026-11-20T02:00:00-08:00' },
+  'mi-arte-2026': { key: 'mi-arte', theme: 'ar', h: 'Mi Arte <em>es Resistencia</em>', sub: 'Saturday, December 12 · 5–9 PM · 2076 Logan Ave, San Diego · $10 donation entry',
+    door: 'Mi Arte es Resistencia · Dec 12', back: '#/music/mi-arte-es-resistencia', ends: '2026-12-13T00:00:00-08:00' },
   'house-party-amg': { key: 'house-party', theme: 'hp', h: 'House <em>Show</em>', sub: 'SDSU Kickback · The 805 + The Junction · Sat, Nov 21 · Doors 7 PM · Address revealed the day of',
     door: 'SDSU House Show · Nov 21', back: '#/music/house-party', ends: '2026-11-22T02:00:00-08:00' },
 };
@@ -7559,8 +7588,8 @@ function nxLocationCard(o) {
 // Wallet: every event the guest holds tickets for, each in its own look. Tap an event to open its
 // tickets, one at a time (swipe or tap the arrows), like a stadium wallet.
 const NXW = { sel: null, w: null };
-function nxThemeOfSlug(slug) { return /^bass/.test(slug || '') ? 'bb' : /^house/.test(slug || '') ? 'hs' : 'reel'; }
-function nxThemeFor(title) { return /bass|after party/i.test(title || '') ? 'bb' : /house/i.test(title || '') ? 'hs' : 'reel'; }
+function nxThemeOfSlug(slug) { return /^bass/.test(slug || '') ? 'bb' : /^house/.test(slug || '') ? 'hs' : /^mi-arte/.test(slug || '') ? 'ar' : 'reel'; }
+function nxThemeFor(title) { return /bass|after party/i.test(title || '') ? 'bb' : /house/i.test(title || '') ? 'hs' : /mi arte/i.test(title || '') ? 'ar' : 'reel'; }
 function nxGroups(w) {
   const paid = (w.orders || []).filter(o => o.status === 'paid' && o.tickets && o.tickets.length), m = new Map();
   paid.forEach(o => {
@@ -7619,7 +7648,7 @@ function nxRenderWallet(w) {
     return;
   }
   // One event: its look, its address, its tickets one at a time
-  ov.dataset.theme = { bb: 'bb', hs: 'hs', reel: 'reel' }[nxThemeFor(one.event.title)];
+  ov.dataset.theme = { bb: 'bb', hs: 'hs', ar: 'ar', reel: 'reel' }[nxThemeFor(one.event.title)];
   head.innerHTML = 'Your <em>Tickets</em>';
   sub.textContent = [one.event.when_text, one.event.where_text].filter(Boolean).join(' · ');
   if (groups.length > 1) {
@@ -7909,6 +7938,12 @@ async function nxAccountTickets() {
   (r.tickets || []).forEach(t => nxSave(t.order + '.' + t.key));
   return !r.error;
 }
+async function arDonate() {
+  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: 'mi-arte-2026' });
+  if (q.error || q.onSale === false) { alert('Online donations are closed. You can still give at the door.'); return; }
+  NX.quotes['mi-arte-2026'] = q; nxOpenBox('mi-arte-2026');
+}
+['ar-donate', 'ar-donate2'].forEach(id => document.getElementById(id).addEventListener('click', arDonate));
 document.getElementById('ar-share').addEventListener('click', async () => {
   const data = { title: 'Mi Arte es Resistencia · Dec 12', text: 'An Afro-Latin Jazz Night · Sat, Dec 12, 5–9 PM · 2076 Logan Ave, San Diego. Bring a toy or $10.', url: 'https://nexusglobal.info/miarte' };
   try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(data.url); document.getElementById('ar-share').textContent = 'Link copied ✓'; } } catch (e) {}
