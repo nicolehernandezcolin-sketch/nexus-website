@@ -6242,7 +6242,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
       </section>
 
       <section class="ns-promo" data-track-view="Noter Sessions promo">
-        <img class="ns-scene" src="images/noter/studio-autumn.gif" width="640" height="300" alt="Noti painting at an easel in the Noter Sessions studio, autumn leaves falling outside the windows" loading="lazy">
+        <img class="ns-scene" id="ns-scene" src="images/noter/studio-autumn.gif" width="640" height="300" alt="Noti painting at an easel in the Noter Sessions studio, autumn leaves falling outside the windows" loading="lazy">
         <div class="ns-eb">Also from the team behind Nexus</div>
         <h2 class="ns-h">Noter <em>Sessions</em></h2>
         <p class="ns-p">The collaborative session app from the team behind Nexus. Get your people in one room, make something together, and keep every idea from the session.</p>
@@ -6806,6 +6806,14 @@ setTimeout(() => {
   const b = document.getElementById('bar');
   if(b){ b.style.transition='opacity 1.2s ease'; b.style.opacity='1'; }
   const ll = document.getElementById('legal-line'); if (ll) ll.classList.add('show');
+  // Noter Sessions studio follows the season: winter Dec–Feb, spring Mar–May, summer Jun–Aug, autumn Sep–Nov (animated)
+  const sc = document.getElementById('ns-scene');
+  if (sc) {
+    const m = new Date().getMonth(), season = m === 11 || m < 2 ? 'winter' : m < 5 ? 'spring' : m < 8 ? 'summer' : 'autumn';
+    const alts = { winter: 'snow falling outside and string lights', spring: 'cherry blossoms outside', summer: 'a clear blue sky outside', autumn: 'autumn leaves falling outside' };
+    sc.src = 'images/noter/studio-' + season + (season === 'autumn' ? '.gif' : '.png');
+    sc.alt = 'Noti painting at an easel in the Noter Sessions studio, with ' + alts[season];
+  }
   const nt = document.getElementById('noti'); if (nt) { setTimeout(() => nt.classList.add('say'), 2500); setTimeout(() => nt.classList.remove('say'), 7500); }
 }, 3500);
 setTimeout(() => {
