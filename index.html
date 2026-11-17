@@ -2354,6 +2354,12 @@ body.has-feature #feat-pills{display:flex;}
     .ar-list b{display:block;font-family:'Grenze Gotisch',serif;font-size:1.45rem;color:var(--ar-cream);margin-bottom:.15rem;}
     .ar-lineup{display:flex;flex-wrap:wrap;gap:.6rem;}
     .ar-lineup span{font:700 .8rem 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;background:var(--ar-red);color:#fff;padding:.7em 1em;border:2px solid var(--ar-cream);}
+    .ar-sets{display:grid;gap:.5rem;}
+    .ar-sets div{display:grid;grid-template-columns:4.2rem 1fr;align-items:baseline;gap:.2rem .8rem;border-bottom:1px dashed rgba(243,234,216,.25);padding:.55rem 0;}
+    .ar-sets b{font:700 1rem 'Space Mono',monospace;color:var(--ar-gold);grid-row:span 2;}
+    .ar-sets span{font-family:'Grenze Gotisch',serif;font-size:1.5rem;line-height:1;}
+    .ar-sets em{font:.62rem 'Space Mono',monospace;font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:rgba(243,234,216,.6);}
+    .ar-sets .hl span{color:var(--ar-red);}
     .ar-quote{margin:3.4rem 0 0;background:#000;border:3px solid var(--ar-cream);padding:1.6rem 1.4rem;font:900 clamp(1.1rem,3.6vw,1.6rem)/1.35 'Archivo',sans-serif;text-transform:uppercase;color:#fff;}
     .ar-ctas{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;}
     .ar-btn{display:inline-block;font:700 .7rem 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.95em 1.2em;border:2px solid var(--ar-cream);color:var(--ar-cream);background:transparent;}
@@ -2369,7 +2375,7 @@ body.has-feature #feat-pills{display:flex;}
           <h2 class="ar-title">Mi Arte<i>es</i>Resistencia</h2>
           <div class="ar-sub">An Afro-Latin Jazz Night</div>
           <p class="ar-lede">A series highlighting musical genres and art forms that emerged from Black, Indigenous and POC communities. Aztlan Libre Galería Morán displays work from local artists capturing the music and forms of expression that developed as resistance to imperialist and colonialist structures. ¡Únete, comunidad!</p>
-          <div class="ar-when"><b>Saturday, December 12 · 5–9 PM</b><span>2076 Logan Ave, San Diego</span></div>
+          <div class="ar-when"><b>Saturday, December 12 · 5–9 PM</b><span>Aztlan Libre · 2076 Logan Ave, San Diego</span></div>
           <div class="ar-ctas">
             <button class="ar-btn ar-btn--gold" type="button" id="ar-donate" data-track="Mi Arte: donate online">Donate $10 online →</button>
             <a class="ar-btn ar-btn--red" href="https://maps.google.com/?q=2076+Logan+Ave+San+Diego+CA" target="_blank" rel="noopener" data-track="Mi Arte: directions">Get directions ↗</a>
@@ -2386,6 +2392,7 @@ body.has-feature #feat-pills{display:flex;}
           <div class="ar-card"><div class="k">Option two</div><div class="v">$10 donation</div><p>Donate $10 online now and get a scannable entry pass on your phone, or give at the door. Every dollar goes to families separated by ICE and affected by immigration policies.</p><button class="ar-btn ar-btn--red" type="button" id="ar-donate2" style="margin-top:.9rem" data-track="Mi Arte: donate online (card)">Donate $10 online →</button></div>
         </div>
         <div class="ar-note">Sober space: respect the space and the surrounding community.</div>
+        <div class="ar-note" style="border-left-color:var(--ar-gold)">Parking: street parking only. The Barrio Logan Art Crawl is the same night, so arrive early.</div>
 
         <h3 class="ar-h">The night</h3>
         <ul class="ar-list">
@@ -2395,8 +2402,20 @@ body.has-feature #feat-pills{display:flex;}
           <li><b>Speeches</b>From San Diego educators, community members and organizers.</li>
         </ul>
 
-        <h3 class="ar-h">Performances</h3>
-        <div class="ar-lineup"><span>Los Salvajes</span><span>Nicole Hernandez</span><span>DJ La Crunchy</span><span>La Cachanilla</span></div>
+        <h3 class="ar-h">Set times</h3>
+        <div class="ar-sets">
+          <div><b>5:00</b><span>DJ La Crunchy</span></div>
+          <div><b>5:30</b><span>DJ La Cachanilla</span></div>
+          <div><b>6:15</b><span>Melina</span><em>Speaker</em></div>
+          <div><b>6:30</b><span>Shafia Osman</span></div>
+          <div class="hl"><b>7:00</b><span>Los Salvajes</span><em>Performance</em></div>
+          <div><b>7:45</b><span>Mwezi</span><em>The African People's Socialist Party</em></div>
+          <div class="hl"><b>8:15</b><span>Nicole Hernandez</span><em>Performance · until 9</em></div>
+        </div>
+
+        <h3 class="ar-h">Community tables</h3>
+        <p class="ar-collab" style="margin-top:0">Local organizations table all night from 5 PM. 30% of any merch sold on their behalf goes to families affected by ICE.</p>
+        <div class="ar-lineup"><span>Aztlan Youth Brigade</span><span>The Lemon Grove Llamas</span><span>The African People's Socialist Party</span><span>The Revolutionary Jaguar Paws</span></div>
         <p class="ar-collab">In collaboration with Nexus and the Aztlan Youth Brigade.</p>
 
         <div class="ar-quote">We must put a definite end to the rule of the kapitalist class! We must put an end to kolonial power!</div>
