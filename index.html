@@ -96,7 +96,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&family=Limelight&family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600&family=Anton&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&family=Limelight&family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600&family=Anton&family=Permanent+Marker&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.min.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp" crossorigin="anonymous"></script>
 
 <style>
@@ -1370,6 +1370,7 @@ body.has-feature #feat-pills{display:flex;}
     <div class="music-subnav">
       <button class="msnav-btn active" data-msub="ms-artists">The Artists</button>
       <button class="msnav-btn" data-msub="ms-latin-jazz">Latin Jazz Night</button>
+      <button class="msnav-btn" data-msub="ms-arte">Mi Arte es Resistencia</button>
       <button class="msnav-btn" data-msub="ms-uc-series">Campus Series</button>
       <!-- Artist Workshops hidden for now: <button class="msnav-btn" data-msub="ms-workshops">Artist Workshops</button> -->
       <button class="msnav-btn" data-msub="ms-nex-up">Nex Up</button>
@@ -2324,6 +2325,82 @@ body.has-feature #feat-pills{display:flex;}
     </div>
     <!-- /NEXUS LIVE -->
 
+    <!-- MI ARTE ES RESISTENCIA: nexusglobal.info/#/music/mi-arte-es-resistencia (short link /miarte) -->
+    <style>
+    #ms-arte{--ar-red:#d2271f;--ar-red2:#a61b15;--ar-ink:#111;--ar-cream:#f3ead8;--ar-gold:#f2d13a;
+      background:#111;color:var(--ar-cream);position:relative;overflow:hidden;}
+    #ms-arte *{cursor:none;}
+    #ms-arte::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 80% 10%,rgba(210,39,31,.35),transparent 60%);pointer-events:none;}
+    .ar-hero{position:relative;max-width:1180px;margin:0 auto;padding:4.5rem 1.4rem 3rem;display:grid;grid-template-columns:1.15fr .85fr;gap:2.6rem;align-items:center;}
+    .ar-pill{display:inline-block;font:700 .55rem 'Space Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--ar-ink);background:var(--ar-gold);padding:.55em .9em;margin-bottom:1.2rem;}
+    .ar-title{font-family:'Grenze Gotisch',serif;font-weight:900;line-height:.86;margin:0;color:var(--ar-red);font-size:clamp(3.6rem,13vw,7.4rem);text-shadow:0 0 40px rgba(210,39,31,.35);}
+    .ar-title i{display:block;font-style:normal;color:var(--ar-cream);font-size:.38em;font-weight:700;margin:.15em 0 .05em .9em;text-shadow:none;}
+    .ar-sub{font-family:'Grenze Gotisch',serif;font-weight:700;font-size:clamp(1.4rem,4vw,2rem);color:var(--ar-gold);margin:.6rem 0 1.1rem;}
+    .ar-lede{font-size:1rem;line-height:1.7;color:rgba(243,234,216,.86);max-width:560px;margin:0 0 1.4rem;}
+    .ar-when{display:inline-block;background:var(--ar-red);color:#fff;border:3px solid var(--ar-cream);padding:.8rem 1.1rem;box-shadow:6px 6px 0 #000;}
+    .ar-when b{display:block;font-family:'Grenze Gotisch',serif;font-size:clamp(1.6rem,5vw,2.4rem);line-height:1;}
+    .ar-when span{font:.7rem 'Space Mono',monospace;letter-spacing:.06em;}
+    .ar-flyer{width:100%;max-width:440px;justify-self:center;border:10px solid var(--ar-cream);box-shadow:0 30px 60px rgba(0,0,0,.6);transform:rotate(1.5deg);}
+    .ar-wrap{position:relative;max-width:1180px;margin:0 auto;padding:0 1.4rem 4.5rem;}
+    .ar-h{font-family:'Grenze Gotisch',serif;font-weight:900;font-size:clamp(2.2rem,6vw,3.2rem);color:var(--ar-red);margin:3.2rem 0 1rem;line-height:1;}
+    .ar-entry{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+    .ar-card{background:var(--ar-cream);color:var(--ar-ink);padding:1.4rem 1.3rem;border:3px solid #000;box-shadow:6px 6px 0 var(--ar-red);}
+    .ar-card .k{font:700 .55rem 'Space Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--ar-red2);}
+    .ar-card .v{font-family:'Grenze Gotisch',serif;font-weight:900;font-size:2.1rem;line-height:1;margin:.35rem 0 .45rem;}
+    .ar-card p{margin:0;font-size:.9rem;line-height:1.55;}
+    .ar-note{margin-top:1rem;font:700 .62rem/1.7 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;background:#000;color:var(--ar-gold);padding:.8rem 1rem;border-left:6px solid var(--ar-red);}
+    .ar-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;}
+    .ar-list li{border:2px solid rgba(243,234,216,.25);padding:.95rem 1rem;font-size:.92rem;line-height:1.5;}
+    .ar-list b{display:block;font-family:'Grenze Gotisch',serif;font-size:1.45rem;color:var(--ar-cream);margin-bottom:.15rem;}
+    .ar-lineup{display:flex;flex-wrap:wrap;gap:.6rem;}
+    .ar-lineup span{font:700 .8rem 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;background:var(--ar-red);color:#fff;padding:.7em 1em;border:2px solid var(--ar-cream);}
+    .ar-quote{margin:3.4rem 0 0;background:#000;border:3px solid var(--ar-cream);padding:1.6rem 1.4rem;font:900 clamp(1.1rem,3.6vw,1.6rem)/1.35 'Archivo',sans-serif;text-transform:uppercase;color:#fff;}
+    .ar-ctas{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;}
+    .ar-btn{display:inline-block;font:700 .7rem 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.95em 1.2em;border:2px solid var(--ar-cream);color:var(--ar-cream);background:transparent;}
+    .ar-btn--red{background:var(--ar-red);border-color:var(--ar-red);color:#fff;}
+    .ar-collab{font:.72rem/1.8 'Space Mono',monospace;color:rgba(243,234,216,.7);margin-top:1rem;}
+    @media (max-width:860px){.ar-hero{grid-template-columns:1fr;padding-top:3rem;} .ar-flyer{max-width:360px;}}
+    </style>
+    <div class="music-sub" id="ms-arte">
+      <section class="ar-hero">
+        <div>
+          <div class="ar-pill">Free with a toy or $10 donation · Sober space</div>
+          <h2 class="ar-title">Mi Arte<i>es</i>Resistencia</h2>
+          <div class="ar-sub">An Afro-Latin Jazz Night</div>
+          <p class="ar-lede">A series highlighting musical genres and art forms that emerged from Black, Indigenous and POC communities. Aztlan Libre Galería Morán displays work from local artists capturing the music and forms of expression that developed as resistance to imperialist and colonialist structures. ¡Únete, comunidad!</p>
+          <div class="ar-when"><b>Saturday, December 12 · 5–9 PM</b><span>2076 Logan Ave, San Diego</span></div>
+          <div class="ar-ctas">
+            <a class="ar-btn ar-btn--red" href="https://maps.google.com/?q=2076+Logan+Ave+San+Diego+CA" target="_blank" rel="noopener" data-track="Mi Arte: directions">Get directions ↗</a>
+            <a class="ar-btn" href="images/mi-arte/mi-arte-es-resistencia.ics" download data-track="Mi Arte: add to calendar">Add to calendar</a>
+            <button class="ar-btn" type="button" id="ar-share" data-track="Mi Arte: share">Share</button>
+          </div>
+        </div>
+        <img class="ar-flyer" src="images/mi-arte/flyer.webp" width="1080" height="1350" alt="Mi Arte es Resistencia flyer: An Afro-Latin Jazz Night. December 12, 5 to 9 PM, 2076 Logan Ave, San Diego. One toy per participant or $10 minimum donation towards families separated by ICE.">
+      </section>
+      <div class="ar-wrap">
+        <h3 class="ar-h">Getting in</h3>
+        <div class="ar-entry">
+          <div class="ar-card"><div class="k">Option one</div><div class="v">Bring a toy</div><p>One new, unwrapped toy per participant for the community toy drive.</p></div>
+          <div class="ar-card"><div class="k">Option two</div><div class="v">$10 donation</div><p>A $10 minimum donation at the door, going to families separated by ICE and affected by immigration policies.</p></div>
+        </div>
+        <div class="ar-note">Sober space: respect the space and the surrounding community.</div>
+
+        <h3 class="ar-h">The night</h3>
+        <ul class="ar-list">
+          <li><b>Spoken word poetry</b>Voices from the community.</li>
+          <li><b>Community toy drive</b>For families separated by ICE.</li>
+          <li><b>Art gallery</b>Aztlan Libre Galería Morán shows local artists.</li>
+          <li><b>Speeches</b>From San Diego educators, community members and organizers.</li>
+        </ul>
+
+        <h3 class="ar-h">Performances</h3>
+        <div class="ar-lineup"><span>Los Salvajes</span><span>Nicole Hernandez</span><span>DJ La Crunchy</span><span>La Cachanilla</span></div>
+        <p class="ar-collab">In collaboration with Nexus and the Aztlan Youth Brigade.</p>
+
+        <div class="ar-quote">We must put a definite end to the rule of the kapitalist class! We must put an end to kolonial power!</div>
+      </div>
+    </div>
+    <!-- /MI ARTE -->
     <!-- HOUSE PARTY — nexusglobal.info/#/music/house-party (short link /houseparty)
          Secret venue: the address is never on this page. It opens inside a paid ticket on the day
          (guest-tickets + event_locations), and buyers get a text and email with a link when it does. -->
@@ -7039,6 +7116,7 @@ function nxEventFor(page) {
   if (/music\/nexus-live|afterparty|bass-and-bars|^\/tickets/.test(page)) return 'bass-and-bars-2026';
   if (/film\/reelfilms|reelfilms/.test(page)) return 'reelfilms-dec-2026';
   if (/house-party/.test(page)) return 'house-party-amg';
+  if (/mi-arte|miarte/.test(page)) return 'mi-arte-2026';
   return null;
 }
 function nxTrack(name, o) {
@@ -7377,7 +7455,7 @@ async function nxLoadBB() {
   bar.hidden = false;
   let cardOnScreen = false;
   new IntersectionObserver(es => { cardOnScreen = es[0].isIntersecting; sync(); }).observe(card);
-  function sync() { const onPage = document.getElementById('pg-music').classList.contains('on') && document.getElementById('ms-live').classList.contains('msactive'); bar.classList.toggle('show', onPage && !cardOnScreen && document.getElementById('nx-box').hidden); }
+  function sync() { const onPage = document.getElementById('pg-music').classList.contains('on') && document.getElementById('ms-live').classList.contains('msactive') && /nexus-live/.test(location.hash); bar.classList.toggle('show', onPage && !cardOnScreen && document.getElementById('nx-box').hidden); }
   setInterval(sync, 700);
 }
 /* ── House Party (nexusglobal.info/#/music/house-party): the address is never on this page ── */
@@ -7831,6 +7909,10 @@ async function nxAccountTickets() {
   (r.tickets || []).forEach(t => nxSave(t.order + '.' + t.key));
   return !r.error;
 }
+document.getElementById('ar-share').addEventListener('click', async () => {
+  const data = { title: 'Mi Arte es Resistencia · Dec 12', text: 'An Afro-Latin Jazz Night · Sat, Dec 12, 5–9 PM · 2076 Logan Ave, San Diego. Bring a toy or $10.', url: 'https://nexusglobal.info/miarte' };
+  try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(data.url); document.getElementById('ar-share').textContent = 'Link copied ✓'; } } catch (e) {}
+});
 function nxFromHash() {
   const h = location.hash;
   // Old-style links from before tickets needed this device or an email code: remember the order, open the wallet.
@@ -8417,7 +8499,8 @@ const ROUTES = {
                 'artists':['ms-artists','The Artists'], 'latin-jazz-night':['ms-latin-jazz','Latin Jazz Night'],
                 'uc-series':['ms-uc-series','Campus Series'], 'nex-up':['ms-nex-up','Nex Up'],
                 'nexus-live':['ms-live','Bass & Bars After Party · Nexus Live'],
-                'house-party':['ms-house','House Party · Nexus x Aztec Music Group'] } },
+                'house-party':['ms-house','House Party · Nexus x Aztec Music Group'],
+                'mi-arte-es-resistencia':['ms-arte','Mi Arte es Resistencia · An Afro-Latin Jazz Night'] } },
   'dance':    { page:'pg-dance',    title:'Dance' },
   'fashion':  { page:'pg-fashion',  title:'Fashion Show', subs:{
                 'casting':['fsub-casting','Model Casting'], 'sponsors':['fsub-sponsors','Sponsors'], 'tickets':['fsub-tickets','Tickets'] } },

@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Nexus San Diego//EN
+BEGIN:VEVENT
+UID:mi-arte-es-resistencia-2026@nexusglobal.info
+DTSTAMP:20261117T000000Z
+DTSTART;TZID=America/Los_Angeles:20261212T170000
+DTEND;TZID=America/Los_Angeles:20261212T210000
+SUMMARY:Mi Arte es Resistencia: An Afro-Latin Jazz Night
+LOCATION:2076 Logan Ave, San Diego, CA
+DESCRIPTION:Spoken word, community toy drive, art gallery, performances by Los Salvajes & Nicole Hernandez, DJ La Crunchy & La Cachanilla. Bring one toy or a $10 minimum donation for families separated by ICE. Sober space. https://nexusglobal.info/miarte
+END:VEVENT
+END:VCALENDAR
