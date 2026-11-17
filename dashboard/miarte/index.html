@@ -84,6 +84,8 @@ th{font:700 .66rem 'Space Mono',monospace;text-transform:uppercase;letter-spacin
           <div><b>Processing fee</b>The $1.29 added online covers card processing, so the full $10 goes to families.</div>
         </div>
         <div class="tip">Online total = the "Donations" figure above. Door cash and toy counts are added by the organizers after the event.</div></div>
+      <h2>Where it went</h2>
+      <div class="card" id="wiw"><div class="empty">Results are posted here after December 12, once door donations, merch and toys are counted and redistributed.</div></div>
       <h2>The groups behind the night</h2>
       <div class="card groups">
         <div class="r"><span><b>Nexus</b> · San Diego arts collective: event production, online donations and entry</span></div>
@@ -109,8 +111,19 @@ async function load() {
   const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY, Authorization: 'Bearer ' + KEY }, body: JSON.stringify({ event_slug: EVENT, passcode: pass }) });
   const d = await r.json(); if (d.error === 'wrong_passcode') throw new Error('pass'); if (!r.ok || d.error) throw new Error('load'); return d;
 }
+let lastOnline = 0;
+async function results() {
+  try {
+    const r = await (await fetch('results.json?t=' + Date.now())).json();
+    const total = lastOnline + r.door_cash_cents + r.merch_cents;
+    const head = `<div class="kpis">${kpi('Total raised', money(total), 'online + door + 30% of merch')}${kpi('Online', money(lastOnline), 'live from Nexus')}${kpi('At the door', money(r.door_cash_cents), 'cash donations')}${kpi('Merch (30%)', money(r.merch_cents), 'from tabling groups')}${kpi('Toys collected', r.toys, 'community toy drive')}${r.posted ? kpi('Families supported', r.families, r.children ? r.children + ' children' : '') : ''}</div>`;
+    const log = (r.updates || []).length ? `<h3 style="margin:14px 0 6px;font:700 .7rem 'Space Mono',monospace;text-transform:uppercase">Redistribution log</h3>` + r.updates.map(u => `<div class="r"><span><b>${esc(u.date)}</b> · ${esc(u.text)}</span><b>${u.cents ? money(u.cents) : ''}</b></div>`).join('') : '';
+    $('wiw').innerHTML = r.posted || r.door_cash_cents || r.toys ? head + log : head.replace('</div>', '</div>') + '<div class="tip">Door cash, merch and toy counts are added after December 12. The online total updates live.</div>';
+  } catch (e) {}
+}
 function kpi(l, v, s) { return `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`; }
 function render(d) {
+  lastOnline = d.ticket_cents || 0; setTimeout(results, 0);
   $('title').textContent = d.title; $('when').textContent = d.when + ' · ' + d.where;
   $('upd').textContent = 'Updated ' + new Date(d.generated_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
   $('kpis').innerHTML = kpi('Donations raised', money(d.ticket_cents), 'online, for families · ' + money(d.gross_cents) + ' incl. fees')
