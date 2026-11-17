@@ -711,7 +711,7 @@ body.has-feature #feat-pills{display:flex;}
   <p class="land-tag">The intersection of music, dance, and film</p>
   <button class="land-enter" id="land-enter-btn">Enter</button>
   <button class="land-app" type="button" data-go="pg-app">The Nexus App · Join the list →</button>
-  <div class="land-hint">@n3xus.now &nbsp;·&nbsp; <a href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a href="/terms/">Terms</a> &nbsp;·&nbsp; <a href="/support/">Help</a></div>
+  <div class="land-hint"><a href="#/tickets">My Tickets</a> &nbsp;·&nbsp; @n3xus.now &nbsp;·&nbsp; <a href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a href="/terms/">Terms</a> &nbsp;·&nbsp; <a href="/support/">Help</a></div>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -833,7 +833,7 @@ body.has-feature #feat-pills{display:flex;}
 
   <!-- Bottom bar -->
   <div id="bar">
-    <span>San Diego, CA</span>
+    <a href="#/tickets" class="bar-tix" data-track="Home: My Tickets">🎟 My Tickets</a>
     <button class="bar-app" type="button" data-go="pg-app">The Nexus App →</button>
     <a href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">@n3xus.now</a>
   </div>
@@ -3929,6 +3929,44 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
 #nx-box[data-theme="bb"] #nx-stripe{border:3px solid #141210;background:#fff;box-shadow:5px 5px 0 #141210;}
 @media (prefers-reduced-motion:reduce){ #nx-box[data-theme="bb"] .nx-bb-burst{animation:none;} }
 
+
+/* ── Wallet home + one-event view ── */
+#nx-tix[data-theme="wallet"] .nx-sheet{background:linear-gradient(180deg,#0e1210,#060807);border:1px solid rgba(62,207,90,.35);outline:1px solid rgba(62,207,90,.12);color:#eaf2ea;}
+#nx-tix[data-theme="wallet"] .nx-eb{color:#3ECF5A;}
+#nx-tix[data-theme="wallet"] .nx-h{font-family:'Unbounded',sans-serif;font-weight:900;color:#fff;}
+#nx-tix[data-theme="wallet"] .nx-h em{font-style:normal;color:#3ECF5A;}
+#nx-tix[data-theme="wallet"] .nx-sub{color:rgba(234,242,234,.7);font-family:'Space Mono',monospace;font-style:normal;font-size:.62rem;}
+#nx-tix[data-theme="wallet"] .nx-back,#nx-tix[data-theme="wallet"] .nx-x{color:#eaf2ea;}
+.nx-evcard{display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;width:100%;text-align:left;margin:0 0 1rem;padding:1.2rem 1.2rem 1.1rem;border:0;cursor:none;font:inherit;position:relative;transition:transform .15s;}
+.nx-evcard:hover{transform:translateY(-2px);}
+.nx-evcard-eb{font:700 .55rem 'Space Mono',monospace;letter-spacing:.2em;text-transform:uppercase;}
+.nx-evcard-t{font:400 1.7rem/1 'Anton',sans-serif;text-transform:uppercase;}
+.nx-evcard-d{font:.62rem/1.6 'Space Mono',monospace;}
+.nx-evcard-lock{font:700 .58rem 'Space Mono',monospace;letter-spacing:.06em;margin-top:.2rem;}
+.nx-evcard-go{margin-top:.5rem;font:700 .66rem 'Space Mono',monospace;letter-spacing:.14em;text-transform:uppercase;padding:.6em .9em;}
+.nx-evcard--bb{background:#e7e2d6;color:#141210;border:3px solid #141210;box-shadow:6px 6px 0 #e8372c;background-image:linear-gradient(180deg,#3b7a35 0 2.4rem,transparent 2.4rem);}
+.nx-evcard--bb .nx-evcard-eb{color:#f2dc12;} .nx-evcard--bb .nx-evcard-t{margin-top:.6rem;}
+.nx-evcard--bb .nx-evcard-go{background:#e8372c;color:#fff;border:2px solid #141210;}
+.nx-evcard--hs{background:#4b72a0;color:#f1dfc4;border:6px solid #f1dfc4;outline:2px solid #1d3a5f;}
+.nx-evcard--hs .nx-evcard-go{background:#f1dfc4;color:#1d3a5f;}
+.nx-evcard--reel{background:linear-gradient(180deg,#2a0609,#140304);color:#f3e6cc;border:1px solid #b8913f;}
+.nx-evcard--reel .nx-evcard-t{font-family:'Limelight',serif;color:#f1d58e;text-transform:none;}
+.nx-evcard--reel .nx-evcard-go{background:linear-gradient(180deg,#f1d58e,#c4943c);color:#1a0507;}
+.nx-wback{background:none;border:0;cursor:none;font:700 .62rem 'Space Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:inherit;opacity:.85;margin:0 0 1rem;padding:0;}
+.nx-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:0;margin:0 0 .4rem;}
+.nx-carousel::-webkit-scrollbar{display:none;}
+.nx-carousel>.nx-ticket{flex:0 0 100%;max-width:none;box-sizing:border-box;scroll-snap-align:center;margin:0;}
+.nx-cnav{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin:0 0 .9rem;}
+.nx-cnav button{width:2.4rem;height:2.4rem;border:2px solid currentColor;background:transparent;color:inherit;font-size:1.4rem;line-height:1;cursor:none;}
+.nx-cnav button:disabled{opacity:.25;}
+.nx-cnav span{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;justify-content:center;font:700 .6rem 'Space Mono',monospace;letter-spacing:.14em;text-transform:uppercase;}
+.nx-cnav i{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.3;} .nx-cnav i.on{opacity:1;}
+.nx-cnav b{width:100%;text-align:center;margin-top:.2rem;}
+#nx-tix[data-theme="hs"] .nx-addr{background:#1d3a5f;border:2px dashed #f1dfc4;color:#f1dfc4;}
+#nx-tix[data-theme="hs"] .nx-addr-eb{color:#f1dfc4;}
+#nx-tix[data-theme="hs"] .nx-addr-map{color:#1d3a5f;background:#f1dfc4;}
+#nx-tix[data-theme="bb"] .nx-addr{background:#141210;border:3px solid #141210;box-shadow:5px 5px 0 #e8372c;color:#fff;}
+#nx-tix[data-theme="bb"] .nx-addr-eb{color:#f2dc12;}
 /* Ticket screen themes (after party = flyer green/red/yellow; House Show = flyer blue/cream) */
 #nx-tix[data-theme="bb"]{background:rgba(20,18,16,.8);}
 #nx-tix[data-theme="bb"] .nx-sheet{background:#e7e2d6;background-image:radial-gradient(rgba(20,18,16,.06) 1px,transparent 1.2px);background-size:5px 5px;border:3px solid #141210;outline:none;box-shadow:8px 8px 0 #e8372c;color:#141210;overflow:hidden;isolation:isolate;}
@@ -7064,7 +7102,7 @@ async function nxLoadQuote() {
     const a = document.createElement('button');
     a.type = 'button'; a.id = 'reel-mine'; a.className = 'reel-btn reel-btn--ghost';
     a.textContent = 'View My Tickets';
-    a.onclick = () => { NX.event = 'reelfilms-dec-2026'; nxOpenTickets(); };
+    a.onclick = () => { NX.event = 'reelfilms-dec-2026'; NXW.focus = nxThemeOfSlug(NX.event); nxOpenTickets(); };
     buy.after(a);
   }
 }
@@ -7132,7 +7170,7 @@ document.getElementById('nx-buy-form').addEventListener('submit', async e => {
   try {
     await nxLoad(NX.stripeJs);
     const stripe = Stripe(NX.quote.publishableKey);
-    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { NXA.bought = true; nxTrack('purchase_complete', { event: NX.event }); nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(); } };
+    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { NXW.focus = nxThemeOfSlug(NX.event); NXA.bought = true; nxTrack('purchase_complete', { event: NX.event }); nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(); } };
     nxCheckout = stripe.createEmbeddedCheckoutPage ? await stripe.createEmbeddedCheckoutPage(opts) : await stripe.initEmbeddedCheckout(opts);
     nxHide('nx-buy-form'); nxShow('nx-pay');
     nxCheckout.mount('#nx-stripe');
@@ -7251,8 +7289,8 @@ async function nxLoadHP() {
   buy.textContent = 'Get Tickets →';
   buy.onclick = () => nxOpenBox('house-party-amg');
 }
-document.getElementById('hp-mine').addEventListener('click', () => { NX.event = 'house-party-amg'; nxOpenTickets(); });
-document.getElementById('bb-mine').addEventListener('click', () => { NX.event = 'bass-and-bars-2026'; nxOpenTickets(); });
+document.getElementById('hp-mine').addEventListener('click', () => { NX.event = 'house-party-amg'; NXW.focus = nxThemeOfSlug(NX.event); nxOpenTickets(); });
+document.getElementById('bb-mine').addEventListener('click', () => { NX.event = 'bass-and-bars-2026'; NXW.focus = nxThemeOfSlug(NX.event); nxOpenTickets(); });
 // The page has two views, each with its own link: the night (#/music/nexus-live) and tickets (…/tickets)
 function setBBView(view, push) {
   const el = document.getElementById('ms-live');
@@ -7323,19 +7361,72 @@ function nxLocationCard(o) {
   card.dataset.mark = (t.name || 'Nexus') + '  ·  ';
   return card;
 }
+// Wallet: every event the guest holds tickets for, each in its own look. Tap an event to open its
+// tickets, one at a time (swipe or tap the arrows), like a stadium wallet.
+const NXW = { sel: null, w: null };
+function nxThemeOfSlug(slug) { return /^bass/.test(slug || '') ? 'bb' : /^house/.test(slug || '') ? 'hs' : 'reel'; }
+function nxThemeFor(title) { return /bass|after party/i.test(title || '') ? 'bb' : /house/i.test(title || '') ? 'hs' : 'reel'; }
+function nxGroups(w) {
+  const paid = (w.orders || []).filter(o => o.status === 'paid' && o.tickets && o.tickets.length), m = new Map();
+  paid.forEach(o => {
+    const k = (o.event && (o.event.title + '|' + (o.event.when_text || ''))) || 'nexus';
+    if (!m.has(k)) m.set(k, { key: k, event: o.event || {}, orders: [], tickets: [] });
+    const g = m.get(k); g.orders.push(o); o.tickets.forEach(t => g.tickets.push({ ...t, event: o.event }));
+  });
+  return [...m.values()];
+}
 function nxRenderWallet(w) {
-  const list = document.getElementById('nx-tix-list'), sub = document.getElementById('nx-tix-sub');
+  const list = document.getElementById('nx-tix-list'), sub = document.getElementById('nx-tix-sub'), ov = document.getElementById('nx-tix');
+  const head = document.getElementById('nx-tix-h');
   clearInterval(nxTick);
-  const paid = (w.orders || []).filter(o => o.status === 'paid' && o.tickets && o.tickets.length);
-  const ev = (paid[0] || (w.orders || [])[0] || {}).event;
-  // The ticket screen takes the look of the event the tickets are for
-  const tt = ev && ev.title || '';
-  document.getElementById('nx-tix').dataset.theme = /bass|after party/i.test(tt) ? 'bb' : /house/i.test(tt) ? 'hs' : 'reel';
-  sub.textContent = ev ? [ev.when_text, ev.where_text].filter(Boolean).join(' · ') : '';
+  NXW.w = w;
+  const groups = nxGroups(w);
+  // Just bought? Open straight to that event's tickets.
+  if (NXW.focus) { const g = groups.find(g => nxThemeFor(g.event.title) === NXW.focus); if (g) NXW.sel = g.key; NXW.focus = null; }
+  if (NXW.sel && !groups.some(g => g.key === NXW.sel)) NXW.sel = null;
+  const one = groups.length === 1 ? groups[0] : groups.find(g => g.key === NXW.sel);
   list.innerHTML = '';
-  paid.forEach(o => { if (o.location) list.appendChild(nxLocationCard(o)); });
-  const live = [];
-  const all = paid.flatMap(o => o.tickets.map(t => ({ ...t, event: o.event })));
+  document.getElementById('nx-tix-fine').hidden = !one;
+  document.getElementById('nx-tix-add').hidden = false;
+  if (!groups.length) {
+    ov.dataset.theme = 'reel'; head.innerHTML = 'Your <em>Tickets</em>'; sub.textContent = '';
+    const pending = (w.orders || []).some(o => o.status === 'pending');
+    list.innerHTML = '<div class="nx-wait">' + (pending ? 'Confirming your payment…' : 'No tickets on this device yet') + '</div>';
+    return;
+  }
+  if (!one) {
+    // The wallet home: one card per event
+    ov.dataset.theme = 'wallet'; head.innerHTML = 'My <em>Tickets</em>';
+    const n = groups.reduce((a, g) => a + g.tickets.length, 0);
+    sub.textContent = groups.length + ' events · ' + n + ' tickets';
+    groups.forEach(g => {
+      const c = document.createElement('button');
+      c.type = 'button'; c.className = 'nx-evcard nx-evcard--' + nxThemeFor(g.event.title);
+      const add = (cls, text) => { const d = document.createElement('span'); d.className = cls; d.textContent = text; c.appendChild(d); return d; };
+      add('nx-evcard-eb', g.tickets.length + (g.tickets.length > 1 ? ' tickets' : ' ticket'));
+      add('nx-evcard-t', g.event.title || 'Nexus');
+      add('nx-evcard-d', [g.event.when_text, g.event.where_text].filter(Boolean).join(' · '));
+      const loc = g.orders.find(o => o.location);
+      if (loc) add('nx-evcard-lock', loc.location.released ? '📍 Address unlocked' : '🔒 Secret address');
+      add('nx-evcard-go', 'View tickets →');
+      c.onclick = () => { NXW.sel = g.key; nxRenderWallet(NXW.w); document.querySelector('#nx-tix .nx-sheet').scrollTop = 0; };
+      list.appendChild(c);
+    });
+    return;
+  }
+  // One event: its look, its address, its tickets one at a time
+  ov.dataset.theme = { bb: 'bb', hs: 'hs', reel: 'reel' }[nxThemeFor(one.event.title)];
+  head.innerHTML = 'Your <em>Tickets</em>';
+  sub.textContent = [one.event.when_text, one.event.where_text].filter(Boolean).join(' · ');
+  if (groups.length > 1) {
+    const back = document.createElement('button');
+    back.type = 'button'; back.className = 'nx-wback'; back.textContent = '← All my tickets';
+    back.onclick = () => { NXW.sel = null; nxRenderWallet(NXW.w); };
+    list.appendChild(back);
+  }
+  one.orders.forEach(o => { if (o.location) list.appendChild(nxLocationCard(o)); });
+  const live = [], all = one.tickets;
+  const track = document.createElement('div'); track.className = 'nx-carousel';
   all.forEach((t, i) => {
     const card = document.createElement('div');
     card.className = 'nx-ticket' + (t.status === 'used' ? ' is-used' : '');
@@ -7350,16 +7441,22 @@ function nxRenderWallet(w) {
     if (t.pin) { const p = add('nx-ticket-pin', 'Ticket #'); const b = document.createElement('b'); b.textContent = t.pin.slice(0, 3) + ' ' + t.pin.slice(3); p.appendChild(b); }
     if (t.status === 'used') add('nx-ticket-used', 'Checked in ' + new Date(t.checkedInAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
     if (t.status === 'refunded') add('nx-ticket-used', 'Refunded');
-    list.appendChild(card);
+    track.appendChild(card);
     if (t.status === 'valid') live.push({ t, box, clock, step: null });
     else { box.innerHTML = ''; clock.textContent = t.status === 'used' ? 'Used' : 'Not valid'; }
   });
-  if (!all.length) {
-    const pending = (w.orders || []).some(o => o.status === 'pending');
-    list.innerHTML = '<div class="nx-wait">' + (pending ? 'Confirming your payment…' : 'No tickets on this device yet') + '</div>';
+  list.appendChild(track);
+  if (all.length > 1) {
+    const nav = document.createElement('div'); nav.className = 'nx-cnav';
+    nav.innerHTML = '<button type="button" aria-label="Previous ticket">‹</button><span></span><button type="button" aria-label="Next ticket">›</button>';
+    const [prev, label, next] = nav.children;
+    const at = () => Math.round(track.scrollLeft / track.clientWidth);
+    const show = () => { const i = at(); label.innerHTML = all.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('') + `<b>Ticket ${i + 1} of ${all.length}</b>`; prev.disabled = i === 0; next.disabled = i === all.length - 1; };
+    prev.onclick = () => track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+    next.onclick = () => track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+    track.addEventListener('scroll', () => requestAnimationFrame(show), { passive: true });
+    list.insertBefore(nav, track); show();
   }
-  document.getElementById('nx-tix-fine').hidden = !all.length;
-  document.getElementById('nx-tix-add').hidden = false;
   // A live clock and a new code every 15 seconds, like a ticket on a phone at a stadium.
   const offset = (w.serverTime || Date.now()) - (w.fetchedAt || Date.now());
   const draw = async () => {
@@ -7376,6 +7473,7 @@ function nxRenderWallet(w) {
   if (live.length) { draw(); nxTick = setInterval(draw, 1000); }
 }
 async function nxOpenTickets() {
+  if (!NXW.focus) NXW.sel = null; // the general link opens the wallet home
   if (location.hash !== '#/tickets') history.replaceState(null, '', location.pathname + '#/tickets');
   nxShow('nx-tix');
   document.getElementById('nx-signin').hidden = true; document.getElementById('nx-code').hidden = true;
@@ -8224,7 +8322,7 @@ window.addEventListener('popstate', openRoute);
   if (location.hash.length > 2) return;
   const path = location.pathname.replace(/\/(index\.html)?$/, '').replace(/^\//, '').toLowerCase();
   if (!path) return;
-  const SHORT = { 'tickets': 'music/nexus-live/tickets', 'afterparty': 'music/nexus-live/tickets',
+  const SHORT = { 'tickets': 'tickets', 'wallet': 'tickets', 'mytickets': 'tickets', 'afterparty': 'music/nexus-live/tickets',
                   'after-party': 'music/nexus-live/tickets', 'bassandbars': 'music/nexus-live/tickets',
                   'bass-and-bars': 'music/nexus-live/tickets',
                   'houseparty': 'music/house-party', 'house-party': 'music/house-party' };
