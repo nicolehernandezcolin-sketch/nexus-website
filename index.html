@@ -711,7 +711,7 @@ body.has-feature #feat-pills{display:flex;}
   <p class="land-tag">The intersection of music, dance, and film</p>
   <button class="land-enter" id="land-enter-btn">Enter</button>
   <button class="land-app" type="button" data-go="pg-app">The Nexus App · Join the list →</button>
-  <div class="land-hint"><a href="#/tickets">My Tickets</a> &nbsp;·&nbsp; @n3xus.now &nbsp;·&nbsp; <a href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a href="/terms/">Terms</a> &nbsp;·&nbsp; <a href="/support/">Help</a></div>
+  <div class="land-hint"><a href="#/tickets">My Tickets</a> &nbsp;·&nbsp; <a href="#/account">Sign in / Join</a> &nbsp;·&nbsp; @n3xus.now &nbsp;·&nbsp; <a href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a href="/terms/">Terms</a> &nbsp;·&nbsp; <a href="/support/">Help</a></div>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -833,7 +833,7 @@ body.has-feature #feat-pills{display:flex;}
 
   <!-- Bottom bar -->
   <div id="bar">
-    <a href="#/tickets" class="bar-tix" data-track="Home: My Tickets">🎟 My Tickets</a>
+    <span><a href="#/tickets" class="bar-tix" data-track="Home: My Tickets">🎟 My Tickets</a> &nbsp;·&nbsp; <a href="#/account" data-track="Home: Account">Sign in / Join</a></span>
     <button class="bar-app" type="button" data-go="pg-app">The Nexus App →</button>
     <a href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">@n3xus.now</a>
   </div>
@@ -3930,6 +3930,25 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
 @media (prefers-reduced-motion:reduce){ #nx-box[data-theme="bb"] .nx-bb-burst{animation:none;} }
 
 
+/* ── Nexus account ── */
+#nx-acct .nx-sheet{background:linear-gradient(180deg,#0e1210,#060807);border:1px solid rgba(62,207,90,.35);outline:1px solid rgba(62,207,90,.12);color:#eaf2ea;}
+#nx-acct .nx-eb{color:#3ECF5A;} #nx-acct .nx-h{font-family:'Unbounded',sans-serif;font-weight:900;color:#fff;} #nx-acct .nx-h em{font-style:normal;color:#3ECF5A;}
+#nx-acct .nx-x,#nx-acct .nx-back{color:#eaf2ea;} #nx-acct .nx-fine a{color:inherit;text-decoration:underline;}
+.nx-acct-lede{text-align:center;font-family:'Space Mono',monospace;font-size:.68rem;line-height:1.7;color:rgba(234,242,234,.8);margin:.6rem 0 1.2rem;}
+.nx-perks{list-style:none;margin:0 0 1.2rem;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45rem;}
+.nx-perks li{border:1px solid rgba(62,207,90,.25);padding:.55rem .6rem;font-family:'Inter',system-ui,sans-serif;font-size:.62rem;line-height:1.35;color:rgba(234,242,234,.7);letter-spacing:0;}
+.nx-perks b{display:block;color:#fff;font-weight:700;font-size:.7rem;margin-bottom:.15rem;}
+.nx-perks li::before{content:'✦';color:#3ECF5A;font-size:.6rem;}
+.nx-acct-form{display:grid;gap:.7rem;}
+#nx-acct .nx-in{background:#151b17;border:1px solid rgba(62,207,90,.35);color:#fff;}
+#nx-acct .nx-btn{background:#3ECF5A;color:#06140a;}
+.nx-in--code{text-align:center;font-family:'Space Mono',monospace;font-size:1.4rem;letter-spacing:.4em;}
+.nx-join{display:block;width:100%;text-align:left;margin:0 0 1rem;padding:1rem 1.1rem;border:1px solid rgba(62,207,90,.45);background:rgba(62,207,90,.08);color:inherit;font:inherit;cursor:none;}
+.nx-join b{display:block;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#3ECF5A;margin-bottom:.25rem;}
+.nx-join span{font-size:.82rem;line-height:1.45;}
+.nx-join u{display:inline-block;margin-top:.5rem;font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;background:#3ECF5A;color:#06140a;padding:.5em .8em;}
+#nx-tix[data-theme="bb"] .nx-join{border-color:#141210;background:#fff;} #nx-tix[data-theme="bb"] .nx-join b{color:#3b7a35;} #nx-tix[data-theme="bb"] .nx-join u{background:#e8372c;color:#fff;}
+#nx-tix[data-theme="hs"] .nx-join{border-color:#f1dfc4;background:rgba(29,58,95,.5);} #nx-tix[data-theme="hs"] .nx-join b{color:#f1dfc4;} #nx-tix[data-theme="hs"] .nx-join u{background:#f1dfc4;color:#1d3a5f;}
 /* ── Wallet home + one-event view ── */
 #nx-tix[data-theme="wallet"] .nx-sheet{background:linear-gradient(180deg,#0e1210,#060807);border:1px solid rgba(62,207,90,.35);outline:1px solid rgba(62,207,90,.12);color:#eaf2ea;}
 #nx-tix[data-theme="wallet"] .nx-eb{color:#3ECF5A;}
@@ -6238,6 +6257,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
       <label class="nx-check"><input type="checkbox" name="optin"> <span>Text and email me about future Nexus events. Optional, not required to buy. Msg frequency varies; msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. See <a href="/terms/#texts" target="_blank" rel="noopener">Terms</a>.</span></label>
       <p class="nx-fine">We use your email and phone to deliver your tickets and reach you about this event. Up to 4 tickets per person.</p>
       <p class="nx-final"><b>All sales are final. Tickets are non-refundable.</b></p>
+      <p class="nx-fine nx-hint">No account needed. After checkout you can save your tickets to a free Nexus account.</p>
       <p class="nx-fine nx-agree">By continuing, you agree to the Nexus <a href="/terms/" target="_blank" rel="noopener">Terms</a> (including event entry, ID and photo rules) and <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       <p class="nx-err" id="nx-buy-err" role="alert"></p>
       <button class="nx-btn" type="submit" id="nx-buy-go">Continue to Payment →</button>
@@ -6263,6 +6283,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
       <input class="nx-in" type="email" name="email" placeholder="Email" autocomplete="email" required>
       <button class="nx-btn" type="submit">Send My Code →</button>
       <p class="nx-err" role="alert"></p>
+      <button class="nx-back nx-back--c" type="button" onclick="nxHide('nx-tix'); nxOpenAccount();">Have a Nexus account? Sign in →</button>
     </form>
     <form class="nx-signin" id="nx-code" hidden novalidate>
       <p class="nx-signin-p" id="nx-code-p">Check your email for a 6-digit code.</p>
@@ -6273,6 +6294,47 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
     </form>
     <p class="nx-fine" id="nx-tix-fine" hidden>Show this live ticket at the door. The QR code changes every few seconds, so screenshots and forwarded copies won't scan. No signal or dead battery? Just give the door your name.</p>
     <button class="nx-back nx-back--c" type="button" id="nx-tix-add" hidden>Bought more tickets with another email? Add them</button>
+  </div>
+</div>
+<!-- Nexus account (website now, the Nexus app at launch): nexusglobal.info/#/account -->
+<div class="nx-ov" id="nx-acct" hidden role="dialog" aria-modal="true" aria-labelledby="nx-acct-h" data-theme="wallet">
+  <div class="nx-sheet nx-sheet--acct">
+    <button class="nx-x" type="button" data-nx-close aria-label="Close">✕</button>
+    <div class="nx-eb">Nexus Account</div>
+    <h2 class="nx-h" id="nx-acct-h">Join <em>Nexus</em></h2>
+    <div id="nx-acct-out">
+      <p class="nx-acct-lede">Free, no password. Keep every ticket in one place and get in first.</p>
+      <ul class="nx-perks">
+        <li><b>All your tickets, one wallet</b>Open them on any phone, any time.</li>
+        <li><b>Faster checkout</b>Your name and email are filled in for you.</li>
+        <li><b>First to know</b>Early access to new events and presales.</li>
+        <li><b>Ready for the Nexus app</b>The same login works in the app when it launches.</li>
+      </ul>
+      <form id="nx-acct-email" class="nx-acct-form">
+        <input class="nx-in" name="name" autocomplete="name" placeholder="First name (optional)">
+        <input class="nx-in" name="email" type="email" autocomplete="email" placeholder="Email" required>
+        <p class="nx-err" role="alert"></p>
+        <button class="nx-btn" type="submit">Email me a code →</button>
+        <p class="nx-fine">Already bought tickets? Use the same email and they'll appear in your account. By continuing you agree to the <a href="/terms/" target="_blank" rel="noopener">Terms</a> and <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+      </form>
+      <form id="nx-acct-code" class="nx-acct-form" hidden>
+        <p class="nx-acct-lede" id="nx-acct-sent"></p>
+        <input class="nx-in nx-in--code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6-digit code" required>
+        <p class="nx-err" role="alert"></p>
+        <button class="nx-btn" type="submit">Sign in →</button>
+        <button class="nx-back nx-back--c" type="button" id="nx-acct-redo">Use a different email</button>
+      </form>
+    </div>
+    <div id="nx-acct-in" hidden>
+      <p class="nx-acct-lede" id="nx-acct-hi"></p>
+      <button class="nx-btn" type="button" id="nx-acct-tix">🎟 My Tickets →</button>
+      <form id="nx-acct-name" class="nx-acct-form" style="margin-top:1.2rem">
+        <input class="nx-in" name="name" autocomplete="name" placeholder="Your name">
+        <button class="nx-back nx-back--c" type="submit">Save name</button>
+      </form>
+      <p class="nx-fine">Your Nexus account works here and in the Nexus app when it launches. Questions: <a href="mailto:now@nexusglobal.info">now@nexusglobal.info</a></p>
+      <button class="nx-back nx-back--c" type="button" id="nx-acct-out-btn">Sign out</button>
+    </div>
   </div>
 </div>
 
@@ -7133,6 +7195,13 @@ function nxOpenBox(slug) {
   document.getElementById('nx-buy-err').textContent = '';
   nxShow('nx-buy-form'); nxHide('nx-pay'); nxShow('nx-box');
   setTimeout(() => document.querySelector('#nx-buy-form [name=fullname]').focus(), 50);
+  // Signed-in members: name and email filled in for them
+  nxSession().then(sess => {
+    if (!sess) return;
+    const f = document.getElementById('nx-buy-form'), name = (sess.user.user_metadata || {}).name || '';
+    if (!f.email.value) f.email.value = sess.user.email;
+    if (!f.fullname.value && name) f.fullname.value = name;
+  });
 }
 document.querySelectorAll('[data-qty]').forEach(b => b.addEventListener('click', () => {
   nxQty = Math.max(1, Math.min(NX.quote.limit, nxQty + Number(b.dataset.qty))); nxRenderQty();
@@ -7150,6 +7219,7 @@ document.getElementById('nx-buy-form').addEventListener('submit', async e => {
   e.preventDefault();
   const f = e.target, err = document.getElementById('nx-buy-err'), go = document.getElementById('nx-buy-go');
   const name = f.fullname.value.trim(), email = f.email.value.trim(), phone = f.phone.value.trim();
+  nxLastEmail(email.toLowerCase());
   if (name.length < 2) { err.textContent = 'Please enter your full name.'; f.fullname.focus(); return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'Please enter a valid email address.'; f.email.focus(); return; }
   if (phone.replace(/\D/g, '').length < 10) { err.textContent = 'Please enter your mobile number.'; f.phone.focus(); return; }
@@ -7394,7 +7464,16 @@ function nxRenderWallet(w) {
     list.innerHTML = '<div class="nx-wait">' + (pending ? 'Confirming your payment…' : 'No tickets on this device yet') + '</div>';
     return;
   }
+  const join = () => {
+    if (NXW.signedIn) return;
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'nx-join'; b.dataset.track = 'Wallet: join Nexus';
+    b.innerHTML = '<b>Save these to your free Nexus account</b><span>Open your tickets on any phone, check out faster next time, and keep them when the Nexus app launches. No password.</span><br><u>Create my account →</u>';
+    b.onclick = () => { nxHide('nx-tix'); nxOpenAccount(); };
+    list.appendChild(b);
+  };
   if (!one) {
+    join();
     // The wallet home: one card per event
     ov.dataset.theme = 'wallet'; head.innerHTML = 'My <em>Tickets</em>';
     const n = groups.reduce((a, g) => a + g.tickets.length, 0);
@@ -7457,6 +7536,7 @@ function nxRenderWallet(w) {
     track.addEventListener('scroll', () => requestAnimationFrame(show), { passive: true });
     list.insertBefore(nav, track); show();
   }
+  join();
   // A live clock and a new code every 15 seconds, like a ticket on a phone at a stadium.
   const offset = (w.serverTime || Date.now()) - (w.fetchedAt || Date.now());
   const draw = async () => {
@@ -7479,6 +7559,10 @@ async function nxOpenTickets() {
   document.getElementById('nx-signin').hidden = true; document.getElementById('nx-code').hidden = true;
   const list = document.getElementById('nx-tix-list');
   clearTimeout(nxPoll);
+  // Signed in to a Nexus account: every ticket bought with that email comes with it
+  const acct = await nxSession();
+  if (acct) await nxAccountTickets();
+  NXW.signedIn = !!acct;
   const refs = nxSaved().map(r => { const [order, key] = String(r).split('.'); return { order, key }; }).filter(r => r.order && r.key);
   if (!refs.length) { nxSigninStep('email'); return; }
   const cached = nxWalletCache();
@@ -7635,11 +7719,77 @@ document.querySelectorAll('.nx-ov [data-nx-close]').forEach(b => b.addEventListe
   ov.hidden = true;
   if (ov.id !== 'nx-box') { history.replaceState(null, '', location.pathname + (NX_EVENTS[NX.event] || NX_EVENTS['reelfilms-dec-2026']).back); openRoute(); }
 }));
+/* ── Nexus account: free, email code, no password. The same Supabase login the Nexus app uses. ── */
+function nxSupa() {
+  if (!window.__nxSupa && window.supabase) window.__nxSupa = window.supabase.createClient('https://ljmeugrvvuxglwfyhxhj.supabase.co', NXA.key, { auth: { storageKey: 'nx-account', persistSession: true, autoRefreshToken: true } });
+  return window.__nxSupa;
+}
+async function nxSession() { try { const sb = nxSupa(); if (!sb) return null; const { data } = await sb.auth.getSession(); return data.session; } catch (e) { return null; } }
+function nxLastEmail(v) { try { if (v) localStorage.setItem('nx_email', v); return localStorage.getItem('nx_email') || ''; } catch (e) { return ''; } }
+async function nxOpenAccount(email) {
+  if (location.hash !== '#/account') history.replaceState(null, '', location.pathname + '#/account');
+  nxShow('nx-acct');
+  const sess = await nxSession();
+  document.getElementById('nx-acct-out').hidden = !!sess;
+  document.getElementById('nx-acct-in').hidden = !sess;
+  document.getElementById('nx-acct-h').innerHTML = sess ? 'My <em>Nexus</em>' : 'Join <em>Nexus</em>';
+  if (sess) {
+    const name = (sess.user.user_metadata || {}).name || '';
+    document.getElementById('nx-acct-hi').textContent = (name ? 'Hi ' + name + ' · ' : '') + sess.user.email;
+    document.querySelector('#nx-acct-name [name=name]').value = name;
+  } else {
+    document.getElementById('nx-acct-email').hidden = false; document.getElementById('nx-acct-code').hidden = true;
+    const f = document.querySelector('#nx-acct-email [name=email]'); f.value = email || nxLastEmail() || f.value;
+  }
+  nxTrack('account_view', { label: sess ? 'signed in' : 'join' });
+}
+document.getElementById('nx-acct-email').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, err = f.querySelector('.nx-err'), btn = f.querySelector('.nx-btn');
+  const email = f.email.value.trim().toLowerCase(), name = f.name.value.trim();
+  err.textContent = ''; btn.disabled = true; btn.textContent = 'Sending…';
+  const { error } = await nxSupa().auth.signInWithOtp({ email, options: { shouldCreateUser: true, data: name ? { name } : undefined } });
+  btn.disabled = false; btn.textContent = 'Email me a code →';
+  if (error) { err.textContent = /rate|seconds/i.test(error.message) ? 'Please wait a minute, then try again.' : 'Couldn’t send the code. Check the email and try again.'; return; }
+  nxLastEmail(email); NXW.acctEmail = email;
+  document.getElementById('nx-acct-sent').textContent = 'We sent a 6-digit code to ' + email + '. It can take a minute; check Promotions or Spam too.';
+  f.hidden = true; document.getElementById('nx-acct-code').hidden = false;
+  setTimeout(() => document.querySelector('#nx-acct-code [name=code]').focus(), 50);
+  nxTrack('account_code_sent');
+});
+document.getElementById('nx-acct-code').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, err = f.querySelector('.nx-err'), btn = f.querySelector('.nx-btn');
+  err.textContent = ''; btn.disabled = true; btn.textContent = 'Checking…';
+  const { error } = await nxSupa().auth.verifyOtp({ email: NXW.acctEmail, token: f.code.value.replace(/\D/g, ''), type: 'email' });
+  btn.disabled = false; btn.textContent = 'Sign in →';
+  if (error) { err.textContent = 'That code didn’t work. Check it, or send a new one.'; return; }
+  f.code.value = ''; nxTrack('account_signed_in');
+  await nxAccountTickets();
+  nxOpenAccount();
+});
+document.getElementById('nx-acct-redo').onclick = () => { document.getElementById('nx-acct-code').hidden = true; document.getElementById('nx-acct-email').hidden = false; };
+document.getElementById('nx-acct-tix').onclick = () => { nxHide('nx-acct'); nxOpenTickets(); };
+document.getElementById('nx-acct-out-btn').onclick = async () => { await nxSupa().auth.signOut(); nxTrack('account_signed_out'); nxOpenAccount(); };
+document.getElementById('nx-acct-name').addEventListener('submit', async e => {
+  e.preventDefault(); const name = e.target.name.value.trim();
+  await nxSupa().auth.updateUser({ data: { name } });
+  const sess = await nxSession(); if (sess) await nxSupa().from('profiles').update({ name }).eq('id', sess.user.id);
+  nxOpenAccount();
+});
+// Signed in: pull every ticket bought with the account's email onto this device.
+async function nxAccountTickets() {
+  const sess = await nxSession(); if (!sess) return false;
+  const r = await nxCall('guest-tickets', { mode: 'account', accessToken: sess.access_token });
+  (r.tickets || []).forEach(t => nxSave(t.order + '.' + t.key));
+  return !r.error;
+}
 function nxFromHash() {
   const h = location.hash;
   // Old-style links from before tickets needed this device or an email code: remember the order, open the wallet.
   if (h.startsWith('#/ticket/')) { nxSave(h.slice(9)); nxOpenTickets(); return true; }
   if (h === '#/tickets') { nxOpenTickets(); return true; }
+  if (h === '#/account') { nxOpenAccount(); return true; }
   if (h === '#/door' || h.startsWith('#/door/')) { nxOpenDoor(h.slice(7)); return true; }
   return false;
 }
