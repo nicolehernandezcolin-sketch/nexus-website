@@ -515,6 +515,22 @@ body.has-feature #feat-pills{display:flex;}
 }
 #bar a:hover{color:var(--green);}
 .land-hint a{color:inherit;text-decoration:none;cursor:none;} .land-hint a:hover{color:var(--green);}
+
+/* Noti: Noter Sessions' character, floating on home */
+#noti{position:fixed;left:18px;bottom:calc(110px + env(safe-area-inset-bottom));z-index:26;display:flex;align-items:flex-end;gap:6px;text-decoration:none;cursor:none;opacity:0;transition:opacity 1s ease 3.5s;flex-direction:row-reverse;}
+#home.on #noti{opacity:1;}
+.noti-body{width:54px;height:61px;animation:notiBob 3.2s ease-in-out infinite;transform-origin:50% 100%;filter:drop-shadow(0 0 12px rgba(197,243,124,.35));}
+#noti:hover .noti-body{animation:notiWiggle .6s ease-in-out infinite;}
+.noti-bubble{font:700 .52rem/1.4 'Space Mono',monospace;letter-spacing:.04em;color:#1F201C;background:#C5F37C;padding:.55em .8em;border-radius:12px 12px 12px 2px;max-width:150px;margin-bottom:38px;box-shadow:0 6px 18px rgba(0,0,0,.35);
+  opacity:0;transform:translateY(6px) scale(.95);transition:opacity .25s,transform .25s;pointer-events:none;}
+.noti-bubble b{font-weight:700;text-decoration:underline;}
+#noti:hover .noti-bubble,#noti:focus-visible .noti-bubble,#noti.say .noti-bubble{opacity:1;transform:none;}
+@keyframes notiBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-7px) rotate(3deg)}}
+@keyframes notiWiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+@media (max-width:640px){#noti{left:12px;top:118px;bottom:auto;align-items:center;} .noti-body{width:42px;height:48px;} .noti-bubble{margin-bottom:0;border-radius:12px 12px 12px 2px;}
+  #legal-line{letter-spacing:.1em;padding:0 10px;line-height:1.9;bottom:.4rem;} #legal-line a{margin:0 .35em;}
+  #bar{bottom:2.3rem !important;font-size:.46rem;letter-spacing:.1em;padding:0 12px;gap:12px;} #bar > a[href*='instagram']{display:none;} #bar .bar-app{font-size:inherit;letter-spacing:inherit;}}
+@media (prefers-reduced-motion:reduce){.noti-body,#noti:hover .noti-body{animation:none;}}
 /* Noter Sessions: sister-product promo */
 .ns-promo{margin:3.5rem auto 2rem;max-width:720px;text-align:center;padding:2.4rem 1.4rem;background:#3E4A26;border-radius:22px;box-shadow:0 18px 40px rgba(31,32,28,.18);}
 .ns-eb{font:700 .58rem 'Space Mono',monospace;letter-spacing:.26em;text-transform:uppercase;color:rgba(197,243,124,.85);}
@@ -802,6 +818,20 @@ body.has-feature #feat-pills{display:flex;}
   <div id="feat-moon" role="group" aria-label="This month's events"></div>
   <nav id="feat-pills" aria-label="Get tickets"></nav>
 
+  <!-- Noti (Noter Sessions): tap to visit notersessions.com. Swap the SVG for Noti's real artwork when ready. -->
+  <a id="noti" href="https://notersessions.com/?utm_source=nexus&amp;utm_medium=website&amp;utm_campaign=noti" target="_blank" rel="noopener" data-track="Noti: Noter Sessions" aria-label="Noti from Noter Sessions, the collaborative session app. Visit notersessions.com">
+    <span class="noti-bubble">Hi, I'm Noti! Jam with me on <b>Noter Sessions</b> →</span>
+    <svg class="noti-body" viewBox="0 0 64 72" aria-hidden="true">
+      <ellipse cx="32" cy="68" rx="16" ry="3" fill="rgba(0,0,0,.35)"/>
+      <rect x="40" y="6" width="5" height="40" rx="2.5" fill="#C5F37C"/>
+      <path d="M45 6c8 2 13 8 12 16-3-5-7-7-12-7z" fill="#C5F37C"/>
+      <circle cx="30" cy="46" r="17" fill="#C5F37C"/>
+      <circle cx="24" cy="44" r="3.2" fill="#1F201C"/><circle cx="36" cy="44" r="3.2" fill="#1F201C"/>
+      <circle cx="25" cy="43" r="1" fill="#fff"/><circle cx="37" cy="43" r="1" fill="#fff"/>
+      <path d="M25 51q5 5 10 0" stroke="#1F201C" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <circle cx="19" cy="50" r="2.6" fill="#f39fb0" opacity=".7"/><circle cx="41" cy="50" r="2.6" fill="#f39fb0" opacity=".7"/>
+    </svg>
+  </a>
   <!-- PLANETS -->
   <a class="planet" id="p-music"   data-go="pg-music"   href="#" style="--fd:7.2s;--fo:0s;">
     <div class="orb"><div class="orb-dot"></div></div>
@@ -6221,7 +6251,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
       <section class="ns-promo" data-track-view="Noter Sessions promo">
         <div class="ns-eb">Also from the team behind Nexus</div>
         <h2 class="ns-h">Noter <em>Sessions</em></h2>
-        <p class="ns-p">Our sister product. If you make things with other people, take a look at what we're building next door.</p>
+        <p class="ns-p">The collaborative session app from the team behind Nexus. Get your people in one room, make something together, and keep every idea from the session.</p>
         <a class="ns-btn" href="https://notersessions.com/?utm_source=nexus&amp;utm_medium=website" target="_blank" rel="noopener" data-track="Noter Sessions: App page">Visit Noter Sessions ↗</a>
       </section>
       <footer class="app-foot">
@@ -6388,7 +6418,7 @@ document.addEventListener('mousemove', e => {
   cur.style.left = mouseX + 'px';
   cur.style.top  = mouseY + 'px';
 });
-document.querySelectorAll('#feat-moon .fm-slice,a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model,.artist-card,.orig-card,.dancer-profile,.move-card,.inv-card,.tcard,#globe,#nxs,.fest-card,.glob-member,.glob-role-card').forEach(el => {
+document.querySelectorAll('#noti,#feat-moon .fm-slice,a,button,.lr,.dp,.fg,.fc,.planet,.gball,.runway-model,.artist-card,.orig-card,.dancer-profile,.move-card,.inv-card,.tcard,#globe,#nxs,.fest-card,.glob-member,.glob-role-card').forEach(el => {
   el.addEventListener('mouseenter', () => cur.classList.add('h'));
   el.addEventListener('mouseleave', () => cur.classList.remove('h'));
 });
@@ -6781,6 +6811,7 @@ setTimeout(() => {
   const b = document.getElementById('bar');
   if(b){ b.style.transition='opacity 1.2s ease'; b.style.opacity='1'; }
   const ll = document.getElementById('legal-line'); if (ll) ll.classList.add('show');
+  const nt = document.getElementById('noti'); if (nt) { setTimeout(() => nt.classList.add('say'), 2500); setTimeout(() => nt.classList.remove('say'), 7500); }
 }, 3500);
 setTimeout(() => {
   const nh = document.getElementById('nav-hint');
