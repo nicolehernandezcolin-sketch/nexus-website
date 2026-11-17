@@ -2221,7 +2221,6 @@ body.has-feature #feat-pills{display:flex;}
             <div class="bb-price" id="bb-price">$15</div>
             <div class="bb-d" id="bb-price-d">First 60 tickets. Then $20 general admission.</div>
             <div class="bb-left" id="bb-left"></div>
-            <div class="bb-meter" id="bb-meter" hidden><i id="bb-meter-fill"></i></div>
             <div class="bb-clock" id="bb-clock" hidden></div>
             <button class="bb-btn bb-btn--pulse" type="button" id="bb-buy" data-track="After party: Get Tickets (card)">Get Tickets →</button>
             <ul class="bb-perks2"><li>Ticket on your phone in 1 minute</li><li>Up to 4 per person</li><li>21+ with ID</li></ul>
@@ -7125,11 +7124,9 @@ function nxShowBB(q) {
   else if (q.next) d += ' Goes up to $' + q.next.price + ' + fee on ' + new Date(q.next.from).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'America/Los_Angeles' }) + '.';
   else if (q.tier.until) d += ' Online sales close at ' + new Date(q.tier.until).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles' }) + '. $30 at the door.';
   set('bb-price-d', d);
-  set('bb-left', q.left !== null ? (q.left <= 20 ? 'Only ' + q.left + ' early bird tickets left' : q.left + ' early bird tickets left') : '');
+  set('bb-left', '');
   document.querySelectorAll('#bb-ladder li[data-tier]').forEach(li => li.classList.toggle('is-now', li.dataset.tier === q.tier.id));
   // Early bird progress (real numbers from the ticket server)
-  const meter = document.getElementById('bb-meter');
-  if (q.left !== null && q.tier.id === 'early') { meter.hidden = false; document.getElementById('bb-meter-fill').style.width = Math.max(4, (60 - q.left) / 60 * 100) + '%'; }
   // Countdown to the next price change, or to online sales closing
   const until = q.tier.until ? Date.parse(q.tier.until) : null, clock = document.getElementById('bb-clock');
   const what = q.next ? 'Price goes up in' : 'Online sales close in';
@@ -7143,7 +7140,7 @@ function nxShowBB(q) {
     };
     tick(); nxShowBB.t = setInterval(tick, 1000);
   }
-  document.getElementById('bb-sticky-price').textContent = nxMoney2(q.allInCents) + ' · ' + q.tier.name + (q.left !== null && q.left <= 20 ? ' · ' + q.left + ' left' : '');
+  document.getElementById('bb-sticky-price').textContent = nxMoney2(q.allInCents) + ' · ' + q.tier.name ;
 }
 async function nxLoadBB() {
   const buy = document.getElementById('bb-buy');
