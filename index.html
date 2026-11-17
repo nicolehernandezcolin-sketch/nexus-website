@@ -6748,7 +6748,7 @@ const NX_EVENTS = {
     door: 'House Party · Nexus × AMG', back: '#/music/house-party', ends: '2099-01-01T00:00:00Z' },
 };
 const NX = {
-  fn: 'https://valeivzqquetjjhspgjk.supabase.co/functions/v1/',
+  fn: 'https://ljmeugrvvuxglwfyhxhj.supabase.co/functions/v1/',
   event: 'reelfilms-2026',
   quotes: {},
   stripeJs: 'https://js.stripe.com/endive/stripe.js',
@@ -6831,8 +6831,9 @@ document.addEventListener('click', e => {
 
 const nxMoney = c => '$' + (c / 100).toFixed(2).replace(/\.00$/, '');
 const nxMoney2 = c => '$' + (c / 100).toFixed(2);
-// Which ticket server an event sells through. Events on Nexus's own Supabase project list it here.
-const NX_FN_BY_EVENT = { 'house-party-amg': 'https://ljmeugrvvuxglwfyhxhj.supabase.co/functions/v1/' };
+// Every event sells through Nexus's own Supabase project (NX.fn). REELFilms (Nov 14) sold on the
+// earlier server, so its tickets are still looked up there.
+const NX_FN_BY_EVENT = { 'reelfilms-2026': 'https://valeivzqquetjjhspgjk.supabase.co/functions/v1/' };
 async function nxCall(name, body) {
   const ev = (body && body.event) || NX.event;
   try {
