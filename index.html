@@ -3908,6 +3908,37 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 #nx-box[data-theme="bb"] .nx-back{color:#141210;font-weight:700;}
 #nx-box[data-theme="bb"] #nx-stripe{border:3px solid #141210;background:#fff;box-shadow:5px 5px 0 #141210;}
 @media (prefers-reduced-motion:reduce){ #nx-box[data-theme="bb"] .nx-bb-burst{animation:none;} }
+
+/* Ticket screen themes (after party = flyer green/red/yellow; House Show = flyer blue/cream) */
+#nx-tix[data-theme="bb"]{background:rgba(20,18,16,.8);}
+#nx-tix[data-theme="bb"] .nx-sheet{background:#e7e2d6;background-image:radial-gradient(rgba(20,18,16,.06) 1px,transparent 1.2px);background-size:5px 5px;border:3px solid #141210;outline:none;box-shadow:8px 8px 0 #e8372c;color:#141210;overflow:hidden;isolation:isolate;}
+#nx-tix[data-theme="bb"] .nx-sheet::before{content:'';position:absolute;left:0;right:0;top:0;height:11rem;background:#3b7a35;z-index:-1;clip-path:polygon(0 0,100% 0,100% 82%,70% 100%,35% 86%,0 96%);}
+#nx-tix[data-theme="bb"] .nx-x{color:#141210;background:#fff;border:3px solid #141210;box-shadow:2px 2px 0 #141210;}
+#nx-tix[data-theme="bb"] .nx-eb{font-family:'Space Mono',monospace;font-weight:700;color:#e7e2d6;background:#141210;display:table;margin:0 auto;padding:.5em .9em;}
+#nx-tix[data-theme="bb"] .nx-h{font-family:'Anton',sans-serif;text-transform:uppercase;color:#fff;text-shadow:3px 3px 0 #141210;letter-spacing:.01em;}
+#nx-tix[data-theme="bb"] .nx-h em{font-family:'Anton',sans-serif;font-style:normal;color:#f2dc12;}
+#nx-tix[data-theme="bb"] .nx-sub{font-family:'Space Mono',monospace;font-style:normal;font-weight:700;font-size:.6rem;color:#fff;background:#141210;display:table;margin:.8rem auto 1.8rem;padding:.4em .8em;}
+#nx-tix[data-theme="bb"] .nx-ticket{background:#fff;color:#141210;border:3px solid #141210;box-shadow:6px 6px 0 #141210;}
+#nx-tix[data-theme="bb"] .nx-ticket-eb{color:#e8372c;font-weight:700;}
+#nx-tix[data-theme="bb"] .nx-ticket-t{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.9rem;line-height:1;text-align:center;}
+#nx-tix[data-theme="bb"] .nx-ticket-n{font-family:'Archivo',sans-serif;font-weight:800;}
+#nx-tix[data-theme="bb"] .nx-ticket-tier{background:#f2dc12;border:2px solid #141210;padding:.3em .6em;opacity:1;font-weight:700;}
+#nx-tix[data-theme="bb"] .nx-ticket-pin b{color:#141210;}
+#nx-tix[data-theme="bb"] .nx-live{background:linear-gradient(90deg,#3b7a35,#f2dc12,#e8372c,#f2dc12,#3b7a35);background-size:200% 100%;}
+#nx-tix[data-theme="hs"] .nx-live{background:linear-gradient(90deg,#1d3a5f,#f1dfc4,#4b72a0,#f1dfc4,#1d3a5f);background-size:200% 100%;}
+#nx-tix[data-theme="bb"] .nx-fine{color:#4a443d;}
+#nx-tix[data-theme="bb"] .nx-back{color:#141210;}
+#nx-tix[data-theme="hs"]{background:rgba(16,32,56,.8);}
+#nx-tix[data-theme="hs"] .nx-sheet{background:#4b72a0;border:10px solid #f1dfc4;outline:none;color:#f1dfc4;}
+#nx-tix[data-theme="hs"] .nx-x{color:#f1dfc4;}
+#nx-tix[data-theme="hs"] .nx-eb{color:#f1dfc4;}
+#nx-tix[data-theme="hs"] .nx-h,#nx-tix[data-theme="hs"] .nx-h em{font-family:'Anton',sans-serif;text-transform:uppercase;color:#f1dfc4;font-style:normal;}
+#nx-tix[data-theme="hs"] .nx-sub{color:#f1dfc4;font-style:normal;font-family:'Space Mono',monospace;font-size:.6rem;}
+#nx-tix[data-theme="hs"] .nx-ticket{background:#f1dfc4;color:#1d3a5f;}
+#nx-tix[data-theme="hs"] .nx-ticket-eb{color:#2c5585;}
+#nx-tix[data-theme="hs"] .nx-ticket-t{font-family:'Anton',sans-serif;text-transform:uppercase;}
+#nx-tix[data-theme="hs"] .nx-ticket-pin b{color:#1d3a5f;}
+#nx-tix[data-theme="hs"] .nx-fine,#nx-tix[data-theme="hs"] .nx-back{color:#f1dfc4;}
 .nx-ticket{background:#f3e6cc;color:#2a0609;margin:0 auto 1.4rem;max-width:340px;display:flex;flex-direction:column;align-items:center;padding:1.4rem 1.2rem 1.2rem;position:relative;
   -webkit-mask:radial-gradient(circle 12px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;
   mask:radial-gradient(circle 12px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;}
@@ -7275,6 +7306,9 @@ function nxRenderWallet(w) {
   clearInterval(nxTick);
   const paid = (w.orders || []).filter(o => o.status === 'paid' && o.tickets && o.tickets.length);
   const ev = (paid[0] || (w.orders || [])[0] || {}).event;
+  // The ticket screen takes the look of the event the tickets are for
+  const tt = ev && ev.title || '';
+  document.getElementById('nx-tix').dataset.theme = /bass|after party/i.test(tt) ? 'bb' : /house/i.test(tt) ? 'hs' : 'reel';
   sub.textContent = ev ? [ev.when_text, ev.where_text].filter(Boolean).join(' · ') : '';
   list.innerHTML = '';
   paid.forEach(o => { if (o.location) list.appendChild(nxLocationCard(o)); });
