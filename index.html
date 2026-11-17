@@ -514,6 +514,11 @@ body.has-feature #feat-pills{display:flex;}
   transition:color .2s;
 }
 #bar a:hover{color:var(--green);}
+.land-hint a{color:inherit;text-decoration:none;cursor:none;} .land-hint a:hover{color:var(--green);}
+/* Legal line, always reachable from home */
+#legal-line{position:fixed;bottom:.55rem;left:0;right:0;text-align:center;z-index:50;font-size:.42rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.42);opacity:0;transition:opacity 1s ease;}
+#legal-line a{color:inherit;text-decoration:none;cursor:none;margin:0 .5em;} #legal-line a:hover{color:var(--green);}
+#home.on #legal-line,#legal-line.show{opacity:1;}
 
 /* date line top centre */
 #topdate{
@@ -706,7 +711,7 @@ body.has-feature #feat-pills{display:flex;}
   <p class="land-tag">The intersection of music, dance, and film</p>
   <button class="land-enter" id="land-enter-btn">Enter</button>
   <button class="land-app" type="button" data-go="pg-app">The Nexus App · Join the list →</button>
-  <div class="land-hint">@n3xus.now</div>
+  <div class="land-hint">@n3xus.now &nbsp;·&nbsp; <a href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a href="/terms/">Terms</a> &nbsp;·&nbsp; <a href="/support/">Help</a></div>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -832,6 +837,7 @@ body.has-feature #feat-pills{display:flex;}
     <button class="bar-app" type="button" data-go="pg-app">The Nexus App →</button>
     <a href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">@n3xus.now</a>
   </div>
+  <div id="legal-line">© 2026 Nexus · Noter LLC <a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/support/">Help</a></div>
 
 </div><!-- /home -->
 
@@ -3834,6 +3840,8 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
 .nx-check{display:flex;gap:.7rem;align-items:flex-start;font-size:.54rem;line-height:1.7;color:rgba(243,230,204,.75);}
 .nx-check input{margin-top:.25rem;accent-color:#c4943c;}
 .nx-fine{font-size:.5rem;line-height:1.8;color:rgba(243,230,204,.55);text-align:center;}
+.nx-agree a,.nx-check a{color:inherit;text-decoration:underline;cursor:none;}
+body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
 .nx-err{min-height:1em;font-size:.58rem;line-height:1.6;color:#ff9a8a;text-align:center;}
 .nx-btn{background:linear-gradient(180deg,#f1d58e,#c4943c);color:#1a0507;border:none;padding:1.05rem 1.4rem;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;}
 .nx-btn:disabled{opacity:.55;}
@@ -6177,9 +6185,10 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
       <input class="nx-in" name="email" type="email" autocomplete="email" placeholder="Email (we send your tickets here)" required>
       <input class="nx-in" name="phone" type="tel" autocomplete="tel" placeholder="Mobile number" required>
       <input class="nx-hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label class="nx-check"><input type="checkbox" name="optin"> Text and email me about future Nexus events. Optional. Msg &amp; data rates may apply; reply STOP to opt out.</label>
+      <label class="nx-check"><input type="checkbox" name="optin"> <span>Text and email me about future Nexus events. Optional, not required to buy. Msg frequency varies; msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. See <a href="/terms/#texts" target="_blank" rel="noopener">Terms</a>.</span></label>
       <p class="nx-fine">We use your email and phone to deliver your tickets and reach you about this event. Up to 4 tickets per person.</p>
       <p class="nx-final"><b>All sales are final. Tickets are non-refundable.</b></p>
+      <p class="nx-fine nx-agree">By continuing, you agree to the Nexus <a href="/terms/" target="_blank" rel="noopener">Terms</a> (including event entry, ID and photo rules) and <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       <p class="nx-err" id="nx-buy-err" role="alert"></p>
       <button class="nx-btn" type="submit" id="nx-buy-go">Continue to Payment →</button>
       <div class="nx-powered">Nexus Ticketing · Payments secured by Stripe</div>
@@ -6646,6 +6655,7 @@ setTimeout(() => {
 setTimeout(() => {
   const b = document.getElementById('bar');
   if(b){ b.style.transition='opacity 1.2s ease'; b.style.opacity='1'; }
+  const ll = document.getElementById('legal-line'); if (ll) ll.classList.add('show');
 }, 3500);
 setTimeout(() => {
   const nh = document.getElementById('nav-hint');
