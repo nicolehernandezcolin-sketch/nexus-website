@@ -119,6 +119,26 @@ code{font-family:'Space Mono',monospace;font-size:.8em;background:var(--bg);padd
       <div class="card"><h3>Campaigns</h3><div class="list" id="campaigns"></div></div>
     </div>
 
+    <h2>Customer behaviour · last 30 days</h2>
+    <div class="grid kpis" id="bh-kpis"></div>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><h3>Inside checkout: where people stop</h3><div id="bh-checkout"></div>
+        <div class="tip">"Closed without buying" = opened the ticket box and left. The field list shows the last thing they filled in before leaving.</div></div>
+      <div class="card"><h3>Last field filled before leaving</h3><div class="list" id="bh-fields"></div>
+        <h3 style="margin-top:18px">Errors people hit</h3><div class="scroll"><table id="bh-errors"></table></div></div>
+      <div class="card"><h3>Where visits start (landing page)</h3><div class="scroll"><table id="bh-landing"></table></div></div>
+      <div class="card"><h3>Time on page (engaged)</h3><div class="scroll"><table id="bh-time"></table></div>
+        <div class="tip">Counts only while the tab is open and someone is scrolling or tapping.</div></div>
+      <div class="card"><h3>How far people scroll</h3><div class="scroll"><table id="bh-scroll"></table></div></div>
+      <div class="card"><h3>Sections people actually saw</h3><div class="list" id="bh-sections"></div></div>
+      <div class="card"><h3>Visits by hour (San Diego time)</h3><div id="bh-hours"></div></div>
+      <div class="card"><h3>Links that leave the site</h3><div class="scroll"><table id="bh-out"></table></div>
+        <h3 style="margin-top:18px">Promo codes tried</h3><div class="scroll"><table id="bh-promo"></table></div></div>
+      <div class="card"><h3>Screens</h3><div class="list" id="bh-screens"></div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>Recent visits, step by step</h3><div class="scroll"><table id="bh-journeys"></table></div>
+      <div class="tip">Anonymous: each row is one visit (no names). ✓ = opened checkout, ★ = bought.</div></div>
+
     <h2>How this works</h2>
     <div class="card explain">
       <p><b>Every number here comes from the same place the tickets do.</b> When someone taps <i>Get Tickets</i>, the Nexus ticket server records an order, then opens a Stripe checkout for that exact order. When Stripe takes the money it tells our server, and the order turns <span class="chip paid">paid</span> and the buyer's QR tickets are issued.</p>
@@ -155,6 +175,37 @@ async function load() {
   if (!r.ok) throw new Error(j.message || 'load');
   return j;
 }
+async function loadBehavior() {
+  const r = await fetch(API.replace('sales_dashboard', 'behavior_dashboard'), { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY, Authorization: 'Bearer ' + KEY }, body: JSON.stringify({ passcode: pass }) });
+  return r.ok ? r.json() : null;
+}
+function renderBehavior(b) {
+  if (!b || b.error) return;
+  const secs = s => s >= 60 ? Math.floor(s / 60) + 'm ' + Math.round(s % 60) + 's' : Math.round(s || 0) + 's';
+  $('bh-kpis').innerHTML = kpi('Visits', num(b.sessions)) + kpi('Returning visits', num(b.returning_sessions), pct(b.returning_sessions, b.sessions) + ' came back')
+    + kpi('Left after 1 page', (b.bounce_rate ?? 0) + '%') + kpi('Typical visit length', secs(b.median_seconds)) + kpi('Pages per visit', b.pages_per_session ?? 0);
+  const tbl = (id, head, rows) => { $(id).innerHTML = '<tr>' + head.map(h => `<th${h[1] ? ' class="num"' : ''}>${h[0]}</th>`).join('') + '</tr>' + (rows.join('') || `<tr><td colspan="${head.length}" class="empty">Nothing yet.</td></tr>`); };
+  const names = { 'bass-and-bars-2026': 'After party', 'house-party-amg': 'House Show', 'reelfilms-2026': 'REELFilms' };
+  $('bh-checkout').innerHTML = (b.checkout_steps || []).filter(c => names[c.event]).map(c => {
+    const steps = [['Opened ticket box', c.opened], ['Started typing', c.started_form], ['Submitted details', c.submitted_form], ['Payment opened', c.payment_opened], ['Paid', c.paid, 'pay']];
+    const top = Math.max(1, ...steps.map(x => x[1]));
+    return `<div class="funnel" style="margin-bottom:14px"><b>${names[c.event]}</b>` + steps.map(x => `<div class="row"><span>${x[0]}</span><div class="track"><div class="fill ${x[2] || ''}" style="width:${x[1] / top * 100}%"></div></div><span class="n">${num(x[1])}</span></div>`).join('')
+      + `<div class="tip">${num(c.closed_without_buying)} closed the box without buying</div></div>`;
+  }).join('') || '<div class="empty">Nobody has opened a ticket box yet.</div>';
+  const fieldName = { fullname: 'Name', email: 'Email', phone: 'Phone', optin: 'Updates checkbox' };
+  $('bh-fields').innerHTML = (b.last_field_before_leaving || []).map(f => `<div class="r"><span>${esc(fieldName[f.field] || f.field)}</span><span>${num(f.sessions)}</span></div>`).join('') || '<div class="empty">Nothing yet.</div>';
+  tbl('bh-errors', [['Error'], ['Page'], ['Times', 1]], (b.errors || []).map(e => `<tr><td>${esc(e.error)}</td><td class="meta">${esc(e.page)}</td><td class="num">${num(e.times)}</td></tr>`));
+  tbl('bh-landing', [['First page'], ['Visits', 1], ['To checkout', 1]], (b.landing_pages || []).map(l => `<tr><td>${esc(l.page)}</td><td class="num">${num(l.sessions)}</td><td class="num">${num(l.went_to_checkout)}</td></tr>`));
+  tbl('bh-time', [['Page'], ['Avg time', 1], ['People', 1]], (b.time_on_page || []).map(t => `<tr><td>${esc(t.page)}</td><td class="num">${secs(t.avg_seconds)}</td><td class="num">${num(t.people)}</td></tr>`));
+  tbl('bh-scroll', [['Page'], ['25%', 1], ['50%', 1], ['75%', 1], ['End', 1]], (b.scroll || []).map(x => `<tr><td>${esc(x.page)}</td><td class="num">${x.p25}</td><td class="num">${x.p50}</td><td class="num">${x.p75}</td><td class="num">${x.p100}</td></tr>`));
+  $('bh-sections').innerHTML = (b.sections_seen || []).map(x => `<div class="r"><span>${esc(x.section)}</span><span>${num(x.people)}</span></div>`).join('') || '<div class="empty">Nothing yet.</div>';
+  const hrs = Array.from({ length: 24 }, (_, h) => ((b.hours || []).find(x => x.hour === h) || {}).visits || 0), mh = Math.max(1, ...hrs);
+  $('bh-hours').innerHTML = `<div class="bars">${hrs.map((v, h) => `<div style="height:${v / mh * 100}%" title="${h}:00 – ${v} visits"></div>`).join('')}</div><div class="bars-x"><span>12 AM</span><span>12 PM</span><span>11 PM</span></div>`;
+  tbl('bh-out', [['To'], ['Link'], ['Clicks', 1]], (b.outbound || []).map(o => `<tr><td>${esc(o.to)}</td><td class="meta">${esc(o.label)}</td><td class="num">${num(o.clicks)}</td></tr>`));
+  tbl('bh-promo', [['Code'], ['Result'], ['Tries', 1]], (b.promo_codes || []).map(o => `<tr><td>${esc(o.code)}</td><td class="meta">${esc(o.result)}</td><td class="num">${num(o.tries)}</td></tr>`));
+  $('bh-screens').innerHTML = Object.entries(b.screens || {}).map(([k, v]) => `<div class="r"><span>${esc(k)}</span><span>${num(v)}</span></div>`).join('') || '<div class="empty">Nothing yet.</div>';
+  tbl('bh-journeys', [['Started'], ['Path'], ['Time', 1], ['']], (b.recent_journeys || []).map(j => `<tr><td>${when(j.started)}</td><td style="font-size:.78rem">${esc(j.path || j.landing)}</td><td class="num">${secs(j.seconds)}</td><td>${j.bought ? '★' : j.went_to_checkout ? '✓' : ''}</td></tr>`));
+}
 async function open() {
   $('gate-err').textContent = '';
   try {
@@ -162,7 +213,8 @@ async function open() {
     try { sessionStorage.setItem('nx_dash', pass); } catch (e) {}
     $('gate').hidden = true; $('app').hidden = false;
     render();
-    clearInterval(timer); timer = setInterval(async () => { try { data = await load(); render(); } catch (e) {} }, 60000);
+    loadBehavior().then(renderBehavior).catch(() => {});
+    clearInterval(timer); timer = setInterval(async () => { try { data = await load(); render(); renderBehavior(await loadBehavior()); } catch (e) {} }, 60000);
   } catch (e) {
     $('gate').hidden = false; $('app').hidden = true;
     $('gate-err').textContent = e.message === 'pass' ? 'That passcode isn’t right.'

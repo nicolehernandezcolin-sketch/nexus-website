@@ -2068,6 +2068,29 @@ body.has-feature #feat-pills{display:flex;}
     .bb-wrap{max-width:1180px;margin:0 auto;padding:0 2rem 5rem;}
     .bb-tix{display:grid;grid-template-columns:1fr 1.25fr;gap:2rem;align-items:stretch;margin-top:1rem;}
     .bb-card{background:#fff;border:3px solid var(--bb-ink);box-shadow:8px 8px 0 var(--bb-ink);padding:2rem 1.8rem;position:relative;}
+    .bb-card--hot{box-shadow:8px 8px 0 var(--bb-red);}
+    .bb-card--hot::before{content:'Selling now';position:absolute;top:-14px;right:18px;font-family:'Space Mono',monospace;font-weight:700;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;background:var(--bb-red);color:#fff;padding:.45em .8em;border:2px solid var(--bb-ink);transform:rotate(2deg);}
+    .bb-faces{display:flex;align-items:center;gap:0;margin:-.4rem 0 1.1rem;}
+    .bb-faces img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:50% 25%;border:2px solid var(--bb-ink);margin-right:-10px;background:var(--bb-yel);}
+    .bb-faces span{margin-left:18px;font-family:'Archivo',sans-serif;font-size:.78rem;line-height:1.3;color:#3a3530;}
+    .bb-faces b{color:var(--bb-ink);}
+    .bb-meter{height:10px;border:2px solid var(--bb-ink);background:#f3efe4;margin-top:.7rem;overflow:hidden;}
+    .bb-meter i{display:block;height:100%;background:linear-gradient(90deg,var(--bb-red),var(--bb-or));transition:width 1s ease;}
+    .bb-clock{white-space:nowrap;margin-top:.8rem;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.06em;color:var(--bb-ink);}
+    .bb-clock b{display:inline-block;min-width:1.8em;text-align:center;background:var(--bb-ink);color:var(--bb-yel);padding:.15em .3em;margin:0 .1em;}
+    .bb-btn--pulse{animation:bbPulse 2.2s ease-in-out infinite;}
+    @keyframes bbPulse{0%,100%{box-shadow:4px 4px 0 var(--bb-ink)}50%{box-shadow:4px 4px 0 var(--bb-ink),0 0 0 8px rgba(232,55,44,.18)}}
+    .bb-perks2{list-style:none;margin:.9rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem;}
+    .bb-perks2 li{font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--bb-ink);padding:.35em .6em;}
+    .bb-perks2 li::before{content:'✓ ';color:var(--bb-green);}
+    .bb-sticky{--bb-yel:#f2dc12;--bb-red:#e8372c;--bb-ink:#141210;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:9000;display:flex;align-items:center;justify-content:space-between;gap:12px;
+      background:var(--bb-yel);border:3px solid var(--bb-ink);box-shadow:5px 5px 0 var(--bb-ink);padding:.6rem .7rem .6rem 1rem;max-width:560px;margin:0 auto;
+      transform:translateY(140%);transition:transform .35s ease;}
+    .bb-sticky.show{transform:none;}
+    .bb-sticky b{display:block;font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:.85rem;color:var(--bb-ink);}
+    .bb-sticky span{font-family:'Space Mono',monospace;font-size:.62rem;color:#3a3530;}
+    .bb-sticky button{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:.85rem;color:#fff;background:var(--bb-red);border:3px solid var(--bb-ink);padding:.7em 1em;white-space:nowrap;cursor:none;}
+    @media (prefers-reduced-motion:reduce){.bb-btn--pulse{animation:none;}}
     .bb-k{font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--bb-green);}
     .bb-price{font-family:'Anton',sans-serif;font-size:clamp(3rem,7vw,4.6rem);line-height:1;margin:.4rem 0 .5rem;}
     .bb-d{font-family:'Instrument Sans',sans-serif;font-size:.86rem;line-height:1.55;color:#3a3530;}
@@ -2189,12 +2212,19 @@ body.has-feature #feat-pills{display:flex;}
 
       <div class="bb-wrap">
         <div class="bb-tix" id="bb-tickets">
-          <div class="bb-card">
+          <div class="bb-card bb-card--hot">
+            <div class="bb-faces" aria-label="Live sets from Deleon Nox, Nur, 30 Foez and ThaSpeakerBoxx">
+              <img src="images/bass-and-bars/deleon-nox.webp?v=2" alt=""><img src="images/bass-and-bars/nur.webp?v=2" alt=""><img src="images/bass-and-bars/30-foez.webp?v=2" alt=""><img src="images/bass-and-bars/thaspeakerboxx.webp?v=3" alt="">
+              <span><b>4 live sets</b> · Deleon Nox, Nur, 30 Foez, ThaSpeakerBoxx</span>
+            </div>
             <div class="bb-k" id="bb-tier">Tickets · Early Bird</div>
             <div class="bb-price" id="bb-price">$15</div>
             <div class="bb-d" id="bb-price-d">First 60 tickets. Then $20 general admission.</div>
             <div class="bb-left" id="bb-left"></div>
-            <button class="bb-btn" type="button" id="bb-buy">Get Tickets →</button>
+            <div class="bb-meter" id="bb-meter" hidden><i id="bb-meter-fill"></i></div>
+            <div class="bb-clock" id="bb-clock" hidden></div>
+            <button class="bb-btn bb-btn--pulse" type="button" id="bb-buy" data-track="After party: Get Tickets (card)">Get Tickets →</button>
+            <ul class="bb-perks2"><li>Ticket on your phone in 1 minute</li><li>Up to 4 per person</li><li>21+ with ID</li></ul>
             <button class="bb-btn bb-btn--ghost" type="button" id="bb-mine">View My Tickets</button>
             <div class="bb-perks"><b>Your ticket</b><br>Sent to your email and kept on your phone, with a live QR code that changes every few seconds, so it can't be copied. Up to 4 per person. 21+ with ID.<br><b>All sales are final. Tickets are non-refundable.</b></div>
           </div>
@@ -2250,6 +2280,10 @@ body.has-feature #feat-pills{display:flex;}
           <div><b>Questions</b>Email <a href="mailto:now@nexusglobal.info?subject=Bass%20%26%20Bars%20After%20Party">now@nexusglobal.info</a> or DM <a href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">@n3xus.now</a>.</div>
         </div>
         <div class="bb-close"><a class="bb-btn" href="#/music/nexus-live/tickets" data-bb-view="tickets" style="text-decoration:none;">Get Tickets →</a></div>
+        <div class="bb-sticky" id="bb-sticky" hidden>
+          <div><b>After Party · Thu Nov 19</b><span id="bb-sticky-price">Tickets online</span></div>
+          <button type="button" id="bb-sticky-buy" data-track="After party: Get Tickets (sticky bar)">Get Tickets →</button>
+        </div>
         <div class="bb-see"><a href="#/music/nexus-live" data-bb-view="home">See the lineup and the night →</a></div>
       </div>
     </div>
@@ -6783,6 +6817,16 @@ const NXA = {
   }
   NXA.src = src;
   NXA.device = /iPad|Tablet/i.test(navigator.userAgent) ? 'tablet' : /Mobi|Android|iPhone/i.test(navigator.userAgent) ? 'phone' : 'desktop';
+  // New vs returning: count visits on this browser (a visit = a new tab session)
+  let visits = 1;
+  try {
+    visits = Number(localStorage.getItem('nx_visits') || 0);
+    if (!sessionStorage.getItem('nx_counted')) { visits += 1; localStorage.setItem('nx_visits', visits); sessionStorage.setItem('nx_counted', '1'); }
+  } catch (e) {}
+  NXA.meta = { w: window.innerWidth, h: window.innerHeight, returning: visits > 1, visit: visits,
+    lang: (navigator.language || '').slice(0, 10), host: location.hostname };
+  // Only the real site is counted, never local copies or previews
+  NXA.on = /(^|\.)nexusglobal\.info$/.test(location.hostname);
 })();
 function nxPageName() {
   const h = location.hash.replace(/^#\/?/, '');
@@ -6804,7 +6848,9 @@ function nxTrack(name, o) {
     p_label: o.label ? String(o.label).slice(0, 120) : null, p_event: o.event || nxEventFor(page),
     p_referrer: NXA.src.r || null, p_utm_source: NXA.src.s || null, p_utm_medium: NXA.src.m || null,
     p_utm_campaign: NXA.src.c || null, p_device: NXA.device,
+    p_value: o.value != null ? o.value : null, p_meta: Object.assign({}, NXA.meta, o.meta || {}),
   };
+  if (!NXA.on) return;
   try {
     fetch(NXA.url, { method: 'POST', keepalive: true,
       headers: { 'Content-Type': 'application/json', apikey: NXA.key, Authorization: 'Bearer ' + NXA.key },
@@ -6827,7 +6873,71 @@ document.addEventListener('click', e => {
   if (!el) return;
   const label = el.dataset.track || el.getAttribute('aria-label') || (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim() || el.id || el.tagName.toLowerCase();
   nxTrack('click', { label: label.slice(0, 80) });
+  // Links that leave the site (Spotify, Linktree, Instagram, maps…)
+  if (el.tagName === 'A' && el.href && el.host && el.host !== location.host) nxTrack('outbound', { label: label.slice(0, 80), meta: { host: el.host } });
 }, true);
+
+/* ── Behaviour: how far people scroll, how long they stay, what they see, where checkout loses them ── */
+(function () {
+  // Scroll depth (25/50/75/100%) per page, from whichever panel is scrolling
+  let marks = {};
+  document.addEventListener('scroll', e => {
+    const el = e.target === document ? document.scrollingElement : e.target;
+    if (!el || el.scrollHeight <= el.clientHeight + 40) return;
+    const pct = Math.round((el.scrollTop + el.clientHeight) / el.scrollHeight * 100), page = nxPageName();
+    [25, 50, 75, 100].forEach(m => { if (pct >= m - 2 && !marks[page + m]) { marks[page + m] = 1; nxTrack('scroll', { page, value: m, label: m + '%' }); } });
+  }, true);
+  // Engaged time on each page: counts only while the tab is visible and someone touched it in the last 30s
+  let last = Date.now(), secs = 0, page = null;
+  ['pointerdown', 'keydown', 'scroll', 'touchstart', 'mousemove'].forEach(t => addEventListener(t, () => { last = Date.now(); }, { passive: true, capture: true }));
+  setInterval(() => {
+    const now = nxPageName();
+    if (now !== page) { page = now; secs = 0; }
+    if (document.visibilityState === 'visible' && Date.now() - last < 30000) {
+      secs += 5;
+      if (secs === 10 || secs % 15 === 0) nxTrack('engaged', { page, value: secs });
+    }
+  }, 5000);
+  // Sections people actually see (on screen for at least a second)
+  const VIEW = { '#bb-tickets': 'After party: ticket card', '.bb-lineup': 'After party: lineup', '.bb-night': 'After party: the night',
+    '.bb-sponsors': 'After party: sponsors', '.bb-info': 'After party: good to know', '#hp-tickets': 'House Show: ticket card',
+    '.hp-steps': 'House Show: how it works', '.hp-faq': 'House Show: FAQ', '#feat-moon': 'Home: event moon', '#feat-pills': 'Home: ticket buttons',
+    '.artist-grid': 'Music: artist grid', '#film-reel': 'Film: REELFilms' };
+  const seen = {}, timers = new Map();
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    const name = en.target.dataset.trackView;
+    if (en.isIntersecting) timers.set(en.target, setTimeout(() => { if (!seen[name]) { seen[name] = 1; nxTrack('section_view', { label: name }); } }, 1000));
+    else clearTimeout(timers.get(en.target));
+  }), { threshold: 0.35 });
+  const watch = () => {
+    Object.entries(VIEW).forEach(([sel, name]) => document.querySelectorAll(sel).forEach(el => { if (!el.dataset.trackView) el.dataset.trackView = name; }));
+    document.querySelectorAll('[data-track-view]').forEach(el => { if (!el._nxw) { el._nxw = 1; io.observe(el); } });
+  };
+  watch(); setTimeout(watch, 4000);
+  // Checkout form: started, which fields got filled, submitted, errors, promo codes, closed without buying
+  const form = document.getElementById('nx-buy-form');
+  let started = false;
+  if (form) {
+    form.addEventListener('focusin', () => { if (!started) { started = true; nxTrack('form_start', { event: NX.event }); } });
+    form.addEventListener('change', e => { if (e.target.name && e.target.name !== 'company') nxTrack('form_field', { event: NX.event, label: e.target.name + (e.target.value ? '' : ' (cleared)') }); });
+    form.addEventListener('submit', () => nxTrack('form_submit', { event: NX.event, value: typeof nxQty !== 'undefined' ? nxQty : null }), true);
+    const err = document.getElementById('nx-buy-err');
+    if (err) new MutationObserver(() => { const t = err.textContent.trim(); if (t) nxTrack('checkout_error', { event: NX.event, label: t.slice(0, 120) }); }).observe(err, { childList: true, characterData: true, subtree: true });
+    const pm = document.getElementById('nx-promo-msg'), pin = document.getElementById('nx-promo-in');
+    if (pm) new MutationObserver(() => { const t = pm.textContent.trim(); if (t && pin && pin.value) nxTrack('promo_try', { event: NX.event, label: pin.value.trim().slice(0, 30), meta: { result: t.slice(0, 60) } }); }).observe(pm, { childList: true, characterData: true, subtree: true });
+  }
+  const box = document.getElementById('nx-box');
+  if (box) {
+    let wasOpen = false;
+    new MutationObserver(() => {
+      if (!box.hidden) { wasOpen = true; started = false; return; }
+      if (wasOpen && !NXA.bought) nxTrack('checkout_close', { event: NX.event });
+      wasOpen = false; NXA.bought = false;
+    }).observe(box, { attributes: true, attributeFilter: ['hidden'] });
+  }
+  // Site errors, so broken buttons show up on the dashboard
+  addEventListener('error', e => nxTrack('js_error', { label: String(e.message || 'error').slice(0, 120) }));
+})();
 
 const nxMoney = c => '$' + (c / 100).toFixed(2).replace(/\.00$/, '');
 const nxMoney2 = c => '$' + (c / 100).toFixed(2);
@@ -6968,7 +7078,7 @@ document.getElementById('nx-buy-form').addEventListener('submit', async e => {
   try {
     await nxLoad(NX.stripeJs);
     const stripe = Stripe(NX.quote.publishableKey);
-    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { nxTrack('purchase_complete', { event: NX.event }); nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(); } };
+    const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { NXA.bought = true; nxTrack('purchase_complete', { event: NX.event }); nxOrderRef = null; nxCheckout = null; nxHide('nx-box'); nxOpenTickets(); } };
     nxCheckout = stripe.createEmbeddedCheckoutPage ? await stripe.createEmbeddedCheckoutPage(opts) : await stripe.initEmbeddedCheckout(opts);
     nxHide('nx-buy-form'); nxShow('nx-pay');
     nxCheckout.mount('#nx-stripe');
@@ -7015,6 +7125,23 @@ function nxShowBB(q) {
   set('bb-price-d', d);
   set('bb-left', q.left !== null ? (q.left <= 20 ? 'Only ' + q.left + ' early bird tickets left' : q.left + ' early bird tickets left') : '');
   document.querySelectorAll('#bb-ladder li[data-tier]').forEach(li => li.classList.toggle('is-now', li.dataset.tier === q.tier.id));
+  // Early bird progress (real numbers from the ticket server)
+  const meter = document.getElementById('bb-meter');
+  if (q.left !== null && q.tier.id === 'early') { meter.hidden = false; document.getElementById('bb-meter-fill').style.width = Math.max(4, (60 - q.left) / 60 * 100) + '%'; }
+  // Countdown to the next price change, or to online sales closing
+  const until = q.tier.until ? Date.parse(q.tier.until) : null, clock = document.getElementById('bb-clock');
+  const what = q.next ? 'Price goes up in' : 'Online sales close in';
+  clearInterval(nxShowBB.t);
+  if (until) {
+    const tick = () => {
+      let ms = until - Date.now(); if (ms <= 0) { clock.hidden = true; return; }
+      const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, sec = Math.floor(ms / 1e3) % 60;
+      clock.hidden = false;
+      clock.innerHTML = what + ' ' + (d ? '<b>' + d + '</b>d ' : '') + '<b>' + h + '</b>h <b>' + String(m).padStart(2, '0') + '</b>m <b>' + String(sec).padStart(2, '0') + '</b>s';
+    };
+    tick(); nxShowBB.t = setInterval(tick, 1000);
+  }
+  document.getElementById('bb-sticky-price').textContent = nxMoney2(q.allInCents) + ' · ' + q.tier.name + (q.left !== null && q.left <= 20 ? ' · ' + q.left + ' left' : '');
 }
 async function nxLoadBB() {
   const buy = document.getElementById('bb-buy');
@@ -7036,6 +7163,15 @@ async function nxLoadBB() {
   nxShowBB(q);
   buy.textContent = 'Get Tickets →';
   buy.onclick = () => nxOpenBox('bass-and-bars-2026');
+  // Sticky buy bar on the after party pages, hidden while the ticket card itself is on screen
+  const bar = document.getElementById('bb-sticky'), card = document.getElementById('bb-tickets');
+  document.getElementById('bb-sticky-buy').onclick = () => nxOpenBox('bass-and-bars-2026');
+  document.body.appendChild(bar); // fixed to the screen, outside the page's scroll container
+  bar.hidden = false;
+  let cardOnScreen = false;
+  new IntersectionObserver(es => { cardOnScreen = es[0].isIntersecting; sync(); }).observe(card);
+  function sync() { const onPage = document.getElementById('pg-music').classList.contains('on') && document.getElementById('ms-live').classList.contains('msactive'); bar.classList.toggle('show', onPage && !cardOnScreen && document.getElementById('nx-box').hidden); }
+  setInterval(sync, 700);
 }
 /* ── House Party (nexusglobal.info/#/music/house-party): the address is never on this page ── */
 async function nxLoadHP() {
