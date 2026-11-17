@@ -2219,7 +2219,7 @@ body.has-feature #feat-pills{display:flex;}
             </div>
             <div class="bb-k" id="bb-tier">Tickets · Early Bird</div>
             <div class="bb-price" id="bb-price">$15</div>
-            <div class="bb-d" id="bb-price-d">First 60 tickets. Then $20 general admission.</div>
+            <div class="bb-d" id="bb-price-d">Early bird price. Then $20 general admission.</div>
             <div class="bb-left" id="bb-left"></div>
             <div class="bb-clock" id="bb-clock" hidden></div>
             <button class="bb-btn bb-btn--pulse" type="button" id="bb-buy" data-track="After party: Get Tickets (card)">Get Tickets →</button>
@@ -2230,7 +2230,7 @@ body.has-feature #feat-pills{display:flex;}
           <div class="bb-card">
             <div class="bb-k">Every Price</div>
             <ul class="bb-ladder" id="bb-ladder">
-              <li data-tier="early"><b>Early Bird</b><span>$15</span><small>First 60 tickets, online</small></li>
+              <li data-tier="early"><b>Early Bird</b><span>$15</span><small>Online, while it lasts</small></li>
               <li data-tier="general"><b>General Admission</b><span>$20</span><small>Online, through Nov 18</small></li>
               <li data-tier="dayof"><b>Day Of</b><span>$25</span><small>Online on Nov 19, until 9:30 PM</small></li>
               <li class="is-door"><b>At the Door</b><span>$30</span><small>If any spots are left. Buy online and save.</small></li>
@@ -7120,7 +7120,7 @@ function nxShowBB(q) {
   set('bb-tier', 'Tickets · ' + q.tier.name);
   set('bb-price', nxMoney2(q.allInCents));
   let d = nxMoney(q.unitCents) + ' ticket + ' + nxMoney2(q.feeCents) + ' fee.';
-  if (q.left !== null && q.after) d += ' First 60 tickets, then ' + nxMoney(q.after.price * 100) + ' + fee.';
+  if (q.left !== null && q.after) d += ' Early bird price, then ' + nxMoney(q.after.price * 100) + ' + fee.';
   else if (q.next) d += ' Goes up to $' + q.next.price + ' + fee on ' + new Date(q.next.from).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'America/Los_Angeles' }) + '.';
   else if (q.tier.until) d += ' Online sales close at ' + new Date(q.tier.until).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles' }) + '. $30 at the door.';
   set('bb-price-d', d);
