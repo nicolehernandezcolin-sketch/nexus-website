@@ -119,6 +119,15 @@ code{font-family:'Space Mono',monospace;font-size:.8em;background:var(--bg);padd
       <div class="card"><h3>Campaigns</h3><div class="list" id="campaigns"></div></div>
     </div>
 
+    <h2>Nexus members · app-ready accounts</h2>
+    <div class="grid kpis" id="mb-kpis"></div>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><h3>New members per day</h3><div id="mb-chart"></div></div>
+      <div class="card"><h3>Joining Nexus</h3><div class="list" id="mb-funnel"></div>
+        <div class="tip">Members sign in with an email code on nexusglobal.info. The same login carries over to the Nexus app at launch, along with their tickets.</div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>Newest members</h3><div class="scroll"><table id="mb-recent"></table></div></div>
+
     <h2>Customer behaviour · last 30 days</h2>
     <div class="grid kpis" id="bh-kpis"></div>
     <div class="grid two" style="margin-top:12px">
@@ -175,6 +184,23 @@ async function load() {
   if (!r.ok) throw new Error(j.message || 'load');
   return j;
 }
+async function loadMembers() {
+  const r = await fetch(API.replace('sales_dashboard', 'members_dashboard'), { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY, Authorization: 'Bearer ' + KEY }, body: JSON.stringify({ passcode: pass }) });
+  return r.ok ? r.json() : null;
+}
+function renderMembers(m) {
+  if (!m || m.error) return;
+  $('mb-kpis').innerHTML = kpi('Members', num(m.members), num(m.new_7d) + ' this week · ' + num(m.new_30d) + ' this month')
+    + kpi('Active (30 days)', num(m.active_30d), 'signed in recently')
+    + kpi('Members with tickets', num(m.members_with_tickets), pct(m.members_with_tickets, m.members) + ' of members')
+    + kpi('Buyers to convert', num(m.guest_buyers_not_members), 'of ' + num(m.guest_buyers) + ' guest buyers aren’t members yet')
+    + kpi('Opted in to updates', num(m.opted_in), 'of ' + num(m.guest_contacts) + ' contacts');
+  const d = m.by_day || [], mx = Math.max(1, ...d.map(x => x.members));
+  $('mb-chart').innerHTML = d.length ? `<div class="bars">${d.map(x => `<div style="height:${x.members / mx * 100}%" title="${x.day}: ${x.members}"></div>`).join('')}</div><div class="bars-x"><span>${d[0].day}</span><span>${d[d.length - 1].day}</span></div>` : '<div class="empty">No members yet. The join prompts went live today.</div>';
+  const f = m.join_funnel || {};
+  $('mb-funnel').innerHTML = [['Saw the Join screen', f.saw_join], ['Asked for a code', f.code_sent], ['Signed in', f.signed_in]].map(([a, b]) => `<div class="r"><span>${a}</span><span>${num(b)}</span></div>`).join('');
+  $('mb-recent').innerHTML = '<tr><th>Name</th><th>Email</th><th>Joined</th><th class="num">Tickets</th><th>Updates</th></tr>' + ((m.recent || []).map(r => `<tr><td>${esc(r.name)}</td><td class="meta">${esc(r.email)}</td><td>${when(r.joined)}</td><td class="num">${num(r.tickets)}</td><td>${r.opted_in ? '✓' : ''}</td></tr>`).join('') || '<tr><td colspan="5" class="empty">No members yet.</td></tr>');
+}
 async function loadBehavior() {
   const r = await fetch(API.replace('sales_dashboard', 'behavior_dashboard'), { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY, Authorization: 'Bearer ' + KEY }, body: JSON.stringify({ passcode: pass }) });
   return r.ok ? r.json() : null;
@@ -214,6 +240,7 @@ async function open() {
     $('gate').hidden = true; $('app').hidden = false;
     render();
     loadBehavior().then(renderBehavior).catch(() => {});
+    loadMembers().then(renderMembers).catch(() => {});
     clearInterval(timer); timer = setInterval(async () => { try { data = await load(); render(); renderBehavior(await loadBehavior()); } catch (e) {} }, 60000);
   } catch (e) {
     $('gate').hidden = false; $('app').hidden = true;
