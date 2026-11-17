@@ -4015,7 +4015,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
               <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
             </div>
             <div class="seat-row-label">REELFilms</div>
-            <div class="seat-row-sub" id="reel-seat-sub">Tickets for Nov 14 &nbsp;·&nbsp; Submissions Open for Nov 14 &amp; Dec 5</div>
+            <div class="seat-row-sub" id="reel-seat-sub">Tickets for Dec 5 &nbsp;·&nbsp; Submissions Open for Dec 5</div>
           </a>
 
           <div class="row-div"></div>
@@ -4115,7 +4115,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
         <div class="reel-credit"><span>A Series by</span><b>K. Screens</b></div>
 
         <nav class="reel-tabs" aria-label="REELFilms">
-          <a href="#/film/reelfilms/tickets" data-reel-view="tickets"><b>Tickets</b><span>Nov 14 Screening</span></a>
+          <a href="#/film/reelfilms/tickets" data-reel-view="tickets"><b>Tickets</b><span>Dec 5 Screening</span></a>
           <a href="#/film/reelfilms/submit" data-reel-view="submit"><b>Submit a Film</b><span id="reel-tab-sub">Open · Nov 14 &amp; Dec 5</span></a>
         </nav>
 
@@ -4125,7 +4125,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
           <div class="reel-cards">
             <div class="reel-card">
               <div class="reel-card-k">Next Screening</div>
-              <div class="reel-card-v">Nov 14</div>
+              <div class="reel-card-v">Dec 5</div>
               <div class="reel-card-d">Saturday, 7 – 10 PM at UltraStar Coronado Village Theatre. Tickets on sale now.</div>
               <a class="reel-btn" href="#/film/reelfilms/tickets" data-reel-view="tickets">Get Tickets →</a>
             </div>
@@ -4144,8 +4144,8 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
             <div class="reel-card-k" id="reel-tier">Tickets · Early Bird</div>
             <!-- All-in prices (ticket + Nexus fee) are shown first, as California requires for live events -->
             <div class="reel-card-v" id="reel-price">$21.59</div>
-            <div class="reel-card-d" id="reel-price-d">$20 ticket + $1.59 fee. Early bird through November 6, then $22 + fee.</div>
-            <div class="reel-count" id="reel-count">Early bird ends November 6</div>
+            <div class="reel-card-d" id="reel-price-d">$20 ticket + $1.59 fee. Early bird through November 27, then $22 + fee.</div>
+            <div class="reel-count" id="reel-count">Early bird ends November 27</div>
             <div class="reel-final">All sales are final. Tickets are non-refundable.</div>
             <button class="reel-btn reel-btn--big" type="button" id="reel-buy" data-reel-buy>Get Tickets →</button>
           </div>
@@ -4153,7 +4153,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
           <div class="reel-ticket">
             <div class="reel-tk">
               <div class="reel-tk-l">Date</div>
-              <div class="reel-tk-v">Saturday, November 14</div>
+              <div class="reel-tk-v">Saturday, December 5</div>
               <div class="reel-tk-s">2026</div>
             </div>
             <div class="reel-tk">
@@ -6123,7 +6123,7 @@ body:has(.nx-ov:not([hidden])) #cur{display:none;}
     <svg class="nx-bb-burst" viewBox="-100 -100 200 200" aria-hidden="true"><polygon points="0,-100 9,-26 59,-81 21,-14 95,-31 24,4 81,59 13,22 31,95 -2,25 -31,95 -15,20 -81,59 -25,4 -95,-31 -22,-12 -59,-81 -10,-25"/></svg>
     <div class="nx-eb">Nexus Box Office</div>
     <h2 class="nx-h" id="nx-box-h">REEL<em>Films</em></h2>
-    <div class="nx-sub">Saturday, November 14 · 7–10 PM · UltraStar Coronado Village Theatre</div>
+    <div class="nx-sub">Saturday, December 5 · 7–10 PM · UltraStar Coronado Village Theatre</div>
 
     <form class="nx-step" id="nx-buy-form" novalidate>
       <div class="nx-row">
@@ -6727,7 +6727,7 @@ document.querySelectorAll('[data-reel-view]').forEach(el => {
     set('reel-sub-note', 'We watch every film and reach out to the filmmakers selected for December 5.');
     set('reel-home-sub', 'Free to submit. Now accepting films for our December 5 screening. Deadline Saturday, Nov 21.');
     set('reel-tab-sub', 'Open · Due Nov 21');
-    set('reel-seat-sub', 'Tickets for Nov 14 · Submissions Open for Dec 5');
+    set('reel-seat-sub', 'Tickets for Dec 5 · Submissions Open for Dec 5');
     const sel = document.getElementById('reel-sub-event');
     const nov = document.getElementById('reel-opt-nov14');
     const either = sel && sel.querySelector('option[value="REELFilms · Either"]');
@@ -6753,7 +6753,7 @@ document.querySelectorAll('[data-reel-view]').forEach(el => {
     set('reel-sub-due', 'Submissions for December 5 are closed; new films are considered for future screenings.');
     set('reel-home-sub', 'Free to submit. Now accepting films for future REELFilms screenings.');
     set('reel-tab-sub', 'Open · Future Screenings');
-    set('reel-seat-sub', 'Tickets for Nov 14 · Submissions Open');
+    set('reel-seat-sub', 'Tickets for Dec 5 · Submissions Open');
     return true;
   }
   if (!closeIfPast()) {
@@ -6776,6 +6776,8 @@ document.querySelectorAll('[data-reel-jump]').forEach(el => {
 const NX_EVENTS = {
   'reelfilms-2026': { key: 'reelfilms', theme: 'reel', h: 'REEL<em>Films</em>', sub: 'Saturday, November 14 · 7–10 PM · UltraStar Coronado Village Theatre',
     door: 'REELFilms · Nov 14', back: '#/film/reelfilms', ends: '2026-11-15T01:00:00-08:00' },
+  'reelfilms-dec-2026': { key: 'reelfilms', theme: 'reel', h: 'REEL<em>Films</em>', sub: 'Saturday, December 5 · 7–10 PM · UltraStar Coronado Village Theatre',
+    door: 'REELFilms · Dec 5', back: '#/film/reelfilms/tickets', ends: '2026-12-06T01:00:00-08:00' },
   'bass-and-bars-2026': { key: 'bass-and-bars', theme: 'bb', h: '<span class="nx-bb-big">After <b>Party</b></span><span class="nx-bb-small">Bass <b>&amp;</b> Bars</span>', sub: 'Thursday, November 19 · 10 PM – 1 AM · Uppercuts, 4932 Newport Ave, Ocean Beach',
     door: 'Bass & Bars After Party · Nov 19', back: '#/music/nexus-live/tickets', ends: '2026-11-20T02:00:00-08:00' },
   'house-party-amg': { key: 'house-party', theme: 'hp', h: 'House <em>Show</em>', sub: 'SDSU Kickback · The 805 + The Junction · Sat, Nov 21 · Doors 7 PM · Address revealed the day of',
@@ -6783,7 +6785,7 @@ const NX_EVENTS = {
 };
 const NX = {
   fn: 'https://ljmeugrvvuxglwfyhxhj.supabase.co/functions/v1/',
-  event: 'reelfilms-2026',
+  event: 'reelfilms-dec-2026',
   quotes: {},
   stripeJs: 'https://js.stripe.com/endive/stripe.js',
   libs: {
@@ -6836,7 +6838,7 @@ function nxPageName() {
 }
 function nxEventFor(page) {
   if (/music\/nexus-live|afterparty|bass-and-bars|^\/tickets/.test(page)) return 'bass-and-bars-2026';
-  if (/film\/reelfilms|reelfilms/.test(page)) return 'reelfilms-2026';
+  if (/film\/reelfilms|reelfilms/.test(page)) return 'reelfilms-dec-2026';
   if (/house-party/.test(page)) return 'house-party-amg';
   return null;
 }
@@ -6973,7 +6975,7 @@ function nxSave(ref) { try { localStorage.setItem('nx_tickets', JSON.stringify([
 
 /* ── Ticket card: live price from the server ── */
 async function nxLoadQuote() {
-  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: 'reelfilms-2026' });
+  const q = await nxCall('create-guest-checkout', { mode: 'quote', event: 'reelfilms-dec-2026' });
   const buy = document.getElementById('reel-buy');
   const set = (id, t) => { document.getElementById(id).textContent = t; };
   if (q.offline || (q.error && q.onSale === undefined)) {
@@ -6990,7 +6992,7 @@ async function nxLoadQuote() {
     buy.remove();
     return;
   }
-  NX.quotes['reelfilms-2026'] = q;
+  NX.quotes['reelfilms-dec-2026'] = q;
   set('reel-tier', 'Tickets · ' + q.tier.name);
   set('reel-price', nxMoney2(q.allInCents));
   let d = nxMoney(q.unitCents) + ' ticket + ' + nxMoney2(q.feeCents) + ' fee.';
@@ -7005,12 +7007,12 @@ async function nxLoadQuote() {
       : what + ' ' + last.toLocaleDateString('en-US', { ...pt, weekday: 'long', month: 'short', day: 'numeric' }));
   }
   buy.textContent = 'Get Tickets →';
-  buy.onclick = () => nxOpenBox('reelfilms-2026');
+  buy.onclick = () => nxOpenBox('reelfilms-dec-2026');
   if (!document.getElementById('reel-mine')) {
     const a = document.createElement('button');
     a.type = 'button'; a.id = 'reel-mine'; a.className = 'reel-btn reel-btn--ghost';
     a.textContent = 'View My Tickets';
-    a.onclick = () => { NX.event = 'reelfilms-2026'; nxOpenTickets(); };
+    a.onclick = () => { NX.event = 'reelfilms-dec-2026'; nxOpenTickets(); };
     buy.after(a);
   }
 }
@@ -7477,7 +7479,7 @@ document.querySelectorAll('.nx-ov [data-nx-close]').forEach(b => b.addEventListe
   if (ov.id === 'nx-door') nxStopCamera();
   if (ov.id === 'nx-tix') { clearTimeout(nxPoll); clearInterval(nxTick); }
   ov.hidden = true;
-  if (ov.id !== 'nx-box') { history.replaceState(null, '', location.pathname + (NX_EVENTS[NX.event] || NX_EVENTS['reelfilms-2026']).back); openRoute(); }
+  if (ov.id !== 'nx-box') { history.replaceState(null, '', location.pathname + (NX_EVENTS[NX.event] || NX_EVENTS['reelfilms-dec-2026']).back); openRoute(); }
 }));
 function nxFromHash() {
   const h = location.hash;
