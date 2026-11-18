@@ -2109,6 +2109,13 @@ body.has-feature #feat-pills{display:flex;}
     .bb-card--hot::before{content:'Selling now';position:absolute;top:-14px;right:18px;font-family:'Space Mono',monospace;font-weight:700;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;background:var(--bb-red);color:#fff;padding:.45em .8em;border:2px solid var(--bb-ink);transform:rotate(2deg);}
     .bb-faces{display:flex;align-items:center;gap:0;margin:-.4rem 0 1.1rem;}
     .bb-faces img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:50% 25%;border:2px solid var(--bb-ink);margin-right:-10px;background:var(--bb-yel);}
+    .bb-face-q{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:2px solid var(--bb-ink);margin-right:-10px;background:#141210;color:var(--bb-yel);font:400 1.4rem 'Anton',sans-serif;font-style:normal;}
+    #ms-live .bb-act--mystery{background:#141210;color:#fff;} #ms-live .bb-act--mystery>div:last-child{background:#141210;}
+    .bb-mys-art{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;border-bottom:3px solid var(--bb-ink);
+      background:repeating-linear-gradient(135deg,#1e1b18 0 14px,#141210 14px 28px);}
+    #ms-live .bb-mys-art span{display:block;margin:0;padding:0;background:none;border:0;letter-spacing:0;font:400 7rem/1 'Anton',sans-serif;color:var(--bb-yel);text-shadow:5px 5px 0 var(--bb-red);animation:bbMys 2.4s ease-in-out infinite;}
+    @keyframes bbMys{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.08)}}
+    #ms-live .bb-act--mystery b{color:#fff;} .bb-act--mystery em{display:block;margin-top:.55rem;font-family:'Space Mono',monospace;font-style:normal;font-size:.55rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bb-yel);}
     .bb-faces span{margin-left:18px;font-family:'Archivo',sans-serif;font-size:.78rem;line-height:1.3;color:#3a3530;}
     .bb-faces b{color:var(--bb-ink);}
     .bb-meter{height:10px;border:2px solid var(--bb-ink);background:#f3efe4;margin-top:.7rem;overflow:hidden;}
@@ -2240,19 +2247,19 @@ body.has-feature #feat-pills{display:flex;}
           <h2 class="bb-title"><span>After</span><span class="bb-amp">Party</span></h2>
           <div class="bb-sub">Bass <span>&amp;</span> Bars</div>
           <div class="bb-when">Thursday, Nov 19 · 10 PM – 1 AM<small>Uppercuts · 4932 Newport Ave, Ocean Beach, San Diego</small></div>
-          <div class="bb-mini"><b>10:00</b> Doors &nbsp;·&nbsp; <b>10:30</b> Deleon Nox &nbsp;·&nbsp; <b>11:00</b> Nur &nbsp;·&nbsp; <b>11:30</b> 30FOEZ &nbsp;·&nbsp; <b>12:00</b> ThaSpeakerBoxx</div>
+          <div class="bb-mini"><b>10:00</b> Doors &nbsp;·&nbsp; <b>10:30</b> Mystery Artist &nbsp;·&nbsp; <b>11:00</b> Nur &nbsp;·&nbsp; <b>11:30</b> Mystery Artist &nbsp;·&nbsp; <b>12:00</b> ThaSpeakerBoxx</div>
         </div>
         <figure class="bb-flyer" style="margin:0;">
-          <img src="images/bass-and-bars/flyer-lineup.webp?v=2" width="1080" height="1350" alt="Bass and Bars After Party flyer: Deleon Nox, Nur, 30FOEZ and ThaSpeakerBoxx. November 19, 10 PM to 1 AM, 4932 Newport Ave, San Diego." loading="lazy">
+          <img src="images/bass-and-bars/flyer-lineup.webp?v=2" width="1080" height="1350" alt="Bass and Bars After Party flyer: Nur, ThaSpeakerBoxx and two mystery artists. November 19, 10 PM to 1 AM, 4932 Newport Ave, San Diego." loading="lazy">
         </figure>
       </section>
 
       <div class="bb-wrap">
         <div class="bb-tix" id="bb-tickets">
           <div class="bb-card bb-card--hot">
-            <div class="bb-faces" aria-label="Live sets from Deleon Nox, Nur, 30FOEZ and ThaSpeakerBoxx">
-              <img src="images/bass-and-bars/deleon-nox.webp?v=2" alt=""><img src="images/bass-and-bars/nur.webp?v=2" alt=""><img src="images/bass-and-bars/30-foez.webp?v=2" alt=""><img src="images/bass-and-bars/thaspeakerboxx.webp?v=3" alt="">
-              <span><b>4 live sets</b> · Deleon Nox, Nur, 30FOEZ, ThaSpeakerBoxx</span>
+            <div class="bb-faces" aria-label="Live sets from Nur, ThaSpeakerBoxx and two mystery artists">
+              <i class="bb-face-q" aria-hidden="true">?</i><img src="images/bass-and-bars/nur.webp?v=2" alt=""><i class="bb-face-q" aria-hidden="true">?</i><img src="images/bass-and-bars/thaspeakerboxx.webp?v=3" alt="">
+              <span><b>4 live sets</b> · Nur, ThaSpeakerBoxx + 2 mystery artists</span>
             </div>
             <div class="bb-k" id="bb-tier">Tickets · Early Bird</div>
             <div class="bb-price" id="bb-price">$15</div>
@@ -2284,9 +2291,9 @@ body.has-feature #feat-pills{display:flex;}
         <h3 class="bb-h">The Lineup</h3>
         <p class="bb-lede">Four sets, one room. MCs and DJs from the San Diego scene take Uppercuts. Doors at 10 PM, first set at 10:30 PM.</p>
         <div class="bb-lineup">
-          <a class="bb-act bb-act--link" href="https://open.spotify.com/artist/5LS2lw7oJvXFVvWKB44lnJ" target="_blank" rel="noopener" aria-label="Deleon Nox, set at 10:30 PM. Listen on Spotify"><img src="images/bass-and-bars/deleon-nox.webp?v=2" alt="Deleon Nox" loading="lazy"><div><b>Deleon Nox</b><span>Set at 10:30 PM</span><em>Listen on Spotify →</em></div></a>
+          <div class="bb-act bb-act--mystery" aria-label="Mystery artist, set at 10:30 PM. Revealed soon"><div class="bb-mys-art" aria-hidden="true"><span>?</span></div><div><b>Mystery Artist</b><span>Set at 10:30 PM</span><em>Revealed soon 👀</em></div></div>
           <a class="bb-act bb-act--link" href="https://linktr.ee/nurmusicofficial" target="_blank" rel="noopener" aria-label="Nur, set at 11:00 PM. Visit Linktree"><img src="images/bass-and-bars/nur.webp?v=2" alt="Nur" loading="lazy"><div><b>Nur</b><span>Set at 11:00 PM</span><em>Visit Linktree →</em></div></a>
-          <a class="bb-act bb-act--link" href="https://linktr.ee/30foez" target="_blank" rel="noopener" aria-label="30FOEZ, set at 11:30 PM. Visit Linktree"><img src="images/bass-and-bars/30-foez.webp?v=2" alt="30FOEZ" loading="lazy"><div><b>30FOEZ</b><span>Set at 11:30 PM</span><em>Visit Linktree →</em></div></a>
+          <div class="bb-act bb-act--mystery" aria-label="Mystery artist, set at 11:30 PM. Revealed soon"><div class="bb-mys-art" aria-hidden="true"><span>?</span></div><div><b>Mystery Artist</b><span>Set at 11:30 PM</span><em>Revealed soon 👀</em></div></div>
           <a class="bb-act bb-act--link" href="https://www.thaspeakerboxx.com/" target="_blank" rel="noopener" aria-label="ThaSpeakerBoxx, set at 12:00 AM. Visit website"><img src="images/bass-and-bars/thaspeakerboxx.webp?v=3" alt="ThaSpeakerBoxx" loading="lazy"><div><b>ThaSpeakerBoxx</b><span>Set at 12:00 AM</span><em>Visit website →</em></div></a>
         </div>
 
