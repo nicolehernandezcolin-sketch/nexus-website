@@ -50,6 +50,13 @@ button:disabled{opacity:.6;cursor:wait;}
 .event span{font:.72rem 'Space Mono',monospace;}
 .event a{font:700 .66rem 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:.8em 1.1em;text-decoration:none;}
 @media (max-width:780px){.grid{grid-template-columns:1fr;} .row{grid-template-columns:1fr;} .flyer{order:2;max-width:420px;margin:0 auto;}}
+.gal{margin:0 0 1.3rem;background:#000;border:2px solid var(--gold,#f2d13a);padding:1rem 1.1rem;}
+.gal-k{font:700 .58rem 'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--gold,#f2d13a);margin-bottom:.7rem;}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.8rem;}
+.gal-grid div{background:var(--cream,#f3ead8);color:#111;text-align:center;padding:.6rem .3rem;}
+.gal-grid b{display:block;font-family:'Grenze Gotisch',serif;font-size:1.3rem;line-height:1;color:var(--red,#d2271f);}
+.gal-grid span{font:700 .52rem 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;}
+.gal ul{margin:0;padding-left:1.1rem;font-size:.85rem;line-height:1.5;} .gal li{margin:.2rem 0;}
 </style>
 </head>
 <body>
@@ -68,8 +75,16 @@ button:disabled{opacity:.6;cursor:wait;}
         <li><b>All media accepted</b>Painting, photo, print, sculpture, film, poetry, textile, digital and more.</li>
         <li><b>Shown at Aztlan Libre Galería Morán</b>2076 Logan Ave, San Diego, during the event on Saturday, December 12.</li>
         <li><b>Due Tuesday, December 1, 2026</b>Free to submit. Up to 5 pieces per artist.</li>
+        <li><b>Ready to hang · 30% gallery commission</b>Drop off Dec 4–6, pick up Dec 27–29.</li>
       </ul>
 
+      <div class="gal"><div class="gal-k">For selected artists · Galería Morán</div>
+          <div class="gal-grid">
+            <div><b>Dec 4 – 6</b><span>Drop off your art</span></div>
+            <div><b>Dec 12</b><span>Show night</span></div>
+            <div><b>Dec 27 – 29</b><span>Pick up your art</span></div>
+          </div>
+          <ul><li><b>Ready to hang.</b> Work must arrive ready to hang (wire, hooks or a hanging system attached).</li><li><b>Sales.</b> Art can be sold; Galería Morán keeps 30% of each sale.</li></ul></div>
       <form id="f" novalidate>
         <div class="row"><div><label for="n">Name</label><input id="n" name="name" autocomplete="name" required></div><div><label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email" required></div></div>
         <div class="row"><div><label for="p">Phone (optional)</label><input id="p" name="phone" type="tel" autocomplete="tel"></div><div><label for="i">Instagram (optional)</label><input id="i" name="instagram" placeholder="@"></div></div>
