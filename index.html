@@ -2465,18 +2465,8 @@ body.has-feature #feat-pills{display:flex;}
           <div>
             <p class="ar-call-q">How is your art and identity a product of colonialism? How is it a political weapon?</p>
             <ul class="ar-call-facts"><li><b>All media accepted</b>Painting, photo, print, sculpture, film, poetry, textile, digital…</li><li><b>Shown at Aztlan Libre Galería Morán</b>On December 12 during the event.</li><li><b>Due December 1, 2026</b>Free to submit.</li></ul>
-            <form id="ar-form" class="ar-form" novalidate>
-              <div class="ar-row"><input name="name" placeholder="Your name" autocomplete="name" required><input name="email" type="email" placeholder="Email" autocomplete="email" required></div>
-              <div class="ar-row"><input name="phone" type="tel" placeholder="Phone (optional)" autocomplete="tel"><input name="instagram" placeholder="Instagram @ (optional)"></div>
-              <div class="ar-row"><input name="medium" placeholder="Medium (e.g. acrylic on canvas, poetry, photo)" required><input name="title" placeholder="Title of the piece (optional)"></div>
-              <input name="link" type="url" placeholder="Link to your work (Google Drive, Instagram post, website…)" required>
-              <textarea name="statement" rows="5" placeholder="Tell us about your piece: how is your art and identity a product of colonialism? How is it a political weapon?" required></textarea>
-              <input name="website" tabindex="-1" autocomplete="off" class="ar-hp" aria-hidden="true">
-              <p class="ar-err" role="alert"></p>
-              <button class="ar-btn ar-btn--red" type="submit" data-track="Mi Arte: submit art">Submit my art →</button>
-              <p class="ar-fine">Your submission goes to the Mi Arte organizers at now@nexusglobal.info. You'll get a confirmation email.</p>
-            </form>
-            <div class="ar-done" id="ar-done" hidden><b>¡Gracias!</b>We got your submission and emailed you a confirmation. The organizers will reach out about the gallery.</div>
+            <div class="ar-ctas"><a class="ar-btn ar-btn--red" href="/artistcall" data-track="Mi Arte: open artist call">Submit your art →</a><button class="ar-btn" type="button" id="ar-call-share" data-track="Mi Arte: share artist call">Share the call</button></div>
+            <p class="ar-fine" style="margin-top:.8rem">Share it with artists: nexusglobal.info/artistcall</p>
           </div>
         </div>
 
@@ -8039,21 +8029,9 @@ async function arDonate() {
   NX.quotes['mi-arte-2026'] = q; nxOpenBox('mi-arte-2026');
 }
 ['ar-donate', 'ar-donate2'].forEach(id => document.getElementById(id).addEventListener('click', arDonate));
-document.getElementById('ar-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const f = e.target, err = f.querySelector('.ar-err'), btn = f.querySelector('button');
-  const d = Object.fromEntries(new FormData(f).entries());
-  if ((d.name || '').trim().length < 2) { err.textContent = 'Please add your name.'; return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email || '')) { err.textContent = 'Please add a valid email.'; return; }
-  if (!/^https?:\/\//i.test(d.link || '')) { err.textContent = 'Please add a full link to your work, starting with https://'; return; }
-  err.textContent = ''; btn.disabled = true; btn.textContent = 'Sending…';
-  try {
-    const r = await fetch('https://ljmeugrvvuxglwfyhxhj.supabase.co/functions/v1/artist-call', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
-    const j = await r.json();
-    if (!r.ok || j.error) throw new Error(j.error || 'x');
-    f.hidden = true; document.getElementById('ar-done').hidden = false; nxTrack('artist_submit', { event: 'mi-arte-2026', label: d.medium });
-  } catch (x) { err.textContent = x.message && x.message !== 'x' ? x.message : 'Couldn’t send. Please try again, or email now@nexusglobal.info.'; }
-  btn.disabled = false; btn.textContent = 'Submit my art →';
+document.getElementById('ar-call-share').addEventListener('click', async e => {
+  const data = { title: 'Call for Artists · Mi Arte es Resistencia', text: 'All media accepted. Shown at Aztlan Libre Galería Morán on Dec 12. Free to submit, due Dec 1.', url: 'https://nexusglobal.info/artistcall' };
+  try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(data.url); e.target.textContent = 'Link copied ✓'; } } catch (x) {}
 });
 document.getElementById('ar-share').addEventListener('click', async () => {
   const data = { title: 'Mi Arte es Resistencia · Dec 12', text: 'An Afro-Latin Jazz Night · Sat, Dec 12, 5–9 PM · 2076 Logan Ave, San Diego. Bring a toy or $10.', url: 'https://nexusglobal.info/miarte' };
