@@ -2377,6 +2377,25 @@ body.has-feature #feat-pills{display:flex;}
     .ar-nina{margin:1.6rem 0 0;border-left:6px solid var(--ar-red);padding:.4rem 0 .4rem 1rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;line-height:1.4;}
     .ar-nina cite{display:block;font:700 .6rem 'Space Mono',monospace;font-style:normal;text-transform:uppercase;margin-top:.5rem;color:rgba(243,234,216,.7);}
     .ar-nina a{color:var(--ar-gold);}
+.ar-org{display:inline-flex;align-items:center;gap:.5em;} .ar-org img{width:34px;height:34px;border-radius:4px;}
+    .ar-apsp{width:22px;height:22px;vertical-align:middle;margin-right:.4em;background:#fff;border-radius:50%;}
+    .ar-call{display:grid;grid-template-columns:.8fr 1.2fr;gap:2rem;align-items:start;}
+    .ar-call-flyer{width:100%;border:8px solid var(--ar-cream);box-shadow:0 20px 40px rgba(0,0,0,.5);}
+    .ar-call-q{font-family:'Grenze Gotisch',serif;font-size:clamp(1.4rem,3.6vw,1.9rem);line-height:1.15;color:var(--ar-gold);margin:0 0 1rem;}
+    .ar-call-facts{list-style:none;margin:0 0 1.2rem;padding:0;display:grid;gap:.5rem;font-size:.88rem;}
+    .ar-call-facts b{display:block;color:var(--ar-cream);}
+    .ar-form{display:grid;gap:.6rem;} .ar-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+    .ar-form input,.ar-form textarea{font:inherit;font-size:.9rem;width:100%;box-sizing:border-box;padding:.8rem .9rem;background:var(--ar-cream);color:#111;border:2px solid #000;border-radius:0;}
+    .ar-form input:focus,.ar-form textarea:focus{outline:none;box-shadow:4px 4px 0 var(--ar-red);}
+    .ar-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+    .ar-err{color:#ff8a80;font-weight:700;min-height:1em;margin:0;} .ar-fine{font:.62rem/1.6 'Space Mono',monospace;color:rgba(243,234,216,.6);margin:0;}
+    .ar-done{background:var(--ar-cream);color:#111;padding:1.2rem;border:3px solid #000;box-shadow:6px 6px 0 var(--ar-red);} .ar-done b{display:block;font-family:'Grenze Gotisch',serif;font-size:2rem;color:var(--ar-red);}
+    .ar-next{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:center;border:3px solid var(--ar-gold);padding:1.4rem;background:repeating-linear-gradient(135deg,#151210 0 18px,#111 18px 36px);}
+    .ar-next-date{background:var(--ar-gold);color:#111;text-align:center;padding:1rem 1.2rem;} .ar-next-date b{display:block;font:400 2.4rem/1 'Anton',sans-serif;} .ar-next-date span{font:700 .6rem 'Space Mono',monospace;text-transform:uppercase;}
+    .ar-next-k{font:700 .58rem 'Space Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--ar-gold);}
+    .ar-next-t{font-family:'Grenze Gotisch',serif;font-weight:900;font-size:clamp(2rem,6vw,2.8rem);line-height:1;color:var(--ar-red);}
+    .ar-next-s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;margin-bottom:.4rem;} .ar-next p{font-size:.9rem;line-height:1.55;margin:.3rem 0 .9rem;}
+    @media (max-width:760px){.ar-call{grid-template-columns:1fr;} .ar-row{grid-template-columns:1fr;} .ar-next{grid-template-columns:1fr;}}
     .ar-quote{margin:3.4rem 0 0;background:#000;border:3px solid var(--ar-cream);padding:1.6rem 1.4rem;font:900 clamp(1.1rem,3.6vw,1.6rem)/1.35 'Archivo',sans-serif;text-transform:uppercase;color:#fff;}
     .ar-ctas{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;}
     .ar-btn{display:inline-block;font:700 .7rem 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.95em 1.2em;border:2px solid var(--ar-cream);color:var(--ar-cream);background:transparent;}
@@ -2426,19 +2445,48 @@ body.has-feature #feat-pills{display:flex;}
           <div><b>6:15</b><span>Melina</span><em>Speaker</em></div>
           <div><b>6:30</b><span>Shafia Osman</span></div>
           <div class="hl"><b>7:00</b><span>Los Salvajes</span><em>Performance</em></div>
-          <div><b>7:45</b><span>Mwezi</span><em>The African People's Socialist Party</em></div>
+          <div><b>7:45</b><span>Mwezi</span><em><img class="ar-apsp" src="images/mi-arte/apsp-round.png" alt="" width="22" height="22">The African People's Socialist Party</em></div>
           <div class="hl"><b>8:15</b><span>Nicole Hernandez</span><em>Performance · until 9</em></div>
         </div>
 
         <h3 class="ar-h">Community tables</h3>
         <p class="ar-collab" style="margin-top:0">Local organizations table all night from 5 PM. 30% of any merch sold on their behalf goes to families affected by ICE.</p>
-        <div class="ar-lineup"><span>Aztlan Youth Brigade</span><span>The Lemon Grove Llamas</span><span>The African People's Socialist Party</span><span>The Revolutionary Jaguar Paws</span></div>
+        <div class="ar-lineup"><span>Aztlan Youth Brigade</span><span>The Lemon Grove Llamas</span><span class="ar-org"><img src="images/mi-arte/apsp.png" alt="" width="34" height="34">The African People's Socialist Party</span><span>The Revolutionary Jaguar Paws</span></div>
         <p class="ar-collab">In collaboration with Nexus and the Aztlan Youth Brigade.</p>
 
         <h3 class="ar-h">The zine: songs of the night</h3>
         <p class="ar-collab" style="margin-top:0">From the collaborative Mi Arte es Resistencia zinebook. Pick one up at the Lemon Grove Llamas table.</p>
         <div class="ar-songs"><div class="ar-song"><b>Strange Fruit</b><span>Nina Simone · Live in Antibes, 1965</span><p>Written as the poem “Bitter Fruit” by Abel Meeropol, a teacher, poet and songwriter who published as Lewis Allan.</p><div class="ar-song-links"><a href="https://www.youtube.com/results?search_query=Nina+Simone+Strange+Fruit+Live+in+Antibes+1965" target="_blank" rel="noopener" data-track="Mi Arte zine: Strange Fruit">Listen ↗</a><a href="https://www.loc.gov/static/programs/national-recording-preservation-board/documents/StrangeFruit.pdf" target="_blank" rel="noopener">The history (Library of Congress) ↗</a></div></div><div class="ar-song"><b>Blackbird</b><span>Nina Simone · Live on WNBC, 1964</span><p>Released in 1963 as the Civil Rights movement was in motion, it carries the sorrow and reality of being Black in America, and gave a voice to the voiceless.</p><div class="ar-song-links"><a href="https://www.youtube.com/results?search_query=Nina+Simone+Blackbird+Live+WNBC+1964" target="_blank" rel="noopener" data-track="Mi Arte zine: Blackbird">Listen ↗</a></div></div><div class="ar-song"><b>What Did I Do to Be So Black and Blue?</b><span>Louis Armstrong</span><div class="ar-song-links"><a href="https://www.youtube.com/results?search_query=Louis+Armstrong+Black+And+Blue" target="_blank" rel="noopener" data-track="Mi Arte zine: What Did I Do to Be So Black and Blue?">Listen ↗</a></div></div><div class="ar-song"><b>What's Going On</b><span>Marvin Gaye · Live</span><div class="ar-song-links"><a href="https://www.youtube.com/results?search_query=Marvin+Gaye+What's+Going+On+Live" target="_blank" rel="noopener" data-track="Mi Arte zine: What's Going On">Listen ↗</a></div></div></div>
         <blockquote class="ar-nina">“No, I sing from intelligence… Anger has its place. Anger has fire, and fire moves things.”<cite>Nina Simone, BBC HARDtalk, 1999 · <a href="https://www.youtube.com/results?search_query=Nina+Simone+BBC+HARDtalk+1999" target="_blank" rel="noopener">Watch the interview ↗</a></cite></blockquote>
+
+        <h3 class="ar-h" id="ar-call">Call for artists</h3>
+        <div class="ar-call">
+          <img class="ar-call-flyer" src="images/mi-arte/call-for-artists.webp" alt="Mi Arte es Resistencia call for artists flyer: all media forms accepted, art displayed at Aztlan Libre Galería Morán, submissions due December 1st." loading="lazy">
+          <div>
+            <p class="ar-call-q">How is your art and identity a product of colonialism? How is it a political weapon?</p>
+            <ul class="ar-call-facts"><li><b>All media accepted</b>Painting, photo, print, sculpture, film, poetry, textile, digital…</li><li><b>Shown at Aztlan Libre Galería Morán</b>On December 12 during the event.</li><li><b>Due December 1, 2026</b>Free to submit.</li></ul>
+            <form id="ar-form" class="ar-form" novalidate>
+              <div class="ar-row"><input name="name" placeholder="Your name" autocomplete="name" required><input name="email" type="email" placeholder="Email" autocomplete="email" required></div>
+              <div class="ar-row"><input name="phone" type="tel" placeholder="Phone (optional)" autocomplete="tel"><input name="instagram" placeholder="Instagram @ (optional)"></div>
+              <div class="ar-row"><input name="medium" placeholder="Medium (e.g. acrylic on canvas, poetry, photo)" required><input name="title" placeholder="Title of the piece (optional)"></div>
+              <input name="link" type="url" placeholder="Link to your work (Google Drive, Instagram post, website…)" required>
+              <textarea name="statement" rows="5" placeholder="Tell us about your piece: how is your art and identity a product of colonialism? How is it a political weapon?" required></textarea>
+              <input name="website" tabindex="-1" autocomplete="off" class="ar-hp" aria-hidden="true">
+              <p class="ar-err" role="alert"></p>
+              <button class="ar-btn ar-btn--red" type="submit" data-track="Mi Arte: submit art">Submit my art →</button>
+              <p class="ar-fine">Your submission goes to the Mi Arte organizers at now@nexusglobal.info. You'll get a confirmation email.</p>
+            </form>
+            <div class="ar-done" id="ar-done" hidden><b>¡Gracias!</b>We got your submission and emailed you a confirmation. The organizers will reach out about the gallery.</div>
+          </div>
+        </div>
+
+        <h3 class="ar-h">Coming next</h3>
+        <div class="ar-next">
+          <div class="ar-next-date"><b>2027</b><span>Date TBA</span></div>
+          <div><div class="ar-next-k">The next night in the series</div><div class="ar-next-t">Funkadelic Night</div><div class="ar-next-s">One Nation Under a Groove</div>
+            <p>Mi Arte es Resistencia continues in 2027 with a night for funk, its roots and its resistance. Join Nexus to hear first.</p>
+            <a class="ar-btn" href="#/account" data-track="Mi Arte: notify Funkadelic">Get notified →</a></div>
+        </div>
 
         <h3 class="ar-h">Support immigrant families</h3>
         <p class="ar-collab" style="margin-top:0">Want to do more beyond the night? <a href="https://www.alliancesd.org/" target="_blank" rel="noopener" data-track="Mi Arte: Alliance San Diego" style="color:var(--ar-gold)">Alliance San Diego ↗</a></p>
@@ -7991,6 +8039,22 @@ async function arDonate() {
   NX.quotes['mi-arte-2026'] = q; nxOpenBox('mi-arte-2026');
 }
 ['ar-donate', 'ar-donate2'].forEach(id => document.getElementById(id).addEventListener('click', arDonate));
+document.getElementById('ar-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, err = f.querySelector('.ar-err'), btn = f.querySelector('button');
+  const d = Object.fromEntries(new FormData(f).entries());
+  if ((d.name || '').trim().length < 2) { err.textContent = 'Please add your name.'; return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email || '')) { err.textContent = 'Please add a valid email.'; return; }
+  if (!/^https?:\/\//i.test(d.link || '')) { err.textContent = 'Please add a full link to your work, starting with https://'; return; }
+  err.textContent = ''; btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const r = await fetch('https://ljmeugrvvuxglwfyhxhj.supabase.co/functions/v1/artist-call', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+    const j = await r.json();
+    if (!r.ok || j.error) throw new Error(j.error || 'x');
+    f.hidden = true; document.getElementById('ar-done').hidden = false; nxTrack('artist_submit', { event: 'mi-arte-2026', label: d.medium });
+  } catch (x) { err.textContent = x.message && x.message !== 'x' ? x.message : 'Couldn’t send. Please try again, or email now@nexusglobal.info.'; }
+  btn.disabled = false; btn.textContent = 'Submit my art →';
+});
 document.getElementById('ar-share').addEventListener('click', async () => {
   const data = { title: 'Mi Arte es Resistencia · Dec 12', text: 'An Afro-Latin Jazz Night · Sat, Dec 12, 5–9 PM · 2076 Logan Ave, San Diego. Bring a toy or $10.', url: 'https://nexusglobal.info/miarte' };
   try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(data.url); document.getElementById('ar-share').textContent = 'Link copied ✓'; } } catch (e) {}
@@ -8652,6 +8716,7 @@ function openRoute() {
   document.title = titleFor(routeFor(pageId, subId));
   if (subId === 'film-reel') setReelView(view);
   if (subId === 'ms-live') setBBView(view);
+  if (subId === 'ms-arte' && view === 'call') setTimeout(() => { const el = document.getElementById('ar-call'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 900);
   routeSilent = true;
   const arriving = curP !== pageId;
   if (arriving) {
