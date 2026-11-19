@@ -331,10 +331,14 @@ body.has-feature #globe,body.has-feature #nxs,body.has-feature #globe-hint,body.
 body.has-feature #feat-moon{display:block;}
 #feat-moon.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
 #feat-moon svg{position:absolute;left:50%;top:50%;width:180%;height:180%;transform:translate(-50%,-50%);overflow:visible;pointer-events:none;}
-#feat-moon .fm-ray{stroke-linecap:round;stroke-dasharray:9 26;animation:fmEmit 2.6s linear infinite;}
+#feat-moon .fm-auras{animation:fmBreath 6s ease-in-out infinite;transform-origin:0 0;}
+#feat-moon .fm-crown{animation:fmTurn 120s linear infinite;transform-origin:0 0;}
 #feat-moon .fm-spark{animation:fmTwinkle 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
 #feat-moon .fm-bob{animation:fmBob 5s ease-in-out infinite;transform-origin:0 0;}
-#feat-moon svg{filter:drop-shadow(0 0 28px rgba(255,255,255,.08));}
+#feat-moon svg{filter:drop-shadow(0 0 40px rgba(232,194,106,.18));}
+#feat-moon .fm-lbl--goth .fm-t{font-family:'Grenze Gotisch',serif;font-weight:900;text-transform:none;font-size:1.9em;line-height:.85;}
+#feat-moon .fm-lbl--goth .fm-s{font-family:'Grenze Gotisch',serif;font-style:normal;font-size:1.15em;}
+#feat-moon .fm-lbl{text-shadow:0 2px 12px rgba(0,0,0,.35);}
 #feat-moon .fm-slice{pointer-events:auto;cursor:none;transition:filter .3s ease;}
 #feat-moon .fm-slice:hover,#feat-moon .fm-slice:focus-visible{filter:brightness(1.15) saturate(1.15);outline:none;}
 #feat-moon .fm-lbl{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:.22em;
@@ -350,10 +354,11 @@ body.has-feature #feat-pills{display:flex;}
 #feat-pills.show{opacity:1;}
 #feat-pills a{font-family:'Space Mono',monospace;font-weight:700;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:none;
   padding:.85em 1.2em;border-radius:99px;box-shadow:0 6px 22px rgba(0,0,0,.45);white-space:nowrap;}
-@keyframes fmEmit{from{stroke-dashoffset:35}to{stroke-dashoffset:0}}
+@keyframes fmBreath{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+@keyframes fmTurn{to{transform:rotate(360deg)}}
 @keyframes fmTwinkle{0%,100%{opacity:.2;scale:.6}50%{opacity:1;scale:1.15}}
-@keyframes fmBob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}
-@media (prefers-reduced-motion:reduce){#feat-moon .fm-ray,#feat-moon .fm-spark,#feat-moon .fm-bob{animation:none;}}
+@keyframes fmBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){#feat-moon .fm-auras,#feat-moon .fm-crown,#feat-moon .fm-spark,#feat-moon .fm-bob{animation:none;}}
 /* About page: the Nexus globe now lives here */
 .glob-globe{width:min(180px,42vw);height:min(180px,42vw);margin:0 auto 1.6rem;animation:globSpin 32s linear infinite;
   filter:drop-shadow(0 0 12px rgba(62,207,90,.5)) drop-shadow(0 0 40px rgba(62,207,90,.18));}
@@ -6737,17 +6742,11 @@ document.querySelectorAll('[data-go]').forEach(el =>
 ════════════════════════════════════════════ */
 const FEATURES = [
   { slug: 'bass-and-bars-2026', href: '#/music/nexus-live/tickets', ends: '2026-11-20T01:00:00-08:00',
-    k: 'Thu · Nov 19', t: 'After<br>Party', s: 'Bass &amp; Bars', pill: 'After Party · Tickets',
+    k: 'Tonight · Nov 19', t: 'After<br>Party', s: 'Bass &amp; Bars', pill: 'After Party · Tickets', cta2: 'Tickets',
     colors: ['#3b7d2f', '#e8372c', '#f2dc12'], grad: '#24521c', ink: '#fff6d6', cta: ['#f2dc12', '#141210'] },
-  { slug: 'house-party-amg', href: '#/music/house-party', ends: '2026-11-22T01:00:00-08:00',
-    k: 'Sat · Nov 21', t: 'House<br>Show', s: 'SDSU Kickback', pill: 'SDSU House Show · $5',
-    colors: ['#f1dfc4', '#4b72a0', '#2c5585'], grad: '#e3cba6', ink: '#1d3a5f', cta: ['#4b72a0', '#f1dfc4'] },
-  { slug: 'reelfilms-dec-2026', href: '#/film/reelfilms/tickets', ends: '2026-12-05T22:00:00-08:00',
-    k: 'Sat · Dec 5', t: 'REEL<br>Films', s: 'Coronado', pill: 'REELFilms · Tickets',
-    colors: ['#8e1219', '#f1d58e', '#c4943c'], grad: '#3a0609', ink: '#f1d58e', cta: ['#f1d58e', '#1a0507'] },
   { slug: 'mi-arte-2026', href: '#/music/mi-arte-es-resistencia', ends: '2026-12-13T00:00:00-08:00',
-    k: 'Sat · Dec 12', t: 'Mi Arte', s: 'es Resistencia', pill: 'Mi Arte · Donate $10',
-    colors: ['#d2271f', '#f3ead8', '#f2d13a'], grad: '#7d140f', ink: '#f3ead8', cta: ['#f2d13a', '#111'] },
+    k: 'Sat · Dec 12', t: 'Mi Arte', s: 'es Resistencia', pill: 'Mi Arte es Resistencia →', font: 'goth', cta2: 'Free · Toy or $10',
+    colors: ['#c8231b', '#f3ead8', '#f2d13a'], grad: '#4a0906', ink: '#f3ead8', cta: ['#f2d13a', '#111'], pillc: ['#c8231b', '#f3ead8'] },
 ].filter(f => Date.now() < Date.parse(f.ends)).slice(0, 2);
 const FEATURE_ON = FEATURES.length > 0;
 if (FEATURE_ON) document.body.classList.add('has-feature');
@@ -6764,56 +6763,43 @@ function featGo(e) {
   if (!FEATURE_ON) return;
   const n = FEATURES.length, R = 100, span = 360 / n, rad = d => d * Math.PI / 180;
   const pt = (a, r) => [+(Math.cos(rad(a)) * r).toFixed(2), +(Math.sin(rad(a)) * r).toFixed(2)];
-  // The cracked seam between slices: a zig-zag from the centre out past the rim
-  const seam = a => {
-    const out = [];
-    for (let r = 0, k = 0; r <= R + 10; r += 11, k++) {
-      const [x, y] = pt(a, r), o = r < 4 ? 0 : (k % 2 ? 4.5 : -4.5);
-      out.push([+(x + Math.cos(rad(a + 90)) * o).toFixed(2), +(y + Math.sin(rad(a + 90)) * o).toFixed(2)]);
-    }
-    return out;
-  };
   const start = n === 2 ? 90 : -90; // two events: left half and right half
-  let defs = '<clipPath id="fm-clip"><circle r="100"/></clipPath><filter id="fm-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>', beams = '', slices = '', labels = '', pills = '';
+  let defs = '<clipPath id="fm-clip"><circle r="100"/></clipPath>', aura = '', slices = '', labels = '', pills = '';
   FEATURES.forEach((f, i) => {
     const a0 = start + i * span, a1 = a0 + span, c = f.colors;
-    defs += `<pattern id="fm-dot${i}" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.4" fill="${c[1]}" opacity=".5"/></pattern>
-      <linearGradient id="fm-g${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${f.grad || c[0]}"/></linearGradient>`;
-    // Rays that pour out of the moon: soft rounded dashes travelling outward in the
-    // event's colours, with little twinkling sparkles in between
-    let b = 0;
-    for (let a = a0 + 5; a < a1 - 3; a += 10, b++) {
-      const col = c[(b % (c.length - 1)) + 1] || c[0], len = 150 + (b % 3) * 12;
-      const [x1, y1] = pt(a, 108), [x2, y2] = pt(a, len);
-      beams += `<line class="fm-ray" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${b % 2 ? 4.5 : 6.5}"
-        style="animation-duration:${2.2 + (b % 4) * .35}s;animation-delay:-${(b * .53) % 2.4}s"/>`;
+    // Deep, smooth colour: lit from the upper left like a moon, no texture
+    defs += `<radialGradient id="fm-g${i}" cx="${n === 2 ? (i ? .78 : .22) : .35}" cy=".3" r=".95"><stop offset="0" stop-color="${c[0]}"/><stop offset=".6" stop-color="${c[0]}"/><stop offset="1" stop-color="${f.grad || c[0]}"/></radialGradient>
+      <radialGradient id="fm-a${i}" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="138"><stop offset=".72" stop-color="${c[0]}" stop-opacity=".5"/><stop offset=".84" stop-color="${c[0]}" stop-opacity=".16"/><stop offset="1" stop-color="${c[0]}" stop-opacity="0"/></radialGradient>`;
+    // A soft halo of the event's colour on its side: light, not lines, so the planets stay clear
+    const big = 138, wedge = n === 1 ? `<circle r="${big}"` : `<path d="M0 0 L${pt(a0, big).join(' ')} A${big} ${big} 0 0 1 ${pt(a1, big).join(' ')} Z"`;
+    aura += `${wedge} fill="url(#fm-a${i})"/>`;
+    // A few fine sparkles close to the rim
+    for (let k = 0; k < 3; k++) {
+      const [sx, sy] = pt(a0 + span * (k + .5) / 3, 122 + (k % 2) * 10), sz = k === 1 ? 4 : 3;
+      aura += `<path class="fm-spark" transform="translate(${sx} ${sy})" d="M0 -${sz} Q0 0 ${sz} 0 Q0 0 0 ${sz} Q0 0 -${sz} 0 Q0 0 0 -${sz}Z" fill="${c[2] || '#fff'}" style="animation-delay:-${k * .8 + i * 1.3}s"/>`;
     }
-    for (let k = 0; k < 4; k++) {
-      const [sx, sy] = pt(a0 + span * (k + .5) / 4 + 4, 128 + (k % 2) * 30), sz = k % 2 ? 4 : 6;
-      beams += `<path class="fm-spark" transform="translate(${sx} ${sy})" d="M0 -${sz} Q0 0 ${sz} 0 Q0 0 0 ${sz} Q0 0 -${sz} 0 Q0 0 0 -${sz}Z"
-        fill="${k % 2 ? '#fff6d6' : c[2] || c[1]}" style="animation-delay:-${k * .7 + i}s"/>`;
-    }
-    const [r0x, r0y] = pt(a0 + 1.5, 104), [r1x, r1y] = pt(a1 - 1.5, 104);
-    beams += `<path d="M${r0x} ${r0y} A104 104 0 ${span > 180 ? 1 : 0} 1 ${r1x} ${r1y}" fill="none" stroke="${c[1]}" stroke-width="6" stroke-linecap="round"/>`;
-    const shape = n === 1 ? '<circle r="110"'
-      : `<polygon points="${seam(a0).concat(Array.from({ length: 30 }, (_, k) => pt(a0 + span * k / 29, R + 10))).concat(seam(a1).reverse()).map(p => p.join(',')).join(' ')}"`;
-    const [c1x, c1y] = pt(a0 + span * .3, 64), [c2x, c2y] = pt(a0 + span * .72, 34);
-    slices += `<a class="fm-slice" href="${f.href}" data-track="Home moon: ${f.slug}" aria-label="${f.t.replace('<br>', ' ')}, ${f.k}. Get tickets" clip-path="url(#fm-clip)">
-      ${shape} fill="url(#fm-g${i})"/>${shape} fill="url(#fm-dot${i})"/>
-      <circle cx="${c1x}" cy="${c1y}" r="11" fill="#000" opacity=".09"/><circle cx="${c2x}" cy="${c2y}" r="6" fill="#000" opacity=".08"/></a>`;
-    const [lx, ly] = n === 1 ? [0, 0] : pt(a0 + span / 2, 48);
-    labels += `<div class="fm-lbl" style="left:${50 + lx / 2}%;top:${50 + ly / 2}%;color:${f.ink};${n === 1 ? 'width:70%;font-size:calc(var(--sun) / 15);' : ''}">
+    const shape = n === 1 ? '<circle r="102"'
+      : `<path d="M0 -102 ${i === 0 ? 'L0 102 A102 102 0 0 1 0 -102' : 'A102 102 0 0 1 0 102 Z'}"`;
+    slices += `<a class="fm-slice" href="${f.href}" data-track="Home moon: ${f.slug}" aria-label="${f.t.replace('<br>', ' ')} ${f.s}, ${f.k}" clip-path="url(#fm-clip)">${shape} fill="url(#fm-g${i})"/></a>`;
+    const [lx, ly] = n === 1 ? [0, 0] : pt(a0 + span / 2, 50);
+    labels += `<div class="fm-lbl${f.font === 'goth' ? ' fm-lbl--goth' : ''}" style="left:${50 + lx / 2}%;top:${50 + ly / 2}%;color:${f.ink};${n === 1 ? 'width:70%;font-size:calc(var(--sun) / 15);' : ''}">
       <span class="fm-k">${f.k}</span><span class="fm-t">${f.t}</span><span class="fm-s">${f.s}</span>
-      <span class="fm-cta" style="background:${f.cta[0]};color:${f.cta[1]}">Tickets →</span></div>`;
-    pills += `<a href="${f.href}" data-track="Home pill: ${f.slug}" style="background:${f.cta[0]};color:${f.cta[1]}">${f.pill} →</a>`;
+      <span class="fm-cta" style="background:${f.cta[0]};color:${f.cta[1]}">${f.cta2 || 'Tickets'} →</span></div>`;
+    pills += `<a href="${f.href}" data-track="Home pill: ${f.slug}" style="background:${(f.pillc || f.cta)[0]};color:${(f.pillc || f.cta)[1]}">${f.pill}${/→$/.test(f.pill) ? '' : ' →'}</a>`;
   });
-  // Moonlight: soft light top-left, shadow bottom-right, across every slice
-  defs += '<radialGradient id="fm-shade" cx=".32" cy=".28" r=".85"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient>';
+  defs += '<radialGradient id="fm-shade" cx=".35" cy=".25" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></radialGradient>'
+    + '<linearGradient id="fm-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".5" stop-color="#e8c26a"/><stop offset="1" stop-color="#fff3c4"/></linearGradient>';
+  // Fine gold orbit ring with slow-turning ticks: the "crown" around the moon
+  let ticks = '';
+  for (let a = 0; a < 360; a += 6) { const [x1, y1] = pt(a, 113), [x2, y2] = pt(a, a % 30 ? 116 : 120); ticks += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`; }
   document.getElementById('feat-moon').innerHTML =
     `<svg viewBox="-180 -180 360 360"><defs>${defs}</defs>
-      <g class="fm-beams">${beams}</g><g class="fm-bob">${slices}
-      <circle r="100" fill="url(#fm-shade)" pointer-events="none"/>
-      <circle r="100" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2" pointer-events="none"/></g></svg>${labels}`;
+      <g class="fm-auras">${aura}</g>
+      <g class="fm-crown"><circle r="109" fill="none" stroke="url(#fm-gold)" stroke-width="1.2" opacity=".85"/><g stroke="url(#fm-gold)" stroke-width="1" opacity=".55">${ticks}</g></g>
+      <g class="fm-bob">${slices}
+      <circle r="102" fill="url(#fm-shade)" pointer-events="none"/>
+      ${n === 2 ? '<line x1="0" y1="-102" x2="0" y2="102" stroke="#fff3c4" stroke-width="1.5" opacity=".75" pointer-events="none"/>' : ''}
+      <circle r="102" fill="none" stroke="url(#fm-gold)" stroke-width="2.4" pointer-events="none"/></g></svg>${labels}`;
   document.getElementById('feat-pills').innerHTML = pills;
   document.querySelectorAll('#feat-moon .fm-slice,#feat-pills a').forEach(a => a.addEventListener('click', featGo));
 })();
