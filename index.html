@@ -4918,7 +4918,10 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
     .pj-when{display:inline-block;background:#fff;border-radius:22px;padding:1rem 1.3rem;box-shadow:0 14px 34px rgba(143,16,21,.15);border:1.5px solid var(--pj-pink);}
     .pj-when b{display:block;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.2rem,3.6vw,1.6rem);text-transform:uppercase;color:var(--pj-red);}
     .pj-when span{font:.72rem/1.7 'Space Mono',monospace;color:#6b4a4c;}
-    .pj-flyer{width:100%;max-width:430px;justify-self:center;border-radius:26px;border:10px solid #fff;box-shadow:0 30px 70px rgba(143,16,21,.28);transform:rotate(1.5deg);}
+    /* Flyer fits the screen: never taller than the window, straight (a tilt blurs its small text), tap to open full size */
+    .pj-flyer-link{justify-self:center;align-self:start;position:sticky;top:84px;display:block;line-height:0;cursor:none;text-decoration:none;}
+    .pj-flyer{display:block;width:auto;height:auto;max-width:100%;max-height:min(calc(100vh - 170px),620px);aspect-ratio:1080/1350;object-fit:contain;border-radius:18px;border:6px solid #fff;box-shadow:0 24px 60px rgba(143,16,21,.25);}
+    .pj-flyer-tip{display:block;margin-top:.6rem;text-align:center;font:700 .6rem "Space Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#a3343a;line-height:1.4;}
     .pj-card{margin-top:2.6rem;background:#fff;border-radius:30px;padding:2rem 1.6rem;box-shadow:0 24px 60px rgba(143,16,21,.16);border:2px solid var(--pj-pink);display:grid;grid-template-columns:1fr auto;gap:1.6rem;align-items:center;position:relative;overflow:hidden;}
     .pj-card::before{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,var(--pj-blush),transparent 70%);}
     .pj-k{font:700 .56rem 'Space Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--pj-red2);}
@@ -4949,7 +4952,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
     .seat-row--pj .seat-row-label{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;color:#c41a1f;}
     .seat-row--pj .seat-row-label em{font-family:'Cormorant Garamond',serif;font-weight:600;text-transform:none;color:inherit;}
     .seat-row--pj:hover{background:rgba(243,185,194,.18);}
-    @media (max-width:820px){.pj-hero{grid-template-columns:1fr;} .pj-flyer{order:-1;max-width:380px;transform:none;} .pj-card{grid-template-columns:1fr;} .pj-stills{grid-template-columns:1fr;max-width:420px;margin:0 auto;} .pj-stills figure{transform:none!important;}}
+    @media (max-width:820px){.pj-hero{grid-template-columns:1fr;} .pj-flyer-link{order:-1;position:static;} .pj-flyer{width:min(88vw,400px);max-height:none;} .pj-card{grid-template-columns:1fr;} .pj-stills{grid-template-columns:1fr;max-width:420px;margin:0 auto;} .pj-stills figure{transform:none!important;}}
     </style>
     <div class="film-sub" id="film-pajama">
       <div class="pj-feathers" id="pj-feathers" aria-hidden="true"></div>
@@ -4964,7 +4967,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
             <p class="pj-lede">A film screening and pajama party for Black women in San Diego. Come in your coziest pajamas, bring your girls, and settle into the big screen at Coronado's classic movie house.</p>
             <div class="pj-when"><b>Sunday, Dec 13 · 7–10 PM</b><span>Coronado Village Theatre · 820 Orange Ave, Coronado</span></div>
           </div>
-          <img class="pj-flyer" src="images/movie-night/flyer.webp" width="1080" height="1350" alt="Movie Night Pajama Party flyer: Sunday December 13th, 7 PM, Coronado Village Theatre, 820 Orange Ave, Coronado. Brought to you by Nexus + BWSD.">
+          <a class="pj-flyer-link" href="images/movie-night/flyer.webp" target="_blank" rel="noopener" aria-label="Open the Movie Night flyer full size"><img class="pj-flyer" src="images/movie-night/flyer.webp" width="1080" height="1350" alt="Movie Night Pajama Party flyer: Sunday December 13th, 7 PM, Coronado Village Theatre, 820 Orange Ave, Coronado. Brought to you by Nexus + BWSD."><span class="pj-flyer-tip">Tap to view full size ↗</span></a>
         </section>
 
         <div class="pj-card" id="pj-tickets">
