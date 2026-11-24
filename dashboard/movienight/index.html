@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Movie Night Dashboard</title>
+<link rel="icon" href="/favicon-48.png">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Cormorant+Garamond:ital,wght@1,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#f6dcd6;--navy:#8f1015;--cream:#fbf3ea;--paper:#ffffff;--line:#f3b9c2;--muted:#6b4a4c;--ok:#2f7a3d;--cherry:#c41a1f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--blue);color:var(--navy);font:15px/1.5 Inter,system-ui,sans-serif;}
+.wrap{max-width:980px;margin:0 auto;padding:24px 16px 60px}
+.sheet{background:var(--cream);border-radius:30px;box-shadow:0 30px 80px rgba(143,16,21,.18);padding:26px 20px}
+h1{font-family:Archivo,Impact,sans-serif;font-weight:900;color:var(--cherry);text-transform:uppercase;font-size:clamp(1.8rem,6vw,2.8rem);line-height:1;margin:0}
+.eb{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.sub{font-family:'Space Mono',monospace;font-size:.78rem;margin-top:8px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.btn{font:700 .8rem Inter,sans-serif;background:var(--cherry);color:#fff;border:0;border-radius:99px;padding:10px 16px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:14px}
+.kpi .l{font-family:'Space Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}
+.kpi .v{font-family:Archivo,Impact,sans-serif;font-weight:900;color:var(--cherry);font-size:2.2rem;line-height:1.05}
+.kpi .s{font-size:.75rem;color:var(--muted)}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:600;color:var(--navy);font-size:1.4rem;margin:26px 0 10px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.card{background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:14px}
+.bars{display:flex;align-items:flex-end;gap:4px;height:120px;border-bottom:2px solid var(--navy)}
+.bars div{flex:1;background:var(--cherry);border-radius:6px 6px 0 0;min-height:2px}
+.bx{display:flex;justify-content:space-between;font:.68rem 'Space Mono',monospace;margin-top:4px}
+.r{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.r b{font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line)}
+th{font:700 .66rem 'Space Mono',monospace;text-transform:uppercase;letter-spacing:.08em}
+.chip{font:700 .66rem 'Space Mono',monospace;padding:2px 7px;border:1.5px solid var(--navy)}
+.chip.in{background:var(--navy);color:var(--cream)}
+.empty{color:var(--muted);font-size:.85rem;padding:8px 0}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.links a{font:700 .78rem 'Space Mono',monospace;color:var(--navy);border:1.5px solid var(--line);border-radius:99px;padding:7px 12px;text-decoration:none;background:var(--paper)}
+#gate{max-width:380px;margin:12vh auto;text-align:center}
+#gate input{width:100%;font:inherit;padding:12px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);color:var(--navy);margin:14px 0 8px}
+.err{color:#a3241b;min-height:1.3em;font-size:.85rem}
+.tip{font-size:.78rem;color:var(--muted);margin-top:8px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="gate" class="sheet">
+    <div class="eb">Nexus + BWSD</div>
+    <h1>Movie Night<br>Dashboard</h1>
+    <form id="f"><input id="pass" type="password" placeholder="Passcode" aria-label="Passcode" required autocomplete="current-password">
+      <div class="err" id="err"></div><button class="btn" style="width:100%">Open</button></form>
+  </div>
+  <div id="app" hidden>
+    <div class="sheet">
+      <div class="top">
+        <div><div class="eb">Live · Nexus + BWSD · Pajama Party</div><h1 id="title">Movie Night</h1><div class="sub" id="when"></div></div>
+        <div><span class="sub" id="upd"></span> <button class="btn ghost" id="refresh">Refresh</button></div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="links">
+        <a href="https://nexusglobal.info/movienight" target="_blank" rel="noopener">Ticket page ↗</a>
+        <a href="https://nexusglobal.info/door/movienight" target="_blank" rel="noopener">Door scanner ↗</a>
+      </div>
+      <div class="two" style="margin-top:14px">
+        <div class="card"><h2 style="margin-top:0">Tickets sold per day</h2><div id="chart"></div></div>
+        <div class="card"><h2 style="margin-top:0">Where buyers come from</h2><div id="sources"></div>
+          <div class="tip">Tag your posts so they show here: <b>nexusglobal.info/movienight?utm_source=bwsd</b></div></div>
+      </div>
+      <h2>Guest list</h2>
+      <div class="card"><table id="guests"></table><div class="tip">Names only. Emails and phone numbers stay private with Nexus.</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const API = 'https://ljmeugrvvuxglwfyhxhj.supabase.co/rest/v1/rpc/event_dashboard';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqbWV1Z3J2dnV4Z2x3ZnloeGhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NzExOTcsImV4cCI6MjA5NDQ0NzE5N30.B8O0qLMOjPKUP_xoOE3lF5R8kJOQJt6QBM3f1kkE-5k';
+const EVENT = 'movie-night-2026';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = c => '$' + (c / 100).toFixed(2);
+let pass = null; try { pass = sessionStorage.getItem('mn_pass'); } catch (e) {}
+async function load() {
+  const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY, Authorization: 'Bearer ' + KEY }, body: JSON.stringify({ event_slug: EVENT, passcode: pass }) });
+  const d = await r.json(); if (d.error === 'wrong_passcode') throw new Error('pass'); if (!r.ok || d.error) throw new Error('load'); return d;
+}
+function kpi(l, v, s) { return `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`; }
+function render(d) {
+  $('title').textContent = d.title; $('when').textContent = d.when + ' · ' + d.where;
+  $('upd').textContent = 'Updated ' + new Date(d.generated_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  $('kpis').innerHTML = kpi('Tickets sold', d.tickets_sold + ' / 34', d.orders + ' orders · ' + Math.max(0, 34 - d.tickets_sold) + ' seats left') + kpi('Checked in', d.checked_in, 'of ' + d.tickets_sold + ' at the door')
+    + kpi('Ticket revenue', money(d.ticket_cents), money(d.gross_cents) + ' collected incl. fees') + kpi('Page visitors', d.page_visitors, d.ticket_clicks + ' tapped Get Tickets');
+  const days = d.by_day || [], m = Math.max(1, ...days.map(x => x.tickets));
+  $('chart').innerHTML = days.length ? `<div class="bars">${days.map(x => `<div style="height:${x.tickets / m * 100}%" title="${x.day}: ${x.tickets}"></div>`).join('')}</div><div class="bx"><span>${days[0].day}</span><span>${days[days.length - 1].day}</span></div>` : '<div class="empty">No sales yet.</div>';
+  $('sources').innerHTML = (d.sources || []).map(s => `<div class="r"><span>${esc(s.source)}</span><b>${s.visitors}</b></div>`).join('') || '<div class="empty">No visits yet.</div>';
+  $('guests').innerHTML = '<tr><th>Name</th><th>Ticket</th><th>Door</th></tr>' + ((d.guests || []).map(g => `<tr><td>${esc(g.name)}</td><td>${esc(g.tier)}</td><td>${g.in ? `<span class="chip in">In · ${new Date(g.at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>` : '<span class="chip">Not yet</span>'}</td></tr>`).join('') || '<tr><td colspan="3" class="empty">No tickets sold yet.</td></tr>');
+}
+async function open() {
+  $('err').textContent = '';
+  try { const d = await load(); try { sessionStorage.setItem('mn_pass', pass); } catch (e) {} $('gate').hidden = true; $('app').hidden = false; render(d); }
+  catch (e) { $('gate').hidden = false; $('app').hidden = true; $('err').textContent = e.message === 'pass' ? 'That passcode isn’t right.' : 'Couldn’t reach the server. Try again.'; }
+}
+$('f').onsubmit = e => { e.preventDefault(); pass = $('pass').value; open(); };
+$('refresh').onclick = open;
+setInterval(() => { if (!$('app').hidden) load().then(render).catch(() => {}); }, 60000);
+if (pass) open();
+</script>
+</body>
+</html>
