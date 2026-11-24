@@ -4948,6 +4948,9 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
     .pj-when{display:inline-block;background:#fff;border-radius:22px;padding:1rem 1.3rem;box-shadow:0 14px 34px rgba(143,16,21,.15);border:1.5px solid var(--pj-pink);}
     .pj-when b{display:block;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.2rem,3.6vw,1.6rem);text-transform:uppercase;color:var(--pj-red);}
     .pj-when span{font:.72rem/1.7 'Space Mono',monospace;color:#6b4a4c;}
+    .pj-sched{list-style:none;margin:.8rem 0 0;padding:.75rem 0 0;border-top:1.5px dashed var(--pj-pink);display:grid;gap:.35rem;}
+    .pj-sched li{display:flex;gap:.8rem;align-items:baseline;font-family:'Cormorant Garamond',serif;font-size:1.08rem;color:#2a1416;}
+    .pj-sched i{flex:none;width:4.6rem;font:700 .66rem 'Space Mono',monospace;letter-spacing:.06em;font-style:normal;text-transform:uppercase;color:var(--pj-red);}
     /* Flyer fits the screen: never taller than the window, straight (a tilt blurs its small text), tap to open full size */
     .pj-flyer-link{justify-self:center;align-self:start;position:sticky;top:84px;display:block;line-height:0;cursor:none;text-decoration:none;}
     .pj-flyer{display:block;width:auto;height:auto;max-width:100%;max-height:min(calc(100vh - 170px),620px);aspect-ratio:1053/1350;object-fit:contain;border-radius:18px;border:6px solid #fff;box-shadow:0 24px 60px rgba(143,16,21,.25);}
@@ -4995,7 +4998,8 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
             <p class="pj-title2">Pajama Party</p>
             <p class="pj-film">Screening <b>Last Holiday</b>, starring the one and only Queen Latifah</p>
             <p class="pj-lede">Film screening and pajama party.</p>
-            <div class="pj-when"><b>Sunday, Dec 13 · 6:30–9:30 PM</b><span>UltraStar Coronado Village Theatre · 820 Orange Ave, Coronado</span></div>
+            <div class="pj-when"><b>Sunday, Dec 13 · 6:30–9:30 PM</b><span>UltraStar Coronado Village Theatre · 820 Orange Ave, Coronado</span>
+              <ol class="pj-sched"><li><i>6:30 PM</i>Doors open · Mixer</li><li><i>7:30 PM</i>Screening: Last Holiday</li><li><i>9:30 PM</i>Goodnight</li></ol></div>
           </div>
           <a class="pj-flyer-link" href="images/movie-night/flyer.jpg?v=3" target="_blank" rel="noopener" aria-label="Open the Movie Night flyer full size"><img class="pj-flyer" src="images/movie-night/flyer.jpg?v=3" width="1053" height="1350" alt="Movie Night Pajama Party flyer: Sunday December 13th, 6:30 PM, UltraStar Coronado Village Theatre, 820 Orange Ave, Coronado. Brought to you by Nexus + BWSD."><span class="pj-flyer-tip">Tap to view full size ↗</span></a>
         </section>
@@ -5024,7 +5028,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
         <h3 class="pj-h">The night <em>· come cozy</em></h3>
         <div class="pj-cozy">
           <div><i>01</i><b>Wear your pajamas</b><span>Your cutest set, robe or onesie. Slippers encouraged.</span></div>
-          <div><i>02</i><b>A night at the movies</b><span>Last Holiday on the big screen at the UltraStar Coronado Village Theatre.</span></div>
+          <div><i>02</i><b>A night at the movies</b><span>Doors and a mixer at 6:30, then Last Holiday on the big screen at 7:30 at the UltraStar Coronado Village Theatre.</span></div>
           <div><i>03</i><b>Bring your girls</b><span>A sleepover energy evening with Black women across San Diego.</span></div>
           <div><i>04</i><b>Ticket on your phone</b><span>Show your live ticket at the door. Up to 4 per person.</span></div>
         </div>
