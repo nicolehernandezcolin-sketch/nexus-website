@@ -1147,6 +1147,17 @@ body.has-feature #feat-pills{display:flex;}
 #ms-nex-up .nxu-flyer{display:block;width:auto;height:auto;max-width:100%;max-height:min(calc(100vh - 170px),600px);aspect-ratio:1080/1350;border:6px solid var(--nu-cream);border-radius:18px;box-shadow:8px 8px 0 var(--nu-ink);transform:none;}
 #ms-nex-up .nxu-flyer-tip{display:block;margin-top:.6rem;text-align:center;font:700 .6rem "Space Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--nu-ink);line-height:1.4;}
 #ms-nex-up .nxu-body{max-width:1180px;margin:0 auto;padding:0 1.4rem 4rem;}
+/* Below the RSVP: the flyer keeps going (green grain, ink, red/blue/pink, cream cards), no dark panels */
+#ms-nex-up .nxu-body{background:none !important;}
+#ms-nex-up .nxu-sec{color:var(--nu-ink);}
+#ms-nex-up .nxu-sec-eb{color:var(--nu-red);}
+#ms-nex-up .nxu-sec-p,#ms-nex-up .nxu-step-d,#ms-nex-up .nxu-form-note{color:var(--nu-ink) !important;opacity:1;}
+#ms-nex-up #nxu-submit{background:var(--nu-cream);border:4px solid var(--nu-ink);border-radius:30px;padding:1.8rem 1.4rem;box-shadow:10px 10px 0 var(--nu-blue);margin-top:2.6rem;}
+#ms-nex-up .nxu-form{background:none !important;border:none !important;padding:0 !important;}
+#ms-nex-up #nxu-submit .ms-inp{border:3px solid var(--nu-ink);border-radius:16px;background:#fff;}
+#ms-nex-up .nxu-showcase{margin:3rem auto 0;max-width:1180px;padding:0 1.4rem;font-family:"Caveat Brush",cursive;font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.05;transform:rotate(-4deg);}
+#ms-nex-up .nxu-showcase span{display:block;}
+#ms-nex-up .nxu-showcase span:nth-child(1){color:var(--nu-red);} #ms-nex-up .nxu-showcase span:nth-child(2){color:#f2952c;} #ms-nex-up .nxu-showcase span:nth-child(3){color:#fff;} #ms-nex-up .nxu-showcase span:nth-child(4){color:var(--nu-blue);} #ms-nex-up .nxu-showcase span:nth-child(5){color:var(--nu-pink);} #ms-nex-up .nxu-showcase span:nth-child(6){color:var(--nu-red);}
 #ms-nex-up .nxu-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.8rem;border:none;}
 #ms-nex-up .nxu-fact{background:var(--nu-cream);border:3px solid var(--nu-ink);border-radius:20px;padding:1rem 1.1rem;box-shadow:5px 5px 0 var(--nu-ink);}
 #ms-nex-up .nxu-fact:nth-child(2){box-shadow:5px 5px 0 var(--nu-red);} #ms-nex-up .nxu-fact:nth-child(3){box-shadow:5px 5px 0 var(--nu-blue);} #ms-nex-up .nxu-fact:nth-child(4){box-shadow:5px 5px 0 var(--nu-pink);}
@@ -2127,6 +2138,8 @@ body.has-feature #feat-pills{display:flex;}
           </div>
         </section>
 
+        <div class="nxu-showcase" aria-hidden="true"><span>Showcase your art</span><span>Showcase your art</span><span>Showcase your art</span><span>Showcase your art</span><span>Showcase your art</span><span>Showcase your art</span></div>
+
         <section class="nxu-sec" id="nxu-submit">
           <div class="nxu-sec-eb">Submissions Open</div>
           <h2 class="nxu-sec-h">Submit for <em>Nex Up</em></h2>
@@ -2153,6 +2166,7 @@ body.has-feature #feat-pills{display:flex;}
             <textarea class="ms-inp" name="bio" style="resize:vertical;min-height:100px;" placeholder="Tell us about your work and what you'd bring to a Nex Up night."></textarea>
             <button class="nxu-btn" type="submit">Submit Your Work →</button>
             <div class="nxu-form-note">We review every submission and reach out to the artists selected for upcoming nights.</div>
+            <div class="nxu-form-note nxu-privacy"><b>Your work stays private.</b> It's handled privately and with care, and used only to curate our lineups and programs. We protect what you share: we will never publish, share, sell or otherwise use your work without your permission.</div>
           </form>
         </section>
       </div>
@@ -3652,6 +3666,7 @@ body.has-feature #feat-pills{display:flex;}
         <input class="f-inp" type="text" inputmode="url" autocapitalize="off" name="portfolio" placeholder="Portfolio or Photos Link (optional)" />
         <textarea class="f-inp" name="bio" style="resize:vertical;min-height:90px;" placeholder="Tell us about yourself — what you do, what you bring to a room."></textarea>
         <button class="f-submit" type="submit">Submit Application →</button>
+        <p class="f-privacy"><b>Your photos and details stay private.</b> They're handled with care and used only for casting. We will never publish, share, sell or otherwise use them without your permission.</p>
       </form>
       <div class="fsh-foot">
         <button class="wf-nexus" data-go="home" style="-webkit-text-stroke-color:rgba(26,20,16,.2);">NEXUS</button>
@@ -4059,6 +4074,9 @@ textarea.finput{resize:vertical;min-height:110px;}
 }
 .reel-btn--big{font-size:.58rem;padding:1.15rem 2.4rem;}
 .rv-submit .reel-lede b{font-style:normal;color:var(--rg-hi);font-weight:600;}
+.reel-privacy{margin-bottom:.6rem;color:rgba(243,230,204,.72);} .reel-privacy b{color:#f1d58e;}
+.f-privacy{margin:.9rem 0 0;font-family:'Space Mono',monospace;font-size:.5rem;line-height:1.8;letter-spacing:.04em;opacity:.75;} .f-privacy b{opacity:1;}
+#ms-nex-up .nxu-privacy{margin-top:.5rem;} #ms-nex-up .nxu-privacy b{color:var(--nu-red);}
 .reel-form-note{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.06em;line-height:1.8;color:rgba(243,230,204,.5);text-align:center;}
 .reel-close{margin-top:4rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,2rem);color:var(--rg-hi);}
 
@@ -4466,7 +4484,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
               <div class="seat"><div class="seat-back"></div><div class="seat-cushion"></div></div>
             </div>
             <div class="seat-row-label">REELFilms</div>
-            <div class="seat-row-sub" id="reel-seat-sub">Tickets for Dec 5 &nbsp;·&nbsp; Submissions Open for Dec 5</div>
+            <div class="seat-row-sub" id="reel-seat-sub">Moving to early 2027 &nbsp;·&nbsp; Submissions Open</div>
           </a>
 
           <div class="row-div"></div>
@@ -4566,8 +4584,8 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
         <div class="reel-credit"><span>A Series by</span><b>K. Screens</b></div>
 
         <nav class="reel-tabs" aria-label="REELFilms">
-          <a href="#/film/reelfilms/tickets" data-reel-view="tickets"><b>Tickets</b><span>Dec 5 Screening</span></a>
-          <a href="#/film/reelfilms/submit" data-reel-view="submit"><b>Submit a Film</b><span id="reel-tab-sub">Open · Nov 14 &amp; Dec 5</span></a>
+          <a href="#/film/reelfilms/tickets" data-reel-view="tickets"><b>Tickets</b><span>Early 2027</span></a>
+          <a href="#/film/reelfilms/submit" data-reel-view="submit"><b>Submit a Film</b><span id="reel-tab-sub">Open · Next Screening</span></a>
         </nav>
 
         <!-- Overview: nexusglobal.info/#/film/reelfilms -->
@@ -4576,14 +4594,14 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
           <div class="reel-cards">
             <div class="reel-card">
               <div class="reel-card-k">Next Screening</div>
-              <div class="reel-card-v">Dec 5</div>
-              <div class="reel-card-d">Saturday, 7 – 10 PM at UltraStar Coronado Village Theatre. Tickets on sale now.</div>
-              <a class="reel-btn" href="#/film/reelfilms/tickets" data-reel-view="tickets">Get Tickets →</a>
+              <div class="reel-card-v">2027</div>
+              <div class="reel-card-d">REELFilms is moving to the new year. Our next screening is in early 2027, with the date and details coming soon.</div>
+              <a class="reel-btn" href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">Get the Date →</a>
             </div>
             <div class="reel-card">
               <div class="reel-card-k">Film Submissions</div>
               <div class="reel-card-v">Open</div>
-              <div class="reel-card-d" id="reel-home-sub">Free to submit. Still accepting films for our November 14 screening, and for December 5 (deadline Saturday, Nov 21).</div>
+              <div class="reel-card-d" id="reel-home-sub">Free to submit. Submissions are open for our next screening in early 2027.</div>
               <a class="reel-btn" href="#/film/reelfilms/submit" data-reel-view="submit">Submit Your Film →</a>
             </div>
           </div>
@@ -4592,20 +4610,18 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
         <!-- Tickets: nexusglobal.info/#/film/reelfilms/tickets (the link to share) -->
         <section class="rv rv-tickets">
           <div class="reel-card reel-card--solo">
-            <div class="reel-card-k" id="reel-tier">Tickets · Early Bird</div>
-            <!-- All-in prices (ticket + Nexus fee) are shown first, as California requires for live events -->
-            <div class="reel-card-v" id="reel-price">$21.59</div>
-            <div class="reel-card-d" id="reel-price-d">$20 ticket + $1.59 fee. Early bird through November 27, then $22 + fee.</div>
-            <div class="reel-count" id="reel-count">Early bird ends November 27</div>
-            <div class="reel-final">All sales are final. Tickets are non-refundable.</div>
-            <button class="reel-btn reel-btn--big" type="button" id="reel-buy" data-reel-buy>Get Tickets →</button>
+            <div class="reel-card-k" id="reel-tier">Tickets · Next Screening</div>
+            <div class="reel-card-v" id="reel-price">Early 2027</div>
+            <div class="reel-card-d" id="reel-price-d">REELFilms is moving to the new year. Tickets go on sale here as soon as the new date is set.</div>
+            <div class="reel-count" id="reel-count">Date and details coming soon</div>
+            <button class="reel-btn reel-btn--big" type="button" id="reel-buy" onclick="window.open('https://www.instagram.com/n3xus.now/','_blank','noopener')">Get Notified →</button>
           </div>
 
           <div class="reel-ticket">
             <div class="reel-tk">
               <div class="reel-tk-l">Date</div>
-              <div class="reel-tk-v">Saturday, December 5</div>
-              <div class="reel-tk-s">2026</div>
+              <div class="reel-tk-v">Early 2027</div>
+              <div class="reel-tk-s">Date coming soon</div>
             </div>
             <div class="reel-tk">
               <div class="reel-tk-l">Showtime</div>
@@ -4636,13 +4652,13 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
 
         <!-- Submissions: nexusglobal.info/#/film/reelfilms/submit -->
         <section class="rv rv-submit">
-          <p class="reel-lede" id="reel-sub-lede">We're still accepting films for our <b>November 14</b> screening. Last call! Submissions are also open for <b>December 5</b> and future REELFilms nights.</p>
+          <p class="reel-lede" id="reel-sub-lede">REELFilms is moving to the new year. <b>Submissions are still open</b> for our next screening in early 2027. More details coming soon.</p>
 
           <div class="reel-ticket">
             <div class="reel-tk">
-              <div class="reel-tk-l" id="reel-sub-when-l">Screenings</div>
-              <div class="reel-tk-v" id="reel-sub-when">Nov 14 &amp; Dec 5</div>
-              <div class="reel-tk-s">2026</div>
+              <div class="reel-tk-l" id="reel-sub-when-l">Next Screening</div>
+              <div class="reel-tk-v" id="reel-sub-when">Early 2027</div>
+              <div class="reel-tk-s">Date coming soon</div>
             </div>
             <div class="reel-tk">
               <div class="reel-tk-l">Showtime</div>
@@ -4661,7 +4677,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
             <div class="reel-card-k">Film Submissions</div>
             <div class="reel-card-v">Free</div>
             <div class="reel-card-d">No entry fee. Our team watches every submission.</div>
-            <div class="reel-count" id="reel-sub-deadline">Nov 14 · Last Call &nbsp;·&nbsp; Dec 5 · Due Nov 21</div>
+            <div class="reel-count" id="reel-sub-deadline">Submissions open · Deadline announced with the date</div>
             <a class="reel-btn reel-btn--big" href="#reel-submit" data-reel-jump>Submit Your Film ↓</a>
           </div>
 
@@ -4671,20 +4687,15 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
           <ol class="reel-steps">
             <li><b>I</b><strong>Submit</strong><span>Send us a link to your film using the form below. It's free.</span></li>
             <li><b>II</b><strong>Selection</strong><span>We watch every film and reach out to the filmmakers selected for the program.</span></li>
-            <li><b>III</b><strong>Screening</strong><span id="reel-sub-step">Selected films play on the big screen in Coronado on November 14 or December 5.</span></li>
+            <li><b>III</b><strong>Screening</strong><span id="reel-sub-step">Selected films play on the big screen at our next REELFilms night in early 2027.</span></li>
           </ol>
 
           <div class="reel-rule">✦</div>
 
           <h3 class="reel-h" id="reel-submit">Submit Your <em>Film</em></h3>
-          <p class="reel-p"><span id="reel-sub-due">Submissions are still open for November 14 (last call). For December 5, submit by Saturday, November 21, at 11:59 PM.</span> Free to submit. Share a screening link we can watch (YouTube, Vimeo, or Google Drive) and tell us about your film.</p>
+          <p class="reel-p"><span id="reel-sub-due">Submissions are open for our early 2027 screening.</span> Free to submit. Share a screening link we can watch (YouTube, Vimeo, or Google Drive) and tell us about your film.</p>
           <form class="fform reel-form" id="reel-form" method="POST">
-            <select class="finput" name="event" id="reel-sub-event" required aria-label="Screening">
-              <option value="" disabled selected>Which screening?</option>
-              <option value="REELFilms · Nov 14" id="reel-opt-nov14">November 14 (last call)</option>
-              <option value="REELFilms · Dec 5">December 5</option>
-              <option value="REELFilms · Either">Either one</option>
-            </select>
+            <input type="hidden" name="event" id="reel-sub-event" value="REELFilms · 2027" />
             <div class="reel-2col">
               <input class="finput" type="text" name="name" placeholder="Filmmaker Name" required />
               <input class="finput" type="email" name="email" placeholder="Email Address" required />
@@ -4712,7 +4723,8 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
             <textarea class="finput" name="logline" placeholder="Tell us about your film: the story, the team, and where it was made."></textarea>
             <label class="reel-check"><input type="checkbox" name="rights_confirmed" value="yes" required aria-label="Rights confirmation" /> I made this film or have the rights to submit it for screening.</label>
             <button class="reel-btn" type="submit">Submit My Film →</button>
-            <div class="reel-form-note"><span id="reel-sub-note">We watch every film and reach out to the filmmakers selected for November 14 and December 5.</span> Films we love that don't fit this program are considered for future screenings.</div>
+            <div class="reel-form-note reel-privacy"><b>Your film stays private.</b> It's handled privately and with care, and used only to curate our lineups and programs. We protect what you share: we will never publish, share, sell or otherwise use your film without your permission.</div>
+            <div class="reel-form-note"><span id="reel-sub-note">We watch every film and reach out to the filmmakers selected for our early 2027 screening.</span> Films we love that don't fit this program are considered for future screenings.</div>
           </form>
         </section>
 
@@ -6690,7 +6702,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
     <svg class="nx-bb-burst" viewBox="-100 -100 200 200" aria-hidden="true"><polygon points="0,-100 9,-26 59,-81 21,-14 95,-31 24,4 81,59 13,22 31,95 -2,25 -31,95 -15,20 -81,59 -25,4 -95,-31 -22,-12 -59,-81 -10,-25"/></svg>
     <div class="nx-eb">Nexus Box Office</div>
     <h2 class="nx-h" id="nx-box-h">REEL<em>Films</em></h2>
-    <div class="nx-sub">Saturday, December 5 · 7–10 PM · UltraStar Coronado Village Theatre</div>
+    <div class="nx-sub"></div>
 
     <form class="nx-step" id="nx-buy-form" novalidate>
       <div class="nx-row">
@@ -7320,55 +7332,7 @@ function setReelView(view, push) {
 document.querySelectorAll('[data-reel-view]').forEach(el => {
   el.addEventListener('click', e => { e.preventDefault(); setReelView(el.dataset.reelView, true); });
 });
-// REELFilms submissions for Nov 14 stay open until 11:59 PM PT on Nov 12; after that the page
-// shows Dec 5 only and the Nov 14 choice leaves the form.
-(function reelNov14Close() {
-  const close = new Date('2026-11-12T23:59:59-08:00');
-  function closeIfPast() {
-    if (Date.now() <= close) return false;
-    const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
-    set('reel-sub-lede', 'Submissions are open! We\'re now accepting films for our December 5 screening at UltraStar Coronado Village Theatre. Free to submit, due Saturday, November 21.');
-    set('reel-sub-when-l', 'Next Screening');
-    set('reel-sub-when', 'Saturday, December 5');
-    set('reel-sub-deadline', 'Deadline · Sat, Nov 21 · 11:59 PM');
-    set('reel-sub-step', 'Selected films play on the big screen in Coronado on December 5. Submit by November 21.');
-    set('reel-sub-due', 'Submit by Saturday, November 21, at 11:59 PM for the December 5 screening.');
-    set('reel-sub-note', 'We watch every film and reach out to the filmmakers selected for December 5.');
-    set('reel-home-sub', 'Free to submit. Now accepting films for our December 5 screening. Deadline Saturday, Nov 21.');
-    set('reel-tab-sub', 'Open · Due Nov 21');
-    set('reel-seat-sub', 'Tickets for Dec 5 · Submissions Open for Dec 5');
-    const sel = document.getElementById('reel-sub-event');
-    const nov = document.getElementById('reel-opt-nov14');
-    const either = sel && sel.querySelector('option[value="REELFilms · Either"]');
-    if (nov) nov.remove();
-    if (either) either.remove();
-    if (sel) sel.value = 'REELFilms · Dec 5';
-    return true;
-  }
-  if (!closeIfPast()) {
-    const timer = setInterval(() => { if (closeIfPast()) clearInterval(timer); }, 60000);
-  }
-})();
-// REELFilms submissions for Dec 5 close at 11:59 PM PT on Nov 21 (two weeks before). The form stays
-// open after that, for future screenings.
-(function reelSubmissionDeadline() {
-  const deadline = new Date('2026-11-21T23:59:59-08:00');
-  function closeIfPast() {
-    if (Date.now() <= deadline) return false;
-    const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
-    set('reel-sub-lede', 'Submissions for December 5 are closed. Thank you to every filmmaker who sent us their work. We keep accepting films for future REELFilms screenings.');
-    set('reel-sub-deadline', 'Now accepting films for future screenings');
-    set('reel-sub-step', 'Selected films play on the big screen at a future REELFilms night.');
-    set('reel-sub-due', 'Submissions for December 5 are closed; new films are considered for future screenings.');
-    set('reel-home-sub', 'Free to submit. Now accepting films for future REELFilms screenings.');
-    set('reel-tab-sub', 'Open · Future Screenings');
-    set('reel-seat-sub', 'Tickets for Dec 5 · Submissions Open');
-    return true;
-  }
-  if (!closeIfPast()) {
-    const timer = setInterval(() => { if (closeIfPast()) clearInterval(timer); }, 60000);
-  }
-})();
+// REELFilms moved to early 2027 (announced Nov 24, 2026): no dated copy swaps; the page text says so.
 // REELFilms: scroll to the form inside the theater
 document.querySelectorAll('[data-reel-jump]').forEach(el => {
   el.addEventListener('click', e => {
@@ -7385,8 +7349,8 @@ document.querySelectorAll('[data-reel-jump]').forEach(el => {
 const NX_EVENTS = {
   'reelfilms-2026': { key: 'reelfilms', theme: 'reel', h: 'REEL<em>Films</em>', sub: 'Saturday, November 14 · 7–10 PM · UltraStar Coronado Village Theatre',
     door: 'REELFilms · Nov 14', back: '#/film/reelfilms', ends: '2026-11-15T01:00:00-08:00' },
-  'reelfilms-dec-2026': { key: 'reelfilms', theme: 'reel', h: 'REEL<em>Films</em>', sub: 'Saturday, December 5 · 7–10 PM · UltraStar Coronado Village Theatre',
-    door: 'REELFilms · Dec 5', back: '#/film/reelfilms/tickets', ends: '2026-12-06T01:00:00-08:00' },
+  'reelfilms-dec-2026': { key: 'reelfilms', theme: 'reel', h: 'REEL<em>Films</em>', sub: 'Rescheduled to early 2027 · UltraStar Coronado Village Theatre',
+    door: 'REELFilms · 2027', back: '#/film/reelfilms/tickets', ends: '2026-12-06T01:00:00-08:00' },
   'bass-and-bars-2026': { key: 'bass-and-bars', theme: 'bb', h: '<span class="nx-bb-big">After <b>Party</b></span><span class="nx-bb-small">Bass <b>&amp;</b> Bars</span>', sub: 'Thursday, November 19 · 10 PM – 1 AM · Uppercuts, 4932 Newport Ave, Ocean Beach',
     door: 'Bass & Bars After Party · Nov 19', back: '#/music/nexus-live/tickets', ends: '2026-11-20T02:00:00-08:00' },
   'movie-night-2026': { key: 'movie-night', theme: 'pj', h: 'Movie Night <em>Pajama Party</em>', sub: 'Sunday, December 13 · 7–10 PM · Coronado Village Theatre · 820 Orange Ave',
@@ -7592,7 +7556,10 @@ function nxSaved() { try { return JSON.parse(localStorage.getItem('nx_tickets') 
 function nxSave(ref) { try { localStorage.setItem('nx_tickets', JSON.stringify([...new Set([ref, ...nxSaved()])].slice(0, 10))); } catch (e) {} }
 
 /* ── Ticket card: live price from the server ── */
+const NX_REEL_ON_SALE = false;
 async function nxLoadQuote() {
+  // REELFilms moved to early 2027: the card stays on "Get Notified" until the new event is created.
+  if (!NX_REEL_ON_SALE) return;
   const q = await nxCall('create-guest-checkout', { mode: 'quote', event: 'reelfilms-dec-2026' });
   const buy = document.getElementById('reel-buy');
   const set = (id, t) => { document.getElementById(id).textContent = t; };
