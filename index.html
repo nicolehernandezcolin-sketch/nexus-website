@@ -359,6 +359,22 @@ body.has-feature #feat-pills{display:flex;}
 @keyframes fmTwinkle{0%,100%{opacity:.2;scale:.6}50%{opacity:1;scale:1.15}}
 @keyframes fmBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 @media (prefers-reduced-motion:reduce){#feat-moon .fm-auras,#feat-moon .fm-crown,#feat-moon .fm-spark,#feat-moon .fm-bob{animation:none;}}
+/* Event globes: one little world per event, in its own colours */
+#feat-moon .fg-sys{position:absolute;left:50%;top:50%;width:150%;height:150%;transform:translate(-50%,-50%);overflow:visible;pointer-events:none;filter:none;}
+#feat-moon .fg-sys .fm-crown{animation:fmTurn 160s linear infinite;transform-origin:0 0;}
+#feat-moon .fg{position:absolute;transform:translate(-50%,-50%);display:block;text-decoration:none;pointer-events:auto;cursor:none;border-radius:50%;outline:none;}
+#feat-moon .fg-in{position:absolute;inset:0;animation:fmBob 5.5s ease-in-out infinite;transition:transform .45s cubic-bezier(.2,.9,.25,1.2);}
+#feat-moon .fg:hover .fg-in,#feat-moon .fg:focus-visible .fg-in{transform:scale(1.08);}
+#feat-moon .fg svg{position:absolute;left:-14%;top:-14%;width:128%;height:128%;transform:none;overflow:visible;pointer-events:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.45));}
+#feat-moon .fg .fg-spin{animation:fmTurn 40s linear infinite;transform-origin:0 0;}
+#feat-moon .fg-lbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2em;text-align:center;font-size:calc(var(--sun) / var(--fgdiv, 27));line-height:1;pointer-events:none;padding:0 12%;}
+#feat-moon .fg-lbl .fm-t{font-size:1.5em;}
+#feat-moon .fg-lbl .fm-s{font-size:1.02em;}
+#feat-moon .fg-lbl .fm-cta{font-size:.6em;margin-top:.45em;box-shadow:0 3px 10px rgba(0,0,0,.25);}
+#feat-moon .fg--goth .fm-t{font-family:'Grenze Gotisch',serif;font-weight:900;text-transform:none;font-size:2em;line-height:.85;}
+#feat-moon .fg--goth .fm-s{font-family:'Grenze Gotisch',serif;font-style:normal;font-size:1.2em;}
+#feat-moon .fg--pj .fm-t{font-family:'Archivo','Unbounded',sans-serif;}
+@media (prefers-reduced-motion:reduce){#feat-moon .fg-in,#feat-moon .fg .fg-spin,#feat-moon .fg-sys .fm-crown{animation:none;}}
 /* About page: the Nexus globe now lives here */
 .glob-globe{width:min(180px,42vw);height:min(180px,42vw);margin:0 auto 1.6rem;animation:globSpin 32s linear infinite;
   filter:drop-shadow(0 0 12px rgba(62,207,90,.5)) drop-shadow(0 0 40px rgba(62,207,90,.18));}
@@ -821,8 +837,8 @@ body.has-feature #feat-pills{display:flex;}
   <div id="nxs" role="button" tabindex="0" aria-label="About Nexus">NEXUS</div>
   <div id="globe-hint" aria-hidden="true">About Nexus</div>
 
-  <!-- FEATURED EVENTS: this month's paid events as one split moon. Edit FEATURES in the script. -->
-  <div id="feat-moon" role="group" aria-label="This month's events"></div>
+  <!-- FEATURED EVENTS: each upcoming event as its own little globe in the centre. Edit FEATURES in the script. -->
+  <div id="feat-moon" role="group" aria-label="Upcoming events"></div>
   <nav id="feat-pills" aria-label="Get tickets"></nav>
 
   <!-- Noti (Noter Sessions): tap to visit notersessions.com. Swap the SVG for Noti's real artwork when ready. -->
@@ -7015,13 +7031,16 @@ document.querySelectorAll('[data-go]').forEach(el =>
    with none left, the Nexus globe returns to the centre.
 ════════════════════════════════════════════ */
 const FEATURES = [
-  { slug: 'bass-and-bars-2026', href: '#/music/nexus-live/tickets', ends: '2026-11-20T01:00:00-08:00',
-    k: 'Tonight · Nov 19', t: 'After<br>Party', s: 'Bass &amp; Bars', pill: 'After Party · Tickets', cta2: 'Tickets',
-    colors: ['#3b7d2f', '#e8372c', '#f2dc12'], grad: '#24521c', ink: '#fff6d6', cta: ['#f2dc12', '#141210'] },
+  { slug: 'nex-up-2026-11', href: '#/music/nex-up', ends: '2026-11-29T01:00:00-08:00',
+    k: 'Sat · Nov 28', t: 'Nex-Up', s: 'Tender Hooligan', pill: 'Nex-Up · Free RSVP', cta2: 'Free RSVP',
+    colors: ['#7fc37a', '#161616', '#f4a7c4'], grad: '#3f8a3c', ink: '#161616', cta: ['#e8372c', '#fff7ea'], ring: '#161616' },
   { slug: 'mi-arte-2026', href: '#/music/mi-arte-es-resistencia', ends: '2026-12-13T00:00:00-08:00',
-    k: 'Sat · Dec 12', t: 'Mi Arte', s: 'es Resistencia', pill: 'Mi Arte es Resistencia →', font: 'goth', cta2: 'Free · Toy or $10',
-    colors: ['#c8231b', '#f3ead8', '#f2d13a'], grad: '#4a0906', ink: '#f3ead8', cta: ['#f2d13a', '#111'], pillc: ['#c8231b', '#f3ead8'] },
-].filter(f => Date.now() < Date.parse(f.ends)).slice(0, 2);
+    k: 'Sat · Dec 12', t: 'Mi Arte', s: 'es Resistencia', pill: 'Mi Arte es Resistencia →', font: 'goth', cta2: 'Toy or $10',
+    colors: ['#c8231b', '#f3ead8', '#f2d13a'], grad: '#4a0906', ink: '#f3ead8', cta: ['#f2d13a', '#111'], pillc: ['#c8231b', '#f3ead8'], ring: '#f2d13a' },
+  { slug: 'movie-night-2026', href: '#/film/movie-night', ends: '2026-12-14T00:00:00-08:00',
+    k: 'Sun · Dec 13', t: 'Movie Night', s: 'Pajama Party', pill: 'Movie Night · $26', font: 'pj', cta2: '$26 · Tickets',
+    colors: ['#f6dcd6', '#c41a1f', '#ffffff'], grad: '#e59aa5', ink: '#8f1015', cta: ['#c41a1f', '#fff'], pillc: ['#f6dcd6', '#8f1015'], ring: '#c41a1f' },
+].filter(f => Date.now() < Date.parse(f.ends)).slice(0, 3);
 const FEATURE_ON = FEATURES.length > 0;
 if (FEATURE_ON) document.body.classList.add('has-feature');
 function coreSize() {
@@ -7033,47 +7052,48 @@ function featGo(e) {
   history.pushState(null, '', e.currentTarget.getAttribute('href'));
   openRoute();
 }
-(function buildMoon() {
+(function buildGlobes() {
   if (!FEATURE_ON) return;
-  const n = FEATURES.length, R = 100, span = 360 / n, rad = d => d * Math.PI / 180;
-  const pt = (a, r) => [+(Math.cos(rad(a)) * r).toFixed(2), +(Math.sin(rad(a)) * r).toFixed(2)];
-  const start = n === 2 ? 90 : -90; // two events: left half and right half
-  let defs = '<clipPath id="fm-clip"><circle r="100"/></clipPath>', aura = '', slices = '', labels = '', pills = '';
+  const n = FEATURES.length, rad = d => d * Math.PI / 180;
+  // Where each globe sits in the centre (% of the centre area) and how big it is
+  const spots = { 1: [[50, 50]], 2: [[24, 50], [76, 50]], 3: [[50, 20], [19, 76], [81, 76]] }[n];
+  const size = { 1: 82, 2: 56, 3: 52 }[n], div = { 1: 16, 2: 22, 3: 23 }[n];
+  let globes = '', pills = '';
   FEATURES.forEach((f, i) => {
-    const a0 = start + i * span, a1 = a0 + span, c = f.colors;
-    // Deep, smooth colour: lit from the upper left like a moon, no texture
-    defs += `<radialGradient id="fm-g${i}" cx="${n === 2 ? (i ? .78 : .22) : .35}" cy=".3" r=".95"><stop offset="0" stop-color="${c[0]}"/><stop offset=".6" stop-color="${c[0]}"/><stop offset="1" stop-color="${f.grad || c[0]}"/></radialGradient>
-      <radialGradient id="fm-a${i}" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="138"><stop offset=".72" stop-color="${c[0]}" stop-opacity=".5"/><stop offset=".84" stop-color="${c[0]}" stop-opacity=".16"/><stop offset="1" stop-color="${c[0]}" stop-opacity="0"/></radialGradient>`;
-    // A soft halo of the event's colour on its side: light, not lines, so the planets stay clear
-    const big = 138, wedge = n === 1 ? `<circle r="${big}"` : `<path d="M0 0 L${pt(a0, big).join(' ')} A${big} ${big} 0 0 1 ${pt(a1, big).join(' ')} Z"`;
-    aura += `${wedge} fill="url(#fm-a${i})"/>`;
-    // A few fine sparkles close to the rim
+    const c = f.colors, [x, y] = spots[i];
+    // A small world: lit from the upper left, faint meridians and parallels in the event's ink, a tilted ring
+    let lines = '';
+    [34, 66, 90].forEach(rx => { lines += `<ellipse rx="${rx}" ry="100" fill="none" stroke="${f.ink}" stroke-width="1.2" opacity=".16"/>`; });
+    [[-50, 86], [0, 100], [50, 86]].forEach(([cy, rx]) => { lines += `<ellipse cy="${cy}" rx="${rx}" ry="14" fill="none" stroke="${f.ink}" stroke-width="1.2" opacity=".14"/>`; });
+    let sparks = '';
     for (let k = 0; k < 3; k++) {
-      const [sx, sy] = pt(a0 + span * (k + .5) / 3, 122 + (k % 2) * 10), sz = k === 1 ? 4 : 3;
-      aura += `<path class="fm-spark" transform="translate(${sx} ${sy})" d="M0 -${sz} Q0 0 ${sz} 0 Q0 0 0 ${sz} Q0 0 -${sz} 0 Q0 0 0 -${sz}Z" fill="${c[2] || '#fff'}" style="animation-delay:-${k * .8 + i * 1.3}s"/>`;
+      const a = -60 + k * 110 + i * 40, sx = +(Math.cos(rad(a)) * 128).toFixed(1), sy = +(Math.sin(rad(a)) * 128).toFixed(1), sz = k === 1 ? 6 : 4.5;
+      sparks += `<path class="fm-spark" transform="translate(${sx} ${sy})" d="M0 -${sz} Q0 0 ${sz} 0 Q0 0 0 ${sz} Q0 0 -${sz} 0 Q0 0 0 -${sz}Z" fill="${c[2]}" style="animation-delay:-${k * .8 + i * 1.1}s"/>`;
     }
-    const shape = n === 1 ? '<circle r="102"'
-      : `<path d="M0 -102 ${i === 0 ? 'L0 102 A102 102 0 0 1 0 -102' : 'A102 102 0 0 1 0 102 Z'}"`;
-    slices += `<a class="fm-slice" href="${f.href}" data-track="Home moon: ${f.slug}" aria-label="${f.t.replace('<br>', ' ')} ${f.s}, ${f.k}" clip-path="url(#fm-clip)">${shape} fill="url(#fm-g${i})"/></a>`;
-    const [lx, ly] = n === 1 ? [0, 0] : pt(a0 + span / 2, 50);
-    labels += `<div class="fm-lbl${f.font === 'goth' ? ' fm-lbl--goth' : ''}" style="left:${50 + lx / 2}%;top:${50 + ly / 2}%;color:${f.ink};${n === 1 ? 'width:70%;font-size:calc(var(--sun) / 15);' : ''}">
-      <span class="fm-k">${f.k}</span><span class="fm-t">${f.t}</span><span class="fm-s">${f.s}</span>
-      <span class="fm-cta" style="background:${f.cta[0]};color:${f.cta[1]}">${f.cta2 || 'Tickets'} →</span></div>`;
+    globes += `<a class="fg fm-slice${f.font ? ' fg--' + f.font : ''}" href="${f.href}" data-track="Home globe: ${f.slug}" aria-label="${f.t} ${f.s}, ${f.k}"
+      style="left:${x}%;top:${y}%;width:${size}%;height:${size}%;--fgdiv:${div};"><span class="fg-in" style="animation-delay:-${i * 1.7}s">
+      <svg viewBox="-128 -128 256 256"><defs>
+        <radialGradient id="fg-g${i}" cx=".34" cy=".28" r=".85"><stop offset="0" stop-color="${c[0]}"/><stop offset=".55" stop-color="${c[0]}"/><stop offset="1" stop-color="${f.grad}"/></radialGradient>
+        <radialGradient id="fg-a${i}" r=".5"><stop offset=".72" stop-color="${c[0]}" stop-opacity=".55"/><stop offset="1" stop-color="${c[0]}" stop-opacity="0"/></radialGradient>
+        <radialGradient id="fg-s${i}" cx=".32" cy=".24" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient>
+        <clipPath id="fg-c${i}"><circle r="100"/></clipPath></defs>
+        <circle r="128" fill="url(#fg-a${i})" class="fm-auras"/>${sparks}
+        <circle r="100" fill="url(#fg-g${i})"/>
+        <g clip-path="url(#fg-c${i})"><g class="fg-spin" style="animation-delay:-${i * 9}s">${lines}</g></g>
+        <circle r="100" fill="url(#fg-s${i})"/>
+        <ellipse cy="70" rx="116" ry="20" fill="none" stroke="${f.ring}" stroke-width="2.4" opacity=".75" transform="rotate(-10)"/>
+        <circle r="100" fill="none" stroke="${f.ring}" stroke-width="2" opacity=".55"/>
+      </svg>
+      <span class="fg-lbl" style="color:${f.ink}"><span class="fm-k">${f.k}</span><span class="fm-t">${f.t}</span><span class="fm-s">${f.s}</span>
+      <span class="fm-cta" style="background:${f.cta[0]};color:${f.cta[1]}">${f.cta2} →</span></span></span></a>`;
     pills += `<a href="${f.href}" data-track="Home pill: ${f.slug}" style="background:${(f.pillc || f.cta)[0]};color:${(f.pillc || f.cta)[1]}">${f.pill}${/→$/.test(f.pill) ? '' : ' →'}</a>`;
   });
-  defs += '<radialGradient id="fm-shade" cx=".35" cy=".25" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></radialGradient>'
-    + '<linearGradient id="fm-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".5" stop-color="#e8c26a"/><stop offset="1" stop-color="#fff3c4"/></linearGradient>';
-  // Fine gold orbit ring with slow-turning ticks: the "crown" around the moon
+  // One fine gold orbit tying the little worlds together
   let ticks = '';
-  for (let a = 0; a < 360; a += 6) { const [x1, y1] = pt(a, 113), [x2, y2] = pt(a, a % 30 ? 116 : 120); ticks += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`; }
-  document.getElementById('feat-moon').innerHTML =
-    `<svg viewBox="-180 -180 360 360"><defs>${defs}</defs>
-      <g class="fm-auras">${aura}</g>
-      <g class="fm-crown"><circle r="109" fill="none" stroke="url(#fm-gold)" stroke-width="1.2" opacity=".85"/><g stroke="url(#fm-gold)" stroke-width="1" opacity=".55">${ticks}</g></g>
-      <g class="fm-bob">${slices}
-      <circle r="102" fill="url(#fm-shade)" pointer-events="none"/>
-      ${n === 2 ? '<line x1="0" y1="-102" x2="0" y2="102" stroke="#fff3c4" stroke-width="1.5" opacity=".75" pointer-events="none"/>' : ''}
-      <circle r="102" fill="none" stroke="url(#fm-gold)" stroke-width="2.4" pointer-events="none"/></g></svg>${labels}`;
+  for (let a = 0; a < 360; a += 6) { const r1 = 112, r2 = a % 30 ? 115 : 119; ticks += `<line x1="${(Math.cos(rad(a)) * r1).toFixed(1)}" y1="${(Math.sin(rad(a)) * r1).toFixed(1)}" x2="${(Math.cos(rad(a)) * r2).toFixed(1)}" y2="${(Math.sin(rad(a)) * r2).toFixed(1)}"/>`; }
+  const sys = n > 1 ? `<svg class="fg-sys" viewBox="-180 -180 360 360"><defs><linearGradient id="fm-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".5" stop-color="#e8c26a"/><stop offset="1" stop-color="#fff3c4"/></linearGradient></defs>
+    <g class="fm-crown" opacity=".5"><circle r="108" fill="none" stroke="url(#fm-gold)" stroke-width="1" stroke-dasharray="2 5"/><g stroke="url(#fm-gold)" stroke-width="1" opacity=".6">${ticks}</g></g></svg>` : '';
+  document.getElementById('feat-moon').innerHTML = sys + globes;
   document.getElementById('feat-pills').innerHTML = pills;
   document.querySelectorAll('#feat-moon .fm-slice,#feat-pills a').forEach(a => a.addEventListener('click', featGo));
 })();
@@ -7512,7 +7532,7 @@ document.addEventListener('click', e => {
   // Sections people actually see (on screen for at least a second)
   const VIEW = { '#bb-tickets': 'After party: ticket card', '.bb-lineup': 'After party: lineup', '.bb-night': 'After party: the night',
     '.bb-sponsors': 'After party: sponsors', '.bb-info': 'After party: good to know', '#hp-tickets': 'House Show: ticket card',
-    '.hp-steps': 'House Show: how it works', '.hp-faq': 'House Show: FAQ', '#feat-moon': 'Home: event moon', '#feat-pills': 'Home: ticket buttons',
+    '.hp-steps': 'House Show: how it works', '.hp-faq': 'House Show: FAQ', '#feat-moon': 'Home: event globes', '#feat-pills': 'Home: ticket buttons',
     '.artist-grid': 'Music: artist grid', '#film-reel': 'Film: REELFilms' };
   const seen = {}, timers = new Map();
   const io = new IntersectionObserver(es => es.forEach(en => {
