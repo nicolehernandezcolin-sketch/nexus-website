@@ -4412,6 +4412,27 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
 .nx-hit{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:.8rem;border:1px solid #333;font-size:.62rem;line-height:1.5;}
 .nx-hit button{background:#fff;color:#000;border:none;padding:.6rem .9rem;font-family:inherit;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;}
 .nx-hit button:disabled{background:#444;color:#aaa;}
+/* Door scanner, Movie Night look */
+#nx-door[data-theme="pj"]{background:linear-gradient(180deg,#fbf3ea,#f6dcd6);}
+#nx-door[data-theme="pj"] .nx-door{color:#2a1416;}
+#nx-door[data-theme="pj"] .nx-door-top{border-bottom:1.5px solid #f3b9c2;color:#8f1015;}
+#nx-door[data-theme="pj"] .nx-door-top b{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;color:#c41a1f;font-size:.95rem;letter-spacing:.02em;}
+#nx-door[data-theme="pj"] .nx-door-top b small{display:block;font-family:'Space Mono',monospace;font-weight:700;font-size:.55rem;letter-spacing:.2em;color:#8f1015;margin-bottom:.2em;}
+#nx-door[data-theme="pj"] .nx-door-x{color:#8f1015;background:#fff;border-radius:50%;width:2.2rem;height:2.2rem;box-shadow:0 4px 12px rgba(143,16,21,.2);}
+#nx-door[data-theme="pj"] #nx-door-label{color:#6b4a4c;text-align:center;}
+#nx-door[data-theme="pj"] .nx-in{background:#fff;border:1.5px solid #f3b9c2;border-radius:14px;color:#2a1416;}
+#nx-door[data-theme="pj"] .nx-in::placeholder{color:rgba(42,20,22,.5);}
+#nx-door[data-theme="pj"] .nx-in:focus{border-color:#c41a1f;box-shadow:0 0 0 4px rgba(196,26,31,.12);}
+#nx-door[data-theme="pj"] .nx-btn{background:#c41a1f;color:#fff;border-radius:99px;box-shadow:0 12px 26px rgba(196,26,31,.35);}
+#nx-door[data-theme="pj"] .nx-err{color:#a3121a;font-weight:700;}
+#nx-door[data-theme="pj"] .nx-cam{background:#2a1416;border-radius:22px;margin:1rem;}
+#nx-door[data-theme="pj"] .nx-result{background:#fff;color:#2a1416;border-radius:16px;margin:0 1rem;box-shadow:0 8px 20px rgba(143,16,21,.12);}
+#nx-door[data-theme="pj"] .nx-result.ok{background:#1f8a3d;color:#fff;}
+#nx-door[data-theme="pj"] .nx-result.bad{background:#b3261e;color:#fff;}
+#nx-door[data-theme="pj"] .nx-hit{border:1.5px solid #f3b9c2;background:#fff;border-radius:14px;}
+#nx-door[data-theme="pj"] .nx-hit button{background:#c41a1f;color:#fff;border-radius:99px;}
+#nx-door[data-theme="pj"] .nx-hit button:disabled{background:#f3dcdc;color:#8f6a6c;}
+#nx-door[data-theme="pj"] #nx-find-list{color:#6b4a4c;}
 
 </style>
 
@@ -6820,7 +6841,7 @@ body:has(.nx-ov:not([hidden])) .bb-sticky{display:none;}
 <div class="nx-ov nx-ov--door" id="nx-door" hidden role="dialog" aria-modal="true" aria-label="Door check-in">
   <div class="nx-door">
     <div class="nx-door-top">
-      <b>Nexus Door</b>
+      <b id="nx-door-title">Nexus Door</b>
       <span id="nx-door-stats"></span>
       <button class="nx-door-x" type="button" data-nx-close aria-label="Close">✕</button>
     </div>
@@ -8118,6 +8139,10 @@ function nxOpenDoor(key) {
   NX.event = slugs.find(s => NX_EVENTS[s].key === key && upcoming(s)) || slugs.find(s => NX_EVENTS[s].key === key)
     || slugs.filter(upcoming).sort((a, b) => Date.parse(NX_EVENTS[a].ends) - Date.parse(NX_EVENTS[b].ends))[0] || slugs[slugs.length - 1];
   document.getElementById('nx-door-label').textContent = 'Staff check-in for ' + NX_EVENTS[NX.event].door;
+  // Movie Night gets its own look (shared with the partner, BWSD); other events keep the plain scanner
+  const pj = NX_EVENTS[NX.event].theme === 'pj', door = document.getElementById('nx-door');
+  if (pj) door.dataset.theme = 'pj'; else delete door.dataset.theme;
+  document.getElementById('nx-door-title').innerHTML = pj ? '<small>Nexus + BWSD</small>Movie Night Door' : 'Nexus Door';
   nxShow('nx-door');
   try { nxPin = sessionStorage.getItem('nx_pin') || ''; } catch (e) {}
   if (nxPin) document.getElementById('nx-door-pin').requestSubmit();
