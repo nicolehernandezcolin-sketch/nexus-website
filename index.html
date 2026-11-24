@@ -2069,7 +2069,7 @@ body.has-feature #feat-pills{display:flex;}
           <div class="nxu-eb">Nexus &nbsp;·&nbsp; Free admission &nbsp;·&nbsp; Showcase your art</div>
           <h2 class="nxu-title">Nex<em>-Up</em></h2>
           <div class="nxu-date">11.28.2026</div>
-<div class="nxu-when">8 PM – 12 AM &nbsp;·&nbsp; DJ “La Cachanilla”</div>
+<div class="nxu-when">8 PM – 12 AM &nbsp;·&nbsp; Tender Hooligan &nbsp;·&nbsp; DJ “La Cachanilla”</div>
           <p class="nxu-lede">The next voices in San Diego, heard first.</p>
           <p class="nxu-p">Every month, Nex Up gives a handpicked lineup of emerging artists a real room, a real audience, and a night built around their work. Admission is always free.</p>
           <div class="nxu-ctas">
@@ -2103,7 +2103,7 @@ body.has-feature #feat-pills{display:flex;}
         <div class="nxu-facts">
           <div class="nxu-fact"><div class="nxu-fact-l">When</div><div class="nxu-fact-v">Monthly</div></div>
           <div class="nxu-fact"><div class="nxu-fact-l">Admission</div><div class="nxu-fact-v">Always free</div></div>
-          <div class="nxu-fact"><div class="nxu-fact-l">Where</div><div class="nxu-fact-v">San Diego, a new room each month</div></div>
+          <div class="nxu-fact"><div class="nxu-fact-l">Where</div><div class="nxu-fact-v">Nov 28: Tender Hooligan. A new room each month</div></div>
           <div class="nxu-fact"><div class="nxu-fact-l">Who</div><div class="nxu-fact-v">Music, spoken word, dance &amp; DJs</div></div>
         </div>
 
@@ -7393,7 +7393,7 @@ const NX_EVENTS = {
     door: 'Movie Night Pajama Party · Dec 13', back: '#/film/movie-night', ends: '2026-12-14T00:00:00-08:00' },
   'mi-arte-2026': { key: 'mi-arte', theme: 'ar', h: 'Mi Arte <em>es Resistencia</em>', sub: 'Saturday, December 12 · 5–9 PM · 2076 Logan Ave, San Diego · $10 donation entry',
     door: 'Mi Arte es Resistencia · Dec 12', back: '#/music/mi-arte-es-resistencia', ends: '2026-12-13T00:00:00-08:00' },
-  'nex-up-2026-11': { key: 'nex-up', theme: 'nu', h: 'Nex<em>-Up</em>', sub: 'Saturday, November 28 · 8 PM – 12 AM · Free admission',
+  'nex-up-2026-11': { key: 'nex-up', theme: 'nu', h: 'Nex<em>-Up</em>', sub: 'Saturday, November 28 · 8 PM – 12 AM · Tender Hooligan · Free admission',
     door: 'Nex-Up · Nov 28', back: '#/music/nex-up', ends: '2026-11-29T01:00:00-08:00' },
   'house-party-amg': { key: 'house-party', theme: 'hp', h: 'House <em>Show</em>', sub: 'SDSU Kickback · The 805 + The Junction · Sat, Nov 21 · Doors 7 PM · Address revealed the day of',
     door: 'SDSU House Show · Nov 21', back: '#/music/house-party', ends: '2026-11-22T02:00:00-08:00' },
@@ -8322,7 +8322,7 @@ document.getElementById('nxu-rsvp-form').addEventListener('submit', async e => {
   f.hidden = true; document.getElementById('nxu-done').hidden = false;
   document.getElementById('nxu-done-d').textContent = res.already
     ? 'You’re already on the list! We just emailed your ticket again. On this phone, tap View my ticket and sign in with that email.'
-    : (d.guests > 1 ? 'You + ' + (d.guests - 1) + ' are' : 'You’re') + ' on the list for Saturday, Nov 28, 8 PM. Your free ticket is in your email and on this phone.';
+    : (d.guests > 1 ? 'You + ' + (d.guests - 1) + ' are' : 'You’re') + ' on the list for Saturday, Nov 28, 8 PM at Tender Hooligan. Your free ticket is in your email and on this phone.';
 });
 // After the Nov 27 cutoff, submissions go toward the next Nex-Up
 if (Date.now() > Date.parse('2026-11-27T23:59:59-08:00')) { const dl = document.getElementById('nxu-deadline'); if (dl) dl.innerHTML = '<b>Now booking upcoming nights.</b> Submissions are open all year; we build each month\x27s lineup from them.'; }

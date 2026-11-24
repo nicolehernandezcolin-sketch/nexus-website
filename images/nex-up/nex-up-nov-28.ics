@@ -1,11 +1,15 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Nexus San Diego//EN
+CALSCALE:GREGORIAN
 BEGIN:VEVENT
 UID:nex-up-2026-11-28@nexusglobal.info
 DTSTAMP:20261124T000000Z
-DTSTART;VALUE=DATE:20261128
-SUMMARY:Nex Up · Nexus free showcase
-DESCRIPTION:Free admission. Showcase your art. Details: https://nexusglobal.info/nexup
+DTSTART;TZID=America/Los_Angeles:20261128T200000
+DTEND;TZID=America/Los_Angeles:20261129T000000
+SUMMARY:Nex-Up · Nexus free showcase
+LOCATION:Tender Hooligan, San Diego
+DESCRIPTION:Free admission. Showcase your art. DJ La Cachanilla. Show your live ticket at the door: https://nexusglobal.info/#/tickets
+URL:https://nexusglobal.info/nexup
 END:VEVENT
 END:VCALENDAR
