@@ -1194,6 +1194,27 @@ body.has-feature #feat-pills{display:flex;}
 #ms-nex-up .ms-inp::placeholder{color:rgba(22,22,22,.5);}
 #ms-nex-up .ms-inp:focus{outline:none;box-shadow:4px 4px 0 var(--nu-red);}
 #ms-nex-up .nxu-form-note{color:#2c362c;}
+#ms-nex-up .nxu-set-note{font-size:.95rem;line-height:1.5;color:var(--nu-ink);background:#fff;border:3px dashed var(--nu-ink);border-radius:16px;padding:.8rem 1rem;}
+#ms-nex-up .nxu-set-note b{color:var(--nu-red);}
+#ms-nex-up .nxu-q{border:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem;min-width:0;}
+#ms-nex-up .nxu-q legend{font-family:'Bagel Fat One',cursive;font-size:1.15rem;color:var(--nu-ink);margin-bottom:.5rem;padding:0;}
+#ms-nex-up .nxu-chips{display:flex;flex-wrap:wrap;gap:.55rem;}
+#ms-nex-up .nxu-chips label{position:relative;cursor:none;}
+#ms-nex-up .nxu-chips input{position:absolute;opacity:0;inset:0;margin:0;cursor:none;}
+#ms-nex-up .nxu-chips span{display:inline-block;font:700 .72rem 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--nu-ink);background:#fff;border:3px solid var(--nu-ink);border-radius:99px;padding:.65em 1.1em;transition:transform .15s ease,box-shadow .15s ease;}
+#ms-nex-up .nxu-chips label:hover span{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--nu-ink);}
+#ms-nex-up .nxu-chips input:checked+span{background:var(--nu-g);box-shadow:4px 4px 0 var(--nu-red);}
+#ms-nex-up .nxu-chips input:focus-visible+span{outline:3px solid var(--nu-blue);outline-offset:2px;}
+#ms-nex-up .nxu-more[hidden]{display:none;}
+#ms-nex-up .nxu-drop{position:relative;display:flex;flex-direction:column;align-items:center;gap:.3rem;text-align:center;padding:1.6rem 1rem;background:#fff;border:3px dashed var(--nu-ink);border-radius:20px;cursor:none;transition:background .2s ease,box-shadow .2s ease;}
+#ms-nex-up .nxu-drop input{position:absolute;inset:0;opacity:0;cursor:none;width:100%;}
+#ms-nex-up .nxu-drop b{font-family:'Bagel Fat One',cursive;font-weight:400;font-size:1.3rem;color:var(--nu-blue);}
+#ms-nex-up .nxu-drop span{font:400 .62rem 'Space Mono',monospace;letter-spacing:.06em;color:#2c362c;}
+#ms-nex-up .nxu-drop.is-over{background:#eaf6e8;box-shadow:5px 5px 0 var(--nu-blue);}
+#ms-nex-up .nxu-files{list-style:none;margin:.2rem 0 0;padding:0;display:flex;flex-direction:column;gap:.4rem;}
+#ms-nex-up .nxu-files li{display:flex;justify-content:space-between;gap:.8rem;font:700 .66rem 'Space Mono',monospace;color:var(--nu-ink);background:var(--nu-cream);border:2px solid var(--nu-ink);border-radius:12px;padding:.55rem .8rem;}
+#ms-nex-up .nxu-files li small{font-weight:400;color:#2c362c;white-space:nowrap;}
+#ms-nex-up .nxu-files li.bad{border-color:var(--nu-red);color:var(--nu-red);}
 #ms-nex-up .nxu-rsvp{background:var(--nu-cream);border:4px solid var(--nu-ink);border-radius:30px;padding:1.8rem 1.4rem;box-shadow:10px 10px 0 var(--nu-red);margin-top:1.4rem;}
 #ms-nex-up .nxu-rsvp-form{display:grid;gap:.7rem;max-width:640px;}
 #ms-nex-up .nxu-check{font-size:.85rem;color:#2c362c;display:flex;gap:.5rem;align-items:center;}
@@ -2164,7 +2185,7 @@ body.has-feature #feat-pills{display:flex;}
             <input type="hidden" name="event" value="Nex Up" />
             <div class="ms-2col">
               <input class="ms-inp" type="text" name="name" placeholder="Your Name" required />
-              <input class="ms-inp" type="text" name="artist_name" placeholder="Artist Name" />
+              <input class="ms-inp" type="text" name="artist_name" placeholder="Stage Name" required />
             </div>
             <input class="ms-inp" type="email" name="email" placeholder="Email Address" required />
             <input class="ms-inp" type="text" name="social_handle" placeholder="Instagram or Social Handle" />
@@ -2178,6 +2199,47 @@ body.has-feature #feat-pills{display:flex;}
               <option>Dance</option>
               <option>Something Else</option>
             </select>
+            <div class="nxu-set-note"><b>Each set is one artist,</b> solo or with one accompanist on piano or guitar.</div>
+            <fieldset class="nxu-q">
+              <legend>How many songs will you play?</legend>
+              <div class="nxu-chips">
+                <label><input type="radio" name="songs" value="1" required><span>1 song</span></label>
+                <label><input type="radio" name="songs" value="2"><span>2 songs</span></label>
+                <label><input type="radio" name="songs" value="3"><span>3 songs</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="nxu-q">
+              <legend>Who's on stage?</legend>
+              <div class="nxu-chips">
+                <label><input type="radio" name="lineup" value="Solo" required><span>Just me</span></label>
+                <label><input type="radio" name="lineup" value="With one accompanist"><span>Me + 1 accompanist</span></label>
+              </div>
+              <div class="nxu-more" id="nxu-acc" hidden>
+                <div class="ms-2col">
+                  <input class="ms-inp" type="text" name="accompanist_name" placeholder="Accompanist's Name" disabled required />
+                  <select class="ms-inp" name="accompanist_instrument" disabled required>
+                    <option value="" disabled selected>Piano or guitar?</option>
+                    <option>Piano</option>
+                    <option>Guitar</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="nxu-q">
+              <legend>Will you perform with tracks?</legend>
+              <div class="nxu-chips">
+                <label><input type="radio" name="tracks" value="Yes" required><span>Yes, I have tracks</span></label>
+                <label><input type="radio" name="tracks" value="No"><span>No, live only</span></label>
+              </div>
+              <div class="nxu-more" id="nxu-tracks" hidden>
+                <label class="nxu-drop" id="nxu-drop">
+                  <input type="file" name="track_files" id="nxu-files" accept=".mp3,.wav,audio/mpeg,audio/wav,audio/x-wav" multiple disabled required data-bucket="nexup-tracks" aria-label="Your tracks (MP3 or WAV)">
+                  <b>Drop your tracks here</b>
+                  <span>or tap to choose · MP3 or WAV · one per song · up to 50 MB each</span>
+                </label>
+                <ul class="nxu-files" id="nxu-file-list"></ul>
+              </div>
+            </fieldset>
             <input class="ms-inp" type="text" inputmode="url" autocapitalize="off" name="music_link" placeholder="Link to your work (optional)" />
             <textarea class="ms-inp" name="bio" style="resize:vertical;min-height:100px;" placeholder="Tell us about your work and what you'd bring to a Nex Up night."></textarea>
             <button class="nxu-btn" type="submit">Submit Your Work →</button>
@@ -9102,7 +9164,9 @@ const _supa = window.supabase.createClient(
     form.addEventListener('invalid', function(e) {
       const field = e.target;
       if (form.querySelector(':invalid') !== field) return; // name the first missing field only
-      const label = field.placeholder || field.getAttribute('aria-label') || (field.options && field.options[0].text) || 'a required field';
+      const legend = field.type === 'radio' && field.closest('fieldset') && field.closest('fieldset').querySelector('legend');
+      if (field.validationMessage && field.type === 'file' && field.files && field.files.length) { showError(form, field.validationMessage); return; }
+      const label = (legend && legend.textContent) || field.placeholder || field.getAttribute('aria-label') || (field.options && field.options[0].text) || 'a required field';
       showError(form, 'Please check: ' + label.replace(/\s*\(optional\)/i, ''));
     }, true);
 
@@ -9114,8 +9178,33 @@ const _supa = window.supabase.createClient(
       const orig = btn ? btn.textContent : '';
       if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
 
+      // Files (Nex-Up tracks) go to private storage first; the submission keeps their paths
+      const uploaded = {};
+      for (const input of form.querySelectorAll('input[type="file"][data-bucket]:not(:disabled)')) {
+        const files = [...(input.files || [])], paths = [];
+        for (let i = 0; i < files.length; i++) {
+          if (btn) btn.textContent = 'Uploading ' + (files.length > 1 ? 'track ' + (i + 1) + ' of ' + files.length : 'your track') + '…';
+          const file = files[i], ext = (file.name.match(/\.(mp3|wav)$/i) || ['', 'mp3'])[1].toLowerCase();
+          const safe = file.name.replace(/\.[^.]+$/, '').replace(/[^\w.-]+/g, '-').slice(0, 60) || 'track';
+          const path = 'submissions/' + new Date().toISOString().slice(0, 10) + '/' + (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + i) + '/' + safe + '.' + ext;
+          const type = file.type || (ext === 'wav' ? 'audio/wav' : 'audio/mpeg');
+          let upErr;
+          try { ({ error: upErr } = await _supa.storage.from(input.dataset.bucket).upload(path, file, { contentType: type, upsert: false })); } catch (x) { upErr = x; }
+          if (upErr) {
+            console.error('Upload failed:', upErr);
+            if (btn) { btn.textContent = orig; btn.disabled = false; }
+            showError(form, "Couldn't upload " + file.name + '. Check it is an MP3 or WAV under 50 MB and try again.');
+            return;
+          }
+          paths.push(input.dataset.bucket + '/' + path);
+        }
+        uploaded[input.name] = paths;
+      }
+      if (btn && Object.keys(uploaded).length) btn.textContent = 'Sending…';
+
       const fd = new FormData(form);
       fd.delete(HONEYPOT);
+      form.querySelectorAll('input[type="file"]').forEach(i => fd.delete(i.name));
       const data = {};
       fd.forEach((v, k) => {
         if (data[k]) {
@@ -9130,6 +9219,7 @@ const _supa = window.supabase.createClient(
         if (form.classList.contains(cls)) { formType = type; break; }
       }
 
+      Object.assign(data, uploaded);
       if (suspectedSpam) data.suspected_spam = true;
 
       let error;
@@ -9169,6 +9259,38 @@ const _supa = window.supabase.createClient(
   }
 
   document.querySelectorAll('.ms-form,.f-form,.fform,.inv-form').forEach(handleForm);
+})();
+
+/* Nex-Up submission: accompanist and track fields appear only when they apply */
+(function nexUpForm() {
+  const form = document.querySelector('#nxu-submit form');
+  if (!form) return;
+  const show = (box, on) => { box.hidden = !on; box.querySelectorAll('input,select').forEach(el => { el.disabled = !on; }); };
+  const acc = document.getElementById('nxu-acc'), tracks = document.getElementById('nxu-tracks');
+  const files = document.getElementById('nxu-files'), list = document.getElementById('nxu-file-list'), drop = document.getElementById('nxu-drop');
+  const MAX = 50 * 1024 * 1024, OK = /\.(mp3|wav)$/i;
+  const songs = () => +(form.querySelector('input[name="songs"]:checked') || {}).value || 3;
+  function check() {
+    const chosen = [...(files.files || [])];
+    list.innerHTML = '';
+    let msg = '';
+    chosen.forEach(file => {
+      const li = document.createElement('li'), mb = (file.size / 1048576).toFixed(1) + ' MB';
+      const bad = !OK.test(file.name) ? 'MP3 or WAV only' : file.size > MAX ? 'over 50 MB' : '';
+      li.textContent = file.name; if (bad) { li.className = 'bad'; msg = msg || file.name + ': ' + bad; }
+      const sm = document.createElement('small'); sm.textContent = bad || mb; li.appendChild(sm); list.appendChild(li);
+    });
+    if (!msg && chosen.length > songs()) msg = 'You picked ' + songs() + ' song' + (songs() > 1 ? 's' : '') + ', so add up to ' + songs() + ' track' + (songs() > 1 ? 's' : '') + '.';
+    files.setCustomValidity(msg);
+    if (msg) { const n = form.querySelector('.nxs-err'); if (n) n.textContent = msg; }
+  }
+  form.addEventListener('change', e => {
+    if (e.target.name === 'lineup') show(acc, e.target.value !== 'Solo');
+    if (e.target.name === 'tracks') show(tracks, e.target.value === 'Yes');
+    if (e.target === files || e.target.name === 'songs') check();
+  });
+  ['dragenter', 'dragover'].forEach(t => drop.addEventListener(t, () => drop.classList.add('is-over')));
+  ['dragleave', 'drop'].forEach(t => drop.addEventListener(t, () => drop.classList.remove('is-over')));
 })();
 
 </script>
