@@ -9223,7 +9223,7 @@ const _supa = window.supabase.createClient(
     // The browser's own "please fill in" bubble is easy to miss here, so say it on the page too
     form.addEventListener('invalid', function(e) {
       const field = e.target;
-      if (form.querySelector(':invalid') !== field) return; // name the first missing field only
+      if (form.querySelector('input:invalid,select:invalid,textarea:invalid') !== field) return; // name the first missing field only
       const legend = field.type === 'radio' && field.closest('fieldset') && field.closest('fieldset').querySelector('legend');
       if (field.validationMessage && field.type === 'file' && field.files && field.files.length) { showError(form, field.validationMessage); return; }
       const label = (legend && legend.textContent) || field.placeholder || field.getAttribute('aria-label') || (field.options && field.options[0].text) || 'a required field';
