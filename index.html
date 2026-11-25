@@ -2223,7 +2223,7 @@ body.has-feature #feat-pills{display:flex;}
         <section class="nxu-sec" id="nxu-submit">
           <div class="nxu-sec-eb">Submissions Open</div>
           <h2 class="nxu-sec-h">Submit for <em>Nex Up</em></h2>
-          <p class="nxu-sec-p nxu-deadline" id="nxu-deadline"><b>Playing Nov 28:</b> submit by Friday, Nov 27 at 11:59 PM. Submissions after that are considered for a future Nex-Up.</p>
+          <p class="nxu-sec-p nxu-deadline" id="nxu-deadline"><b>Playing Nov 28:</b> submit by Friday, Nov 27 at 5:00 PM PST. Submissions after that are considered for a future Nex-Up.</p>
           <form class="ms-form nxu-form" method="POST">
             <input type="hidden" name="event" value="Nex Up" />
             <div class="ms-2col">
@@ -8462,7 +8462,7 @@ document.getElementById('nxu-rsvp-form').addEventListener('submit', async e => {
     : (d.guests > 1 ? 'You + ' + (d.guests - 1) + ' are' : 'You’re') + ' on the list for Saturday, Nov 28, 8 PM at Tender Hooligan. Your free ticket is in your email and on this phone.';
 });
 // After the Nov 27 cutoff, submissions go toward the next Nex-Up
-if (Date.now() > Date.parse('2026-11-27T23:59:59-08:00')) { const dl = document.getElementById('nxu-deadline'); if (dl) dl.innerHTML = '<b>Now booking upcoming nights.</b> Submissions are open all year; we build each month\x27s lineup from them.'; }
+if (Date.now() >= Date.parse('2026-11-27T17:00:00-08:00')) { const dl = document.getElementById('nxu-deadline'); if (dl) dl.innerHTML = '<b>Now booking upcoming nights.</b> Submissions are open all year; we build every lineup from them.'; }
 document.getElementById('nxu-mine').addEventListener('click', () => { NX.event = 'nex-up-2026-11'; nxOpenTickets(); });
 document.getElementById('ar-share').addEventListener('click', async () => {
   const data = { title: 'Mi Arte es Resistencia · Dec 12', text: 'An Afro-Latin Jazz Night · Sat, Dec 12, 5–9 PM · 2076 Logan Ave, San Diego. Bring a toy or $10.', url: 'https://nexusglobal.info/miarte' };
