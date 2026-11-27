@@ -875,6 +875,11 @@ body.has-feature #feat-pills{display:flex;}
     <div class="orb"><div class="orb-dot"></div></div>
     <span class="plbl">About</span>
   </a>
+  <!-- Organizers: its own page, nexusglobal.info/organizers -->
+  <a class="planet" id="p-organizers" href="/organizers/" style="--fd:6.9s;--fo:0.9s;">
+    <div class="orb"><div class="orb-dot"></div></div>
+    <span class="plbl">Organizers</span>
+  </a>
 
   <!-- Navigation hint -->
   <div id="nav-hint" aria-hidden="true">Select a planet to explore</div>
@@ -7273,6 +7278,7 @@ const planetDefs = [
   { id:'p-festival', deg: 125, rOff:  15 },
   { id:'p-film',     deg: 180, rOff: -35 },
   { id:'p-about',    deg: 228, rOff:  10 },
+  { id:'p-organizers', deg: 300, rOff: 25 },
 ];
 
 function placePlanets() {

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tickets · Nexus</title>
+<meta name="description" content="Tickets on Nexus.">
+<meta property="og:image" content="https://nexusglobal.info/nexus-share.jpg">
+<link rel="icon" href="/favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090b;--ink:#f0ede6;--muted:#a9ad9f;--line:rgba(240,237,230,.13);--accent:#C5F37C;--bad:#ff9a8a;--fh:'Archivo',sans-serif;--fm:'Space Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg)}
+body{color:var(--ink);font-family:'Instrument Sans',system-ui,sans-serif;font-size:16px;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:-20vmax;pointer-events:none;background:radial-gradient(45vmax 45vmax at 15% 0%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%),radial-gradient(35vmax 35vmax at 100% 60%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 70%)}
+a{color:var(--accent)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{position:relative;max-width:620px;margin:0 auto;padding:28px 18px 60px}
+.brand{display:flex;align-items:center;gap:10px;min-height:40px}
+.brand img{max-height:40px;max-width:180px}
+.brand b{font-family:var(--fh);font-weight:900;letter-spacing:.22em;color:var(--accent)}
+.eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--fh);font-weight:900;font-size:clamp(2.2rem,8vw,3.6rem);line-height:1;letter-spacing:-.03em;margin:28px 0 12px}
+.meta{color:var(--muted);font-size:15px}
+.about{margin:20px 0;color:#d9d6cf}
+.card{background:rgba(240,237,230,.045);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:18px}
+.secret{display:flex;gap:12px;align-items:flex-start;border-color:color-mix(in srgb,var(--accent) 40%,transparent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.secret .ic{font-size:20px;line-height:1}
+.price{font-family:var(--fh);font-weight:900;font-size:2rem}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:none;font-size:20px;cursor:pointer}
+.qty button:disabled{opacity:.35;cursor:not-allowed}
+.qty span{min-width:28px;text-align:center;font-weight:800;font-size:18px}
+label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+input.i{width:100%;min-height:48px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.35);font-size:16px}
+input.i:focus{border-color:var(--accent);outline:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;border-radius:999px;border:0;background:var(--accent);color:#121510;font-weight:800;font-size:16px;cursor:pointer;width:100%}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink);width:auto;min-height:44px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.small{font-size:13px}.muted{color:var(--muted)}
+.err{color:var(--bad);font-size:14px;min-height:1.2em;margin-top:10px}
+.ok{color:var(--accent);font-size:14px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin-top:14px}
+.check input{width:18px;height:18px;margin-top:3px;accent-color:var(--accent)}
+#stripe{background:#fff;border-radius:12px;overflow:hidden;min-height:420px;margin-top:16px}
+.addr{font-family:var(--fh);font-weight:900;font-size:clamp(1.5rem,6vw,2.2rem);line-height:1.15;margin:10px 0}
+.watermark{font-family:var(--fm);font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:12px;margin-top:16px}
+.hp{position:absolute;left:-9999px}
+footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<main class="wrap" id="app" aria-live="polite"><p class="muted">Loading…</p></main>
+<script>
+/* ════════════════════════════════════════════
+   NEXUS BUY — nexusglobal.info/buy
+   ?e=<event>&r=<tracking link>&code=<promo>   buy tickets, in the organizer's look
+   ?a=<token>                                  a guest's personal house-show address link
+   ?unsub=<token>&l=g|w                        stop marketing messages
+   Bought tickets land in the wallet at nexusglobal.info/tickets.
+   Server side: create-guest-checkout, house-show and send-campaign (nexus-app/supabase/functions).
+════════════════════════════════════════════ */
+const FN = 'https://valeivzqquetjjhspgjk.supabase.co/functions/v1/';
+const SB_KEY = 'sb_publishable_ZIsURGGqpS25wk8PO0jx7Q_b6y6r3Gi';
+const STRIPE_JS = 'https://js.stripe.com/endive/stripe.js';
+const WALLET = '/#/tickets';
+const P = new URLSearchParams(location.search);
+const DEMO = P.has('demo');
+const app = document.getElementById('app');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const money = c => '$' + (c / 100).toFixed(2);
+async function call(name, body) {
+  if (DEMO) return demo(name, body);
+  try {
+    const r = await fetch(FN + name, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok && !data.error && !data.state) data.error = 'Something went wrong. Please try again.';
+    return data;
+  } catch (e) { return { error: 'Couldn’t reach the box office. Check your connection and try again.', offline: true }; }
+}
+const footer = `<footer>Tickets by <a href="/">Nexus</a> · Questions? <a href="mailto:now@nexusglobal.info">now@nexusglobal.info</a></footer>`;
+function setAccent(c) { if (/^#[0-9a-f]{6}$/i.test(c || '')) document.documentElement.style.setProperty('--accent', c); }
+function brandHead(brand) {
+  setAccent(brand?.accent);
+  const logo = /^https:\/\//.test(brand?.logo || '') ? brand.logo : '';
+  return `<div class="brand">${logo ? `<img src="${esc(logo)}" alt="${esc(brand.name || '')}">` : `<b>${esc((brand?.name || 'NEXUS').toUpperCase())}</b>`}</div>`;
+}
+
+/* ── A guest's house-show address ── */
+async function viewAddress(token) {
+  const r = await call('house-show', { mode: 'view', token });
+  const ev = r.event || {};
+  if (r.state === 'open') {
+    app.innerHTML = `${brandHead({})}<div class="eyebrow" style="margin-top:28px">${esc(ev.title)}</div>
+      <h1 style="font-size:clamp(1.8rem,7vw,2.8rem)">It’s today. Here’s where.</h1>
+      <div class="card"><div class="addr">${esc(r.address)}</div>${r.notes ? `<p style="white-space:pre-line">${esc(r.notes)}</p>` : ''}
+        <div class="row" style="margin-top:16px"><a class="btn ghost" href="https://maps.apple.com/?q=${encodeURIComponent(r.address)}" target="_blank" rel="noopener">Apple Maps</a><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.address)}" target="_blank" rel="noopener">Google Maps</a></div>
+        <p class="watermark">For ${esc(r.name || 'you')} only. Please don’t share or post this address; it keeps the show safe and small. ${ev.when ? esc(ev.when) : ''}</p></div>${footer}`;
+  } else if (r.state === 'later') {
+    const t = new Date(r.revealAt);
+    app.innerHTML = `${brandHead({})}<h1 style="font-size:clamp(1.8rem,7vw,2.8rem)">Almost.</h1><div class="card"><p>The address for <b>${esc(ev.title)}</b> opens here ${t.toLocaleString('en-US', { weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}.</p><p class="muted small" style="margin-top:8px">${esc(ev.area || '')}</p></div>${footer}`;
+  } else if (r.state === 'revoked') {
+    app.innerHTML = `${brandHead({})}<h1 style="font-size:clamp(1.8rem,7vw,2.8rem)">This link is off.</h1><div class="card"><p>The host switched off this address link. If you have a ticket, reply to your ticket email or write to <a href="mailto:now@nexusglobal.info">now@nexusglobal.info</a>.</p></div>${footer}`;
+  } else {
+    app.innerHTML = `${brandHead({})}<h1 style="font-size:clamp(1.8rem,7vw,2.8rem)">Link not found.</h1><div class="card"><p>Check you opened the whole link from your message.</p></div>${footer}`;
+  }
+}
+
+/* ── Unsubscribe ── */
+async function unsubscribe(token, list) {
+  app.innerHTML = `${brandHead({})}<h1 style="font-size:clamp(1.8rem,7vw,2.8rem)">Unsubscribe</h1><div class="card"><p>Stop getting event news from Nexus?</p><button class="btn" id="go" style="margin-top:16px">Yes, unsubscribe me</button><p class="err" id="ue"></p></div>${footer}`;
+  document.getElementById('go').onclick = async () => {
+    const r = await call('send-campaign', { mode: 'unsubscribe', token, list });
+    if (r.ok) app.querySelector('.card').innerHTML = `<p>Done. You won’t get event news from Nexus anymore. You’ll still get messages about tickets you buy.</p>`;
+    else document.getElementById('ue').textContent = r.error || 'That link didn’t work. Write to now@nexusglobal.info and we’ll remove you.';
+  };
+}
+
+/* ── Buying tickets ── */
+let Q = null, qty = 1, checkout = null, held = null;
+const saved = () => { try { return JSON.parse(localStorage.getItem('nx_tickets') || '[]'); } catch (e) { return []; } };
+const save = ref => { try { localStorage.setItem('nx_tickets', JSON.stringify([...new Set([ref, ...saved()])].slice(0, 10))); } catch (e) {} };
+function trackVisit(ref) {
+  if (!ref || DEMO) return;
+  try { if (sessionStorage.getItem('nx_seen_' + ref)) return; sessionStorage.setItem('nx_seen_' + ref, '1'); } catch (e) {}
+  fetch('https://valeivzqquetjjhspgjk.supabase.co/rest/v1/rpc/track_visit', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SB_KEY }, body: JSON.stringify({ link_code: ref }) }).catch(() => {});
+}
+async function buyPage(slug) {
+  const ref = (P.get('r') || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 32) || null;
+  trackVisit(ref);
+  let code = (P.get('code') || '').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 24);
+  Q = await call('create-guest-checkout', { mode: 'quote', event: slug, promo: code || undefined });
+  if (Q.offline || (!Q.onSale && !Q.event)) {
+    app.innerHTML = `${brandHead({})}<h1 style="font-size:clamp(1.8rem,7vw,2.8rem)">${Q.onSale === false ? 'Sales have ended' : 'Event not found'}</h1><div class="card"><p>${esc(Q.error || 'Check the link and try again.')}</p></div>${footer}`;
+    return;
+  }
+  const ev = Q.event;
+  document.title = ev.title + ' · Tickets';
+  const draw = () => {
+    const promoNote = Q.promo ? (Q.promo.ok ? `<p class="ok">Code ${esc(Q.promo.code)} applied: ${money(Q.promo.offCents)} off each ticket.</p>` : `<p class="err">${esc(Q.promo.error)}</p>`) : '';
+    app.innerHTML = `${brandHead(Q.brand)}
+      <div class="eyebrow" style="margin-top:28px">${esc(ev.when || '')}</div>
+      <h1>${esc(ev.title)}</h1>
+      <p class="meta">${esc(ev.where || '')}${ev.address ? ' · ' + esc(ev.address) : ''}</p>
+      ${ev.secret ? `<div class="card secret"><span class="ic" aria-hidden="true">🔒</span><div><b>A secret-location show.</b> You’ll get the exact address by email and text on the day of the show. Please keep it to yourself.</div></div>` : ''}
+      ${ev.about ? `<p class="about">${esc(ev.about)}</p>` : ''}
+      <div class="card" id="buy">
+        <div class="row between"><div><div class="eyebrow">${esc(Q.tier.name)}</div><div class="price">${money(Q.allInCents)}</div><div class="muted small">${money(Q.unitCents)} ticket + ${money(Q.feeCents)} fee${Q.next ? ` · then $${Q.next.price} + fee` : ''}</div></div>
+          <div class="qty"><button type="button" data-q="-1" aria-label="One fewer">−</button><span id="qn" aria-live="polite">${qty}</span><button type="button" data-q="1" aria-label="One more">+</button></div></div>
+        <form id="bf" novalidate>
+          <label for="nm">Full name</label><input class="i" id="nm" name="fullname" autocomplete="name" required>
+          <label for="em">Email <span class="muted">(your tickets${ev.secret ? ' and the address' : ''} go here)</span></label><input class="i" id="em" name="email" type="email" autocomplete="email" required>
+          <label for="ph">Mobile</label><input class="i" id="ph" name="phone" type="tel" autocomplete="tel" required>
+          <label for="pc">Promo code <span class="muted">(optional)</span></label>
+          <div class="row" style="flex-wrap:nowrap"><input class="i" id="pc" name="promo" value="${esc(code)}" style="text-transform:uppercase" autocomplete="off"><button type="button" class="btn ghost" id="apply">Apply</button></div>
+          ${promoNote}
+          <label class="check"><input type="checkbox" name="optin"> Tell me about future events from ${esc(Q.brand?.name || 'Nexus')} and Nexus.</label>
+          <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="err" id="be"></p>
+          <button class="btn" id="go" style="margin-top:6px">Continue to payment · <span id="tot">${money(Q.allInCents * qty)}</span></button>
+          <p class="muted small" style="margin-top:12px">Up to ${Q.limit} tickets per person. QR tickets that work only on your phone.</p>
+        </form>
+      </div>
+      <div class="card" id="pay" hidden><button type="button" class="btn ghost" id="back">← Back</button><div id="stripe"></div></div>
+      <p class="small muted" style="margin-top:18px;text-align:center">Already bought? <a href="${WALLET}">See your tickets</a></p>${footer}`;
+    const upd = () => { document.getElementById('qn').textContent = qty; document.getElementById('tot').textContent = money(Q.allInCents * qty);
+      document.querySelector('[data-q="-1"]').disabled = qty <= 1; document.querySelector('[data-q="1"]').disabled = qty >= Q.limit; };
+    app.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { qty = Math.max(1, Math.min(Q.limit, qty + Number(b.dataset.q))); upd(); });
+    upd();
+    document.getElementById('apply').onclick = async () => {
+      code = document.getElementById('pc').value.trim().toUpperCase();
+      const keep = { n: document.getElementById('nm').value, e: document.getElementById('em').value, p: document.getElementById('ph').value };
+      const next = await call('create-guest-checkout', { mode: 'quote', event: slug, promo: code || undefined });
+      if (next.onSale) { Q = next; draw(); document.getElementById('nm').value = keep.n; document.getElementById('em').value = keep.e; document.getElementById('ph').value = keep.p; }
+    };
+    document.getElementById('bf').onsubmit = async e => {
+      e.preventDefault();
+      const f = e.target, err = document.getElementById('be'), go = document.getElementById('go');
+      const name = f.fullname.value.trim(), email = f.email.value.trim(), phone = f.phone.value.trim();
+      if (name.length < 2) { err.textContent = 'Please enter your full name.'; f.fullname.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'Please enter a valid email address.'; f.email.focus(); return; }
+      if (phone.replace(/\D/g, '').length < 10) { err.textContent = 'Please enter your mobile number.'; f.phone.focus(); return; }
+      if (!Q.publishableKey) { err.textContent = 'Checkout is being set up. Please try again soon.'; return; }
+      err.textContent = ''; go.disabled = true;
+      const res = await call('create-guest-checkout', { event: slug, quantity: qty, name, email, phone, marketingOptIn: f.optin.checked, company: f.company.value, ref, promo: (Q.promo && Q.promo.ok) ? Q.promo.code : undefined });
+      go.disabled = false;
+      if (res.error) { err.textContent = res.error; return; }
+      held = res.ticket; save(res.ticket);
+      try {
+        await new Promise((ok, no) => { if (window.Stripe) return ok(); const s = document.createElement('script'); s.src = STRIPE_JS; s.onload = ok; s.onerror = no; document.head.appendChild(s); });
+        const stripe = Stripe(Q.publishableKey);
+        const opts = { fetchClientSecret: async () => res.clientSecret, onComplete: () => { held = null; location.href = WALLET; } };
+        checkout = stripe.createEmbeddedCheckoutPage ? await stripe.createEmbeddedCheckoutPage(opts) : await stripe.initEmbeddedCheckout(opts);
+        document.getElementById('buy').hidden = true; document.getElementById('pay').hidden = false;
+        checkout.mount('#stripe');
+      } catch (e2) { err.textContent = 'Payment couldn’t load. If you use an ad blocker, pause it for this page and try again.'; }
+    };
+    const back = document.getElementById('back');
+    back.onclick = async () => {
+      if (checkout) { try { (checkout.destroy || checkout.unmount).call(checkout); } catch (e) {} checkout = null; }
+      if (held) { call('create-guest-checkout', { mode: 'cancel', ticket: held }); held = null; }
+      document.getElementById('pay').hidden = true; document.getElementById('buy').hidden = false;
+    };
+  };
+  draw();
+}
+
+/* ── ?demo: sample event for previews ── */
+function demo(name, body) {
+  if (name === 'house-show') return { state: 'open', name: 'Ana Ruiz', address: '3847 Sample Ave, San Diego, CA 92104', notes: 'Side gate on the left. Shoes off inside. Street parking only.', event: { title: 'Living Room Sessions: Vol. 3', when: 'Tonight · Doors 7:30 PM', area: 'North Park' } };
+  if (name === 'send-campaign') return { ok: true };
+  const promo = body.promo ? (body.promo === 'MAYA15' ? { code: 'MAYA15', ok: true, offCents: 270 } : { code: body.promo, ok: false, error: 'That code doesn’t work for this event.' }) : null;
+  const unit = promo && promo.ok ? 1530 : 1800, fee = Math.round(unit * 0.03 + 99);
+  return { onSale: true, event: { title: 'Living Room Sessions: Vol. 3', when: 'Thursday · Doors 7:30 PM', where: 'North Park, San Diego', address: '', secret: true, about: 'Three acoustic sets in a candlelit living room. 40 guests. BYOB.' },
+    brand: { name: 'Golden Hour Collective', accent: '#F2B866' }, tier: { id: 'ga', name: 'Guest' }, unitCents: unit, feeCents: fee, allInCents: unit + fee, limit: 4, next: null, promo, publishableKey: null };
+}
+
+/* ── Start ── */
+(async () => {
+  if (P.get('a')) return viewAddress(P.get('a'));
+  if (P.get('unsub')) return unsubscribe(P.get('unsub'), P.get('l') === 'w' ? 'w' : 'g');
+  if (P.get('e') || DEMO) return buyPage(P.get('e') || 'demo');
+  app.innerHTML = `${brandHead({})}<h1 style="font-size:clamp(1.8rem,7vw,2.8rem)">Find your tickets</h1><div class="card"><p>Open the ticket link from the event, or <a href="${WALLET}">see tickets you’ve bought</a>.</p></div>${footer}`;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus for Organizers</title>
+<meta name="description" content="Partner with Nexus to promote, sell and sell out your event: organic buzz, relationships and experiences first, ads last. Ticketing, analytics and a promotion plan in one dashboard.">
+<meta property="og:title" content="Nexus for Organizers: sell out your event">
+<meta property="og:description" content="Run your first event on Nexus with full access to our services.">
+<meta property="og:image" content="https://nexusglobal.info/nexus-share.jpg">
+<link rel="icon" href="/favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Unbounded:wght@400;700;900&family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.min.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp" crossorigin="anonymous"></script>
+<style>
+:root{
+  --bg:#05070a; --panel:#0d1110; --panel2:#131815; --line:rgba(240,237,230,.11); --line2:rgba(240,237,230,.2);
+  --ink:#f0ede6; --muted:#a9ad9f; --lime:#C5F37C; --lime2:#E9F7CF; --forest:#3E4A26; --forest2:#4E5C32;
+  --warn:#f2b866; --bad:#ff9a8a; --ok:#9fe3a8;
+  --r:18px; --ff:'Instrument Sans',system-ui,sans-serif; --fh:'Archivo',sans-serif; --fm:'Space Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--ff);font-size:15px;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:-20vmax;pointer-events:none;z-index:0;
+  background:radial-gradient(40vmax 40vmax at 12% 8%,rgba(197,243,124,.11),transparent 70%),radial-gradient(36vmax 36vmax at 92% 30%,rgba(78,92,50,.32),transparent 70%),radial-gradient(30vmax 30vmax at 40% 110%,rgba(197,243,124,.07),transparent 70%)}
+a{color:var(--lime)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 20px}
+header.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(5,7,10,.72);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:16px;height:64px}
+.logo{font-family:'Unbounded',sans-serif;font-weight:900;letter-spacing:.28em;font-size:15px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo .dot{width:12px;height:12px;border-radius:50%;background:var(--lime);box-shadow:0 0 18px var(--lime)}
+.logo small{font-family:var(--fm);font-weight:400;letter-spacing:.12em;font-size:10px;color:var(--muted);text-transform:uppercase}
+.top nav{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.top nav a,.top nav button{font-size:13px;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:999px;border:0;background:none}
+.top nav a.on,.top nav a:hover,.top nav button:hover{color:var(--ink);background:rgba(240,237,230,.07)}
+main{position:relative;z-index:1;padding:28px 0 80px}
+h1,h2,h3{font-family:var(--fh);letter-spacing:-.02em;line-height:1.05}
+h1{font-size:clamp(2.4rem,6.4vw,5rem);font-weight:900}
+h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900}
+h3{font-size:1.05rem;font-weight:800;letter-spacing:-.01em}
+.eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--lime)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.mono{font-family:var(--fm)}
+.hl{background:var(--lime);color:#121510;padding:0 .14em;border-radius:.12em;display:inline-block;transform:rotate(-1.2deg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line2);background:transparent;font-weight:700;font-size:14px;text-decoration:none;color:var(--ink);transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px);background:rgba(240,237,230,.06)}
+.btn.primary{background:var(--lime);color:#121510;border-color:var(--lime)}
+.btn.primary:hover{background:#d3f891}
+.btn.small{min-height:34px;padding:0 14px;font-size:13px}
+.btn.danger{border-color:rgba(255,154,138,.5);color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.card{background:linear-gradient(180deg,rgba(240,237,230,.045),rgba(240,237,230,.02));border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.g2,.g3{grid-template-columns:1fr}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi{padding:14px}.kpi .v{font-size:1.45rem}}
+@media(max-width:760px){header.top .wrap{height:auto;flex-wrap:wrap;padding-top:12px;padding-bottom:6px;gap:6px}.logo small{display:none}
+  .top nav{margin-left:0;width:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.top nav::-webkit-scrollbar{display:none}.top nav a,.top nav button{white-space:nowrap}}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.stack>*+*{margin-top:12px}
+.kpi .v{font-family:var(--fh);font-weight:900;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.02em;margin-top:4px}
+.kpi .l{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kpi .s{font-size:12.5px;color:var(--muted);margin-top:2px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);white-space:nowrap}
+.pill.lime{color:#121510;background:var(--lime);border-color:var(--lime)}
+.pill.ok{color:var(--ok);border-color:rgba(159,227,168,.45)}
+.pill.warn{color:var(--warn);border-color:rgba(242,184,102,.45)}
+.pill.bad{color:var(--bad);border-color:rgba(255,154,138,.45)}
+.bar{height:10px;border-radius:999px;background:rgba(240,237,230,.08);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--lime);border-radius:999px}
+label.f{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+label.f span{font-weight:400;color:var(--muted)}
+input.i,select.i,textarea.i{width:100%;min-height:44px;padding:10px 14px;border-radius:12px;border:1px solid var(--line2);background:rgba(0,0,0,.3);color:var(--ink);font-size:15px}
+textarea.i{min-height:96px;resize:vertical}
+select.i{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
+input.i:focus,select.i:focus,textarea.i:focus{border-color:var(--lime);outline:none}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--lime)}
+.err{color:var(--bad);font-size:13px;min-height:1em}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:22px 0 20px;overflow-x:auto}
+.tabs a{padding:10px 14px;font-size:14px;font-weight:600;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap}
+.tabs a.on{color:var(--ink);border-color:var(--lime)}
+table.t{width:100%;border-collapse:collapse;font-size:14px}
+table.t th{text-align:left;font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:10px 8px;border-bottom:1px solid var(--line)}
+table.t td{padding:11px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+table.t td.n,table.t th.n{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.empty{border:1px dashed var(--line2);border-radius:var(--r);padding:26px;text-align:center;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:50;background:var(--lime);color:#121510;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 10px 40px rgba(0,0,0,.4);font-size:14px;max-width:calc(100vw - 32px)}
+.toast.bad{background:var(--bad)}
+.pillar{border-left:3px solid var(--lime);padding-left:14px}
+.pillar.p2{border-color:#9ccf6a}.pillar.p3{border-color:var(--lime2)}.pillar.p4{border-color:var(--warn)}.pillar.p5{border-color:var(--muted)}
+.task{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.task:last-child{border-bottom:0}
+.task .box{width:24px;height:24px;border-radius:8px;border:1.5px solid var(--line2);background:none;display:grid;place-items:center;color:#121510;font-weight:900;font-size:13px}
+.task.done .box{background:var(--lime);border-color:var(--lime)}
+.task.done .tt{text-decoration:line-through;color:var(--muted)}
+.task.doing .box{border-color:var(--lime)}
+.insight{display:flex;gap:12px;padding:14px;border-radius:14px;background:rgba(197,243,124,.07);border:1px solid rgba(197,243,124,.22)}
+.insight b{color:var(--lime)}
+.insight.warn{background:rgba(242,184,102,.07);border-color:rgba(242,184,102,.28)}
+.insight.warn b{color:var(--warn)}
+.chart svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.hero{padding:40px 0 30px}
+.hero p.lede{font-size:clamp(1.05rem,1.8vw,1.3rem);color:var(--muted);max-width:640px;margin:20px 0 26px}
+.svc{display:flex;flex-direction:column;gap:8px}
+.svc h3{display:flex;gap:10px;align-items:center}
+.num{font-family:var(--fm);font-size:11px;color:#121510;background:var(--lime);border-radius:999px;width:24px;height:24px;display:inline-grid;place-items:center;flex:none}
+.auth{max-width:440px;margin:0 auto}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:999px;padding:3px}
+.seg button{border:0;background:none;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:700;color:var(--muted)}
+.seg button.on{background:var(--ink);color:#121510}
+.linkbox{display:flex;gap:8px;align-items:center;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 12px;font-family:var(--fm);font-size:12px;overflow:hidden}
+.linkbox span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qr svg{width:120px;height:120px;background:#fff;border-radius:10px;padding:6px}
+.tier{display:grid;grid-template-columns:2fr 1fr 1.4fr 1.4fr auto;gap:8px;align-items:end}
+@media(max-width:700px){.tier{grid-template-columns:1fr 1fr}}
+dialog{margin:auto;border:1px solid var(--line2);border-radius:var(--r);background:var(--panel);color:var(--ink);padding:24px;max-width:min(560px,calc(100vw - 32px));width:100%}
+dialog::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.proof{background:linear-gradient(135deg,#1b2412,#0d1110 60%);border:1px solid rgba(197,243,124,.3)}
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:13px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#/"><span class="dot"></span>NEXUS <small>Organizers</small></a>
+  <nav id="nav" aria-label="Main"></nav>
+</div></header>
+<main><div class="wrap" id="app" aria-live="polite"><p class="muted">Loading…</p></div></main>
+<footer><div class="wrap row between">
+  <span>Nexus · San Diego · <a href="mailto:now@nexusglobal.info">now@nexusglobal.info</a></span>
+  <span><a href="/">nexusglobal.info</a> · <a href="https://www.instagram.com/n3xus.now/" target="_blank" rel="noopener">@n3xus.now</a></span>
+</div></footer>
+<dialog id="dlg"></dialog>
+
+<script>
+/* ════════════════════════════════════════════
+   NEXUS FOR ORGANIZERS — nexusglobal.info/organizers
+   Data lives in the Nexus app's Supabase project (nexus-app/supabase/migrations/0010_organizers.sql).
+   The publishable key below is public by design; row level security decides what each person sees.
+════════════════════════════════════════════ */
+const SB_URL = 'https://valeivzqquetjjhspgjk.supabase.co';
+const SB_KEY = 'sb_publishable_ZIsURGGqpS25wk8PO0jx7Q_b6y6r3Gi';
+const SITE = location.origin + '/organizers/';
+const TICKETS = 'https://nexusglobal.info/buy/';
+
+const S = { user: null, admin: false, org: null, role: null, events: [], recovery: false };
+
+/* ── Words and numbers ── */
+const PILLARS = {
+  buzz: { n: 1, name: 'Buzz', sub: 'Guerrilla, word of mouth, growth', cls: '' },
+  strategy: { n: 2, name: 'Strategy & relationships', sub: 'Inbound, outbound, stealth', cls: 'p2' },
+  experience: { n: 3, name: 'Experience & identity', sub: 'Experiential, cause', cls: 'p3' },
+  ads: { n: 4, name: 'The last play: ads', sub: 'Meta and TikTok close the gap', cls: 'p4' },
+  ops: { n: 5, name: 'The night and after', sub: 'Door, recap, results', cls: 'p5' },
+};
+const CHANNELS = {
+  guerrilla: 'Guerrilla (flyers, street team)', word_of_mouth: 'Word of mouth (ambassadors)', buzz: 'Buzz (social posts)',
+  inbound: 'Inbound (page, email, search)', outbound: 'Outbound (partners, press)', stealth: 'Stealth (creator seeding)',
+  experiential: 'Experiential (pop-ups)', cause: 'Cause partner', meta_ads: 'Meta ads', tiktok_ads: 'TikTok ads',
+  email: 'Email or text', partner: 'Partner or co-host', other: 'Other',
+};
+const SERVICES = {
+  rollout_room: ['Rollout Room social campaign', 'buzz', 'A full social media campaign built around your account’s own metrics, in Rollout Room.'],
+  flyer_print: ['Flyer and poster printing', 'buzz', 'Designed, printed and QR-tagged so every flyer is tracked.'],
+  flyer_distribution: ['Flyer distribution', 'buzz', 'Our team gets them into the coffee shops, campuses, shops and venues where your crowd is.'],
+  street_team: ['Street team', 'buzz', 'Hand-to-hand promotion on the busiest nights, plus chalk and posters.'],
+  strategy_session: ['Strategy session', 'strategy', 'We map your inbound, outbound and stealth plan with you, and who to partner with.'],
+  experiential: ['Experiential activation', 'experience', 'A pop-up, listening session or live preview that people talk about.'],
+  cause_partnership: ['Cause partnership', 'experience', 'We match you with a community partner your crowd cares about.'],
+  meta_ads: ['Meta ads', 'ads', 'Retargeting and lookalikes once organic momentum is there. The last play, not the first.'],
+  tiktok_ads: ['TikTok ads', 'ads', 'Spark Ads that boost your best organic clip.'],
+  web_branding: ['Branded ticket experience', 'experience', 'Web development and UI/UX so your ticket page looks like your world.'],
+  branded_emails: ['Branded emails', 'strategy', 'Announcement, reminder, ticket and thank-you emails in your look.'],
+  other: ['Something else', 'strategy', 'Tell us what you need.'],
+};
+const ORG_STATUS = { applied: ['Applied', 'warn'], trial: ['Trial event', 'lime'], active: ['Partner', 'ok'], paused: ['Paused', 'bad'], declined: ['Declined', 'bad'] };
+const EV_STATUS = { draft: ['Draft', ''], review: ['With Nexus for review', 'warn'], published: ['On sale', 'ok'], ended: ['Ended', ''] };
+const REQ_STATUS = { requested: ['Requested', 'warn'], scoped: ['Scoped', ''], in_progress: ['In progress', 'lime'], delivered: ['Delivered', 'ok'], declined: ['Declined', 'bad'] };
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const money = c => '$' + (Math.round(c || 0) / 100).toLocaleString('en-US', { minimumFractionDigits: (c || 0) % 100 ? 2 : 0, maximumFractionDigits: 2 });
+const num = n => (n || 0).toLocaleString('en-US');
+const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+const pill = ([t, c]) => `<span class="pill ${c}">${esc(t)}</span>`;
+const today = () => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); };
+const parseDay = s => { if (!s) return null; const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+const daysUntil = s => { const d = parseDay(s); return d ? Math.round((d - today()) / 864e5) : null; };
+const fmtDay = s => { const d = parseDay(s); return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''; };
+const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const slugify = s => s.toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g, '').trim().replace(/[\s_]+/g, '-').replace(/-+/g, '-').slice(0, 40);
+const rand = n => Array.from(crypto.getRandomValues(new Uint8Array(n)), b => 'abcdefghjkmnpqrstuvwxyz23456789'[b % 31]).join('');
+const ticketUrl = (slug, ref) => TICKETS + '?e=' + encodeURIComponent(slug) + (ref ? '&r=' + encodeURIComponent(ref) : '');
+const $ = sel => document.querySelector(sel);
+const app = () => document.getElementById('app');
+
+function toast(msg, bad) {
+  const t = document.createElement('div');
+  t.className = 'toast' + (bad ? ' bad' : ''); t.setAttribute('role', 'status'); t.textContent = msg;
+  document.body.appendChild(t); setTimeout(() => t.remove(), 3200);
+}
+function friendly(e) {
+  const m = (e && (e.message || e.error_description || e.error)) || String(e || '');
+  if (/Invalid login credentials/i.test(m)) return 'That email and password don’t match. Try again or reset your password.';
+  if (/Email not confirmed/i.test(m)) return 'Confirm your email first. Check your inbox for the link from Nexus.';
+  if (/already registered/i.test(m)) return 'There’s already a Nexus account with that email. Sign in instead.';
+  if (/rate limit/i.test(m)) return 'Too many tries. Wait a minute and try again.';
+  if (/duplicate key.*slug/i.test(m)) return 'That event link is taken. Change the event link and save again.';
+  if (/duplicate key.*code/i.test(m)) return 'That link code is taken. Pick another.';
+  if (/Failed to fetch|NetworkError/i.test(m)) return 'Couldn’t reach Nexus. Check your connection and try again.';
+  return m || 'Something went wrong. Try again.';
+}
+async function must(p) { const { data, error } = await p; if (error) throw error; return data; }
+async function copy(text, label) {
+  try { await navigator.clipboard.writeText(text); toast((label || 'Copied') + ' ✓'); }
+  catch (e) { prompt('Copy this:', text); }
+}
+
+// ?demo shows the whole dashboard with sample data and no account (for previews and pitches).
+const DEMO = new URLSearchParams(location.search).has('demo');
+const sb = DEMO ? demoClient() : window.supabase.createClient(SB_URL, SB_KEY, {
+  auth: { flowType: 'pkce', persistSession: true, storageKey: 'nexus-organizer', detectSessionInUrl: true },
+});
+
+/* ── Loading what this person can see ── */
+async function loadContext() {
+  const { data: { session } } = await sb.auth.getSession();
+  S.user = session?.user ?? null;
+  S.admin = false; S.org = null; S.role = null; S.events = [];
+  if (!S.user) return;
+  const [adm, mem] = await Promise.all([
+    sb.rpc('is_admin'),
+    sb.from('organization_members').select('role, organizations(*)').eq('user_id', S.user.id).order('created_at').limit(1),
+  ]);
+  S.admin = adm.data === true;
+  const m = (mem.data || [])[0];
+  if (m) { S.org = m.organizations; S.role = m.role; }
+  if (S.org) S.events = await must(sb.from('events').select('*').eq('org_id', S.org.id).order('created_at', { ascending: false }));
+}
+
+/* ── Routing: #/home, #/event/<id>/<tab>, #/admin … ── */
+const routes = {};
+function route(name, fn) { routes[name] = fn; }
+async function render() {
+  const [name, ...args] = location.hash.replace(/^#\/?/, '').split('/');
+  renderNav(name || '');
+  window.scrollTo(0, 0);
+  if (S.recovery) return viewRecovery();
+  if (!S.user) return (routes[name] && ['', 'signin', 'join'].includes(name) ? routes[name] : routes[''])(...args);
+  let target = name;
+  if (!target || target === 'signin' || target === 'join') target = S.org ? 'home' : (S.admin ? 'admin' : 'start');
+  if (!S.org && !S.admin && !['start', ''].includes(target)) target = 'start';
+  const fn = routes[target] || routes.home;
+  try { await fn(...args); }
+  catch (e) { app().innerHTML = `<div class="empty">${esc(friendly(e))}</div>`; }
+}
+function renderNav(name) {
+  const n = document.getElementById('nav');
+  const a = (h, t) => `<a href="#/${h}" class="${name === h.split('/')[0] ? 'on' : ''}">${t}</a>`;
+  if (!S.user) { n.innerHTML = a('', 'Why Nexus') + `<a class="btn small primary" href="#/join">Run an event with us</a>`; return; }
+  let h = '';
+  if (S.org) h += a('home', 'Dashboard') + a('services', 'Services') + a('brand', 'Brand') + a('team', 'Team');
+  if (S.admin) h += a('admin', 'Nexus admin');
+  h += `<button id="signout" type="button">Sign out</button>`;
+  n.innerHTML = h;
+  document.getElementById('signout').onclick = async () => { await sb.auth.signOut(); await loadContext(); location.hash = '#/'; render(); };
+}
+window.addEventListener('hashchange', render);
+
+/* ════════════ Signed out: the pitch ════════════ */
+route('', () => {
+  app().innerHTML = `
+  <section class="hero">
+    <div class="eyebrow">Nexus for organizers</div>
+    <h1 style="margin-top:14px">Don’t just sell tickets.<br><span class="hl">Sell out.</span></h1>
+    <p class="lede">Partner with Nexus and your event gets a whole promotion team: the strategy, the systems and the tools to sell out, with ticketing and live analytics in one place. We start organic and buzz-driven. Ads come last, to close the gap from well sold to sold out.</p>
+    <div class="row"><a class="btn primary" href="#/join">Run your first event with us</a><a class="btn" href="#/signin">Sign in</a></div>
+  </section>
+
+  <section class="grid g3" style="margin-top:10px">
+    ${[['1', 'Buzz', 'Guerrilla, word-of-mouth and growth marketing. Flyers and street teams, ambassadors with their own links, reveals and countdowns that get people talking.'],
+       ['2', 'Strategy & relationships', 'Inbound, outbound and stealth marketing. Your page and list, partners and press, and creators seeded quietly so the buzz feels real because it is.'],
+       ['3', 'Experience & identity', 'Experiential and cause marketing. Pop-ups people post about, and a community partner your crowd cares about.']]
+      .map(([n, t, d]) => `<div class="card svc"><h3><span class="num">${n}</span>${t}</h3><p class="muted">${d}</p></div>`).join('')}
+  </section>
+  <div class="card" style="margin-top:14px;border-color:rgba(242,184,102,.35)"><div class="row"><span class="num" style="background:var(--warn)">4</span><h3>Then the last play: ads</h3></div>
+    <p class="muted" style="margin-top:8px">Meta and TikTok ads, with Pinterest and YouTube coming soon, aimed at people who already know about you. That’s what turns a well-sold event into a sold-out one.</p></div>
+
+  <section style="margin-top:56px" class="grid g2">
+    <div>
+      <div class="eyebrow">What you get</div>
+      <h2 style="margin:10px 0 16px">One dashboard for the whole promotion cycle</h2>
+      <div class="stack muted">
+        <p><b style="color:var(--ink)">A promotion plan, timed to your date.</b> Every step across all three pillars, with what you do and what Nexus does.</p>
+        <p><b style="color:var(--ink)">Tracking links for every channel.</b> Each flyer QR, ambassador, partner and ad gets its own link, so you see which ones actually sell.</p>
+        <p><b style="color:var(--ink)">Live sales and pace.</b> Tickets, revenue, checkout conversion, check-ins, and whether you’re on pace to sell out, with the next best move.</p>
+        <p><b style="color:var(--ink)">Ticketing that’s yours.</b> Early bird pricing, QR tickets that can’t be screenshotted, door check-in and your guest list, on a ticket page in your brand.</p>
+        <p><b style="color:var(--ink)">In-house services.</b> Rollout Room social campaigns, printing and flyer distribution, experiential activations, ads, web and UI/UX, and branded emails.</p>
+      </div>
+    </div>
+    <div class="card proof">
+      <div class="eyebrow">How partnering works</div>
+      <h2 style="margin:10px 0 14px">Try one event on us</h2>
+      <ol class="stack" style="padding-left:20px">
+        <li>Apply below. Tell us about you and the event.</li>
+        <li>Run that one event on Nexus with full access to our services and the dashboard.</li>
+        <li>See the results. If you like how it went, we move to a one-year partnership.</li>
+      </ol>
+      <p class="muted small" style="margin-top:14px">Buyers pay the ticket price plus the Nexus fee (3% + $0.99 a ticket, card processing included); you earn the full ticket price. Services are scoped and priced with you. Partnership terms and conditions apply.</p>
+      <a class="btn primary" style="margin-top:18px" href="#/join">Apply now</a>
+    </div>
+  </section>`;
+});
+
+/* ════════════ Sign in / join ════════════ */
+function authView(mode) {
+  app().innerHTML = `
+  <div class="auth card" style="margin-top:20px">
+    <div class="seg" role="tablist"><button type="button" data-m="join" class="${mode === 'join' ? 'on' : ''}">Create account</button><button type="button" data-m="signin" class="${mode === 'signin' ? 'on' : ''}">Sign in</button></div>
+    <h2 style="margin:18px 0 6px">${mode === 'join' ? 'Run your first event with Nexus' : 'Welcome back'}</h2>
+    <p class="muted small">${mode === 'join' ? 'This is a Nexus account. It works here and in the Nexus app.' : 'Use the email and password for your Nexus account.'}</p>
+    <form id="af" class="stack" style="margin-top:16px" novalidate>
+      ${mode === 'join' ? `<div><label class="f" for="nm">Your name</label><input class="i" id="nm" name="name" autocomplete="name" required></div>` : ''}
+      <div><label class="f" for="em">Email</label><input class="i" id="em" name="email" type="email" autocomplete="email" required></div>
+      <div><label class="f" for="pw">Password <span>${mode === 'join' ? '(at least 8 characters)' : ''}</span></label><input class="i" id="pw" name="password" type="password" autocomplete="${mode === 'join' ? 'new-password' : 'current-password'}" required minlength="8"></div>
+      <p class="err" id="aerr"></p>
+      <button class="btn primary" style="width:100%" id="ago">${mode === 'join' ? 'Create account' : 'Sign in'}</button>
+      ${mode === 'signin' ? `<button class="btn small" type="button" id="forgot" style="width:100%">Forgot your password?</button>` : `<p class="muted small">By creating an account you agree to the Nexus <a href="https://nicolehernandezcolin-sketch.github.io/nexus-demo/legal/terms.html" target="_blank" rel="noopener">terms</a> and <a href="https://nicolehernandezcolin-sketch.github.io/nexus-demo/legal/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</p>`}
+    </form>
+  </div>`;
+  app().querySelectorAll('[data-m]').forEach(b => b.onclick = () => { location.hash = '#/' + b.dataset.m; });
+  const f = document.getElementById('af'), err = document.getElementById('aerr'), go = document.getElementById('ago');
+  f.onsubmit = async e => {
+    e.preventDefault(); err.textContent = '';
+    const email = f.email.value.trim(), password = f.password.value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'Enter a valid email.'; return; }
+    if (password.length < 8) { err.textContent = 'Passwords are at least 8 characters.'; return; }
+    go.disabled = true;
+    try {
+      if (mode === 'join') {
+        const name = f.name.value.trim();
+        if (name.length < 2) { err.textContent = 'Enter your name.'; go.disabled = false; return; }
+        const { data, error } = await sb.auth.signUp({ email, password, options: { data: { name }, emailRedirectTo: SITE + '#/start' } });
+        if (error) throw error;
+        if (!data.session) {
+          app().innerHTML = `<div class="auth card" style="margin-top:20px;text-align:center"><div class="eyebrow">One more step</div><h2 style="margin:12px 0">Check your email</h2><p class="muted">We sent a confirmation link to <b style="color:var(--ink)">${esc(email)}</b>. Open it on this device and you’ll land right back here to set up your organization.</p></div>`;
+          return;
+        }
+      } else {
+        const { error } = await sb.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      }
+      await loadContext(); location.hash = S.org ? '#/home' : (S.admin ? '#/admin' : '#/start'); render();
+    } catch (e2) { err.textContent = friendly(e2); go.disabled = false; }
+  };
+  const fg = document.getElementById('forgot');
+  if (fg) fg.onclick = async () => {
+    const email = f.email.value.trim();
+    if (!email) { err.textContent = 'Type your email above first.'; return; }
+    const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: SITE });
+    err.textContent = error ? friendly(error) : '';
+    if (!error) toast('Reset link sent. Check your email.');
+  };
+}
+route('join', () => authView('join'));
+route('signin', () => authView('signin'));
+
+function viewRecovery() {
+  app().innerHTML = `<div class="auth card" style="margin-top:20px"><h2>Choose a new password</h2>
+    <form id="rf" class="stack" style="margin-top:16px"><div><label class="f" for="np">New password <span>(at least 8 characters)</span></label><input class="i" id="np" type="password" autocomplete="new-password" minlength="8" required></div>
+    <p class="err" id="rerr"></p><button class="btn primary" style="width:100%">Save password</button></form></div>`;
+  document.getElementById('rf').onsubmit = async e => {
+    e.preventDefault();
+    const p = document.getElementById('np').value;
+    if (p.length < 8) { document.getElementById('rerr').textContent = 'At least 8 characters.'; return; }
+    const { error } = await sb.auth.updateUser({ password: p });
+    if (error) { document.getElementById('rerr').textContent = friendly(error); return; }
+    S.recovery = false; toast('Password saved'); await loadContext(); location.hash = '#/home'; render();
+  };
+}
+
+/* ════════════ Apply: set up the organization ════════════ */
+route('start', () => {
+  if (S.org) { location.hash = '#/home'; return; }
+  const name = S.user.user_metadata?.name || '';
+  app().innerHTML = `
+  <div style="max-width:760px;margin:0 auto">
+    <div class="eyebrow">Step 1 of 2</div>
+    <h2 style="margin:10px 0 6px">Tell us about you</h2>
+    <p class="muted">This is your application for a trial event. Nexus reviews it and reaches out within two days.</p>
+    <form id="of" class="card stack" style="margin-top:18px" novalidate>
+      <div class="grid g2">
+        <div><label class="f" for="on">Organization or brand name</label><input class="i" id="on" name="name" required maxlength="120"></div>
+        <div><label class="f" for="ok">What are you?</label><select class="i" id="ok" name="kind">
+          ${[['promoter', 'Promoter or event series'], ['venue', 'Venue'], ['artist', 'Artist or band'], ['collective', 'Collective'], ['brand', 'Brand'], ['campus', 'Campus organization'], ['nonprofit', 'Nonprofit'], ['other', 'Other']].map(([v, t]) => `<option value="${v}">${t}</option>`).join('')}
+        </select></div>
+        <div><label class="f" for="cn">Your name</label><input class="i" id="cn" name="contact_name" value="${esc(name)}" maxlength="120"></div>
+        <div><label class="f" for="ce">Best email</label><input class="i" id="ce" name="contact_email" type="email" value="${esc(S.user.email)}" maxlength="200"></div>
+        <div><label class="f" for="ph">Phone <span>(optional)</span></label><input class="i" id="ph" name="phone" type="tel" maxlength="40"></div>
+        <div><label class="f" for="ci">City</label><input class="i" id="ci" name="city" value="San Diego" maxlength="80"></div>
+        <div><label class="f" for="ig">Instagram <span>(optional)</span></label><input class="i" id="ig" name="instagram" placeholder="@yourhandle" maxlength="80"></div>
+        <div><label class="f" for="tt">TikTok <span>(optional)</span></label><input class="i" id="tt" name="tiktok" placeholder="@yourhandle" maxlength="80"></div>
+      </div>
+      <div><label class="f" for="ws">Website <span>(optional)</span></label><input class="i" id="ws" name="website" placeholder="https://" maxlength="200"></div>
+      <div><label class="f" for="gl">Your event and your goal</label><textarea class="i" id="gl" name="goals" maxlength="2000" placeholder="What is it, when, roughly how many people, and what would a win look like?"></textarea></div>
+      <fieldset style="border:0"><legend class="f" style="margin-bottom:10px">Which services interest you? <span>(optional)</span></legend>
+        <div class="grid g2">${Object.entries(SERVICES).filter(([k]) => k !== 'other').map(([k, [t]]) => `<label class="check"><input type="checkbox" name="svc" value="${k}">${t}</label>`).join('')}</div>
+      </fieldset>
+      <p class="err" id="oerr"></p>
+      <div class="row"><button class="btn primary" id="ogo">Send my application</button><span class="muted small">Next: add your event.</span></div>
+    </form>
+  </div>`;
+  document.getElementById('of').onsubmit = async e => {
+    e.preventDefault();
+    const f = e.target, err = document.getElementById('oerr'), go = document.getElementById('ogo');
+    const v = k => f[k].value.trim();
+    if (!v('name')) { err.textContent = 'Add your organization name.'; f.name.focus(); return; }
+    go.disabled = true; err.textContent = '';
+    try {
+      const org = await must(sb.from('organizations').insert({
+        name: v('name'), kind: f.kind.value, contact_name: v('contact_name'), contact_email: v('contact_email'), phone: v('phone'),
+        city: v('city'), instagram: v('instagram'), tiktok: v('tiktok'), website: v('website'), goals: v('goals'),
+      }).select().single());
+      const svc = [...f.querySelectorAll('[name=svc]:checked')].map(c => c.value);
+      if (svc.length) await must(sb.from('service_requests').insert(svc.map(service => ({ org_id: org.id, service, details: 'Interested (from application)' }))));
+      await loadContext(); toast('Application sent'); location.hash = '#/new';
+    } catch (e2) { err.textContent = friendly(e2); go.disabled = false; }
+  };
+});
+
+/* ════════════ Organizer home ════════════ */
+async function statsFor(events) {
+  const out = {};
+  await Promise.all(events.map(async ev => { const { data } = await sb.rpc('event_stats', { ev: ev.id }); out[ev.id] = data || {}; }));
+  return out;
+}
+route('home', async () => {
+  if (!S.org) { location.hash = S.admin ? '#/admin' : '#/start'; return; }
+  const [stats, payouts, reqs] = await Promise.all([
+    statsFor(S.events),
+    sb.from('payouts').select('*').eq('org_id', S.org.id).order('created_at', { ascending: false }).then(r => r.data || []),
+    sb.from('service_requests').select('*').eq('org_id', S.org.id).order('created_at', { ascending: false }).then(r => r.data || []),
+  ]);
+  const all = Object.values(stats);
+  const sum = k => all.reduce((a, s) => a + (s[k] || 0), 0);
+  const trialUsed = S.org.plan === 'trial' && S.events.length >= 1;
+  const paid = payouts.filter(p => p.status === 'paid').reduce((a, p) => a + p.amount_cents, 0);
+  app().innerHTML = `
+  <div class="row between">
+    <div><div class="eyebrow">${esc(S.org.kind)} · ${esc(S.org.city)}</div><h1 style="font-size:clamp(2rem,4.6vw,3.2rem);margin-top:8px">${esc(S.org.name)}</h1></div>
+    <div class="row">${pill(ORG_STATUS[S.org.status])}${S.org.plan === 'contract' && S.org.contract_end ? `<span class="pill">Partner through ${esc(fmtDay(S.org.contract_end))}</span>` : ''}</div>
+  </div>
+  ${S.org.status === 'applied' ? `<div class="insight warn" style="margin-top:18px"><div><b>Your application is with Nexus.</b> We’ll reach out within two days. Meanwhile, set up your event below. It goes on sale once Nexus reviews it.</div></div>` : ''}
+  <div class="grid g4" style="margin-top:22px">
+    ${kpi('Tickets sold', num(sum('tickets_sold')), S.events.length + ' event' + (S.events.length === 1 ? '' : 's'))}
+    ${kpi('You’ve earned', money(sum('face_cents')), 'Ticket face value')}
+    ${kpi('Checkout conversion', pct(sum('orders'), sum('checkouts_started')) + '%', num(sum('checkouts_started')) + ' checkouts started')}
+    ${kpi('Paid out', money(paid), payouts.length ? payouts.length + ' payout' + (payouts.length === 1 ? '' : 's') : 'After each event')}
+  </div>
+  <div class="row between" style="margin:36px 0 14px"><h2>Your events</h2>
+    ${trialUsed ? `<span class="muted small">Your trial covers one event. <a href="mailto:now@nexusglobal.info?subject=Nexus partnership">Talk to us about the partnership</a> to add more.</span>` : `<a class="btn primary" href="#/new">+ New event</a>`}</div>
+  ${S.events.length ? `<div class="grid g2">${S.events.map(ev => eventCard(ev, stats[ev.id] || {})).join('')}</div>`
+    : `<div class="empty"><p>No events yet.</p><a class="btn primary" style="margin-top:14px" href="#/new">Set up your event</a></div>`}
+  <div class="grid g2" style="margin-top:36px">
+    <div class="card"><div class="row between"><h3>Services from Nexus</h3><a class="btn small" href="#/services">Request a service</a></div>
+      ${reqs.length ? `<table class="t" style="margin-top:10px"><tbody>${reqs.slice(0, 6).map(r => `<tr><td>${esc(SERVICES[r.service]?.[0] || r.service)}${r.nexus_note ? `<div class="muted small">${esc(r.nexus_note)}</div>` : ''}</td><td class="n">${pill(REQ_STATUS[r.status])}</td></tr>`).join('')}</tbody></table>`
+        : `<p class="muted small" style="margin-top:10px">Printing, street teams, Rollout Room campaigns, ads, branded pages and emails. Request what you need.</p>`}</div>
+    <div class="card"><h3>Payouts</h3>
+      ${payouts.length ? `<table class="t" style="margin-top:10px"><tbody>${payouts.map(p => `<tr><td>${esc(S.events.find(e => e.id === p.event_id)?.title || 'Payout')}<div class="muted small">${esc(p.note)}</div></td><td>${p.status === 'paid' ? pill(['Paid ' + fmtDay(p.paid_on), 'ok']) : pill(['Scheduled', 'warn'])}</td><td class="n">${money(p.amount_cents)}</td></tr>`).join('')}</tbody></table>`
+        : `<p class="muted small" style="margin-top:10px">You earn the full ticket price. Nexus pays you out after each event, minus any refunds. Payouts show up here.</p>`}</div>
+  </div>`;
+});
+function kpi(l, v, s) { return `<div class="card kpi"><div class="l">${esc(l)}</div><div class="v">${v}</div>${s ? `<div class="s">${esc(s)}</div>` : ''}</div>`; }
+function eventCard(ev, st) {
+  const target = ev.goal_tickets || ev.capacity;
+  const sold = st.tickets_sold || 0, d = daysUntil(ev.starts_on);
+  return `<a class="card" href="#/event/${ev.id}/overview" style="text-decoration:none;color:inherit;display:block">
+    <div class="row between"><span class="eyebrow">${ev.starts_on ? esc(fmtDay(ev.starts_on)) + (d !== null && d >= 0 ? ` · in ${d} day${d === 1 ? '' : 's'}` : '') : 'Date to come'}</span>${pill(EV_STATUS[ev.status])}</div>
+    <h3 style="font-size:1.3rem;margin:10px 0 4px">${esc(ev.title)}</h3>
+    <p class="muted small">${esc(ev.where_text || 'Venue to come')}</p>
+    <div class="row between small" style="margin:16px 0 6px"><span><b>${num(sold)}</b> sold${target ? ` of ${num(target)}` : ''}</span><span class="muted">${money(st.face_cents)}</span></div>
+    <div class="bar"><i style="width:${target ? Math.min(100, pct(sold, target)) : 0}%"></i></div>
+  </a>`;
+}
+
+/* ════════════ New / edit event ════════════ */
+route('new', () => eventForm(null));
+function tierRow(t = {}) {
+  const dt = v => v ? new Date(v).toISOString().slice(0, 16) : '';
+  return `<div class="tier" data-tier>
+    <div><label class="f">Ticket name</label><input class="i" name="tname" value="${esc(t.name || '')}" placeholder="General admission" maxlength="60"></div>
+    <div><label class="f">Price ($)</label><input class="i" name="tprice" type="number" min="0" step="0.01" value="${t.price ?? ''}" placeholder="20"></div>
+    <div><label class="f">On sale from <span>(optional)</span></label><input class="i" name="tfrom" type="datetime-local" value="${dt(t.on_sale_from)}"></div>
+    <div><label class="f">Until <span>(optional)</span></label><input class="i" name="tuntil" type="datetime-local" value="${dt(t.on_sale_until)}"></div>
+    <button type="button" class="btn small danger" data-rm aria-label="Remove ticket type">✕</button>
+  </div>`;
+}
+function eventForm(ev, into) {
+  const e = ev || { sale_kind: 'tickets', tiers: [{ id: 'early', name: 'Early bird', price: 15 }, { id: 'ga', name: 'General admission', price: 20 }] };
+  const locked = ev && ev.status === 'published';
+  const html = `
+  <div style="max-width:860px;${into ? '' : 'margin:0 auto'}">
+    ${into ? '' : `<div class="eyebrow">${S.org?.status === 'applied' ? 'Step 2 of 2' : 'New event'}</div><h2 style="margin:10px 0 6px">Your event</h2><p class="muted">Save it as a draft anytime. When it’s ready, send it to Nexus; we review it and put it on sale.</p>`}
+    <form id="ef" class="card stack" style="margin-top:18px" novalidate>
+      <div><label class="f" for="et">Event name</label><input class="i" id="et" name="title" value="${esc(e.title || '')}" maxlength="120" required></div>
+      <div class="grid g2">
+        <div><label class="f" for="ed">Date</label><input class="i" id="ed" name="starts_on" type="date" value="${esc(e.starts_on || '')}"></div>
+        <div><label class="f" for="ew">Date and time as people should read it</label><input class="i" id="ew" name="when_text" value="${esc(e.when_text || '')}" placeholder="Friday, Dec 5 · Doors 7 PM"></div>
+        <div><label class="f" for="ev">Venue</label><input class="i" id="ev" name="where_text" value="${esc(e.where_text || '')}" placeholder="Venue name, neighborhood"></div>
+        <div><label class="f" for="ep">Address</label><select class="i" id="ep" name="address_privacy"><option value="public" ${e.address_privacy !== 'secret' ? 'selected' : ''}>Public: shown on the event page</option><option value="secret" ${e.address_privacy === 'secret' ? 'selected' : ''}>Secret: sent to guests on the day (house shows)</option></select></div>
+        <div id="pubAddr" ${e.address_privacy === 'secret' ? 'hidden' : ''}><label class="f" for="ea">Street address <span>(for the map and tickets)</span></label><input class="i" id="ea" name="venue_address" value="${esc(e.venue_address || '')}" maxlength="200"></div>
+        <div id="secNote" ${e.address_privacy === 'secret' ? '' : 'hidden'}><p class="muted small" style="margin-top:28px">Put only the neighborhood in Venue. You’ll add the real address in the House show tab; it’s never on the public page.</p></div>
+        <div><label class="f" for="ec">Capacity <span>(how many fit)</span></label><input class="i" id="ec" name="capacity" type="number" min="1" value="${e.capacity ?? ''}"></div>
+        <div><label class="f" for="eg">Ticket goal <span>(defaults to capacity)</span></label><input class="i" id="eg" name="goal_tickets" type="number" min="1" value="${e.goal_tickets ?? ''}"></div>
+      </div>
+      <div><label class="f" for="eb">About <span>(one or two lines on why people should come)</span></label><textarea class="i" id="eb" name="about" maxlength="1200">${esc(e.about || '')}</textarea></div>
+      <div class="grid g2">
+        <div><label class="f" for="ek">Entry</label><select class="i" id="ek" name="sale_kind"><option value="tickets" ${e.sale_kind === 'tickets' ? 'selected' : ''}>Paid tickets</option><option value="free" ${e.sale_kind === 'free' ? 'selected' : ''}>Free with RSVP</option></select></div>
+        <div><label class="f" for="es">Event link</label><input class="i" id="es" name="slug" value="${esc(e.slug || '')}" placeholder="made from the name" maxlength="48" ${locked ? 'disabled' : ''}></div>
+      </div>
+      <div id="tiersWrap" class="stack" ${e.sale_kind === 'tickets' ? '' : 'hidden'}>
+        <div class="row between"><h3>Ticket types</h3><button type="button" class="btn small" id="addTier">+ Add ticket type</button></div>
+        <p class="muted small">Early bird pricing: give the early tier an end time, and the next tier a start time at that same moment. Buyers pay the price plus the Nexus fee; you earn the full price.</p>
+        <div id="tiers" class="stack">${(e.tiers || []).map(tierRow).join('')}</div>
+      </div>
+      <p class="err" id="eerr"></p>
+      <div class="row">
+        ${locked ? `<button class="btn primary" data-act="save">Save changes</button><span class="muted small">This event is on sale. Changes to prices apply to new purchases.</span>`
+          : `<button class="btn" data-act="draft">Save draft</button><button class="btn primary" data-act="review">${ev?.status === 'review' ? 'Save (still with Nexus)' : 'Send to Nexus for review'}</button>`}
+      </div>
+    </form>
+  </div>`;
+  (into || app()).innerHTML = html;
+  const f = document.getElementById('ef');
+  f.sale_kind.onchange = () => { document.getElementById('tiersWrap').hidden = f.sale_kind.value !== 'tickets'; };
+  f.address_privacy.onchange = () => { const sec = f.address_privacy.value === 'secret'; document.getElementById('pubAddr').hidden = sec; document.getElementById('secNote').hidden = !sec; };
+  document.getElementById('addTier').onclick = () => { document.getElementById('tiers').insertAdjacentHTML('beforeend', tierRow()); };
+  f.addEventListener('click', e2 => { if (e2.target.matches('[data-rm]')) e2.target.closest('[data-tier]').remove(); });
+  let act = 'draft';
+  f.querySelectorAll('[data-act]').forEach(b => b.onclick = () => { act = b.dataset.act; });
+  f.onsubmit = async e2 => {
+    e2.preventDefault();
+    const err = document.getElementById('eerr'); err.textContent = '';
+    const v = k => f[k].value.trim();
+    const title = v('title');
+    if (!title) { err.textContent = 'Add the event name.'; f.title.focus(); return; }
+    const tiers = [];
+    if (f.sale_kind.value === 'tickets') {
+      for (const row of f.querySelectorAll('[data-tier]')) {
+        const name = row.querySelector('[name=tname]').value.trim(), price = Number(row.querySelector('[name=tprice]').value);
+        const from = row.querySelector('[name=tfrom]').value, until = row.querySelector('[name=tuntil]').value;
+        if (!name && !row.querySelector('[name=tprice]').value) continue;
+        if (!name || !(price > 0)) { err.textContent = 'Each ticket type needs a name and a price above $0.'; return; }
+        const t = { id: slugify(name) || rand(4), name, price: Math.round(price * 100) / 100 };
+        if (from) t.on_sale_from = new Date(from).toISOString();
+        if (until) t.on_sale_until = new Date(until).toISOString();
+        tiers.push(t);
+      }
+      if (!tiers.length) { err.textContent = 'Add at least one ticket type.'; return; }
+      const ids = new Set(); tiers.forEach(t => { while (ids.has(t.id)) t.id += '-' + rand(2); ids.add(t.id); });
+    }
+    const numOrNull = k => (v(k) ? Math.max(1, Math.round(Number(v(k)))) : null);
+    const row = {
+      title, starts_on: v('starts_on') || null, when_text: v('when_text'), where_text: v('where_text'),
+      address_privacy: f.address_privacy.value, venue_address: f.address_privacy.value === 'secret' ? '' : v('venue_address'),
+      about: v('about'), capacity: numOrNull('capacity'), goal_tickets: numOrNull('goal_tickets'), sale_kind: f.sale_kind.value, tiers,
+      badge: S.org?.name?.slice(0, 40) || 'Nexus event',
+    };
+    if (!ev || ev.status !== 'published') {
+      row.slug = slugify(v('slug') || title) || rand(6);
+      row.status = act === 'review' ? 'review' : (ev?.status === 'review' ? 'review' : 'draft');
+    }
+    try {
+      let saved;
+      if (ev) saved = await must(sb.from('events').update(row).eq('id', ev.id).select().single());
+      else {
+        saved = await must(sb.from('events').insert({ ...row, host: S.user.id, org_id: S.org.id }).select().single());
+        await sb.rpc('seed_playbook', { ev: saved.id });
+      }
+      await loadContext();
+      toast(row.status === 'review' && ev?.status !== 'review' ? 'Sent to Nexus for review' : 'Saved');
+      location.hash = `#/event/${saved.id}/${ev ? 'details' : 'promotion'}`;
+      if (ev) render();
+    } catch (e3) { err.textContent = friendly(e3); }
+  };
+}
+
+/* ════════════ One event ════════════ */
+const TABS = [['overview', 'Overview'], ['promotion', 'Promotion plan'], ['links', 'Links'], ['messages', 'Messages'], ['codes', 'Promo codes'], ['house', 'House show'], ['guests', 'Guest list'], ['details', 'Details']];
+async function getEvent(id) {
+  return S.events.find(e => e.id === id) || await must(sb.from('events').select('*').eq('id', id).single());
+}
+route('event', async (id, tab = 'overview') => {
+  const ev = await getEvent(id).catch(() => null);
+  if (!ev) {
+    app().innerHTML = `<a href="#/home" class="small" style="text-decoration:none">← All events</a><h1 style="margin-top:14px">Event not found</h1><p class="muted" style="margin-top:8px">It may have been removed, or the link is incomplete.</p>`;
+    return;
+  }
+  const d = daysUntil(ev.starts_on);
+  app().innerHTML = `
+    <a href="${S.org && ev.org_id === S.org.id ? '#/home' : '#/admin'}" class="small" style="text-decoration:none">← ${S.org && ev.org_id === S.org.id ? 'All events' : 'Nexus admin'}</a>
+    <div class="row between" style="margin-top:10px">
+      <div><div class="eyebrow">${ev.starts_on ? esc(fmtDay(ev.starts_on)) + (d !== null ? (d === 0 ? ' · tonight' : d > 0 ? ` · ${d} day${d === 1 ? '' : 's'} to go` : ' · past') : '') : 'Date to come'}${ev.where_text ? ' · ' + esc(ev.where_text) : ''}</div>
+        <h1 style="font-size:clamp(1.9rem,4.4vw,3rem);margin-top:8px">${esc(ev.title)}</h1></div>
+      <div class="row">${pill(EV_STATUS[ev.status])}${ev.status === 'published' && ev.slug && ev.sale_kind === 'tickets' ? `<a class="btn small" href="${esc(ticketUrl(ev.slug))}" target="_blank" rel="noopener">Ticket page ↗</a>` : ''}
+        ${S.admin ? adminEventButtons(ev) : ''}</div>
+    </div>
+    <nav class="tabs" aria-label="Event">${TABS.map(([k, t]) => `<a href="#/event/${ev.id}/${k}" class="${k === tab ? 'on' : ''}">${t}</a>`).join('')}</nav>
+    <div id="tab"><p class="muted">Loading…</p></div>`;
+  bindAdminEventButtons(ev);
+  const box = document.getElementById('tab');
+  if (tab === 'overview') return tabOverview(ev, box);
+  if (tab === 'promotion') return tabPromotion(ev, box);
+  if (tab === 'links') return tabLinks(ev, box);
+  if (tab === 'guests') return tabGuests(ev, box);
+  if (tab === 'messages') return tabMessages(ev, box);
+  if (tab === 'codes') return tabCodes(ev, box);
+  if (tab === 'house') return tabHouse(ev, box);
+  if (tab === 'details') return eventForm(ev, box);
+});
+
+/* Overview: the numbers, the pace, and the next best move */
+async function tabOverview(ev, box) {
+  const [st, tasks] = await Promise.all([
+    must(sb.rpc('event_stats', { ev: ev.id })),
+    sb.from('promo_tasks').select('status, due_on, pillar').eq('event_id', ev.id).then(r => r.data || []),
+  ]);
+  const target = ev.goal_tickets || ev.capacity || null;
+  const sold = st.tickets_sold || 0;
+  const days = daysUntil(ev.starts_on);
+  const byDay = st.by_day || [];
+  const last7 = byDay.filter(x => (today() - parseDay(x.day)) / 864e5 < 7).reduce((a, x) => a + x.tickets, 0);
+  const pace = last7 / 7;
+  const projected = days !== null && days > 0 ? Math.round(sold + pace * days) : sold;
+  const needPerDay = target && days > 0 ? Math.max(0, Math.ceil((target - sold) / days)) : null;
+  const overdue = tasks.filter(t => t.status !== 'done' && t.status !== 'skipped' && t.due_on && parseDay(t.due_on) < today()).length;
+  const done = tasks.filter(t => t.status === 'done').length;
+  box.innerHTML = `
+    <div class="grid g4">
+      ${kpi('Tickets sold', num(sold) + (target ? `<span class="muted" style="font-size:.5em"> / ${num(target)}</span>` : ''), target ? pct(sold, target) + '% of goal' : 'Set a goal in Details')}
+      ${kpi('You’ve earned', money(st.face_cents), num(st.orders) + ' orders · ' + num(st.buyers) + ' buyers')}
+      ${kpi('Checkout conversion', pct(st.orders, st.checkouts_started) + '%', num(st.checkouts_started) + ' started checkout')}
+      ${kpi('Checked in', num(st.checked_in), sold ? pct(st.checked_in, sold) + '% of tickets' : 'At the door')}
+    </div>
+    ${target ? `<div class="card" style="margin-top:14px"><div class="row between small"><b>Road to sold out</b><span class="muted">${days !== null && days > 0 ? `On pace for <b style="color:var(--ink)">${num(projected)}</b> by the night${needPerDay !== null ? ` · ${num(needPerDay)} a day sells it out` : ''}` : ''}</span></div><div class="bar" style="margin-top:10px;height:14px"><i style="width:${Math.min(100, pct(sold, target))}%"></i></div></div>` : ''}
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card chart"><div class="row between"><h3>Sales by day</h3><div class="legend"><span><i style="background:var(--lime)"></i>Tickets</span><span><i style="background:var(--ink)"></i>Running total</span>${target ? '<span><i style="background:var(--warn)"></i>Goal</span>' : ''}</div></div>${salesChart(byDay, target)}</div>
+      <div class="card"><h3>Next best moves</h3><div class="stack" style="margin-top:12px">${insights(ev, st, { target, sold, days, pace, projected, overdue, tasks: tasks.length }).join('') || '<p class="muted small">You’re on track. Keep working the plan.</p>'}</div></div>
+    </div>
+    <div class="grid g3" style="margin-top:14px">
+      <div class="card"><h3>Where sales came from</h3>${breakdown((st.by_link || []).filter(l => l.tickets).map(l => [l.label, l.tickets]).concat(st.unattributed_tickets ? [['No tracking link', st.unattributed_tickets]] : []), 'Make a link per channel in Links to see this.')}</div>
+      <div class="card"><h3>Ticket types</h3>${breakdown((st.by_tier || []).map(t => [t.tier, t.tickets]), 'No sales yet.')}</div>
+      <div class="card"><h3>Promotion plan</h3><p class="kpi"><span class="v">${pct(done, tasks.length)}%</span></p><p class="muted small">${done} of ${tasks.length} steps done${overdue ? ` · <span style="color:var(--warn)">${overdue} overdue</span>` : ''}</p><a class="btn small" style="margin-top:12px" href="#/event/${ev.id}/promotion">Open the plan</a></div>
+    </div>`;
+}
+function breakdown(rows, empty) {
+  if (!rows.length) return `<p class="muted small" style="margin-top:10px">${empty}</p>`;
+  const max = Math.max(...rows.map(r => r[1]));
+  return `<div class="stack" style="margin-top:12px">${rows.sort((a, b) => b[1] - a[1]).map(([k, v]) => `<div><div class="row between small"><span>${esc(k)}</span><b>${num(v)}</b></div><div class="bar" style="height:6px;margin-top:5px"><i style="width:${pct(v, max)}%"></i></div></div>`).join('')}</div>`;
+}
+function insights(ev, st, x) {
+  const out = [], tip = (t, warn) => out.push(`<div class="insight ${warn ? 'warn' : ''}"><div>${t}</div></div>`);
+  if (ev.status === 'draft') tip(`<b>Not on sale yet.</b> Finish the details and send it to Nexus for review.`, true);
+  if (ev.status === 'review') tip(`<b>With Nexus for review.</b> We’ll put it on sale shortly. Start building links and your ambassador list now.`);
+  const links = st.by_link || [];
+  if (!links.length) tip(`<b>Make a link per channel.</b> One for flyers, one per ambassador, one per partner. It’s how you’ll know what sells.`);
+  const best = [...links].sort((a, b) => b.tickets - a.tickets)[0];
+  if (best && best.tickets > 0) tip(`<b>${esc(best.label)} is your best channel</b> with ${num(best.tickets)} tickets. Give it more: more flyers, more ambassadors like it.`);
+  const cold = links.filter(l => l.visits >= 20 && !l.tickets);
+  if (cold.length) tip(`<b>${esc(cold[0].label)} gets visits but no sales.</b> Check the message matches the page, or move that effort elsewhere.`, true);
+  if (st.checkouts_started >= 5 && pct(st.orders, st.checkouts_started) < 60) tip(`<b>People are leaving checkout.</b> ${num(st.checkouts_started - st.orders)} started but didn’t pay. Send a last-call email; Nexus can do it for you.`, true);
+  if (x.overdue) tip(`<b>${x.overdue} plan step${x.overdue === 1 ? ' is' : 's are'} overdue.</b> Catch up or skip them in the promotion plan.`, true);
+  if (x.target && x.days !== null && x.days > 0) {
+    if (x.projected >= x.target) tip(`<b>On pace to sell out.</b> Now’s the time for real scarcity: share the true number left.`);
+    else if (x.days <= 14 && x.sold < x.target * 0.7) tip(`<b>Time for the last play.</b> You’re at ${pct(x.sold, x.target)}% with ${x.days} days left. Ads now close the gap: <a href="#/services">request Meta or TikTok ads</a>.`, true);
+  }
+  if (!x.tasks) tip(`<b>Load the Nexus playbook</b> in the promotion plan to get every step, timed to your date.`);
+  return out.slice(0, 5);
+}
+function salesChart(byDay, target) {
+  if (!byDay.length) return `<div class="empty" style="margin-top:12px">Sales show up here as they come in.</div>`;
+  const start = parseDay(byDay[0].day), end = today() > parseDay(byDay[byDay.length - 1].day) ? today() : parseDay(byDay[byDay.length - 1].day);
+  const days = []; for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) days.push(ymd(d));
+  const map = Object.fromEntries(byDay.map(x => [x.day, x.tickets]));
+  let run = 0; const pts = days.map(d => { run += map[d] || 0; return { d, n: map[d] || 0, run }; });
+  const W = 600, H = 220, P = 28, maxBar = Math.max(1, ...pts.map(p => p.n)), maxRun = Math.max(run, target || 0, 1);
+  const bw = (W - P * 2) / pts.length;
+  const x = i => P + i * bw, yb = n => H - P - (n / maxBar) * (H - P * 2) * 0.6, yr = n => H - P - (n / maxRun) * (H - P * 2);
+  const line = pts.map((p, i) => `${i ? 'L' : 'M'}${(x(i) + bw / 2).toFixed(1)},${yr(p.run).toFixed(1)}`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Tickets sold by day, ${run} in total">
+    <line x1="${P}" y1="${H - P}" x2="${W - P}" y2="${H - P}" stroke="rgba(240,237,230,.2)"/>
+    ${pts.map((p, i) => p.n ? `<rect x="${(x(i) + bw * 0.15).toFixed(1)}" y="${yb(p.n).toFixed(1)}" width="${Math.max(2, bw * 0.7).toFixed(1)}" height="${(H - P - yb(p.n)).toFixed(1)}" rx="3" fill="#C5F37C"><title>${p.d}: ${p.n}</title></rect>` : '').join('')}
+    ${target ? `<line x1="${P}" x2="${W - P}" y1="${yr(target)}" y2="${yr(target)}" stroke="#f2b866" stroke-dasharray="5 5"/><text x="${W - P}" y="${yr(target) - 6}" fill="#f2b866" font-size="11" text-anchor="end" font-family="Space Mono">goal ${target}</text>` : ''}
+    <path d="${line}" fill="none" stroke="#f0ede6" stroke-width="2"/>
+    <text x="${P}" y="${H - 8}" fill="#a9ad9f" font-size="11" font-family="Space Mono">${fmtDay(days[0])}</text>
+    <text x="${W - P}" y="${H - 8}" fill="#a9ad9f" font-size="11" text-anchor="end" font-family="Space Mono">${fmtDay(days[days.length - 1])}</text>
+  </svg>`;
+}
+
+/* Promotion plan: the playbook across the pillars */
+async function tabPromotion(ev, box) {
+  let tasks = await must(sb.from('promo_tasks').select('*').eq('event_id', ev.id).order('due_on', { nullsFirst: false }).order('position'));
+  const draw = () => {
+    if (!tasks.length) {
+      box.innerHTML = `<div class="empty"><h3 style="color:var(--ink)">Load the Nexus playbook</h3><p style="margin:8px 0 16px">Every step across the three pillars, timed back from your event date, with what you do and what Nexus does.</p><button class="btn primary" id="seed">Load the playbook</button></div>`;
+      document.getElementById('seed').onclick = async () => { await must(sb.rpc('seed_playbook', { ev: ev.id })); tabPromotion(ev, box); };
+      return;
+    }
+    const done = tasks.filter(t => t.status === 'done').length;
+    box.innerHTML = `
+      <div class="row between"><div><h2>${pct(done, tasks.length)}% done</h2><p class="muted small">${done} of ${tasks.length} steps. Tap the box to move a step along: to do → doing → done.</p></div><button class="btn small" id="addTask">+ Add a step</button></div>
+      <div class="bar" style="margin:14px 0 24px"><i style="width:${pct(done, tasks.length)}%"></i></div>
+      <div class="grid g2">${Object.entries(PILLARS).map(([k, p]) => {
+        const list = tasks.filter(t => t.pillar === k); if (!list.length) return '';
+        return `<div class="card pillar ${p.cls}"><div class="row between"><div><div class="eyebrow">Pillar ${p.n > 4 ? '·' : p.n}</div><h3 style="margin-top:4px">${p.name}</h3><p class="muted small">${p.sub}</p></div><span class="pill">${list.filter(t => t.status === 'done').length}/${list.length}</span></div>
+          <div style="margin-top:8px">${list.map(taskRow).join('')}</div></div>`;
+      }).join('')}</div>`;
+    box.querySelectorAll('[data-task]').forEach(b => b.onclick = async () => {
+      const t = tasks.find(x => x.id === b.dataset.task);
+      const next = { todo: 'doing', doing: 'done', done: 'todo', skipped: 'todo' }[t.status];
+      t.status = next; t.done_at = next === 'done' ? new Date().toISOString() : null; draw();
+      const { error } = await sb.from('promo_tasks').update({ status: next, done_at: t.done_at }).eq('id', t.id);
+      if (error) toast(friendly(error), true); else if (next === 'done') toast('Nice. Step done ✓');
+    });
+    box.querySelectorAll('[data-skip]').forEach(b => b.onclick = async () => {
+      const t = tasks.find(x => x.id === b.dataset.skip); t.status = 'skipped'; draw();
+      await sb.from('promo_tasks').update({ status: 'skipped' }).eq('id', t.id);
+    });
+    document.getElementById('addTask').onclick = () => openDialog(`
+      <h3>Add a step</h3><form id="tf" class="stack" style="margin-top:14px">
+      <div><label class="f" for="tt2">What</label><input class="i" id="tt2" name="title" maxlength="160" required></div>
+      <div class="grid g2"><div><label class="f" for="tp">Pillar</label><select class="i" id="tp" name="pillar">${Object.entries(PILLARS).map(([k, p]) => `<option value="${k}">${p.name}</option>`).join('')}</select></div>
+      <div><label class="f" for="td">Due</label><input class="i" id="td" name="due_on" type="date"></div></div>
+      <div><label class="f" for="tdd">Details <span>(optional)</span></label><textarea class="i" id="tdd" name="detail" maxlength="2000"></textarea></div>
+      <div class="row"><button class="btn primary">Add</button><button type="button" class="btn" data-close>Cancel</button></div></form>`, async f => {
+        const row = await must(sb.from('promo_tasks').insert({ event_id: ev.id, title: f.title.value.trim(), pillar: f.pillar.value, due_on: f.due_on.value || null, detail: f.detail.value.trim(), position: 99 }).select().single());
+        tasks.push(row); draw();
+      });
+  };
+  draw();
+}
+function taskRow(t) {
+  const late = t.status !== 'done' && t.status !== 'skipped' && t.due_on && parseDay(t.due_on) < today();
+  return `<div class="task ${t.status}">
+    <button class="box" type="button" data-task="${t.id}" aria-label="${esc(t.title)}: ${t.status}. Change status">${t.status === 'done' ? '✓' : t.status === 'doing' ? '•' : ''}</button>
+    <div><div class="tt" style="font-weight:600">${esc(t.title)}</div>${t.detail ? `<div class="muted small">${esc(t.detail)}</div>` : ''}
+      <div class="row" style="gap:6px;margin-top:6px">${t.owner === 'nexus' ? '<span class="pill lime">Nexus</span>' : '<span class="pill">You</span>'}${CHANNELS[t.channel] ? `<span class="pill">${esc(CHANNELS[t.channel].split(' (')[0])}</span>` : ''}${t.status === 'skipped' ? '<span class="pill">Skipped</span>' : ''}</div></div>
+    <div style="text-align:right"><div class="mono small" style="color:${late ? 'var(--warn)' : 'var(--muted)'}">${t.due_on ? esc(fmtDay(t.due_on)) : ''}${late ? '<br>overdue' : ''}</div>${t.status === 'todo' ? `<button class="btn small" style="min-height:28px;padding:0 10px;margin-top:6px" type="button" data-skip="${t.id}">Skip</button>` : ''}</div>
+  </div>`;
+}
+
+/* Links: one per channel, with a QR for print */
+let qrReady = null;
+function loadQr() {
+  return qrReady || (qrReady = new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js';
+    s.integrity = 'sha384-8FWZA6BGMXhsfO+BLtrJK0We6gg5o1JyO8xQm6peWDEUs17ACA5ziE/NIAkl9z2k'; s.crossOrigin = 'anonymous';
+    s.onload = res; s.onerror = rej; document.head.appendChild(s);
+  }));
+}
+function qrSvg(text) { const q = qrcode(0, 'M'); q.addData(text); q.make(); return q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }); }
+async function tabLinks(ev, box) {
+  const [st, links] = await Promise.all([must(sb.rpc('event_stats', { ev: ev.id })), must(sb.from('tracking_links').select('*').eq('event_id', ev.id).order('created_at'))]);
+  const by = Object.fromEntries((st.by_link || []).map(l => [l.code, l]));
+  await loadQr().catch(() => {});
+  box.innerHTML = `
+    <div class="row between"><div><h2>Tracking links</h2><p class="muted small">Every channel gets its own link. Print the QR on flyers, give one to each ambassador and partner, use one per ad. Sales from each link are counted exactly.</p></div><button class="btn primary" id="newLink">+ New link</button></div>
+    ${ev.status !== 'published' ? `<div class="insight warn" style="margin-top:14px"><div><b>Links work once the event is on sale.</b> Make them now so they’re ready for the launch.</div></div>` : ''}
+    ${links.length ? `<div class="grid g2" style="margin-top:18px">${links.map(l => {
+      const s = by[l.code] || {}, url = ticketUrl(ev.slug, l.code);
+      return `<div class="card"><div class="row between" style="align-items:flex-start"><div style="min-width:0;flex:1"><h3>${esc(l.label)}</h3><span class="pill" style="margin-top:6px">${esc(CHANNELS[l.channel] || l.channel)}</span>
+        <div class="row" style="gap:18px;margin-top:14px">${[['Visits', l.visits], ['Checkouts', s.started || 0], ['Tickets', s.tickets || 0], ['Earned', money(s.face_cents)]].map(([k, v]) => `<div class="kpi"><div class="l">${k}</div><div style="font-weight:800;font-size:1.2rem">${typeof v === 'number' ? num(v) : v}</div></div>`).join('')}</div></div>
+        <div class="qr" aria-hidden="true">${window.qrcode ? qrSvg(url) : ''}</div></div>
+        <div class="linkbox" style="margin-top:14px"><span>${esc(url)}</span><button class="btn small" data-copy="${esc(url)}">Copy</button>${window.qrcode ? `<button class="btn small" data-qr="${esc(l.code)}">QR file</button>` : ''}</div></div>`;
+    }).join('')}</div>` : `<div class="empty" style="margin-top:18px">No links yet. Start with one for flyers and one for each ambassador.</div>`}`;
+  box.querySelectorAll('[data-copy]').forEach(b => b.onclick = () => copy(b.dataset.copy, 'Link copied'));
+  box.querySelectorAll('[data-qr]').forEach(b => b.onclick = () => {
+    const svg = qrSvg(ticketUrl(ev.slug, b.dataset.qr)).replace('<svg ', '<svg style="background:#fff" ');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+    a.download = `${ev.slug}-${b.dataset.qr}-qr.svg`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  });
+  document.getElementById('newLink').onclick = () => openDialog(`
+    <h3>New tracking link</h3><form id="lf" class="stack" style="margin-top:14px">
+    <div><label class="f" for="ll">Name it</label><input class="i" id="ll" name="label" maxlength="80" required placeholder="Maya (ambassador) or North Park flyers"></div>
+    <div><label class="f" for="lc">Channel</label><select class="i" id="lc" name="channel">${Object.entries(CHANNELS).map(([k, t]) => `<option value="${k}">${t}</option>`).join('')}</select></div>
+    <div><label class="f" for="lk">Link code <span>(letters, numbers and dashes)</span></label><input class="i" id="lk" name="code" maxlength="32" placeholder="made from the name"></div>
+    <div class="row"><button class="btn primary">Create link</button><button type="button" class="btn" data-close>Cancel</button></div></form>`, async f => {
+      const label = f.label.value.trim();
+      const code = (slugify(f.code.value || label) || 'link').slice(0, 24) + (f.code.value ? '' : '-' + rand(3));
+      if (!/^[a-z0-9][a-z0-9-]{1,31}$/.test(code)) throw new Error('Use 2 to 32 letters, numbers and dashes for the code.');
+      await must(sb.from('tracking_links').insert({ event_id: ev.id, label, channel: f.channel.value, code }));
+      tabLinks(ev, box);
+    });
+}
+
+/* House show: the secret address, when it goes out, and who got it */
+async function tabHouse(ev, box) {
+  if (ev.address_privacy !== 'secret') {
+    box.innerHTML = `<div class="empty"><h3 style="color:var(--ink)">Running a house show?</h3><p style="margin:8px 0 16px">Keep the address secret. Guests see only the neighborhood when they buy or RSVP, and on the day each one gets their own address link by email and text, like Sofar Sounds. You see who it went to and who opened it, and you can switch off any link that leaks.</p><button class="btn primary" id="mkSecret">Make this a secret-address show</button></div>`;
+    document.getElementById('mkSecret').onclick = async () => { await must(sb.from('events').update({ address_privacy: 'secret', venue_address: '' }).eq('id', ev.id)); await loadContext(); render(); };
+    return;
+  }
+  const [secret, log] = await Promise.all([
+    sb.from('event_secrets').select('*').eq('event_id', ev.id).maybeSingle().then(r => r.data),
+    must(sb.rpc('address_share_log', { ev: ev.id })),
+  ]);
+  const due = ev.reveal_at ? new Date(ev.reveal_at) : (ev.starts_on ? new Date(ev.starts_on + 'T12:00:00') : null);
+  const local = d => d ? new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 16) : '';
+  const opened = log.filter(l => l.views > 0).length, multi = log.filter(l => l.views >= 4);
+  box.innerHTML = `
+    <div class="grid g4">${kpi('Address sent to', num(log.filter(l => l.sent_at).length), 'guests')}${kpi('Opened it', num(opened), log.length ? pct(opened, log.length) + '%' : '')}${kpi('Links switched off', num(log.filter(l => l.revoked_at).length), '')}${kpi('Goes out', due ? due.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' }) : 'Set a date', ev.addresses_sent_at ? 'Sent ' + new Date(ev.addresses_sent_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'Automatically, by email and text')}</div>
+    ${multi.length ? `<div class="insight warn" style="margin-top:14px"><div><b>Possible leak:</b> ${multi.map(l => esc(l.name || l.email)).join(', ')} opened their link ${multi.length === 1 ? multi[0].views + ' times' : 'many times'}. A forwarded link still shows their name; switch it off below if you need to.</div></div>` : ''}
+    <div class="grid g2" style="margin-top:14px">
+      <form id="hf" class="card stack" novalidate><h3>The address</h3>
+        <p class="muted small">Only your team and Nexus can see this. It’s never on the public page or the ticket.</p>
+        <div><label class="f" for="ha">Street address</label><input class="i" id="ha" name="address" value="${esc(secret?.address || '')}" maxlength="300" placeholder="1234 Example St, San Diego"></div>
+        <div><label class="f" for="hn">Arrival notes <span>(buzzer, parking, what to bring)</span></label><textarea class="i" id="hn" name="notes" maxlength="1000">${esc(secret?.arrival_notes || '')}</textarea></div>
+        <div><label class="f" for="hr">Send it at</label><input class="i" id="hr" name="reveal_at" type="datetime-local" value="${local(due)}"><p class="muted small" style="margin-top:6px">Default: noon on the day. Late buyers get it right away after that.</p></div>
+        <p class="err" id="herr"></p>
+        <div class="row"><button class="btn primary">Save</button><button type="button" class="btn" id="sendNow" ${ev.status === 'published' ? '' : 'disabled'}>Send it now</button></div>
+      </form>
+      <div class="card"><h3>What guests see</h3>
+        <div class="stack small" style="margin-top:12px">
+          <div class="insight"><div><b>When they buy:</b> “${esc(ev.where_text || 'Your neighborhood')}. The exact address arrives by email and text on the day of the show.”</div></div>
+          <div class="insight"><div><b>On the day:</b> “It’s today. Here’s where ${esc(ev.title)} is. The address is just for you, so please don’t share it.” With their own link.</div></div>
+          <div class="insight"><div><b>The link:</b> shows the address and notes with their name on it (“For ${esc('Ana R.')}, please don’t share”). If you switch it off, it stops working.</div></div>
+        </div></div>
+    </div>
+    <h3 style="margin:26px 0 10px">Who it went to</h3>
+    <div class="card scroll" style="padding:6px 14px">${log.length ? `<table class="t"><thead><tr><th>Guest</th><th>Sent by</th><th>Sent</th><th>Opened</th><th class="n">Views</th><th></th></tr></thead><tbody>${log.map(l => `<tr>
+      <td>${esc(l.name || 'Guest')}<div class="muted small">${esc(l.email || '')}${l.phone ? ' · ' + esc(l.phone) : ''}</div></td>
+      <td class="small">${[l.by_email && 'Email', l.by_text && 'Text'].filter(Boolean).join(' + ') || (l.send_error ? `<span style="color:var(--bad)">${esc(l.send_error.slice(0, 60))}</span>` : 'In the app')}</td>
+      <td class="small muted">${l.sent_at ? new Date(l.sent_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : ''}</td>
+      <td class="small">${l.first_viewed_at ? new Date(l.first_viewed_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : '<span class="muted">Not yet</span>'}</td>
+      <td class="n">${l.views >= 4 ? `<b style="color:var(--warn)">${l.views}</b>` : num(l.views)}</td>
+      <td class="n">${l.revoked_at ? `<button class="btn small" data-rev="${l.id}" data-on="0">Turn back on</button>` : `<button class="btn small danger" data-rev="${l.id}" data-on="1">Switch off</button>`}</td></tr>`).join('')}</tbody></table>`
+      : `<div class="empty" style="margin:8px 0">Nobody has it yet. It goes out ${due ? 'on ' + due.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) : 'on the day'}.</div>`}</div>`;
+  const f = document.getElementById('hf');
+  f.onsubmit = async e => {
+    e.preventDefault();
+    try {
+      await must(sb.from('event_secrets').upsert({ event_id: ev.id, address: f.address.value.trim(), arrival_notes: f.notes.value.trim(), updated_at: new Date().toISOString() }));
+      await must(sb.from('events').update({ reveal_at: f.reveal_at.value ? new Date(f.reveal_at.value).toISOString() : null }).eq('id', ev.id));
+      await loadContext(); toast('Saved'); render();
+    } catch (e2) { document.getElementById('herr').textContent = friendly(e2); }
+  };
+  document.getElementById('sendNow').onclick = async () => {
+    if (!confirm('Send the address to every guest now? Anyone who buys later gets it right away.')) return;
+    const r = await callFn('house-show', { mode: 'send', event: ev.id });
+    if (r.error) toast(r.error, true); else { toast(`Sent to ${r.sent} guest${r.sent === 1 ? '' : 's'}${r.failed ? ` · ${r.failed} couldn’t be reached` : ''}`); render(); }
+  };
+  box.querySelectorAll('[data-rev]').forEach(b => b.onclick = async () => {
+    await must(sb.rpc('set_address_share_revoked', { share: b.dataset.rev, revoked: b.dataset.on === '1' }));
+    toast(b.dataset.on === '1' ? 'Link switched off' : 'Link back on'); tabHouse(ev, box);
+  });
+}
+
+/* Promo codes */
+async function tabCodes(ev, box) {
+  const [codes, guests] = await Promise.all([
+    must(sb.from('promo_codes').select('*').eq('event_id', ev.id).order('created_at')),
+    must(sb.rpc('event_attendees', { ev: ev.id })),
+  ]);
+  const used = c => guests.filter(g => g.promo_code === c.code && g.status !== 'refunded').length;
+  const off = c => c.kind === 'percent' ? c.value + '% off' : money(c.value) + ' off';
+  box.innerHTML = `
+    <div class="row between"><div><h2>Promo codes</h2><p class="muted small">For ambassadors, partners, students, or a flash sale. A code takes money off each ticket; it never makes one free (use the guest list for comps). The Nexus fee is worked out on the discounted price.</p></div><button class="btn primary" id="newCode">+ New code</button></div>
+    ${codes.length ? `<div class="card scroll" style="margin-top:16px;padding:6px 14px"><table class="t"><thead><tr><th>Code</th><th>Discount</th><th>For</th><th>Window</th><th class="n">Used</th><th></th></tr></thead><tbody>${codes.map(c => `<tr>
+      <td><b class="mono">${esc(c.code)}</b>${c.note ? `<div class="muted small">${esc(c.note)}</div>` : ''}</td><td>${off(c)}</td>
+      <td class="small">${c.tier_ids.length ? esc(c.tier_ids.map(t => (ev.tiers || []).find(x => x.id === t)?.name || t).join(', ')) : 'All tickets'}</td>
+      <td class="small muted">${c.starts_at || c.ends_at ? `${c.starts_at ? fmtDay(c.starts_at.slice(0, 10)) : 'Now'} → ${c.ends_at ? fmtDay(c.ends_at.slice(0, 10)) : 'show'}` : 'Until the show'}</td>
+      <td class="n">${num(used(c))}${c.max_uses ? ' / ' + num(c.max_uses) : ''}</td>
+      <td class="n"><button class="btn small" data-tog="${c.id}" data-on="${c.active ? 0 : 1}">${c.active ? 'Pause' : 'Turn on'}</button> <button class="btn small" data-cp="${esc(ticketUrl(ev.slug) + '&code=' + c.code)}">Copy link</button></td></tr>`).join('')}</tbody></table></div>`
+      : `<div class="empty" style="margin-top:16px">No codes yet. Try one per ambassador: MAYA15 for 15% off, and you’ll see exactly what she sold.</div>`}`;
+  box.querySelectorAll('[data-cp]').forEach(b => b.onclick = () => copy(b.dataset.cp, 'Link with code copied'));
+  box.querySelectorAll('[data-tog]').forEach(b => b.onclick = async () => { await must(sb.from('promo_codes').update({ active: b.dataset.on === '1' }).eq('id', b.dataset.tog)); tabCodes(ev, box); });
+  document.getElementById('newCode').onclick = () => openDialog(`
+    <h3>New promo code</h3><form class="stack" style="margin-top:14px">
+    <div><label class="f" for="cc">Code <span>(3 to 24 letters or numbers)</span></label><input class="i mono" id="cc" name="code" maxlength="24" required style="text-transform:uppercase" placeholder="FRIENDS15"></div>
+    <div class="grid g2"><div><label class="f" for="ck">Type</label><select class="i" id="ck" name="kind"><option value="percent">Percent off</option><option value="amount">Dollars off each ticket</option></select></div>
+    <div><label class="f" for="cv">Amount</label><input class="i" id="cv" name="value" type="number" min="1" step="1" required placeholder="15"></div></div>
+    <div class="grid g2"><div><label class="f" for="cm">Most tickets <span>(blank = no limit)</span></label><input class="i" id="cm" name="max" type="number" min="1"></div>
+    <div><label class="f" for="ce2">Ends <span>(optional)</span></label><input class="i" id="ce2" name="ends" type="datetime-local"></div></div>
+    ${(ev.tiers || []).length > 1 ? `<fieldset style="border:0"><legend class="f">Works on <span>(none checked = all)</span></legend><div class="row">${ev.tiers.map(t => `<label class="check"><input type="checkbox" name="tier" value="${esc(t.id)}">${esc(t.name)}</label>`).join('')}</div></fieldset>` : ''}
+    <div><label class="f" for="cn2">Note <span>(who it’s for)</span></label><input class="i" id="cn2" name="note" maxlength="200"></div>
+    <div class="row"><button class="btn primary">Create code</button><button type="button" class="btn" data-close>Cancel</button></div></form>`, async f => {
+      const code = f.code.value.trim().toUpperCase().replace(/\s+/g, '');
+      if (!/^[A-Z0-9][A-Z0-9_-]{2,23}$/.test(code)) throw new Error('Use 3 to 24 letters, numbers, dashes or underscores.');
+      const v = Math.round(Number(f.value.value));
+      if (f.kind.value === 'percent' && (v < 1 || v > 90)) throw new Error('Percent codes go from 1% to 90%.');
+      await must(sb.from('promo_codes').insert({ event_id: ev.id, code, kind: f.kind.value, value: f.kind.value === 'amount' ? v * 100 : v, max_uses: f.max.value ? Number(f.max.value) : null, ends_at: f.ends.value ? new Date(f.ends.value).toISOString() : null, tier_ids: [...f.querySelectorAll('[name=tier]:checked')].map(c => c.value), note: f.note.value.trim() }));
+      tabCodes(ev, box);
+    });
+}
+
+/* Messages: email and text campaigns */
+const AUDIENCES = {
+  ticket_holders: ['Ticket holders', 'Updates about this event: set times, what to bring, the after party.', ['email', 'sms']],
+  rsvps: ['RSVPs', 'Nexus members who RSVPed.', ['email']],
+  started_checkout: ['Started checkout, didn’t buy', 'A last call to people who almost bought. Often your best-converting email.', ['email']],
+  opted_in: ['Your past guests (opted in)', 'People who bought from your events and said yes to hearing about future ones.', ['email']],
+  waitlist: ['Nexus app list', 'Everyone on the Nexus app waitlist. Texts only go to people who agreed to texts.', ['email', 'sms']],
+};
+const CSTATUS = { draft: ['Draft', ''], scheduled: ['Scheduled', 'warn'], sending: ['Sending', 'lime'], sent: ['Sent', 'ok'], failed: ['Failed', 'bad'] };
+async function callFn(name, body) {
+  const { data: { session } } = await sb.auth.getSession();
+  if (DEMO) return { ok: true, sent: 0, failed: 0, recipients: 0, demo: true };
+  try {
+    const r = await fetch(SB_URL + '/functions/v1/' + name, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SB_KEY, Authorization: 'Bearer ' + (session?.access_token || SB_KEY) }, body: JSON.stringify(body) });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok && !data.error) data.error = 'Something went wrong. Try again.';
+    return data;
+  } catch (e) { return { error: 'Couldn’t reach Nexus. Check your connection.' }; }
+}
+async function campaignList(filter, box, ctx) {
+  const list = await must(filter(sb.from('campaigns').select('*').order('created_at', { ascending: false })));
+  box.innerHTML = `
+    <div class="row between"><div><h2>${ctx.title}</h2><p class="muted small">${ctx.sub}</p></div><div class="row"><button class="btn" data-new="sms">+ Text</button><button class="btn primary" data-new="email">+ Email</button></div></div>
+    ${list.length ? `<div class="card scroll" style="margin-top:16px;padding:6px 14px"><table class="t"><thead><tr><th>Campaign</th><th>To</th><th>Status</th><th class="n">Sent</th><th></th></tr></thead><tbody>${list.map(c => `<tr>
+      <td><b>${esc(c.name)}</b><div class="muted small">${c.channel === 'sms' ? 'Text' : 'Email'}${c.subject ? ' · ' + esc(c.subject) : ''}</div></td>
+      <td class="small">${esc(AUDIENCES[c.audience]?.[0] || c.audience)}</td>
+      <td>${pill(CSTATUS[c.status])}${c.status === 'scheduled' && c.scheduled_at ? `<div class="muted small">${new Date(c.scheduled_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</div>` : ''}</td>
+      <td class="n">${c.status === 'draft' || c.status === 'scheduled' ? '' : `${num(c.delivered)}${c.recipients ? ' / ' + num(c.recipients) : ''}${c.failed ? `<div class="small" style="color:var(--bad)">${num(c.failed)} failed</div>` : ''}`}</td>
+      <td class="n">${['draft', 'scheduled'].includes(c.status) ? `<button class="btn small" data-edit="${c.id}">Edit</button>` : ''}</td></tr>`).join('')}</tbody></table></div>`
+      : `<div class="empty" style="margin-top:16px">No messages yet. A good first one: a “tickets are live” email to your past guests.</div>`}`;
+  box.querySelectorAll('[data-new]').forEach(b => b.onclick = () => campaignEditor({ channel: b.dataset.new, audience: ctx.audiences[0], ...ctx.base }, ctx, () => campaignList(filter, box, ctx)));
+  box.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => campaignEditor(list.find(c => c.id === b.dataset.edit), ctx, () => campaignList(filter, box, ctx)));
+}
+function campaignEditor(c, ctx, done) {
+  const sms = c.channel === 'sms';
+  const auds = ctx.audiences.filter(a => AUDIENCES[a][2].includes(c.channel));
+  const local = d => d ? new Date(new Date(d).getTime() - new Date(d).getTimezoneOffset() * 6e4).toISOString().slice(0, 16) : '';
+  openDialog(`<h3>${c.id ? 'Edit' : 'New'} ${sms ? 'text' : 'email'}</h3><form class="stack" style="margin-top:14px">
+    <div><label class="f" for="mn">Name <span>(just for you)</span></label><input class="i" id="mn" name="name" value="${esc(c.name || '')}" maxlength="120" required placeholder="Tickets are live"></div>
+    <div><label class="f" for="ma">Send to</label><select class="i" id="ma" name="audience">${auds.map(a => `<option value="${a}" ${c.audience === a ? 'selected' : ''}>${AUDIENCES[a][0]}</option>`).join('')}</select><p class="muted small" id="madesc" style="margin-top:6px"></p></div>
+    ${sms ? '' : `<div><label class="f" for="ms">Subject</label><input class="i" id="ms" name="subject" value="${esc(c.subject || '')}" maxlength="150" required></div>`}
+    <div><label class="f" for="mb">${sms ? 'Text' : 'Message'} <span>(${sms ? 'up to 480 characters; ' : 'blank line = new paragraph; '}{first_name} works)</span></label><textarea class="i" id="mb" name="body" maxlength="${sms ? 480 : 5000}" required style="min-height:${sms ? 100 : 180}px">${esc(c.body || '')}</textarea><p class="muted small" id="mcount"></p></div>
+    <div><label class="f" for="mt">Send at <span>(blank = send when you press Send)</span></label><input class="i" id="mt" name="at" type="datetime-local" value="${local(c.scheduled_at)}"></div>
+    <div class="row"><button class="btn primary" data-go="save">${c.id ? 'Save' : 'Save draft'}</button>${sms ? '' : '<button class="btn" type="submit" data-go="test">Email me a test</button>'}<button class="btn" type="submit" data-go="send">Send now</button>${c.id ? '<button type="button" class="btn small danger" id="mdel">Delete</button>' : ''}</div></form>`, async f => {
+      const go = f.dataset.go || 'save';
+      const row = { ...ctx.base, channel: c.channel, name: f.name.value.trim(), audience: f.audience.value, subject: sms ? '' : f.subject.value.trim(), body: f.body.value.trim(), scheduled_at: f.at.value ? new Date(f.at.value).toISOString() : null };
+      row.status = row.scheduled_at && go === 'save' ? 'scheduled' : 'draft';
+      if (!row.name || !row.body) throw new Error('Add a name and a message.');
+      const saved = c.id ? await must(sb.from('campaigns').update(row).eq('id', c.id).select().single()) : await must(sb.from('campaigns').insert(row).select().single());
+      c.id = saved.id;
+      if (go === 'test') { const r = await callFn('send-campaign', { mode: 'test', campaign: saved.id }); if (r.error) throw new Error(r.error); toast(DEMO ? 'Preview: a test would go to your email' : 'Test sent to ' + r.to); throw new Error(''); }
+      if (go === 'send') {
+        if (!confirm(`Send “${row.name}” to ${AUDIENCES[row.audience][0].toLowerCase()} now?`)) throw new Error('');
+        const r = await callFn('send-campaign', { mode: 'send', campaign: saved.id });
+        if (r.error) throw new Error(r.error);
+        toast(DEMO ? 'Preview: nothing was sent' : `Sent to ${r.sent}${r.remaining ? `, ${r.remaining} more on the way` : ''}${r.failed ? ` · ${r.failed} failed` : ''}`);
+      } else toast(row.status === 'scheduled' ? 'Scheduled' : 'Saved');
+      done();
+    });
+  const f = document.querySelector('#dlg form');
+  f.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => { f.dataset.go = b.dataset.go; }));
+  const desc = () => { document.getElementById('madesc').textContent = AUDIENCES[f.audience.value][1]; document.getElementById('mcount').textContent = sms ? `${f.body.value.length} / 480` : ''; };
+  f.audience.onchange = desc; f.body.oninput = desc; desc();
+  const del = document.getElementById('mdel');
+  if (del) del.onclick = async () => { if (!confirm('Delete this campaign?')) return; await must(sb.from('campaigns').delete().eq('id', c.id)); document.getElementById('dlg').close(); done(); };
+}
+function tabMessages(ev, box) {
+  return campaignList(qb => qb.eq('event_id', ev.id), box, {
+    title: 'Messages', sub: 'Email through Resend and texts through Twilio, from Nexus. Event updates go to everyone going; marketing only goes to people who said yes, with an unsubscribe link.',
+    audiences: ['ticket_holders', 'started_checkout', 'opted_in', 'rsvps'], base: { event_id: ev.id, org_id: ev.org_id },
+  });
+}
+
+/* Guest list */
+async function tabGuests(ev, box) {
+  const rows = await must(sb.rpc('event_attendees', { ev: ev.id }));
+  const draw = (q = '') => {
+    const list = rows.filter(r => !q || [r.holder_name, r.email].some(v => (v || '').toLowerCase().includes(q.toLowerCase())));
+    const inn = rows.filter(r => r.checked_in).length;
+    box.querySelector('#gl').innerHTML = list.length ? `<table class="t"><thead><tr><th>Name</th><th>Email</th><th>Ticket</th><th>From</th><th>Bought</th><th>Door</th></tr></thead><tbody>${list.map(r => `<tr>
+      <td>${esc(r.holder_name)}</td><td class="small">${esc(r.email || 'Nexus member')}</td><td>${esc(r.tier_name)} <span class="muted small">${money(r.price_cents)}</span></td>
+      <td class="small">${esc(r.ref || (r.source === 'app' ? 'Nexus app' : 'Website'))}${r.promo_code ? `<div class="mono muted">${esc(r.promo_code)}</div>` : ''}</td><td class="small muted">${new Date(r.bought_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</td>
+      <td>${r.status === 'refunded' ? pill(['Refunded', 'bad']) : r.checked_in ? pill(['In', 'ok']) : '<span class="muted small">Not yet</span>'}</td></tr>`).join('')}</tbody></table>`
+      : `<div class="empty">${rows.length ? 'No one matches that search.' : 'Your guest list fills in as tickets sell.'}</div>`;
+    box.querySelector('#gcount').textContent = `${num(rows.length)} tickets · ${num(inn)} checked in`;
+  };
+  box.innerHTML = `<div class="row between"><div><h2>Guest list</h2><p class="muted small" id="gcount"></p></div>
+    <div class="row"><input class="i" id="gq" placeholder="Search name or email" style="width:240px" aria-label="Search guests"><button class="btn small" id="csv" ${rows.length ? '' : 'disabled'}>Download CSV</button>
+    <a class="btn small" href="/#/door" target="_blank" rel="noopener">Door scanner ↗</a></div></div>
+    <p class="muted small" style="margin-top:6px">Guests who opted in can hear about your next event. Use their details only for this event and Nexus’s own follow-ups.</p>
+    <div class="card scroll" style="margin-top:16px;padding:6px 14px" id="gl"></div>`;
+  draw();
+  document.getElementById('gq').oninput = e => draw(e.target.value);
+  document.getElementById('csv').onclick = () => {
+    const head = ['Name', 'Email', 'Phone', 'Ticket', 'Price', 'Status', 'Checked in', 'Source', 'Link', 'Bought'];
+    const cell = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+    const csv = [head, ...rows.map(r => [r.holder_name, r.email, r.phone, r.tier_name, (r.price_cents / 100).toFixed(2), r.status, r.checked_in ? 'yes' : 'no', r.source, r.ref, r.bought_at])].map(r => r.map(cell).join(',')).join('\n');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = `${ev.slug || 'event'}-guests.csv`; a.click();
+  };
+}
+
+/* ════════════ Services ════════════ */
+route('services', async () => {
+  if (!S.org) { location.hash = '#/'; return; }
+  const reqs = await must(sb.from('service_requests').select('*').eq('org_id', S.org.id).order('created_at', { ascending: false }));
+  const groups = { buzz: 'Pillar 1 · Buzz', strategy: 'Pillar 2 · Strategy & relationships', experience: 'Pillar 3 · Experience & identity', ads: 'The last play · Ads' };
+  app().innerHTML = `<div class="eyebrow">In-house support</div><h1 style="font-size:clamp(2rem,4.6vw,3rem);margin:8px 0 6px">Nexus services</h1>
+    <p class="muted" style="max-width:640px">Request what your event needs. We scope it with you, then you track it here. During your trial event you have full access to our services.</p>
+    ${Object.entries(groups).map(([g, title]) => `<h3 style="margin:30px 0 12px" class="eyebrow">${title}</h3><div class="grid g3">${Object.entries(SERVICES).filter(([, s]) => s[1] === g).map(([k, [t, , d]]) => `<div class="card svc"><h3>${t}</h3><p class="muted small" style="flex:1">${d}</p><button class="btn small" style="align-self:flex-start;margin-top:8px" data-svc="${k}">Request</button></div>`).join('')}</div>`).join('')}
+    <h2 style="margin:40px 0 14px">Your requests</h2>
+    ${reqs.length ? `<div class="card scroll" style="padding:6px 14px"><table class="t"><thead><tr><th>Service</th><th>Event</th><th>Details</th><th>Status</th></tr></thead><tbody>${reqs.map(r => `<tr><td>${esc(SERVICES[r.service]?.[0] || r.service)}</td><td class="small">${esc(S.events.find(e => e.id === r.event_id)?.title || '')}</td><td class="small">${esc(r.details)}${r.nexus_note ? `<div style="color:var(--lime)">Nexus: ${esc(r.nexus_note)}</div>` : ''}</td><td>${pill(REQ_STATUS[r.status])}</td></tr>`).join('')}</tbody></table></div>` : `<div class="empty">No requests yet.</div>`}`;
+  app().querySelectorAll('[data-svc]').forEach(b => b.onclick = () => openDialog(`
+    <h3>${esc(SERVICES[b.dataset.svc][0])}</h3><form class="stack" style="margin-top:14px">
+    <div><label class="f" for="sev">For which event</label><select class="i" id="sev" name="event"><option value="">Not one event</option>${S.events.map(e => `<option value="${e.id}">${esc(e.title)}</option>`).join('')}</select></div>
+    <div><label class="f" for="sd">What do you need?</label><textarea class="i" id="sd" name="details" maxlength="2000" placeholder="Quantities, dates, places, links to your accounts…"></textarea></div>
+    <div><label class="f" for="sb">Budget <span>(optional, $)</span></label><input class="i" id="sb" name="budget" type="number" min="0" step="1"></div>
+    <div class="row"><button class="btn primary">Send request</button><button type="button" class="btn" data-close>Cancel</button></div></form>`, async f => {
+      await must(sb.from('service_requests').insert({ org_id: S.org.id, event_id: f.event.value || null, service: b.dataset.svc, details: f.details.value.trim(), budget_cents: f.budget.value ? Math.round(Number(f.budget.value) * 100) : null }));
+      toast('Request sent to Nexus'); render();
+    }));
+});
+
+/* ════════════ Brand ════════════ */
+route('brand', () => {
+  if (!S.org) { location.hash = '#/'; return; }
+  const b = S.org.brand || {};
+  app().innerHTML = `<div class="eyebrow">Your look</div><h1 style="font-size:clamp(2rem,4.6vw,3rem);margin:8px 0 6px">Brand and details</h1>
+    <p class="muted" style="max-width:640px">Your ticket page uses your color and logo. For a fully custom ticket experience and branded emails, <a href="#/services">request web branding</a>.</p>
+    <div class="grid g2" style="margin-top:20px">
+      <form id="bf" class="card stack" novalidate>
+        <h3>Ticket page look</h3>
+        <div class="grid g2"><div><label class="f" for="ba">Accent color</label><input class="i" id="ba" name="accent" type="color" value="${/^#[0-9a-f]{6}$/i.test(b.accent || '') ? b.accent : '#C5F37C'}" style="padding:4px;height:48px"></div>
+        <div><label class="f" for="bl">Logo link <span>(https image)</span></label><input class="i" id="bl" name="logo" value="${esc(b.logo || '')}" placeholder="https://…/logo.png"></div></div>
+        <div><label class="f" for="bv">Your voice <span>(a line for Nexus’s writers)</span></label><input class="i" id="bv" name="voice" value="${esc(b.voice || '')}" maxlength="200" placeholder="Warm, a little chaotic, never corporate"></div>
+        <h3 style="margin-top:12px">Details</h3>
+        ${[['name', 'Name'], ['contact_name', 'Contact name'], ['contact_email', 'Contact email'], ['phone', 'Phone'], ['city', 'City'], ['website', 'Website'], ['instagram', 'Instagram'], ['tiktok', 'TikTok']].map(([k, t]) => `<div><label class="f" for="b-${k}">${t}</label><input class="i" id="b-${k}" name="${k}" value="${esc(S.org[k] || '')}"></div>`).join('')}
+        <p class="err" id="berr"></p><button class="btn primary" ${S.role === 'staff' ? 'disabled' : ''}>Save</button>
+      </form>
+      <div class="card" id="bprev"></div>
+    </div>`;
+  const f = document.getElementById('bf');
+  const prev = () => {
+    const logo = /^https:\/\//.test(f.logo.value) ? f.logo.value : '';
+    document.getElementById('bprev').innerHTML = `<div class="eyebrow">Preview</div>
+      <div style="margin-top:14px;border-radius:16px;padding:22px;background:#0b0d0c;border:1px solid var(--line)">
+        ${logo ? `<img src="${esc(logo)}" alt="" style="max-height:40px;max-width:160px;display:block;margin-bottom:14px">` : `<div style="font-weight:900;letter-spacing:.2em;color:${esc(f.accent.value)}">${esc(f.name.value.toUpperCase())}</div>`}
+        <div style="font-family:var(--fh);font-weight:900;font-size:1.8rem;margin:10px 0 4px">Your event</div><div class="muted small">Friday · Your venue</div>
+        <div style="margin-top:18px;display:inline-block;padding:12px 22px;border-radius:999px;font-weight:800;background:${esc(f.accent.value)};color:#121510">Get tickets</div></div>`;
+  };
+  f.oninput = prev; prev();
+  f.onsubmit = async e => {
+    e.preventDefault();
+    const logo = f.logo.value.trim();
+    if (logo && !/^https:\/\//.test(logo)) { document.getElementById('berr').textContent = 'The logo link must start with https://'; return; }
+    const upd = { brand: { accent: f.accent.value, logo, voice: f.voice.value.trim() } };
+    ['name', 'contact_name', 'contact_email', 'phone', 'city', 'website', 'instagram', 'tiktok'].forEach(k => upd[k] = f[k].value.trim());
+    try { await must(sb.from('organizations').update(upd).eq('id', S.org.id)); await loadContext(); toast('Saved'); }
+    catch (e2) { document.getElementById('berr').textContent = friendly(e2); }
+  };
+});
+
+/* ════════════ Team ════════════ */
+route('team', async () => {
+  if (!S.org) { location.hash = '#/'; return; }
+  const members = await must(sb.from('organization_members').select('user_id, role, created_at, profiles(name)').eq('org_id', S.org.id).order('created_at'));
+  app().innerHTML = `<div class="eyebrow">Your team</div><h1 style="font-size:clamp(2rem,4.6vw,3rem);margin:8px 0 18px">Team</h1>
+    <div class="grid g2"><div class="card"><table class="t"><tbody>${members.map(m => `<tr><td>${esc(m.profiles?.name || 'Member')}${m.user_id === S.user.id ? ' <span class="muted small">(you)</span>' : ''}</td><td>${pill([m.role, m.role === 'owner' ? 'lime' : ''])}</td><td class="n">${S.role === 'owner' && m.role !== 'owner' ? `<button class="btn small danger" data-rm="${m.user_id}">Remove</button>` : ''}</td></tr>`).join('')}</tbody></table></div>
+    <div class="card">${S.role === 'owner' ? `<h3>Add a teammate</h3><p class="muted small" style="margin:6px 0 14px">They need a Nexus account first (they can make one at nexusglobal.info/organizers). Managers can do everything but add people; staff can view and work the plan.</p>
+      <form id="tm" class="stack"><div><label class="f" for="tme">Their Nexus email</label><input class="i" id="tme" name="email" type="email" required></div>
+      <div><label class="f" for="tmr">Role</label><select class="i" id="tmr" name="role"><option value="manager">Manager</option><option value="staff">Staff</option></select></div>
+      <p class="err" id="tmerr"></p><button class="btn primary">Add to team</button></form>` : `<p class="muted">Only the owner can add people.</p>`}</div></div>`;
+  const tm = document.getElementById('tm');
+  if (tm) tm.onsubmit = async e => {
+    e.preventDefault();
+    const r = await sb.rpc('add_org_member', { org: S.org.id, member_email: tm.email.value.trim(), member_role: tm.role.value });
+    if (r.error) { document.getElementById('tmerr').textContent = friendly(r.error); return; }
+    if (r.data.result === 'not_found') { document.getElementById('tmerr').textContent = 'No Nexus account with that email yet. Ask them to create one, then add them.'; return; }
+    toast('Added'); render();
+  };
+  app().querySelectorAll('[data-rm]').forEach(b => b.onclick = async () => {
+    if (!confirm('Remove this teammate?')) return;
+    await must(sb.from('organization_members').delete().eq('org_id', S.org.id).eq('user_id', b.dataset.rm)); render();
+  });
+});
+
+/* ════════════ Nexus admin ════════════ */
+function adminEventButtons(ev) {
+  if (ev.status === 'review') return `<button class="btn small primary" data-pub="${ev.id}">Publish (put on sale)</button><button class="btn small" data-back="${ev.id}">Back to draft</button>`;
+  if (ev.status === 'published') return `<button class="btn small" data-end="${ev.id}">Mark ended</button>`;
+  return '';
+}
+function bindAdminEventButtons(ev) {
+  const set = async (status, msg) => { await must(sb.from('events').update({ status }).eq('id', ev.id)); toast(msg); await loadContext(); render(); };
+  document.querySelectorAll('[data-pub]').forEach(b => b.onclick = () => set('published', 'Published: it’s on sale'));
+  document.querySelectorAll('[data-back]').forEach(b => b.onclick = () => set('draft', 'Sent back to draft'));
+  document.querySelectorAll('[data-end]').forEach(b => b.onclick = () => set('ended', 'Marked ended'));
+}
+const REPORT_TYPE = { post: 'Post', event: 'Event', profile: 'Profile', message: 'Message', group: 'Group' };
+const REPORT_REASON = { ai_generated: 'AI-generated', stolen_work: 'Stolen work', scam: 'Scam', spam: 'Spam', harassment: 'Harassment', hate: 'Hate', sexual: 'Sexual', violence: 'Violence', other: 'Other' };
+route('admin', async (monthArg) => {
+  if (!S.admin) { location.hash = '#/home'; return; }
+  const now = new Date();
+  const month = /^\d{4}-\d{2}$/.test(monthArg || '') ? monthArg : `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  const [m, orgs, events, reqs, payouts, flagged] = await Promise.all([
+    must(sb.rpc('admin_month', { month_start: month + '-01' })),
+    must(sb.from('organizations').select('*').order('created_at', { ascending: false })),
+    must(sb.from('events').select('id, title, slug, status, starts_on, org_id, sale_kind').order('starts_on', { ascending: false, nullsFirst: true })),
+    must(sb.from('service_requests').select('*, organizations(name)').order('created_at', { ascending: false }).limit(50)),
+    must(sb.from('payouts').select('*').order('created_at', { ascending: false }).limit(30)),
+    // Member reports, AI-generated content first (migration 0014). Empty if it isn't set up yet.
+    sb.rpc('review_queue').then(res => res.error ? [] : (res.data || [])),
+  ]);
+  const monthName = new Date(month + '-15').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  const shift = k => { const [y, mo] = month.split('-').map(Number); const d = new Date(y, mo - 1 + k, 1); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`; };
+  const orgName = id => orgs.find(o => o.id === id)?.name || 'Nexus';
+  const review = events.filter(e => e.status === 'review');
+  const proof = `${monthName} on Nexus: ${num(m.tickets)} tickets sold, ${money(m.gross_cents)} in sales across ${num((m.by_event || []).length)} event${(m.by_event || []).length === 1 ? '' : 's'}, ${num(m.buyers)} buyers${m.checked_in ? `, ${num(m.checked_in)} through the door` : ''}.`;
+  app().innerHTML = `
+    <div class="row between"><div><div class="eyebrow">Nexus admin</div><h1 style="font-size:clamp(2rem,4.6vw,3.2rem);margin-top:8px">${esc(monthName)}</h1></div>
+      <div class="row"><a class="btn small" href="#/admin/${shift(-1)}">← Previous</a><a class="btn small" href="#/admin/${shift(1)}">Next →</a></div></div>
+    <div class="grid g4" style="margin-top:20px">
+      ${kpi('Sales', money(m.gross_cents), 'What buyers paid')}
+      ${kpi('Tickets sold', num(m.tickets), num(m.orders) + ' orders · ' + num(m.buyers) + ' buyers')}
+      ${kpi('Nexus revenue', money(m.fee_cents), 'Fees, before Stripe’s cut')}
+      ${kpi('Owed to organizers', money(m.face_cents), 'Ticket face value')}
+    </div>
+    <div class="grid g4" style="margin-top:14px">
+      ${kpi('Checked in', num(m.checked_in), m.tickets ? pct(m.checked_in, m.tickets) + '% show rate' : '')}
+      ${kpi('New guests', num(m.new_guests), 'Bought on the website')}
+      ${kpi('New members', num(m.new_members), 'Joined the Nexus app')}
+      ${kpi('App waitlist', num(m.waitlist), 'All time')}
+    </div>
+    <div class="card proof" style="margin-top:14px"><div class="row between"><div style="flex:1;min-width:240px"><div class="eyebrow">Proof for partners</div><p style="font-family:var(--fh);font-weight:800;font-size:1.25rem;margin-top:8px">${esc(proof)}</p></div><button class="btn small primary" id="cpProof">Copy</button></div></div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card chart"><h3>Tickets by day</h3>${salesChart((m.by_day || []).map(d => ({ day: d.day, tickets: d.tickets })), null)}</div>
+      <div class="card"><h3>By event</h3>${(m.by_event || []).length ? `<table class="t" style="margin-top:8px"><thead><tr><th>Event</th><th class="n">Tickets</th><th class="n">Sales</th><th class="n">Nexus</th></tr></thead><tbody>${m.by_event.map(e => `<tr><td><a href="#/event/${e.event_id}/overview">${esc(e.title)}</a><div class="muted small">${esc(e.org || 'Nexus')}</div></td><td class="n">${num(e.tickets)}</td><td class="n">${money(e.gross_cents)}</td><td class="n">${money(e.fee_cents)}</td></tr>`).join('')}</tbody></table>` : '<p class="muted small" style="margin-top:10px">No sales this month yet.</p>'}
+        <div style="margin-top:16px"><h3>Where</h3>${breakdown((m.by_source || []).map(s => [s.source === 'app' ? 'Nexus app' : 'Website', s.tickets]), 'No sales yet.')}</div></div>
+    </div>
+
+    <h2 style="margin:40px 0 14px">Waiting on you</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Events to review</h3>${review.length ? `<table class="t" style="margin-top:8px"><tbody>${review.map(e => `<tr><td><a href="#/event/${e.id}/details">${esc(e.title)}</a><div class="muted small">${esc(orgName(e.org_id))} · ${esc(fmtDay(e.starts_on) || 'no date')}</div></td><td class="n">${adminEventButtons(e)}</td></tr>`).join('')}</tbody></table>` : '<p class="muted small" style="margin-top:8px">Nothing to review.</p>'}</div>
+      <div class="card"><h3>Applications</h3>${orgs.filter(o => o.status === 'applied').length ? `<table class="t" style="margin-top:8px"><tbody>${orgs.filter(o => o.status === 'applied').map(o => `<tr><td><b>${esc(o.name)}</b><div class="muted small">${esc(o.kind)} · ${esc(o.city)} · ${esc(o.contact_email)}</div>${o.goals ? `<div class="small" style="margin-top:4px">${esc(o.goals.slice(0, 220))}</div>` : ''}</td><td class="n"><button class="btn small primary" data-org="${o.id}" data-st="trial">Approve trial</button></td></tr>`).join('')}</tbody></table>` : '<p class="muted small" style="margin-top:8px">No new applications.</p>'}</div>
+    </div>
+
+    <div class="card" style="margin-top:14px" id="reports"><h3>Reports to review</h3>
+      <p class="muted small" style="margin-top:4px">From members. Three AI-generated flags on a post or event hide it until you decide.</p>
+      ${flagged.length ? `<table class="t" style="margin-top:10px"><tbody>${flagged.map(f => `<tr>
+        <td><div class="row" style="gap:6px;flex-wrap:wrap">${pill([REPORT_TYPE[f.target_type] || f.target_type, ''])}${(f.reasons || []).map(x => pill([REPORT_REASON[x] || x, x === 'ai_generated' ? 'warn' : ''])).join('')}${f.held_at ? pill(['Hidden until reviewed', 'bad']) : ''}</div>
+          <div style="margin-top:6px"><b>${esc(f.title || (f.body || '').slice(0, 90) || 'Untitled')}</b></div>
+          ${f.title && f.body ? `<div class="small muted" style="margin-top:2px">${esc(f.body.slice(0, 180))}</div>` : ''}
+          ${f.image_path ? `<img data-img="${esc(f.image_path)}" alt="Reported image" style="max-width:160px;max-height:120px;border-radius:10px;margin-top:8px;display:none">` : ''}
+          <div class="small muted" style="margin-top:4px">${esc(f.owner_name || 'Unknown member')} · ${num(f.reports)} report${Number(f.reports) === 1 ? '' : 's'} · first ${new Date(f.first_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</div>
+          ${(f.details || []).slice(0, 3).map(d => `<div class="small" style="margin-top:4px">“${esc(d.slice(0, 200))}”</div>`).join('')}</td>
+        <td class="n" style="white-space:nowrap"><button class="btn small primary" data-take="${f.target_type}:${f.target_id}">Take down</button> <button class="btn small" data-keep="${f.target_type}:${f.target_id}">Keep it up</button></td></tr>`).join('')}</tbody></table>` : '<p class="muted small" style="margin-top:8px">No open reports.</p>'}
+    </div>
+
+    <h2 style="margin:40px 0 14px">Organizations</h2>
+    <div class="card scroll" style="padding:6px 14px"><table class="t"><thead><tr><th>Name</th><th>Status</th><th>Plan</th><th>Contract</th><th>Events</th><th></th></tr></thead><tbody>
+      ${orgs.map(o => `<tr data-orow="${o.id}"><td><b>${esc(o.name)}</b><div class="muted small">${esc(o.contact_name)} · ${esc(o.contact_email)}${o.instagram ? ' · ' + esc(o.instagram) : ''}</div></td>
+        <td><select class="i" style="min-height:36px;padding:4px 30px 4px 10px" name="status">${Object.entries(ORG_STATUS).map(([k, [t]]) => `<option value="${k}" ${o.status === k ? 'selected' : ''}>${t}</option>`).join('')}</select></td>
+        <td><select class="i" style="min-height:36px;padding:4px 30px 4px 10px" name="plan">${[['trial', 'Trial'], ['contract', '1-year partner'], ['house', 'Nexus house']].map(([k, t]) => `<option value="${k}" ${o.plan === k ? 'selected' : ''}>${t}</option>`).join('')}</select></td>
+        <td><input class="i" style="min-height:36px;padding:4px 8px" type="date" name="contract_start" value="${o.contract_start || ''}" aria-label="Contract start"><input class="i" style="min-height:36px;padding:4px 8px;margin-top:4px" type="date" name="contract_end" value="${o.contract_end || ''}" aria-label="Contract end"></td>
+        <td class="small">${events.filter(e => e.org_id === o.id).map(e => `<a href="#/event/${e.id}/overview">${esc(e.title)}</a>`).join('<br>') || '<span class="muted">None</span>'}</td>
+        <td class="n"><button class="btn small" data-osave="${o.id}">Save</button></td></tr>`).join('') || '<tr><td colspan="6" class="muted">No organizations yet.</td></tr>'}
+    </tbody></table></div>
+
+    <h2 style="margin:40px 0 14px">Service requests</h2>
+    <div class="card scroll" style="padding:6px 14px"><table class="t"><thead><tr><th>Who</th><th>Service</th><th>Details</th><th>Status</th><th>Note to them</th><th></th></tr></thead><tbody>
+      ${reqs.map(r => `<tr data-rrow="${r.id}"><td class="small"><b>${esc(r.organizations?.name)}</b><div class="muted">${new Date(r.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</div></td><td>${esc(SERVICES[r.service]?.[0] || r.service)}</td><td class="small">${esc(r.details)}${r.budget_cents ? `<div class="muted">Budget ${money(r.budget_cents)}</div>` : ''}</td>
+        <td><select class="i" style="min-height:36px;padding:4px 30px 4px 10px" name="status">${Object.entries(REQ_STATUS).map(([k, [t]]) => `<option value="${k}" ${r.status === k ? 'selected' : ''}>${t}</option>`).join('')}</select></td>
+        <td><input class="i" style="min-height:36px;padding:4px 8px" name="note" value="${esc(r.nexus_note)}" maxlength="300"></td><td class="n"><button class="btn small" data-rsave="${r.id}">Save</button></td></tr>`).join('') || '<tr><td colspan="6" class="muted">No requests yet.</td></tr>'}
+    </tbody></table></div>
+
+    <div class="grid g2" style="margin-top:40px">
+      <div class="card"><h3>Record a payout</h3><form id="pf" class="stack" style="margin-top:12px">
+        <div><label class="f" for="po">Organization</label><select class="i" id="po" name="org" required>${orgs.map(o => `<option value="${o.id}">${esc(o.name)}</option>`).join('')}</select></div>
+        <div><label class="f" for="pe">Event</label><select class="i" id="pe" name="event"><option value="">Not one event</option>${events.filter(e => e.org_id).map(e => `<option value="${e.id}">${esc(e.title)}</option>`).join('')}</select></div>
+        <div class="grid g2"><div><label class="f" for="pa">Amount ($)</label><input class="i" id="pa" name="amount" type="number" min="0" step="0.01" required></div><div><label class="f" for="pd">Paid on <span>(blank = scheduled)</span></label><input class="i" id="pd" name="paid_on" type="date"></div></div>
+        <div><label class="f" for="pn">Note</label><input class="i" id="pn" name="note" maxlength="200" placeholder="Bank transfer, minus 2 refunds"></div>
+        <button class="btn primary" ${orgs.length ? '' : 'disabled'}>Save payout</button></form></div>
+      <div class="card"><h3>Recent payouts</h3>${payouts.length ? `<table class="t" style="margin-top:8px"><tbody>${payouts.map(p => `<tr><td>${esc(orgName(p.org_id))}<div class="muted small">${esc(p.note)}</div></td><td>${p.status === 'paid' ? pill(['Paid ' + fmtDay(p.paid_on), 'ok']) : pill(['Scheduled', 'warn'])}</td><td class="n">${money(p.amount_cents)}</td></tr>`).join('')}</tbody></table>` : '<p class="muted small" style="margin-top:8px">None yet.</p>'}</div>
+    </div>
+
+    <div id="nexusMsgs" style="margin-top:40px"></div>
+
+    <h2 style="margin:40px 0 14px">All events</h2>
+    <div class="card scroll" style="padding:6px 14px"><table class="t"><thead><tr><th>Event</th><th>Who</th><th>Date</th><th>Status</th></tr></thead><tbody>
+      ${events.map(e => `<tr><td><a href="#/event/${e.id}/overview">${esc(e.title)}</a></td><td class="small">${esc(orgName(e.org_id))}</td><td class="small">${esc(fmtDay(e.starts_on))}</td><td>${pill(EV_STATUS[e.status])}</td></tr>`).join('')}
+    </tbody></table></div>`;
+  document.getElementById('cpProof').onclick = () => copy(proof, 'Proof copied');
+  // Reported images load through short-lived private links.
+  document.querySelectorAll('[data-img]').forEach(async img => {
+    try { const { data } = await sb.storage.from('media').createSignedUrl(img.dataset.img, 600); if (data?.signedUrl) { img.src = data.signedUrl; img.style.display = 'block'; } } catch (e) {}
+  });
+  const resolve = async (key, action, done) => {
+    const [kind, target] = key.split(':');
+    try { await must(sb.rpc('resolve_reports', { kind, target, action })); toast(done); render(); }
+    catch (e) { toast(friendly(e), true); }
+  };
+  document.querySelectorAll('[data-take]').forEach(b => b.onclick = () => {
+    const kind = b.dataset.take.split(':')[0];
+    const what = kind === 'post' ? 'This deletes the post for good.' : kind === 'event' ? 'The event stays hidden and stops selling. Tickets already sold stay valid until you refund them.' : 'The reports are marked handled. Follow up with the member by hand.';
+    if (confirm('Take this down? ' + what)) resolve(b.dataset.take, 'take_down', 'Taken down');
+  });
+  document.querySelectorAll('[data-keep]').forEach(b => b.onclick = () => resolve(b.dataset.keep, 'dismiss', 'Kept up. Reports closed.'));
+  campaignList(qb => qb.is('event_id', null), document.getElementById('nexusMsgs'), {
+    title: 'Nexus messages', sub: 'Campaigns from Nexus itself: the app list, and every guest who said yes to hearing from Nexus.',
+    audiences: ['waitlist', 'opted_in'], base: { event_id: null, org_id: null },
+  });
+  document.querySelectorAll('[data-pub],[data-back]').forEach(b => {
+    const id = b.dataset.pub || b.dataset.back;
+    b.onclick = async () => { await must(sb.from('events').update({ status: b.dataset.pub ? 'published' : 'draft' }).eq('id', id)); toast(b.dataset.pub ? 'Published: it’s on sale' : 'Sent back to draft'); render(); };
+  });
+  document.querySelectorAll('[data-org]').forEach(b => b.onclick = async () => { await must(sb.from('organizations').update({ status: b.dataset.st }).eq('id', b.dataset.org)); toast('Trial approved'); render(); });
+  document.querySelectorAll('[data-osave]').forEach(b => b.onclick = async () => {
+    const tr = document.querySelector(`[data-orow="${b.dataset.osave}"]`), g = n => tr.querySelector(`[name=${n}]`).value || null;
+    try { await must(sb.from('organizations').update({ status: g('status'), plan: g('plan'), contract_start: g('contract_start'), contract_end: g('contract_end') }).eq('id', b.dataset.osave)); toast('Saved'); }
+    catch (e) { toast(friendly(e), true); }
+  });
+  document.querySelectorAll('[data-rsave]').forEach(b => b.onclick = async () => {
+    const tr = document.querySelector(`[data-rrow="${b.dataset.rsave}"]`);
+    try { await must(sb.from('service_requests').update({ status: tr.querySelector('[name=status]').value, nexus_note: tr.querySelector('[name=note]').value.trim() }).eq('id', b.dataset.rsave)); toast('Saved'); }
+    catch (e) { toast(friendly(e), true); }
+  });
+  document.getElementById('pf').onsubmit = async e => {
+    e.preventDefault(); const f = e.target;
+    try {
+      await must(sb.from('payouts').insert({ org_id: f.org.value, event_id: f.event.value || null, amount_cents: Math.round(Number(f.amount.value) * 100), status: f.paid_on.value ? 'paid' : 'scheduled', paid_on: f.paid_on.value || null, note: f.note.value.trim() }));
+      toast('Payout saved'); render();
+    } catch (e2) { toast(friendly(e2), true); }
+  };
+});
+
+/* ── A small dialog for quick forms ── */
+function openDialog(html, onSubmit) {
+  const d = document.getElementById('dlg');
+  d.innerHTML = html + '<p class="err" id="derr"></p>';
+  d.querySelectorAll('[data-close]').forEach(b => b.onclick = () => d.close());
+  const f = d.querySelector('form');
+  f.onsubmit = async e => {
+    e.preventDefault();
+    const btn = f.querySelector('button:not([type=button])'); btn.disabled = true;
+    try { await onSubmit(f); d.close(); }
+    catch (e2) { document.getElementById('derr').textContent = e2 && e2.message === '' ? '' : friendly(e2); btn.disabled = false; }
+  };
+  d.showModal();
+  setTimeout(() => f.querySelector('input,select,textarea')?.focus(), 30);
+}
+
+/* ── Sample data for ?demo: an in-memory stand-in for the database ── */
+function demoClient() {
+  const day = n => { const d = today(); d.setDate(d.getDate() + n); return ymd(d); };
+  const uid = 'demo-user', org = 'demo-org', ev = 'demo-event', ev2 = 'demo-event-2';
+  const id = () => 'd' + Math.random().toString(36).slice(2, 10);
+  const T = {
+    reports: [
+      { target_type: 'event', target_id: 'demo-flag-1', reports: 3, reasons: ['ai_generated'], details: ['The flyer is clearly AI, the hands are melted.', 'Same flyer was posted for a different venue.'], first_at: day(-1), held_at: day(0), title: 'Neon Dreams Warehouse Rave', body: 'All night, secret warehouse, 18+.', image_path: null, owner_name: 'Sample Promoter' },
+      { target_type: 'post', target_id: 'demo-flag-2', reports: 1, reasons: ['ai_generated', 'stolen_work'], details: ['Says it’s their painting but it’s AI.'], first_at: day(-2), held_at: null, title: null, body: 'New piece, took me three weeks. Prints available soon.', image_path: null, owner_name: 'Sample Artist' },
+    ],
+    organizations: [{ id: org, name: 'Golden Hour Collective', owner: uid, kind: 'collective', contact_name: 'Sample Organizer', contact_email: 'hello@example.com', phone: '', city: 'San Diego', website: '', instagram: '@goldenhour', tiktok: '', goals: 'A rooftop sunset series. 160 people, sold out, and a crowd that comes back.', brand: { accent: '#F2B866', logo: '', voice: 'Warm, golden, never corporate' }, plan: 'trial', status: 'trial', contract_start: null, contract_end: null, nexus_note: '', created_at: day(-30) },
+      { id: 'demo-org-2', name: 'Westside Jazz Club', owner: 'x', kind: 'venue', contact_name: 'Sample Venue', contact_email: 'booking@example.com', city: 'San Diego', goals: 'Monthly Latin jazz nights, 80 seats.', plan: 'trial', status: 'applied', brand: {}, created_at: day(-1) }],
+    organization_members: [{ org_id: org, user_id: uid, role: 'owner', created_at: day(-30), profiles: { name: 'Sample Organizer' } }],
+    events: [{ id: ev, title: 'Golden Hour: Rooftop Sessions', slug: 'golden-hour-rooftop', status: 'published', starts_on: day(18), when_text: 'Saturday · Doors 5 PM', where_text: 'A rooftop in Little Italy', venue_address: '', about: 'Live sets at sunset, a DJ after dark, and the best view in the city.', capacity: 180, goal_tickets: 160, sale_kind: 'tickets', tiers: [{ id: 'early', name: 'Early bird', price: 18 }, { id: 'ga', name: 'General admission', price: 25 }], org_id: org, host: uid, created_at: day(-28) },
+      { id: 'demo-house', title: 'Living Room Sessions: Vol. 3', slug: 'living-room-3', status: 'published', starts_on: day(0), when_text: 'Tonight · Doors 7:30 PM', where_text: 'North Park, San Diego', venue_address: '', address_privacy: 'secret', reveal_at: null, addresses_sent_at: day(0) + 'T12:00:00', about: 'Three acoustic sets in a candlelit living room. 40 guests. BYOB.', capacity: 40, goal_tickets: 40, sale_kind: 'tickets', tiers: [{ id: 'ga', name: 'Guest', price: 22 }], org_id: org, host: uid, created_at: day(-20) },
+      { id: ev2, title: 'Westside Latin Jazz Night', slug: 'westside-latin-jazz', status: 'review', starts_on: day(30), when_text: 'Friday · 8 PM', where_text: 'Westside Jazz Club', about: '', capacity: 80, goal_tickets: 80, sale_kind: 'tickets', tiers: [{ id: 'ga', name: 'General admission', price: 15 }], org_id: 'demo-org-2', host: 'x', created_at: day(-1) }],
+    tracking_links: [['flyers-north-park', 'North Park flyers', 'guerrilla', 340], ['maya', 'Maya (ambassador)', 'word_of_mouth', 96], ['jordan', 'Jordan (ambassador)', 'word_of_mouth', 61], ['bloom-records', 'Bloom Records (partner)', 'partner', 120], ['ig-bio', 'Instagram bio', 'buzz', 410], ['tiktok-spark', 'TikTok Spark Ad', 'tiktok_ads', 0]]
+      .map(([code, label, channel, visits], i) => ({ id: 'l' + i, event_id: ev, code, label, channel, visits, created_at: day(-26 + i) })),
+    promo_tasks: [], service_requests: [
+      { id: 's1', org_id: org, event_id: ev, service: 'flyer_print', details: '500 flyers, 40 posters', budget_cents: 30000, status: 'delivered', nexus_note: 'Printed and dropped at 22 spots.', created_at: day(-24), organizations: { name: 'Golden Hour Collective' } },
+      { id: 's2', org_id: org, event_id: ev, service: 'tiktok_ads', details: 'Boost the sunset clip', budget_cents: 25000, status: 'in_progress', nexus_note: 'Live from tomorrow.', created_at: day(-3), organizations: { name: 'Golden Hour Collective' } },
+      { id: 's3', org_id: 'demo-org-2', service: 'strategy_session', details: 'Interested (from application)', status: 'requested', nexus_note: '', created_at: day(-1), organizations: { name: 'Westside Jazz Club' } }],
+    event_secrets: [{ event_id: 'demo-house', address: '3847 Sample Ave, San Diego, CA 92104', arrival_notes: 'Side gate on the left. Shoes off inside. Street parking only.' }],
+    promo_codes: [{ id: 'c1', event_id: ev, code: 'MAYA15', kind: 'percent', value: 15, max_uses: 30, tier_ids: [], starts_at: null, ends_at: null, active: true, note: 'Maya, ambassador', created_at: day(-20) },
+      { id: 'c2', event_id: ev, code: 'BLOOM5', kind: 'amount', value: 500, max_uses: null, tier_ids: ['ga'], starts_at: null, ends_at: null, active: true, note: 'Bloom Records customers', created_at: day(-15) },
+      { id: 'c3', event_id: ev, code: 'FLASH24', kind: 'percent', value: 25, max_uses: 20, tier_ids: [], starts_at: null, ends_at: day(-5) + 'T23:59:00', active: false, note: '24-hour flash sale', created_at: day(-8) }],
+    campaigns: [{ id: 'm1', org_id: org, event_id: ev, channel: 'email', name: 'Tickets are live', subject: 'Golden Hour is back', body: 'Hi {first_name}…', audience: 'opted_in', status: 'sent', recipients: 412, delivered: 409, failed: 3, created_at: day(-26) },
+      { id: 'm2', org_id: org, event_id: ev, channel: 'email', name: 'Last call: you left tickets behind', subject: 'Still coming?', body: 'Hi {first_name}…', audience: 'started_checkout', status: 'sent', recipients: 37, delivered: 37, failed: 0, created_at: day(-6) },
+      { id: 'm3', org_id: org, event_id: ev, channel: 'sms', name: 'Set times', subject: '', body: 'Golden Hour tomorrow! Doors 5, first set 5:45.', audience: 'ticket_holders', status: 'scheduled', scheduled_at: day(17) + 'T17:00:00', recipients: 0, delivered: 0, failed: 0, created_at: day(-1) },
+      { id: 'm4', org_id: null, event_id: null, channel: 'email', name: 'The Nexus app is coming', subject: 'You’re early', body: 'Hi {first_name}…', audience: 'waitlist', status: 'sent', recipients: 214, delivered: 212, failed: 2, created_at: day(-10) }],
+    payouts: [{ id: 'p1', org_id: org, event_id: ev, amount_cents: 0, status: 'scheduled', paid_on: null, note: 'After the event', created_at: day(-1) }],
+  };
+  const PLAY = [['buzz', 'buzz', 'Teaser drop', -42, 'organizer'], ['buzz', 'word_of_mouth', 'Recruit your ambassadors', -35, 'organizer'], ['buzz', 'buzz', 'Lineup reveal', -28, 'organizer'], ['buzz', 'guerrilla', 'Flyer and sticker drop, round 1', -28, 'nexus'], ['buzz', 'guerrilla', 'Street team, round 2', -14, 'nexus'], ['buzz', 'buzz', 'Countdown week', -7, 'organizer'], ['buzz', 'buzz', '"Almost sold out" push', -3, 'organizer'],
+    ['strategy', 'inbound', 'Event page live', -42, 'organizer'], ['strategy', 'inbound', 'Email and text your list', -30, 'nexus'], ['strategy', 'outbound', 'Partner outreach', -35, 'organizer'], ['strategy', 'outbound', 'Press and calendar listings', -28, 'organizer'], ['strategy', 'stealth', 'Seed with creators', -21, 'nexus'], ['strategy', 'inbound', 'Last-call email', -7, 'nexus'],
+    ['experience', 'cause', 'Community partner', -30, 'organizer'], ['experience', 'experiential', 'Pop-up activation', -14, 'nexus'], ['experience', 'experiential', 'Design the photo moment', -10, 'organizer'],
+    ['ads', 'meta_ads', 'Meta retargeting', -10, 'nexus'], ['ads', 'tiktok_ads', 'TikTok Spark Ads', -10, 'nexus'], ['ops', 'ops', 'Door test', -1, 'organizer'], ['ops', 'ops', 'Thank-you and recap', 1, 'organizer'], ['ops', 'ops', 'Results review with Nexus', 3, 'nexus']];
+  const seed = e => { const d = daysUntil(e.starts_on) ?? 42; PLAY.forEach(([pillar, channel, title, off, owner], i) => T.promo_tasks.push({ id: id(), event_id: e.id, pillar, channel, title, detail: '', due_on: day(d + off), owner, status: d + off < -2 ? 'done' : d + off < 2 ? 'doing' : 'todo', position: i })); };
+  seed(T.events[0]);
+  T.organization_members[0].organizations = T.organizations[0];
+  // 112 tickets over 26 days, credited to links
+  const names = ['Ana Ruiz', 'Ben Cole', 'Chloe Park', 'Diego Luna', 'Ella Moss', 'Femi Ade', 'Gia Romano', 'Hugo Sato', 'Iris Kim', 'Jay Patel', 'Kai Brooks', 'Lena Diaz', 'Milo Grant', 'Nia Ford', 'Omar Haddad', 'Priya Rao'];
+  const refs = ['ig-bio', 'flyers-north-park', 'maya', 'maya', 'jordan', 'bloom-records', 'ig-bio', null, 'flyers-north-park', 'maya'];
+  const att = []; let sold = 0;
+  for (let i = -26; i <= 0 && sold < 112; i++) {
+    const n = Math.max(0, Math.round(2 + (26 + i) / 5 + (i % 3 === 0 ? 4 : 0) + (i > -6 ? 3 : 0)));
+    for (let k = 0; k < n && sold < 112; k++, sold++) {
+      const nm = names[sold % names.length], early = i < -14;
+      att.push({ ticket_id: id(), holder_name: nm, email: nm.toLowerCase().replace(' ', '.') + '@example.com', phone: '', tier_name: early ? 'Early bird' : 'General admission', price_cents: early ? 1800 : 2500, status: sold % 41 === 7 ? 'refunded' : 'valid', checked_in: false, source: sold % 4 ? 'website' : 'app', ref: refs[sold % refs.length], bought_at: day(i) + 'T18:00:00' });
+    }
+  }
+  att.forEach((a, i) => { if (a.ref === 'maya' && i % 2) a.promo_code = 'MAYA15'; else if (a.ref === 'bloom-records') a.promo_code = 'BLOOM5'; });
+  // The house show is tonight: the address went out at noon.
+  const houseLog = names.slice(0, 12).map((n, i) => ({ id: 'h' + i, name: n, email: n.toLowerCase().replace(' ', '.') + '@example.com', phone: i % 3 ? '+1619555' + (1000 + i) : null, by_email: true, by_text: !!(i % 3), send_error: null, sent_at: day(0) + 'T12:00:00', first_viewed_at: i < 10 ? day(0) + 'T1' + (2 + (i % 6)) + ':1' + i + ':00' : null, views: i === 4 ? 7 : i < 10 ? 1 + (i % 2) : 0, revoked_at: null }));
+  const stats = evId => {
+    if (evId !== ev) return { tickets_sold: 0, refunded: 0, checked_in: 0, orders: 0, face_cents: 0, fee_cents: 0, gross_cents: 0, checkouts_started: 0, buyers: 0, by_day: [], by_tier: [], by_source: [], by_link: T.tracking_links.filter(l => l.event_id === evId).map(l => ({ ...l, started: 0, tickets: 0, face_cents: 0 })), unattributed_tickets: 0 };
+    const kept = att.filter(a => a.status !== 'refunded'), sum = (l, f) => l.reduce((a, x) => a + f(x), 0);
+    const group = (l, k) => Object.entries(l.reduce((m, x) => ((m[x[k]] = m[x[k]] || []).push(x), m), {}));
+    return {
+      tickets_sold: kept.length, refunded: att.length - kept.length, checked_in: 0, orders: Math.round(kept.length / 1.7), face_cents: sum(kept, a => a.price_cents), fee_cents: sum(kept, a => Math.round(a.price_cents * 0.03 + 99)),
+      checkouts_started: Math.round(kept.length / 1.7 * 1.32), buyers: Math.round(kept.length / 1.9),
+      by_day: group(kept, 'bought_at').map(([d, l]) => ({ day: d.slice(0, 10), tickets: l.length, face_cents: sum(l, a => a.price_cents) })).sort((a, b) => a.day < b.day ? -1 : 1),
+      by_tier: group(kept, 'tier_name').map(([tier, l]) => ({ tier, tickets: l.length, face_cents: sum(l, a => a.price_cents) })),
+      by_source: group(kept, 'source').map(([source, l]) => ({ source, tickets: l.length })),
+      by_link: T.tracking_links.filter(l => l.event_id === ev).map(l => { const m = kept.filter(a => a.ref === l.code); return { ...l, started: Math.round(m.length / 1.4), tickets: m.length, face_cents: sum(m, a => a.price_cents) }; }),
+      unattributed_tickets: kept.filter(a => !a.ref).length,
+    };
+  };
+  function q(table) {
+    let rows = () => T[table] || [], filters = [], single = false, op = null, payload = null;
+    const b = {
+      select() { return b; }, order() { return b; }, limit() { return b; },
+      eq(c, v) { filters.push(r => r[c] === v); return b; },
+      is(c, v) { filters.push(r => (r[c] ?? null) === v); return b; },
+      upsert(p) { const hit = rows().find(r => r.event_id === p.event_id); if (hit) Object.assign(hit, p); else (T[table] = rows().concat([p])); op = 'none'; return b; },
+      single() { single = true; return b; }, maybeSingle() { single = true; return b; },
+      insert(p) { op = 'insert'; payload = p; return b; }, update(p) { op = 'update'; payload = p; return b; }, delete() { op = 'delete'; return b; },
+      then(res, rej) {
+        try {
+          let data;
+          if (op === 'insert') {
+            const list = (Array.isArray(payload) ? payload : [payload]).map(p => ({ id: id(), created_at: new Date().toISOString(), status: table === 'service_requests' ? 'requested' : undefined, nexus_note: '', visits: 0, ...p }));
+            if (table === 'events') list.forEach(e => { e.status = e.status === 'published' ? 'draft' : e.status; });
+            T[table] = (T[table] || []).concat(list); data = Array.isArray(payload) ? list : list[0];
+          } else if (op === 'none') { data = null;
+          } else {
+            const hit = rows().filter(r => filters.every(f => f(r)));
+            if (op === 'update') hit.forEach(r => Object.assign(r, payload));
+            if (op === 'delete') T[table] = rows().filter(r => !hit.includes(r));
+            data = single ? hit[0] ?? null : hit;
+          }
+          return Promise.resolve({ data, error: null }).then(res, rej);
+        } catch (e) { return Promise.resolve({ data: null, error: e }).then(res, rej); }
+      },
+    };
+    return b;
+  }
+  const month = () => {
+    const s = stats(ev);
+    return { tickets: s.tickets_sold + 64, orders: s.orders + 38, gross_cents: s.face_cents + s.fee_cents + 148000, face_cents: s.face_cents + 128000, fee_cents: s.fee_cents + 20000, refunded_orders: 2, buyers: s.buyers + 51, checked_in: 64,
+      by_day: s.by_day, by_source: [{ source: 'website', tickets: 131 }, { source: 'app', tickets: 43 }], new_guests: 96, new_members: 38, waitlist: 214, organizations: { trial: 1, applied: 1 }, open_requests: 2,
+      by_event: [{ event_id: ev, title: 'Golden Hour: Rooftop Sessions', org: 'Golden Hour Collective', tickets: s.tickets_sold, gross_cents: s.face_cents + s.fee_cents, fee_cents: s.fee_cents }, { event_id: 'nexus-house', title: 'REELFilms Screening Series', org: 'Nexus', tickets: 64, gross_cents: 148000, fee_cents: 20000 }] };
+  };
+  return {
+    from: q,
+    rpc: async (name, a) => {
+      if (name === 'is_admin') return { data: true, error: null };
+      if (name === 'event_stats') return { data: stats(a.ev), error: null };
+      if (name === 'event_attendees') return { data: a.ev === ev ? att : [], error: null };
+      if (name === 'admin_month') return { data: month(), error: null };
+      if (name === 'review_queue') return { data: T.reports, error: null };
+      if (name === 'resolve_reports') { T.reports = T.reports.filter(x => x.target_id !== a.target); return { data: null, error: null }; }
+      if (name === 'seed_playbook') { const e = T.events.find(x => x.id === a.ev); if (e && !T.promo_tasks.some(t => t.event_id === e.id)) seed(e); return { data: 21, error: null }; }
+      if (name === 'add_org_member') return { data: { result: 'not_found' }, error: null };
+      if (name === 'address_share_log') return { data: a.ev === 'demo-house' ? houseLog : [], error: null };
+      if (name === 'set_address_share_revoked') { const l = houseLog.find(x => x.id === a.share); if (l) l.revoked_at = a.revoked ? new Date().toISOString() : null; return { data: null, error: null }; }
+      return { data: null, error: null };
+    },
+    auth: {
+      getSession: async () => ({ data: { session: { user: { id: uid, email: 'demo@nexusglobal.info', user_metadata: { name: 'Sample Organizer' } } } } }),
+      onAuthStateChange: () => ({ data: { subscription: { unsubscribe() {} } } }),
+      signOut: async () => { location.href = location.pathname; },
+    },
+  };
+}
+if (DEMO) document.addEventListener('DOMContentLoaded', () => {
+  const b = document.createElement('div');
+  b.setAttribute('role', 'note');
+  b.style.cssText = 'position:relative;z-index:30;background:var(--lime);color:#121510;text-align:center;font-size:13px;font-weight:700;padding:8px 16px';
+  b.innerHTML = 'Preview with sample data. Nothing here is real or saved. <a href="./" style="color:#121510">Exit preview</a>';
+  document.body.prepend(b);
+});
+
+/* ── Start ── */
+sb.auth.onAuthStateChange(async (event) => {
+  if (event === 'PASSWORD_RECOVERY') { S.recovery = true; render(); }
+});
+(async () => {
+  try { await loadContext(); } catch (e) { console.error(e); }
+  render();
+})();
+</script>
+</body>
+</html>
